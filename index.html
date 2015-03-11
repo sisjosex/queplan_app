@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es" style="background:#000;">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>QuéPlan?</title>
+
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css"/>
+    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css"/>
+    <link rel="stylesheet" href="styles/app.css"/>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="jquery1.7.1.min.js"></script>
+    <script type="text/javascript" src="lib/onsen/js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/jquery1.7.1.min.js"></script>
+    <script type="text/javascript" src="lib/onsen/js/onsenui.js"></script>
+
+    <script type="text/javascript" src="lib/moment.js"></script>
+
+    <script type="text/javascript" src="js/constants.js"></script>
+    <script type="text/javascript" src="js/notifications.js"></script>
+    <script type="text/javascript" src="js/language.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="js/templates.js"></script>
+
+    <script type="text/javascript" src="lib/iscroll/iscroll.js"></script>
+
+    <script type="text/javascript" src="lib/img-touch-canvas.js"></script>
+
+    <!--<script src="lib/easyscroller.js"></script>-->
+    <!--<script src="lib/ftscroller.js"></script>-->
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script>
+        function loadScripts() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+            'callback=initializeMap';
+            document.body.appendChild(script);
+        }
+
+        function initializeMap() {
+
+        }
+    </script>
+</head>
+
+<body onload="loadScripts()">
+
+<ons-modal var="modal">
+    <ons-icon icon="ion-loading-c" spin="true"></ons-icon>
+</ons-modal>
+
+
+
+<ons-navigator animation="slide" var="splash">
+    <ons-page ng-controller="HomeController" id="homePage" class="">
+
+        <ons-toolbar class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="height:auto;position:relative;">
+                <div style="position:relative;">
+                    <ons-carousel class="carousel-detail" id="home_images" var="homeSlider"
+                                  style="position:relative;"
+                                  overscrollable="" auto-scroll=""></ons-carousel>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="main_scroll" class="scrollable">
+
+            <div id="main_list" class="scroll-content">
+
+                <div id="main_content">
+
+                    <div class="row">
+                        <div class="table-cell horizontal">
+                            <div class="button nobutton dashboard_button" onclick="goToSection('planes_de_hoy')">
+                                <div class="dashboard_icon icon_planes_de_hoy"></div>
+                                <div class="text">Planes de Hoy</div>
+                            </div>
+                            <div class="button nobutton dashboard_button" onclick="goToMenuDiario()">
+                                <div class="dashboard_icon icon_menu_diario"></div>
+                                <div class="text">Menú Diario</div>
+                            </div>
+                            <div class="button nobutton dashboard_button" onclick="goToGuia()">
+                                <div class="dashboard_icon icon_guia"></div>
+                                <div class="text">Guía</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-cell horizontal">
+                        <div class="button nobutton dashboard_button" onclick="goToRecompensas()">
+                            <div class="dashboard_icon icon_recompensas"></div>
+                            <div class="text">Recompensas</div>
+                        </div>
+                        <div class="button nobutton dashboard_button" onclick="goTo10_1()">
+                            <div class="dashboard_icon icon_10_1"></div>
+                            <div class="text">10+1</div>
+                        </div>
+                        <div class="button nobutton dashboard_button" onclick="goToRealidadAumentada()">
+                            <div class="dashboard_icon icon_realidad_aumentada"></div>
+                            <div class="text">Realidad Aumentada</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="home-footer">
+            <div class="banner">
+                <a href=""><img src="img/ad.jpg" /></a>
+            </div>
+        </div>
+    </ons-page>
+</ons-navigator>
+
+<ons-template id="menudiario.html">
+    <ons-page ng-controller="MenuDiarioController" var="carta" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('menudiario.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="menudiario_scroll" class="scrollable">
+            <div class="scroll-content">
+                <div class="horizontal">
+                    <div class="title">
+                        {{title}}
+                    </div>
+                </div>
+
+                <div id="menu_diario_content">
+                </div>
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="contacto.html">
+    <ons-page ng-controller="ContactoController" var="carta" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('contacto.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="contacto_scroll" class="scrollable">
+            <div class="scroll-content">
+                <div class="horizontal">
+                    <div class="title">
+                        Formulario de Contacto
+                    </div>
+                </div>
+
+                <div class="contacto_form horizontal">
+
+                    <p>
+                        <label for="contacto_nombre">Nombre <span class="red"></span>:</label>
+                        <input id="contacto_nombre" onclick="requestFocus(this, event)" type="text" class="input" />
+                    </p>
+
+                    <p>
+                        <label for="contacto_telefono">Teléfono:</label>
+                        <input id="contacto_telefono"  onclick="requestFocus(this, event)" type="phone"  class="input" />
+                    </p>
+
+                    <p>
+                        <label for="contacto_email">Email <span class="red"></span>:</label>
+                        <input id="contacto_email" onclick="requestFocus(this, event)" type="email"  class="input" />
+                    </p>
+
+                    <p>
+                        <label for="contacto_mensaje">Mensaje <span class="red"></span>:</label>
+                        <textarea id="contacto_mensaje" onclick="requestFocus(this, event)" class="input" style="height:74px;"></textarea>
+                    </p>
+
+                    <div class="options">
+                        <div class="button nobutton enviar" onclick="sendContactForm(this, event)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="noticia.html">
+    <ons-page ng-controller="NoticiaController" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('noticia.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="noticia_scroll" class="scrollable scrollfix">
+
+            <div class="horizontal">
+
+                <img id="noticia_image" onload="refreshNoticiaScroll()"/>
+
+                <div id="noticia_title" class="title"></div>
+
+                <div id="noticia_description" class="description list" style="text-align: justify;"></div>
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="page.html">
+    <ons-page ng-controller="PageController" var="grupo" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('grupo.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="page_scroll" class="scrollable">
+
+            <div id="page_content" class="scroll-content scrollfix list">
+
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="novedades.html">
+    <ons-page ng-controller="NovedadesController" var="grupo" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('novedades.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="novedades_scroll" class="scrollable">
+
+            <div id="novedades_content" class="scroll-content scrollfix">
+
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="localizacion.html">
+    <ons-page ng-controller="LocalizacionController" var="grupo" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('localizacion.html');"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="map" style="width:100%;height:100%;">
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="foto.html">
+    <ons-page ng-controller="FotoController" class="normal-page">
+        <ons-toolbar class="toolbar">
+            <div class="center header-title">
+                <div class="backButton" onclick="splash.popPage('foto.html');current_page='galeria.html';"></div>
+                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+            </div>
+        </ons-toolbar>
+
+        <div id="foto_scroll" class="scrollable">
+
+            <div class="scroll-content scrollfix">
+
+                <img id="foto_image" onload="modal.hide();" />
+
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+</body>
+</html>
