@@ -90,7 +90,7 @@ function goToContacto() {
 
 function goToPlanes() {
 
-    getJsonP(api_url + 'getPlanes', function(data){
+    getJsonP(api_url + 'getPlanes/', function(data){
 
         current_list = data;
 
@@ -104,7 +104,7 @@ function goToPlanes() {
 
 function gotoMenuDiario() {
 
-    getJsonP(api_url + 'getMenuDiario', function(data){
+    getJsonP(api_url + 'getMenuDiario/', function(data){
 
         current_list = data;
 
