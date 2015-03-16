@@ -351,6 +351,8 @@ module.controller('RegistroController', function($scope) {
 
         initScroll('registro_scroll');
 
+        try { navigator.splashscreen.hide(); } catch(error){}
+
     })
 });
 
