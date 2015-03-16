@@ -1,6 +1,6 @@
-var api_url = 'http://10.0.0.4/queplan/app/webroot/app/api/';
-var img_url = 'http://10.0.0.4/queplan/app/webroot/app/';
-var thumb_url = 'http://10.0.0.4/queplan/app/webroot/app/api/helpers/timthumb.php?w=%width%&h=%height%&src=';
+var api_url = 'http://web.queplanmadrid.es/apiapi/';
+var img_url = 'http://www.queplanmadrid.es/img/';
+var thumb_url = 'http://www.queplanmadrid.es/api/helpers/timthumb.php?w=%width%&h=%height%&src=';
 
 
 /*
