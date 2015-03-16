@@ -2,9 +2,9 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		    = "com.sysdecom.queplan"
-    versionCode = "1406"
-    android-versionCode="1406"
-	version 	= "14.06">
+    versionCode = "1500"
+    android-versionCode="1500"
+	version 	= "15.00">
 
 	<name>QuéPlan?</name>
 
@@ -12,15 +12,15 @@
 		Aplicacion mobile - QuéPlan?
 	</description>
 
-	<author href="http://lasterrazasdebecerril.es/"
+	<author href="http://web.queplanmadrid.es/"
 		email="sisjosex@gmail.com">
-		arrobacreativa
+		SYSDECOM
 	</author>
 
 	<content src="index.html" />
     
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>14.06</string>
+        <string>15.00</string>
     </gap:config-file>
 
 <feature name="File">
@@ -70,7 +70,7 @@
 
     <!-- Define app icon for each platform. -->
     
-    <icon src="res/icon/android/icon-50.png"        gap:platform="android"    width="47" height="47" />
+    <icon src="res/icon/android/icon-57.png"        gap:platform="android"    width="47" height="47" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />

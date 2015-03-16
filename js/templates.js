@@ -27,6 +27,14 @@ var templates = {
                             '<div class="list_title"><p><img align="left" src="http://lasterrazasdebecerril.es/img/novedades/thumbnails/%imagen%" onload="refreshNovedadesScroll()"/><span class="novedad_titulo">%nombre%</span><span class="novedad_fecha">%fecha%</span><span class="short_desc">%descripcion_cut%</span></p></div>' +
                             '</div></div></ons-list-item>',
 
+    planes_list:
+        '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron" onclick="goToPlanesDetalle(%index%, event)">' +
+            '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+            '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%list_image%" /></div>'+
+            '<div class="title">%title%</div>'+
+            '<div class="distance">%distance%</div>'+
+        '</ons-list-item>',
+
     btn_subir: '<div class="subir_container"><div class="button nobutton subir" onclick="subir(event)"></div></div>',
 
     btn_pdf: '<div class="pdf_container"><div class="button nobutton pdf" onclick="openPdf(\'http://lasterrazasdebecerril.es/noticias/forceDowload/%pdf%\')"></div></div>',
@@ -38,8 +46,19 @@ var templates = {
     slider_images: '' +
         '<ons-carousel-item class="item-bg detail session-item loading">'+
             '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-            '<img onload="fadeIn(this, %index%)" src="%list_image%" />'+
+            '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%list_image%" /></div>'+
+            '<div class="title">%title%</div>'+
         '</ons-carousel-item>',
+
+    slider_paginator: '' +
+        '<div class="paginator-item"><div class="paginator-item-content"></div></div>',
+
+    slider_ciudades: '' +
+    '<ons-carousel-item class="item-bg detail session-item loading">'+
+        '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+        '<div class="full-screen animate"><img onload="onSliderCiudadIMGLoad(this, %index%)" src="%image%" /></div>'+
+        '<div class="title">%title%</div>'+
+    '</ons-carousel-item>',
 
     guest_paginator: '<li class="carousel-page %selected%"></li>',
 
@@ -110,7 +129,10 @@ function loadIntoTemplate(div, data, template, labels, height) {
 
         container.append(content);
 
-        ons.compile(content[0]);
+        try {
+            ons.compile(content[0]);
+
+        } catch (error){}
     }
 }
 

@@ -22,10 +22,12 @@ window.onresize = function(){
 };
 
 function resizeCardCarousel() {
+
+    /*
     thumb_width = window.innerWidth;
     thumb_height = window.innerHeight - $('#main_content').offsetHeight();
 
-    $('#home_images').height(thumb_height);
+    $('#home_images').height(thumb_height);*/
 
     refreshHomeScroll();
 }
@@ -86,29 +88,54 @@ function goToContacto() {
     splash.pushPage('contacto.html', {});
 }
 
-function goToNovedadDetalle(index, event) {
+function goToPlanes() {
 
-    current_noticia = current_list.list[index];
-
-    splash.pushPage('noticia.html', {});
-
-    event.stopPropagation();
-}
-
-function goToVinosCategoria(id) {
-
-    getJsonP(api_url + 'get_categoria_vinos', function(data){
+    getJsonP(api_url + 'getPlanes', function(data){
 
         current_list = data;
 
-        splash.pushPage('vinos.html', {id: id});
+        mainnavigator.pushPage('planes.html', {});
 
         if(current_list.list) {
-
-
         }
 
-    }, function(){}, {id: id});
+    }, function(){}, {});
+}
+
+function gotoMenuDiario() {
+
+    getJsonP(api_url + 'getMenuDiario', function(data){
+
+        current_list = data;
+
+        mainnavigator.pushPage('menu.html', {});
+
+        if(current_list.list) {
+        }
+
+    }, function(){}, {});
+}
+
+var currentPlan;
+function goToPlanesDetalle(id) {
+
+    currentPlan = current_list[id];
+
+    mainnavigator.pushPage('plan.html', {id: id});
+}
+
+function procesarRegistro(element, event, type) {
+
+    if(current_page != 'ciudad.html') {
+
+        current_page = 'ciudad.html';
+        mainnavigator.pushPage('ciudad.html');
+    }
+}
+
+function elegirCiudad(element, event) {
+
+    mainnavigator.pushPage('home.html');
 }
 
 function loadApplicationParams(callback) {
@@ -132,7 +159,7 @@ function loadApplicationParams(callback) {
 
 function refreshHomeScroll() {
 
-    scrolls['main_scroll'].refresh();
+    scrolls['homeScroll'].refresh();
 }
 
 closeDetailSession = function() {
@@ -160,67 +187,216 @@ actionCall = function(phone) {
     );
 };
 
+function onSliderCiudadIMGLoad(img, index) {
+
+    var src = $(img).attr('src');
+    var container = $(img).parent();
+
+    var image = new Image();
+    image.src=src;
+
+    image.onload = function() {
+
+        container.parent().find('ons-icon').remove();
+
+        container.html('');
+        container.addClass('noopaque');
+
+        container.css('background-image', "url('" + src + "')");
+        container.css('background-repeat', "no-repeat");
+        container.css('background-position', "center center");
+
+        var width = image.width;
+        var height = image.height;
+        var factor = 1;
+
+        if (window.innerWidth > width) {
+            factor = window.innerWidth / width;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if (window.innerHeight > height) {
+
+            factor = (window.innerHeight)/height;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if (window.innerWidth < width ) {
+
+            factor = window.innerHeight/height;
+            width = width * factor;
+            height = window.innerHeight;
+
+            if(window.innerWidth - width > 0) {
+                factor = window.innerWidth / width;
+                width = window.innerWidth;
+                height = height * factor;
+            }
+
+
+        } else if (window.innerHeight < height ) {
+
+            factor = window.innerWidth / width;
+            width = window.innerWidth;
+            height = height * factor;
+
+            if(window.innerHeight - height > 0) {
+                factor = window.innerHeight / height;
+                height = window.innerHeight;
+                width = width * factor;
+            }
+        }
+
+        container.css('background-size', parseInt(width) + "px" + " " + parseInt(height) + "px");
+
+        container.removeClass('noopaque');
+    }
+}
+
+function onSliderHomeIMGLoad(img, index) {
+
+    var src = $(img).attr('src');
+    var container = $(img).parent();
+
+    var image = new Image();
+    image.src=src;
+
+    image.onload = function() {
+
+        container.parent().find('ons-icon').remove();
+
+        container.html('');
+        container.addClass('noopaque');
+
+        container.css('background-image', "url('" + src + "')");
+        container.css('background-repeat', "no-repeat");
+        container.css('background-position', "center center");
+
+        var width = image.width;
+        var height = image.height;
+        var factor = 1;
+
+        if (window.innerWidth > width) {
+            factor = window.innerWidth / width;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if ($('#homeImages').outerHeight() > height) {
+
+            factor = ($('#homeImages').outerHeight())/height;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if (window.innerWidth < width ) {
+            factor = $('#homeImages').outerHeight()/height;
+            width = width * factor;
+            height = $('#homeImages').outerHeight();
+
+            if(window.innerWidth - width > 0) {
+                factor = window.innerWidth / width;
+                width = window.innerWidth;
+                height = height * factor;
+            }
+
+
+        } else if ($('#homeImages').outerHeight() < height ) {
+            factor = window.innerWidth / width;
+            width = window.innerWidth;
+            height = height * factor;
+
+            if($('#homeImages').outerHeight() - height > 0) {
+                factor = $('#homeImages').outerHeight() / height;
+                height = $('#homeImages').outerHeight();
+                width = width * factor;
+            }
+        }
+
+        width = parseInt(width+"");
+        height = parseInt(height+"");
+
+        container.css('background-size', (width) + "px" + " " + (height) + "px");
+
+        container.removeClass('noopaque');
+    }
+}
+
 function infoAction() {
     actionCall('918538002');
 }
 
 
-var scopeLocalizacionController;
-var map;
-module.controller('LocalizacionController', function($scope){
+var NavigatorController;
+module.controller('NavigatorController', function($scope) {
+    ons.ready(function() {
 
-    ons.ready(function(){
+        NavigatorController = this;
 
-        var latLong = new google.maps.LatLng(40.71535,-3.98943);
+        loadApplicationParams(function(){
 
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: latLong,
-            zoom: 18,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mainnavigator.pushPage("registro.html", {animation:'none'});
         });
 
-        var marker = new google.maps.Marker({
-            map: map,
-            //position: new google.maps.LatLng(lat, lng),
-            title: "move this marker",
-            //icon: image,
-            //shadow: shadow,
-            //shape: shape
-            position: latLong,
-            animation:google.maps.Animation.DROP,
-            draggable:false
-        });
+    })
+});
 
-        var infowindow = new google.maps.InfoWindow();
-        infowindow.setContent("<p style='color:red;font-weight:bold;'><img width='150' src='img/logo.png'/></p>");
-        infowindow.open(map,marker);
+var RegistroController;
+module.controller('RegistroController', function($scope) {
+    ons.ready(function() {
 
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map,marker);
-        });
+        RegistroController = this;
 
-    });
+        initScroll('registro_scroll');
+
+    })
+});
+
+var ciudadController;
+module.controller('ciudadController', function($scope) {
+    ons.ready(function() {
+
+        CiudadController = this;
+
+        loadIntoTemplate('#ciudad_images', applicationParams.ciudades, 'slider_ciudades');
+
+    })
 });
 
 
-var scopeHomeController;
+var HomeController;
 var height;
 module.controller('HomeController', function($scope) {
     ons.ready(function() {
 
-        scopeHomeController = $scope;
+        HomeController = $scope;
 
         try {
             StatusBar.hide();
         }catch(error){}
 
-        scopeSplashController = $scope;
-
         setTimeout(function() {
 
-            height = $(window).height() - ( $('#main_content').outerHeight() + $('#home-footer').outerHeight() - 1 );
-            $('#home_images').height( height );
-            $('#homePage .page__content').css('top', height+'px');
+            var factor = window.innerWidth/320;
+
+            var footerHeight = factor*$('#homeFooter').outerHeight();
+
+            $('#homeFooter .banner').height( footerHeight );
+            $('#homeHeader').height( footerHeight );
+
+            console.log(factor);
+
+            /*$('.header-logo').width($('.header-logo').width() * factor);
+            $('.header-logo').height($('.header-logo').height() * factor);*/
+
+            height = $(window).height() - ( $('#homeScroll').outerHeight() + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
+
+            $('#homeImages').height( height );
+            $('#homeToolbar').height( height );
+
+            $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() )+'px');
 
             loadApplicationParams(function(){
 
@@ -228,25 +404,33 @@ module.controller('HomeController', function($scope) {
 
                 $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
 
-                console.log(applicationParams.slider);
+                loadIntoTemplate('#homeImages', applicationParams.slider, 'slider_images');
 
-                loadIntoTemplate('#home_images', applicationParams.slider, 'slider_images');
+                loadIntoTemplate('#homePaginator', applicationParams.slider, 'slider_paginator');
 
-                ons.compile($('#home_images')[0]);
+                $('#homePaginator > div:first-child').addClass('selected');
 
-                ons.compile($('#main_scroll')[0]);
 
-                initScroll('main_scroll');
-
-                refreshHomeScroll();
+                HomeController.carouselPostChange = function() {
+                    $('#homePaginator > div').removeClass('selected');
+                    $('#homePaginator > div:nth-child(' + (homeImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+                };
 
                 setTimeout(function(){
 
-                    refreshHomeScroll();
+                    homeImages.on('postchange', HomeController.carouselPostChange);
 
-                    /*height = $(window).height() - ( $('#main_content').height() + $('#horario').height() - 6 - 15 );
-                    $('#home_images').height( height );
-                    $('#homePage .page__content').css('top', height+'px');*/
+                }, 1000);
+
+                ons.compile($('#homeImages')[0]);
+
+                //ons.compile($('#homeScroll')[0]);
+
+                initScroll('homeScroll');
+
+                //refreshHomeScroll();
+
+                setTimeout(function(){
 
                     try { navigator.splashscreen.hide(); } catch(error){}
 
@@ -262,167 +446,43 @@ module.controller('HomeController', function($scope) {
     });
 });
 
+var PlanesController;
+module.controller('PlanesController', function($scope) {
+    ons.ready(function() {
+
+        PlanesController = this;
+
+        //loadIntoTemplate('#planes_content', applicationParams.planes, 'list_planes');
+
+        var factor = window.innerWidth/320;
+
+        $('#planesHeader').css('max-height',  factor*60 );
+        //$('#planesHeader').height( factor*$('#planesHeader').outerHeight() );
+
+    })
+});
+
+var MenuController;
+module.controller('MenuController', function($scope) {
+    ons.ready(function() {
+
+        MenuController = this;
+
+        //loadIntoTemplate('#planes_content', applicationParams.planes, 'list_planes');
+
+        var factor = window.innerWidth/320;
+
+        $('#menuHeader').css('max-height',  factor*60 );
+        //$('#planesHeader').height( factor*$('#planesHeader').outerHeight() );
+
+    })
+});
 
 function compare(a,b) {
     if (parseInt(moment(a.date, "YYYY-MM-DD").format("x")) > parseInt(moment(b.date, "YYYY-MM-DD").format("x")))
         return 1;
     return 0;
 }
-
-var scopeCartaController;
-module.controller('CartaController', function($scope) {
-    ons.ready(function() {
-
-        scopeCartaController = this;
-
-        current_page = 'carta.html';
-
-        $scope.labels = getLabels();
-
-        loadIntoTemplate('#carta_list', carta_data.entrante, 'carta_list_content');
-
-        ons.compile($('#carta_scroll')[0]);
-
-        initScroll('carta_scroll');
-
-    });
-});
-
-var scopeGaleriaController;
-module.controller('GaleriaController', function($scope) {
-    ons.ready(function() {
-
-        scopeCartaController = this;
-
-        current_page = 'galeria.html';
-
-        if(splash.getCurrentPage().options.galeria_id == '3') {
-
-            $('#galeria_title').html('Galeria<br><span class="subsubtitle">(salones)</span>');
-
-        } else {
-
-            $('#galeria_title').html('Galeria<br><span class="subsubtitle">(platos comida)</span>');
-        }
-
-        $('#galeria_content').html('');
-
-        loadIntoTemplate('#galeria_content', current_list.list, 'fotos_list_content');
-
-        ons.compile($('#galeria_scroll')[0]);
-
-        initScroll('galeria_scroll');
-
-    });
-});
-
-var scopeFotoController;
-var gesturableImg;
-module.controller('FotoController', function($scope) {
-    ons.ready(function() {
-
-        scopeFotoController = this;
-
-        current_page = 'foto.html';
-
-        $('#foto_image').attr('src', 'http://lasterrazasdebecerril.es/img/fotos/' + current_foto.url);
-
-    });
-});
-
-var PageController;
-module.controller('PageController', function($scope) {
-    ons.ready(function() {
-
-        scopeVinosController = this;
-
-        current_page = 'page.html';
-
-        $scope.labels = getLabels();
-
-        loadIntoTemplate('#page_content', current_list.list, 'page_list_content');
-
-        $('#page_content').append(templates.btn_subir);
-
-        $('#page_content a').each(function(){
-
-            var href = $(this).attr('href');
-            $(this).attr('href', 'javascript: void(0)');
-
-            $(this).on('click', function(e){
-                openExternalLink(href, e);
-            });
-
-        });
-
-        ons.compile($('#page_content')[0]);
-
-        initScroll('page_scroll');
-
-    });
-});
-
-var scopeNovedadesController;
-module.controller('NovedadesController', function($scope) {
-    ons.ready(function() {
-
-        scopeNovedadesController = this;
-
-        current_page = 'novedades.html';
-
-        $scope.labels = getLabels();
-
-        loadIntoTemplate('#novedades_content', current_list.list, 'novedades_list_content');
-
-        $('#novedades_content').append(templates.btn_subir);
-
-        ons.compile($('#novedades_content')[0]);
-
-        initScroll('novedades_scroll');
-
-    });
-});
-
-var scopeNoticiaController;
-module.controller('NoticiaController', function($scope) {
-    ons.ready(function() {
-
-        scopeNoticiaController = this;
-
-        //current_page = 'noticia.html';
-
-        $scope.labels = getLabels();
-
-        $('#noticia_image').attr('src', 'http://lasterrazasdebecerril.es/img/novedades/' + current_noticia.imagen);
-        $('#noticia_title').html(current_noticia.nombre);
-        $('#noticia_description').html(current_noticia.descripcion);
-
-        $('#noticia_description a').each(function(){
-
-            var href = $(this).attr('href');
-            $(this).attr('href', 'javascript: void(0)');
-            $(this).attr('target', '_self');
-            $(this).unbind('click');
-            //$(this).attr('onclick', 'openExternalLink(this.href, event)');
-            $(this).addClass('button');
-            $(this).addClass('nobutton');
-            $(this).addClass('linkbutton');
-            $(this).on('click', function(e){
-                openExternalLink(href, e);
-            });
-
-        });
-
-        if(current_noticia.pdf != null && current_noticia.pdf != undefined && current_noticia.pdf != '' && current_noticia.pdf != 'null') {
-            $('#noticia_description').append(templates.btn_pdf.replaceAll('%pdf%', current_noticia.pdf));
-        }
-
-        if(current_noticia)
-
-        initScroll('noticia_scroll');
-
-    });
-});
 
 
 function getArrayAsObjects(array, width, height) {

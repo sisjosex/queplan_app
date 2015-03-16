@@ -58,18 +58,94 @@
     <ons-icon icon="ion-loading-c" spin="true"></ons-icon>
 </ons-modal>
 
+<ons-navigator animation="slide" var="mainnavigator">
+    <ons-page ng-controller="NavigatorController"></ons-page>
+</ons-navigator>
+
+<ons-template id="registro.html">
+    <ons-page ng-controller="RegistroController">
+
+        <div id="registro_scroll" class="scrollable scrollfix">
+
+            <div id="registro_list" class="scroll-content">
+
+                <div class="horizontal">
+                    <div class="logo center"></div>
+                </div>
+
+                <div class="panel">
+
+                    <h3 class="center">Accede a travéz de tu cuenta</h3>
+
+                    <h3 class="center"><span class="azul">Facebook</span> <span class="celeste">Twitter</span> <span class="rojo">Google</span></h3>
+
+                    <div class="horizontal">
+                        <div class="button btn azul" onclick="procesarRegistro(this, event, 'facebook')"><span class="text fixed">Conectar con Facebook</span> <i class="facebook"></i></div>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button btn celeste" onclick="procesarRegistro(this, event, 'twitter')"><span class="text fixed">Conectar con Twitter</span> <i class="twitter"></i></div>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button btn rojo" onclick="procesarRegistro(this, event, 'google')"><span class="text fixed">Conectar con Google</span> <i class="google"></i></div>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button btn verde" onclick="procesarRegistro(this, event, 'invitado')"><span class="text fixed">Ingresar como Invitado</span> <i class="invitado"></i></div>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button btn naranja" onclick="procesarRegistro(this, event, 'email')"><span class="text fixed">Ingresar con mi Email</span> <i class="email"></i></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
+
+<ons-template id="ciudad.html">
+    <ons-page ng-controller="ciudadController" class="full-screen">
+
+        <div class="relative full-screen">
+            <ons-carousel id="ciudad_images" var="ciudad_images" class="relative slider" overscrollable="" auto-scroll="" full-screen="" style="width:100%;height:100%;"></ons-carousel>
+            <div style="position:fixed;bottom:5px;width:100%;">
+                <div class="horizontal">
+                    <div class="button btn rojo"  onclick="elegirCiudad(this, event)"><span class="text">Seleccionar</span></div>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+</ons-template>
 
 
-<ons-navigator animation="slide" var="splash">
+<ons-template id="home.html">
     <ons-page ng-controller="HomeController" id="homePage" class="">
 
-        <ons-toolbar class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+        <ons-toolbar id="homeToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 
-            <div class="center" style="height:auto;position:relative;">
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="homeHeader" class="header">
+                    <div class="icons left"></div>
+
+                    <div class="header-logo left"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton info"></div>
+                        <div class="button header nobutton ayuda"></div>
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+
                 <div style="position:relative;">
-                    <ons-carousel class="carousel-detail" id="home_images" var="homeSlider"
+                    <ons-carousel class="slider slider-few" id="homeImages" var="homeImages"
                                   style="position:relative;"
-                                  overscrollable="" auto-scroll=""></ons-carousel>
+                                  overscrollable="" auto-scroll="">
+
+                    </ons-carousel>
+                    <div id="homePaginator" class="slider-paginator"></div>
                 </div>
             </div>
 
@@ -79,215 +155,123 @@
         <div class="center hascarousel">
         </div>-->
 
-        <div id="main_scroll" class="scrollable">
+        <div id="homeScroll" class="scrollable">
 
-            <div id="main_list" class="scroll-content">
+            <div id="homeList" class="scroll-content">
 
-                <div id="main_content">
+                <div id="home_content">
 
-                    <div class="row">
+                    <div class="dashboard row">
                         <div class="table-cell horizontal">
-                            <div class="button nobutton dashboard_button" onclick="goToSection('planes_de_hoy')">
+                            <div class="button nobutton doble" onclick="goToPlanes()">
                                 <div class="dashboard_icon icon_planes_de_hoy"></div>
                                 <div class="text">Planes de Hoy</div>
                             </div>
-                            <div class="button nobutton dashboard_button" onclick="goToMenuDiario()">
+                            <div class="button nobutton" onclick="gotoMenuDiario()">
                                 <div class="dashboard_icon icon_menu_diario"></div>
                                 <div class="text">Menú Diario</div>
                             </div>
-                            <div class="button nobutton dashboard_button" onclick="goToGuia()">
+                            <div class="button nobutton" onclick="goToGuia()">
                                 <div class="dashboard_icon icon_guia"></div>
                                 <div class="text">Guía</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="table-cell horizontal">
-                        <div class="button nobutton dashboard_button" onclick="goToRecompensas()">
-                            <div class="dashboard_icon icon_recompensas"></div>
-                            <div class="text">Recompensas</div>
-                        </div>
-                        <div class="button nobutton dashboard_button" onclick="goTo10_1()">
-                            <div class="dashboard_icon icon_10_1"></div>
-                            <div class="text">10+1</div>
-                        </div>
-                        <div class="button nobutton dashboard_button" onclick="goToRealidadAumentada()">
-                            <div class="dashboard_icon icon_realidad_aumentada"></div>
-                            <div class="text">Realidad Aumentada</div>
+                    <div class="dashboard row">
+                        <div class="table-cell horizontal">
+                            <div class="button nobutton" onclick="goToRecompensas()">
+                                <div class="dashboard_icon icon_recompensas"></div>
+                                <div class="text">Recompensas</div>
+                            </div>
+                            <div class="button nobutton" onclick="goTo10_1()">
+                                <div class="dashboard_icon icon_10_1"></div>
+                                <div class="text">10+1</div>
+                            </div>
+                            <div class="button nobutton" onclick="goToRealidadAumentada()">
+                                <div class="dashboard_icon icon_realidad_aumentada"></div>
+                                <div class="text">Realidad<br> Aumentada</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="home-footer">
+        <div id="homeFooter">
             <div class="banner">
                 <a href=""><img src="img/ad.jpg" /></a>
             </div>
         </div>
     </ons-page>
-</ons-navigator>
-
-<ons-template id="menudiario.html">
-    <ons-page ng-controller="MenuDiarioController" var="carta" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('menudiario.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
-
-        <div id="menudiario_scroll" class="scrollable">
-            <div class="scroll-content">
-                <div class="horizontal">
-                    <div class="title">
-                        {{title}}
-                    </div>
-                </div>
-
-                <div id="menu_diario_content">
-                </div>
-            </div>
-        </div>
-    </ons-page>
 </ons-template>
 
-<ons-template id="contacto.html">
-    <ons-page ng-controller="ContactoController" var="carta" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('contacto.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
 
-        <div id="contacto_scroll" class="scrollable">
-            <div class="scroll-content">
-                <div class="horizontal">
-                    <div class="title">
-                        Formulario de Contacto
+
+<ons-template id="planes.html">
+    <ons-page ng-controller="PlanesController" class="">
+
+        <ons-toolbar id="homeToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="planesHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
                     </div>
-                </div>
 
-                <div class="contacto_form horizontal">
+                    <div class="header-logo center"></div>
 
-                    <p>
-                        <label for="contacto_nombre">Nombre <span class="red"></span>:</label>
-                        <input id="contacto_nombre" onclick="requestFocus(this, event)" type="text" class="input" />
-                    </p>
-
-                    <p>
-                        <label for="contacto_telefono">Teléfono:</label>
-                        <input id="contacto_telefono"  onclick="requestFocus(this, event)" type="phone"  class="input" />
-                    </p>
-
-                    <p>
-                        <label for="contacto_email">Email <span class="red"></span>:</label>
-                        <input id="contacto_email" onclick="requestFocus(this, event)" type="email"  class="input" />
-                    </p>
-
-                    <p>
-                        <label for="contacto_mensaje">Mensaje <span class="red"></span>:</label>
-                        <textarea id="contacto_mensaje" onclick="requestFocus(this, event)" class="input" style="height:74px;"></textarea>
-                    </p>
-
-                    <div class="options">
-                        <div class="button nobutton enviar" onclick="sendContactForm(this, event)"></div>
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
                     </div>
                 </div>
             </div>
+
+        </ons-toolbar>
+
+        <div id="planesScroll" class="scrollable">
+
+            <div id="planesList" class="scroll-content scrollfix">
+
+                <div id="planes_content">
+
+                </div>
+            </div>
         </div>
+
     </ons-page>
 </ons-template>
 
-<ons-template id="noticia.html">
-    <ons-page ng-controller="NoticiaController" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('noticia.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
+<ons-template id="menu.html">
+    <ons-page ng-controller="MenuController" class="">
+
+        <ons-toolbar id="menuToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="menuHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
             </div>
+
         </ons-toolbar>
 
-        <div id="noticia_scroll" class="scrollable scrollfix">
+        <div id="menuScroll" class="scrollable">
 
-            <div class="horizontal">
+            <div id="menuList" class="scroll-content scrollfix">
 
-                <img id="noticia_image" onload="refreshNoticiaScroll()"/>
+                <div id="menu_content">
 
-                <div id="noticia_title" class="title"></div>
-
-                <div id="noticia_description" class="description list" style="text-align: justify;"></div>
-            </div>
-        </div>
-    </ons-page>
-</ons-template>
-
-<ons-template id="page.html">
-    <ons-page ng-controller="PageController" var="grupo" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('grupo.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
-
-        <div id="page_scroll" class="scrollable">
-
-            <div id="page_content" class="scroll-content scrollfix list">
-
-            </div>
-        </div>
-    </ons-page>
-</ons-template>
-
-<ons-template id="novedades.html">
-    <ons-page ng-controller="NovedadesController" var="grupo" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('novedades.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
-
-        <div id="novedades_scroll" class="scrollable">
-
-            <div id="novedades_content" class="scroll-content scrollfix">
-
-            </div>
-        </div>
-    </ons-page>
-</ons-template>
-
-<ons-template id="localizacion.html">
-    <ons-page ng-controller="LocalizacionController" var="grupo" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('localizacion.html');"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
-
-        <div id="map" style="width:100%;height:100%;">
-        </div>
-    </ons-page>
-</ons-template>
-
-<ons-template id="foto.html">
-    <ons-page ng-controller="FotoController" class="normal-page">
-        <ons-toolbar class="toolbar">
-            <div class="center header-title">
-                <div class="backButton" onclick="splash.popPage('foto.html');current_page='galeria.html';"></div>
-                <div class="rightButton buttonInfo" onclick="infoAction()"></div>
-            </div>
-        </ons-toolbar>
-
-        <div id="foto_scroll" class="scrollable">
-
-            <div class="scroll-content scrollfix">
-
-                <img id="foto_image" onload="modal.hide();" />
-
+                </div>
             </div>
         </div>
 
