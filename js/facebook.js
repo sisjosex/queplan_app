@@ -15,31 +15,40 @@ function loginFacebookConnect() {
                             var genero = data.gender;
                             var imagen = "";
                             
-                    	    //mostramos loading
-                            showLoadingCustom('Validando datos...');
-                            
                             //verificamos si este usuario no se logeo con anterioridad, si no lo hizo lo creamos como nuevo, si lo hizo solo actualizamos su estado logeado a 1
-                        	$.getJSON(BASE_URL_APP + 'usuarios/mobileGetUsuarioByAppId/'+app_id+'/'+email+'/'+device.uuid+'/'+device.platform+'/'+PUSH_NOTIFICATION_TOKEN, function(data) {
-                                //ocultamos el loading
-                                $.mobile.loading( 'hide' );
-                        	    if(data.success){
-                        	        var usuario = data.usuario.Usuario;
+                            getJsonPBackground(BASE_URL + 'getUsuarioByAppId/', function(data) {
+
+                                if(data.status == 'success'){
+                                    var usuario = data.usuario;
                                     //guardamos los datos en la COOKIE
-                        	        createCookie("user", JSON.stringify(usuario), 365);
+                                    createCookie("user", JSON.stringify(usuario), 365);
                                     //mandamos directo al home si es que la cookie se creo correctamente
                                     if(isLogin()){
-                                        $.mobile.changePage('#home');
+                                        mainnavigator.pushPage('ciudad.html');
                                     }
                                 }else{
-                                    if(data.email_registrado){
+
+                                    if(data.status == 'fail'){
+
                                         showAlert(data.mensaje, 'Error Login', 'Aceptar');
+
                                     }else{
                                         //registramos los datos
                                         registrar_datos(app_id,email,'facebook',username,nombre,imagen,genero);
                                         //registrar_datos(100000614903708, "steven.alvarez.v@gmail.com",'facebook',"johsteven","Jhonny Esteban Alvarez Villazante","http://profile.ak.fbcdn.net/hprofile-ak-ash2/371352_100000614903708_518504752_q.jpg","male");
                                     }
                                 }
-                        	});                            
+
+                            }, function(){
+
+                                showAlert("Ocurrio un problema al conectar al servidor", 'Error Login', 'Aceptar');
+                            }, {
+                                app_id: app_id,
+                                email: email,
+                                uuid: device.uuid,
+                                platform: device.platform,
+                                token_notificacion: PUSH_NOTIFICATION_TOKEN
+                            });
                             
                         },
                         error: errorHandler});                    

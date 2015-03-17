@@ -272,7 +272,7 @@ function check_network() {
     confirm('Connection type:\n ' + states[networkState]);
 }
 
-function showConfirm(message, titlem callback) {
+function showConfirm(message, titlem, callback) {
     navigator.notification.confirm(
          message, // message
          callback,            // callback to invoke with index of button pressed
@@ -391,3 +391,74 @@ $( window ).on( "orientationchange", function( event ) {
     //callbackOrientationChange(event.orientation, $.mobile.activePage.attr('id'));
 });
 
+
+
+
+function getJsonP(url, callback_success, callback_error, data) {
+
+    if(data === undefined) {
+        data = {};
+    }
+
+
+    if(data.lang === undefined) {
+        data.lang = applicationLanguage;
+    }
+
+    modal.show();
+
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: data,
+        dataType: 'JSONp',
+        timeout: 30000,
+        async:true,
+        success: function(data) {
+
+            modal.hide();
+
+            callback_success(data);
+        },
+        error: function(data) {
+
+            modal.hide();
+
+            callback_error(data);
+        }
+    });
+}
+
+
+function getJsonPBackground(url, callback_success, callback_error, data) {
+
+    if(data === undefined) {
+        data = {};
+    }
+
+
+    if(data.lang === undefined) {
+        data.lang = applicationLanguage;
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: data,
+        dataType: 'JSONp',
+        timeout: 30000,
+        async:true,
+        success: function(data) {
+
+            modal.hide();
+
+            callback_success(data);
+        },
+        error: function(data) {
+
+            modal.hide();
+
+            callback_error(data);
+        }
+    });
+}

@@ -520,17 +520,32 @@ var app = {
         this.initIntervalNotificacion();
         
         //Inicializamos el pushNotification
-        var pushNotification = window.plugins.pushNotification;
+        var pushNotification;
 
-        console.log('devide: ' + device.platform);
+        try {
 
-        if (device.platform == 'android' || device.platform == 'Android') {
-            //alert("Register called android");
-            pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"629734064389","ecb":"app.onNotificationGCM"});
-        }
-        else {
-            //alert("Register called ios");
-            pushNotification.register(this.tokenHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
+            pushNotification = window.plugins.pushNotification;
+
+        } catch(error){}
+
+        if(pushNotification != undefined) {
+
+            if (device.platform == 'android' || devi+ce.platform == 'Android') {
+                //alert("Register called android");
+                pushNotification.register(this.successHandler, this.errorHandler, {
+                    "senderID": "629734064389",
+                    "ecb": "app.onNotificationGCM"
+                });
+            }
+            else {
+                //alert("Register called ios");
+                pushNotification.register(this.tokenHandler, this.errorHandler, {
+                    "badge": "true",
+                    "sound": "true",
+                    "alert": "true",
+                    "ecb": "app.onNotificationAPN"
+                });
+            }
         }
     },
     // result contains any message sent from the plugin call
@@ -983,7 +998,7 @@ module.controller('NavigatorController', function($scope) {
 				mainnavigator.pushPage("registro.html", {animation:'none'});
 			}
 			
-			iniApp();
+			app.onDeviceReady();
         });
 
     })
@@ -1085,7 +1100,7 @@ module.controller('HomeController', function($scope) {
                 }, 1000);
 
 
-                registerNotifications();
+                //registerNotifications();
 
             });
 
@@ -1222,75 +1237,6 @@ function getArrayAsObjects(array, width, height) {
     }
 
     return result;
-}
-
-function getJsonP(url, callback_success, callback_error, data) {
-
-    if(data === undefined) {
-        data = {};
-    }
-
-
-    if(data.lang === undefined) {
-        data.lang = applicationLanguage;
-    }
-
-    modal.show();
-
-    $.ajax({
-        type: 'GET',
-        url: url,
-        data: data,
-        dataType: 'JSONp',
-        timeout: 30000,
-        async:true,
-        success: function(data) {
-
-            modal.hide();
-
-            callback_success(data);
-        },
-        error: function(data) {
-
-            modal.hide();
-
-            callback_error(data);
-        }
-    });
-}
-
-
-function getJsonPBackground(url, callback_success, callback_error, data) {
-
-    if(data === undefined) {
-        data = {};
-    }
-
-
-    if(data.lang === undefined) {
-        data.lang = applicationLanguage;
-    }
-
-    $.ajax({
-        type: 'GET',
-        url: url,
-        data: data,
-        dataType: 'JSONp',
-        timeout: 30000,
-        async:true,
-        success: function(data) {
-
-            modal.hide();
-
-            callback_success(data);
-        },
-        error: function(data) {
-
-            modal.hide();
-
-            callback_error(data);
-        }
-    });
 }
 
 
