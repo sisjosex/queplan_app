@@ -512,7 +512,7 @@ module.controller('PlanController', function($scope) {
 
         ons.compile($('#plan_content')[0]);
 
-        $('#planScroll').height( window.innerHeight - footerHeight - height + $('#planHeader').outerHeight());
+        $('#planScroll').height($('#planScroll').height() - footerHeight);
 
 
         loadIntoTemplate('#planImages', current_plan.images, 'slider_plan');
