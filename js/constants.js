@@ -2,6 +2,8 @@ var api_url = 'http://web.queplanmadrid.es/api/';
 var img_url = 'http://www.queplanmadrid.es/img/';
 var thumb_url = 'http://web.queplanmadrid.es/helpers/timthumb.php?w=%width%&h=%height%&src=';
 
+var LATITUDE;
+var LONGITUDE;
 
 /*
 var api_url = 'http://lasterrazasdebecerril.es/services/app/api/';
@@ -52,6 +54,40 @@ var fileSystem;
 
 var isonline = false;
 
+
+
+
+/************************************ GLOBAL VARIABLES *******************************************************/
+var FB_LOGIN_SUCCESS = false;
+var TW_LOGIN_SUCCESS = false;
+var APP_INITIALIZED = false;
+var COOKIE = '';
+var REDIREC_TO = '';
+var LATITUDE = 0;
+var LONGITUDE = 0;
+var PUSH_NOTIFICATION_REGISTER = '';
+var PUSH_NOTIFICATION_TOKEN = 0;
+var INTERVAL;
+var LOGIN_INVITADO = false;
+var CIUDAD_ID = 0; //NADA;
+
+/* notificacion */
+var HAVE_NOTIFICATION = false;
+var TYPE_NOTIFICATION = '';
+var EVENT = '';
+
+//Twitter Codebird
+var cb = new Codebird; // we will require this everywhere
+
+//var consumer_key = 'pPrzITObRT4z0VoBAtag'; //YOUR Twitter CONSUMER_KEY
+//var consumer_secret = '1L8V3qJwdDocLD653uYhgxU5TtIm45pdAhyE022EBLw'; //// YOUR Twitter CONSUMER_SECRET
+
+var consumer_key = 'pPrzITObRT4z0VoBAtag'; //YOUR Twitter CONSUMER_KEY
+var consumer_secret = '1L8V3qJwdDocLD653uYhgxU5TtIm45pdAhyE022EBLw'; //// YOUR Twitter CONSUMER_SECRET
+
+
+
 $(document).ready(function() {
     document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 });
+
