@@ -480,6 +480,8 @@ function gotoPlanDetalle(index) {
     }
 }
 
+
+
 var PlanController;
 var current_plan;
 module.controller('PlanController', function($scope) {
@@ -510,9 +512,9 @@ module.controller('PlanController', function($scope) {
         $('#planPage .page__content').css('top', (height + $('#planHeader').outerHeight() )+'px');
         //$('#planPage .page__content').css('bottom', (footerHeight +'px') );
 
-        ons.compile($('#plan_content')[0]);
+        //$('#planScroll').height($('#planScroll').height() - footerHeight);
 
-        $('#planScroll').height($('#planScroll').height() - footerHeight);
+        $('#planList').css('padding-bottom', footerHeight+'px');
 
 
         loadIntoTemplate('#planImages', current_plan.images, 'slider_plan');
@@ -533,6 +535,8 @@ module.controller('PlanController', function($scope) {
             planImages.on('postchange', PlanController.carouselPostChange);
 
         }, 1000);
+
+        ons.compile($('#plan_content')[0]);
 
         initScroll('planScroll');
 

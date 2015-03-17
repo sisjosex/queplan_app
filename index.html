@@ -289,7 +289,7 @@
                     </div>
 
                     <div class="horizontal center">
-                        <b>dirección:</b> <span id="planDireccion"></span>
+                        <b>Dirección:</b> <span id="planDireccion"></span>
                     </div>
 
                     <div class="horizontal">
@@ -307,10 +307,25 @@
 
         <div id="planFooter" class="footer fixed">
             <div class="tabs">
-                <div class="button nobutton maps"></div>
-                <div class="button nobutton web"></div>
-                <div class="button nobutton facebook"></div>
-                <div class="button nobutton twitter"></div>
+
+                <div class="table-cell horizontal">
+                    <div class="button nobutton" onclick="goToMaps()">
+                        <div class="dashboard_icon icon_maps"></div>
+                        <div class="text">Maps</div>
+                    </div>
+                    <div class="button nobutton" onclick="goWeb()">
+                        <div class="dashboard_icon icon_web"></div>
+                        <div class="text">Web</div>
+                    </div>
+                    <div class="button nobutton" onclick="goToFacebook()">
+                        <div class="dashboard_icon icon_facebook"></div>
+                        <div class="text">Facebook</div>
+                    </div>
+                    <div class="button nobutton" onclick="goToTwitter()">
+                        <div class="dashboard_icon icon_twitter"></div>
+                        <div class="text">Twitter</div>
+                    </div>
+                </div>
             </div>
         </div>
 

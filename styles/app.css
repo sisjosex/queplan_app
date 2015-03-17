@@ -1290,36 +1290,32 @@ i.invitado {
     background-size: 100% auto;
 }
 
-.button.maps {
+.icon_maps {
     background-image: url("../img/icon_maps.png");
     width: 40px;
     height: 40px;
     background-size: 100% 100%;
-    margin-top:5px;
 }
 
-.button.web {
+.icon_web {
     background-image: url("../img/btn_web.png");
     width: 40px;
     height: 40px;
     background-size: 100% 100%;
-    margin-top:5px;
 }
 
-.button.facebook {
+.icon_facebook {
     background-image: url("../img/btn_facebook.png");
     width: 40px;
     height: 40px;
     background-size: 100% 100%;
-    margin-top:5px;
 }
 
-.button.twitter {
+.icon_twitter {
     background-image: url("../img/btn_twitter.png");
     width: 40px;
     height: 40px;
     background-size: 100% 100%;
-    margin-top:5px;
 }
 
 
@@ -1343,6 +1339,10 @@ i.invitado {
 .footer.fixed {
     position:absolute;
     bottom:0;
+}
+
+.tabs .button .text {
+    color:#fff;
 }
 
 .header-logo.center {
