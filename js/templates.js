@@ -18,7 +18,16 @@ var templates = {
     '<div class="menu_grupo_content">'+
     '%descripcion%</div>',
 
-    vino_list_content: '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron"><div class="arrow" onclick="goToVinoDetalle(\'%id%\')"><div class="list-item vinos">%nombre%</div></div></ons-list-item>',
+    planes_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoPlanDetalle(%index%)">'+
+'<div class="list-item-left">'+
+        '<img src="%imagen%" class="avator">'+
+'</div>'+
+        '<div class="list-item-right">'+
+'<div class="list-item-content">'+
+        '<div class="name">%title%</div>'+
+        '</div>'+
+        '</div>'+
+            '</ons-list-item>',
 
     novedades_list_content: '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron" onclick="goToNovedadDetalle(%index%, event)">' +
                             '<div class="arrow">' +
@@ -49,6 +58,13 @@ var templates = {
             '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%list_image%" /></div>'+
             '<div class="title">%title%</div>'+
         '</ons-carousel-item>',
+
+    slider_plan: '' +
+    '<ons-carousel-item class="item-bg detail session-item loading">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="title">%title%</div>'+
+    '</ons-carousel-item>',
 
     slider_paginator: '' +
         '<div class="paginator-item"><div class="paginator-item-content"></div></div>',

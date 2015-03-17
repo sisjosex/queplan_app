@@ -1202,6 +1202,7 @@ i.invitado {
     color:#fff;
     line-height:20px;
     max-height:52px;
+    min-height: 60px;
     overflow: visible;
 }
 
@@ -1263,6 +1264,90 @@ i.invitado {
 .button.header.back {
     background-image: url("../img/btn_volver.png");
     width: 76px;
+}
+
+.list-item-left, .list-item-right {
+    display:inline-block;
+    vertical-align: middle;
+    line-height: 12px !important;
+}
+
+.list-item-right {
+    margin-left:10px;
+}
+
+.button.llamar {
+    background-image: url("../img/btn_llamar.png");
+    width: 130px;
+    height: 30px;
+    background-size: 100% auto;
+}
+
+.button.planes_de_hoy {
+    background-image: url("../img/btn_planes_de_hoy.png");
+    width: 130px;
+    height: 30px;
+    background-size: 100% auto;
+}
+
+.button.maps {
+    background-image: url("../img/icon_maps.png");
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    margin-top:5px;
+}
+
+.button.web {
+    background-image: url("../img/btn_web.png");
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    margin-top:5px;
+}
+
+.button.facebook {
+    background-image: url("../img/btn_facebook.png");
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    margin-top:5px;
+}
+
+.button.twitter {
+    background-image: url("../img/btn_twitter.png");
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    margin-top:5px;
+}
+
+
+.list-item-left img {
+    max-width:50px;
+    width:50px;
+    height:auto;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.footer {
+    background: #000;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+}
+
+.footer.fixed {
+    position:absolute;
+    bottom:0;
+}
+
+.header-logo.center {
+    position: absolute;
+    left: 32%;
 }
 
 @media all and (max-width: 320px) {

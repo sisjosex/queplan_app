@@ -22,7 +22,6 @@ window.onresize = function(){
 };
 
 function resizeCardCarousel() {
-
     /*
     thumb_width = window.innerWidth;
     thumb_height = window.innerHeight - $('#main_content').offsetHeight();
@@ -452,14 +451,90 @@ var PlanesController;
 module.controller('PlanesController', function($scope) {
     ons.ready(function() {
 
-        PlanesController = this;
+        current_page = 'planes.html';
 
-        //loadIntoTemplate('#planes_content', applicationParams.planes, 'list_planes');
+        PlanesController = this;
 
         var factor = window.innerWidth/320;
 
         $('#planesHeader').css('max-height',  factor*60 );
-        //$('#planesHeader').height( factor*$('#planesHeader').outerHeight() );
+
+        loadIntoTemplate('#planes_content', current_list.items, 'planes_list_content');
+
+        ons.compile($('#planes_content')[0]);
+
+        initScroll('planesScroll');
+
+    })
+});
+
+function gotoPlanDetalle(index) {
+
+    if(current_page != 'plan.html') {
+
+        current_page = 'plan.html';
+
+        current_plan = current_list.items[index];
+
+        mainnavigator.pushPage('plan.html');
+    }
+}
+
+var PlanController;
+var current_plan;
+module.controller('PlanController', function($scope) {
+    ons.ready(function() {
+
+        PlanController = this;
+
+        var factor = window.innerWidth/320;
+
+        $('#planHeader').css('max-height',  factor*60 );
+
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*$('#planFooter').outerHeight();
+
+        $('#planFooter .banner').height( footerHeight );
+        $('#planHeader').height( footerHeight );
+
+        /*$('.header-logo').width($('.header-logo').width() * factor);
+         $('.header-logo').height($('.header-logo').height() * factor);*/
+
+        height = $(window).height() - ( 200*factor + $('#planFooter').outerHeight() + $('#planHeader').outerHeight() - 1 );
+
+        $('#planImages').height( height );
+        $('#planToolbar').height( height );
+
+        $('#planPage .page__content').css('top', (height + $('#planHeader').outerHeight() )+'px');
+        //$('#planPage .page__content').css('bottom', (footerHeight +'px') );
+
+        ons.compile($('#plan_content')[0]);
+
+        $('#planScroll').height( window.innerHeight - footerHeight - height + $('#planHeader').outerHeight());
+
+
+        loadIntoTemplate('#planImages', current_plan.images, 'slider_plan');
+        loadIntoTemplate('#planPaginator', current_plan.images, 'slider_paginator');
+
+        $('#planPaginator > div:first-child').addClass('selected');
+
+        $('#planDescripcion').html(current_plan.descripcion);
+        $('#planDireccion').html(current_plan.direccion);
+
+        PlanController.carouselPostChange = function() {
+            $('#planPaginator > div').removeClass('selected');
+            $('#planPaginator > div:nth-child(' + (planImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+        };
+
+        setTimeout(function(){
+
+            planImages.on('postchange', PlanController.carouselPostChange);
+
+        }, 1000);
+
+        initScroll('planScroll');
 
     })
 });
@@ -469,8 +544,6 @@ module.controller('MenuController', function($scope) {
     ons.ready(function() {
 
         MenuController = this;
-
-        //loadIntoTemplate('#planes_content', applicationParams.planes, 'list_planes');
 
         var factor = window.innerWidth/320;
 

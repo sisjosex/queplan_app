@@ -234,9 +234,83 @@
 
             <div id="planesList" class="scroll-content scrollfix">
 
-                <div id="planes_content">
+                <ons-list id="planes_content">
+
+                </ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="plan.html">
+    <ons-page ng-controller="PlanController" id="planPage" class="">
+
+        <ons-toolbar id="planToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="planHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page = 'planes.html';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+
+                <div style="position:relative;">
+                    <ons-carousel class="slider slider-few" id="planImages" var="planImages"
+                                  style="position:relative;"
+                                  overscrollable="" auto-scroll="">
+
+                    </ons-carousel>
+                    <div id="planPaginator" class="slider-paginator"></div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="planScroll" class="scrollable">
+
+            <div id="planList" class="scroll-content scrollfix">
+
+                <div id="plan_content">
+
+                    <div class="horizontal justify">
+                        <div id="planDescripcion" class="text"></div>
+                    </div>
+
+                    <div class="horizontal center">
+                        <b>dirección:</b> <span id="planDireccion"></span>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button nobutton llamar"></div>
+                        <div class="button nobutton planes_de_hoy"></div>
+                    </div>
+
+                    <div class="horizontal">
+                        Indica que llamas de parte de QuéPlan? App
+                    </div>
 
                 </div>
+            </div>
+        </div>
+
+        <div id="planFooter" class="footer fixed">
+            <div class="tabs">
+                <div class="button nobutton maps"></div>
+                <div class="button nobutton web"></div>
+                <div class="button nobutton facebook"></div>
+                <div class="button nobutton twitter"></div>
             </div>
         </div>
 
