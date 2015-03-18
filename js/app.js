@@ -81,34 +81,38 @@ function checkIn(urlamigable){
 
 
 function registrar_datos(app_id, email, registrado_mediante, username, nombre, imagen, genero){
-    $.ajax({
-        data: {u_app_id:app_id, u_email:email, u_login_con:registrado_mediante, u_username:username, u_nombre:nombre, u_imagen:imagen, u_genero:genero, d_plataforma:device.platform, d_version:device.version, d_uuid:device.uuid, d_name:device.name, u_token_notificacion:PUSH_NOTIFICATION_TOKEN},
-        type: "POST",
-        url: BASE_URL_APP + 'newRegistro',
-        dataType: "html",
-        success: function(data){
-            //ocultamos el loading
-            $.mobile.loading( 'hide' );
-            data = $.parseJSON(data);
-            
-            var success = data.success;
-            if(success){
-                var usuario = data.usuario.Usuario;
-                var usuario_id = usuario.id;
-                
-                //una vez creado guardamos en cookies su datos importantes
-                createCookie("user", JSON.stringify(usuario), 365);
-                
-                //una vez registrado los datos, mandamos a la home
-                $.mobile.changePage('#ciudades');
-            }else{
-                showAlert('Ha ocurrido un error al momento de registrarse!, por favor intente de nuevo', 'Error', 'Aceptar');
-            }
-        },
-        beforeSend : function(){
-            //mostramos loading
-            showLoadingCustom('Guardando datos...');
+
+    getJsonP(api_url + 'newRegistro', function() {
+
+        var success = data.status == 'success';
+        if(success){
+            var usuario = data.usuario.Usuario;
+            var usuario_id = usuario.id;
+
+            //una vez creado guardamos en cookies su datos importantes
+            createCookie("user", JSON.stringify(usuario), 365);
+
+            //una vez registrado los datos, mandamos a la home
+            $.mobile.changePage('#ciudades');
+        }else{
+            showAlert('Ha ocurrido un error al momento de registrarse!, por favor intente de nuevo', 'Error', 'Aceptar');
         }
+
+    }, function() {
+
+    }, {
+        u_app_id:app_id,
+        u_email:email,
+        u_login_con:registrado_mediante,
+        u_username:username,
+        u_nombre:nombre,
+        u_imagen:imagen,
+        u_genero:genero,
+        d_plataforma:device.platform,
+        d_version:device.version,
+        d_uuid:device.uuid,
+        d_name:device.name,
+        u_token_notificacion:PUSH_NOTIFICATION_TOKEN
     });
 }
 
@@ -281,7 +285,7 @@ function redirectToPage(seccion, id){
 
 function loginInvitado(){
     LOGIN_INVITADO = true;
-    $.mobile.changePage('#ciudades');
+    mainnavigator.pushPage('ciudad.html');
 }
 
 function goHome(ciudad_id){

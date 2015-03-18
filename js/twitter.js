@@ -40,31 +40,28 @@ function loginTwitterConnect() {
                                     var user_id = reply.user_id;
                                     var user_screen_name = reply.screen_name;
                                     var email = '';
-                                    
-                            	    //mostramos loading
-                                    showLoadingCustom('Validando datos...');
-                                    
-                                    //verificamos si este usuario no se logeo con anterioridad, si no lo hizo lo creamos como nuevo, si lo hizo solo actualizamos su estado logeado a 1
-                                	$.getJSON(BASE_URL_APP + 'usuarios/mobileGetUsuarioByAppId/'+user_id+'/'+email+'/'+device.uuid+'/'+device.platform+'/'+PUSH_NOTIFICATION_TOKEN, function(data) {
-                                        //ocultamos el loading
-                                        $.mobile.loading( 'hide' );
-                                	    if(data.success){
-                                	        var usuario = data.usuario.Usuario;
+
+                                    getJsonP(api_url + 'getUsuarioByAppId', function() {
+
+                                        if(data.status== 'success'){
+                                            var usuario = data.usuario.Usuario;
                                             //guardamos los datos en la COOKIE
-                                	        createCookie("user", JSON.stringify(usuario), 365);
+                                            createCookie("user", JSON.stringify(usuario), 365);
                                             //mandamos directo al home si es que la cookie se creo correctamente
                                             if(isLogin()){
-                                                $.mobile.changePage('#home');
+                                                mainnavigator.pushPage('ciudad.html');
                                             }
                                         }else{
                                             if(data.email_registrado){
                                                 showAlert(data.mensaje, 'Error Login', 'Aceptar');
                                             }else{
                                                 //registramos los datos
-                                                registrar_datos(user_id,email,'twitter',user_screen_name,"","","");                                                
+                                                registrar_datos(user_id,email,'twitter',user_screen_name,"","","");
                                             }
                                         }
-                                	});
+                                    }, function(){
+
+                                    }, {user_id: user_id, uuid: device.uuid, platform: device.platform, token_notification: PUSH_NOTIFICATION_TOKEN});
                                 }
                             );
             			}

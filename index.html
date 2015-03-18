@@ -27,7 +27,11 @@
     <script type="text/javascript" src="js/codebird.js"></script>
     <script type="text/javascript" src="js/openfb.js"></script>
     <script type="text/javascript" src="js/facebook.js"></script>
+    <script type="text/javascript" src="js/sha1.js"></script>
     <script type="text/javascript" src="js/twitter.js"></script>
+    <script type="text/javascript" src="js/liquid.js"></script>
+    <script type="text/javascript" src="js/liquid.helper.oauth.js"></script>
+    <script type="text/javascript" src="js/gtaskdemo.main.js"></script>
 
     <script type="text/javascript" src="js/constants.js"></script>
     <script type="text/javascript" src="js/notifications.js"></script>
@@ -90,15 +94,15 @@
                     </div>
 
                     <div class="horizontal">
-                        <div class="button btn celeste" onclick="procesarRegistro(this, event, 'twitter')"><span class="text fixed">Conectar con Twitter</span> <i class="twitter"></i></div>
+                        <div class="button btn celeste" onclick="loginTwitterConnect()"><span class="text fixed">Conectar con Twitter</span> <i class="twitter"></i></div>
                     </div>
 
                     <div class="horizontal">
-                        <div class="button btn rojo" onclick="procesarRegistro(this, event, 'google')"><span class="text fixed">Conectar con Google</span> <i class="google"></i></div>
+                        <div class="button btn rojo" onclick="loginGoogleConnect()"><span class="text fixed">Conectar con Google</span> <i class="google"></i></div>
                     </div>
 
                     <div class="horizontal">
-                        <div class="button btn verde" onclick="procesarRegistro(this, event, 'invitado')"><span class="text fixed">Ingresar como Invitado</span> <i class="invitado"></i></div>
+                        <div class="button btn verde" onclick="loginInvitado(this, event, 'invitado')"><span class="text fixed">Ingresar como Invitado</span> <i class="invitado"></i></div>
                     </div>
 
                     <div class="horizontal">
