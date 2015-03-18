@@ -31,7 +31,7 @@ function loginTwitterConnect() {
                                	"oauth_accessToken", {oauth_verifier: parameter[1]},
                                	function (reply) {
 
-                                    alert(reply.oauth_token);
+                                    showAlert(reply.oauth_token, 'Error Login', 'Aceptar');
 
                             	   	cb.setToken(reply.oauth_token, reply.oauth_token_secret);
                                     
@@ -46,7 +46,7 @@ function loginTwitterConnect() {
 
                                     getJsonP(api_url + 'getUsuarioByAppId', function(data) {
 
-                                        alert(data.status);
+                                        showAlert(data.status, 'Error Login', 'Aceptar');
 
                                         if(data.status== 'success'){
                                             var usuario = data.usuario;
