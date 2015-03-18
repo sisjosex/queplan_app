@@ -43,6 +43,8 @@ function loginTwitterConnect() {
 
                                     getJsonP(api_url + 'getUsuarioByAppId', function() {
 
+                                        alert(data.status);
+
                                         if(data.status== 'success'){
                                             var usuario = data.usuario.Usuario;
                                             //guardamos los datos en la COOKIE
