@@ -1441,6 +1441,8 @@ module.controller('MenuDetalleController', function($scope) {
             str += '<div class="menu_platos">'+current_menu.content[i]+'</div>';
         }
 
+        $('#menu_detalleList').css('padding-bottom', footerHeight+'px');
+
         $('#menu_detalleCotent').html(str);
 
         $('#menu_detalleFecha').html(current_menu.fecha);
