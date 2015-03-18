@@ -1499,6 +1499,80 @@ module.controller('RecompensasController', function($scope) {
     })
 });
 
+function gotoRecompensaDetalle(index) {
+
+    if(current_page != 'recompensa.html') {
+
+        current_page = 'recompensa.html';
+
+        current_recompensa = current_list.items[index];
+
+        mainnavigator.pushPage('recompensa.html');
+    }
+}
+
+var RecompensaController;
+var current_recompensa;
+module.controller('RecompensaController', function($scope) {
+    ons.ready(function() {
+
+        current_page = 'recompensa.html';
+
+        RecompensaController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#recompensaHeader').height( footerHeight -8 );
+        $('#recompensaHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        footerHeight = factor*$('#recompensaFooter').outerHeight();
+
+        $('#recompensaFooter .banner').height( footerHeight );
+
+        /*$('.header-logo').width($('.header-logo').width() * factor);
+         $('.header-logo').height($('.header-logo').height() * factor);*/
+
+        height = $(window).height() - ( 200*factor + $('#recompensaFooter').outerHeight() + $('#recompensaHeader').outerHeight() - 1 );
+
+        $('#recompensaImages').height( height );
+        $('#recompensaToolbar').height( height );
+
+        $('#recompensaPage .page__content').css('top', (height + $('#recompensaHeader').outerHeight() )+'px');
+        //$('#recompensaPage .page__content').css('bottom', (footerHeight +'px') );
+
+        //$('#recompensaScroll').height($('#recompensaScroll').height() - footerHeight);
+
+        $('#recompensaList').css('padding-bottom', footerHeight+'px');
+
+
+        loadIntoTemplate('#recompensaImages', current_recompensa.images, 'slider_recompensa');
+        loadIntoTemplate('#recompensaPaginator', current_recompensa.images, 'slider_paginator');
+
+        $('#recompensaPaginator > div:first-child').addClass('selected');
+
+        $('#recompensaDescripcion').html(current_recompensa.descripcion);
+        $('#recompensaDireccion').html(current_recompensa.direccion);
+
+        RecompensaController.carouselPostChange = function() {
+            $('#recompensaPaginator > div').removeClass('selected');
+            $('#recompensaPaginator > div:nth-child(' + (recompensaImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+        };
+
+        setTimeout(function(){
+
+            recompensaImages.on('postchange', RecompensaController.carouselPostChange);
+
+        }, 1000);
+
+        ons.compile($('#recompensa_content')[0]);
+
+        initScroll('recompensaScroll');
+
+    })
+});
+
+
 function compare(a,b) {
     if (parseInt(moment(a.date, "YYYY-MM-DD").format("x")) > parseInt(moment(b.date, "YYYY-MM-DD").format("x")))
         return 1;

@@ -29,7 +29,7 @@ var templates = {
         '</div>'+
             '</ons-list-item>',
 
-    recompensas_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoPlanDetalle(%index%)">'+
+    recompensas_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoRecompensaDetalle(%index%)">'+
     '<div class="list-item-left">'+
     '<img src="%imagen%" class="avator" onload="refreshRecompensasScroll()">'+
     '</div>'+
@@ -107,6 +107,13 @@ var templates = {
         '</ons-carousel-item>',
 
     slider_plan: '' +
+    '<ons-carousel-item class="item-bg detail session-item loading">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="title">%title%</div>'+
+    '</ons-carousel-item>',
+
+    slider_recompensa: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
