@@ -23,9 +23,9 @@ function loginTwitterConnect() {
                             var params = loc.toString().split("&");
                             var verifier = params[1].toString();
                             var parameter = verifier.split("="); //oauth_verifier
-                            
+
                     	    //mostramos loading
-                            showLoadingCustom('Redireccionando, espere por favor...');
+                            modal.show();
                             
                         	cb.__call(
                                	"oauth_accessToken", {oauth_verifier: parameter[1]},
