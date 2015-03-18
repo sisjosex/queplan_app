@@ -338,6 +338,165 @@
     </ons-page>
 </ons-template>
 
+<ons-template id="guias.html">
+    <ons-page ng-controller="GuiasController" class="">
+
+        <ons-toolbar id="guiasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="guiasHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guias.html')"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <div id="guiasScroll" class="scrollable">
+
+            <div id="guiasList" class="scroll-content scrollfix">
+
+                <ons-list id="guias_content">
+
+                </ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="locales.html">
+    <ons-page ng-controller="LocalesController" class="">
+
+        <ons-toolbar id="localesToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="localesHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('locales.html')"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <div id="localesScroll" class="scrollable">
+
+            <div id="localesList" class="scroll-content scrollfix">
+
+                <ons-list id="locales_content">
+
+                </ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="guia.html">
+    <ons-page ng-controller="GuiaController" id="guiaPage" class="">
+
+        <ons-toolbar id="guiaToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="guiaHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guia.html');current_page = 'guias.html';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+
+                <div style="position:relative;">
+                    <ons-carousel class="slider slider-few" id="guiaImages" var="guiaImages"
+                                  style="position:relative;"
+                                  overscrollable="" auto-scroll="">
+
+                    </ons-carousel>
+                    <div id="guiaPaginator" class="slider-paginator"></div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="guiaScroll" class="scrollable">
+
+            <div id="guiaList" class="scroll-content scrollfix">
+
+                <div id="guia_content">
+
+                    <div class="horizontal justify">
+                        <div id="guiaDescripcion" class="text"></div>
+                    </div>
+
+                    <div class="horizontal center">
+                        <b>Dirección:</b> <span id="guiaDireccion"></span>
+                    </div>
+
+                    <div class="horizontal">
+                        <div class="button nobutton llamar"></div>
+                        <div class="button nobutton guiaes_de_hoy"></div>
+                    </div>
+
+                    <div class="horizontal">
+                        Indica que llamas de parte de QuéPlan? App
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="guiaFooter" class="footer fixed">
+            <div class="tabs">
+
+                <div class="table-cell horizontal">
+                    <div class="button nobutton" onclick="goToMaps()">
+                        <div class="dashboard_icon icon_maps"></div>
+                        <div class="text">Maps</div>
+                    </div>
+                    <div class="button nobutton" onclick="goWeb()">
+                        <div class="dashboard_icon icon_web"></div>
+                        <div class="text">Web</div>
+                    </div>
+                    <div class="button nobutton" onclick="goToFacebook()">
+                        <div class="dashboard_icon icon_facebook"></div>
+                        <div class="text">Facebook</div>
+                    </div>
+                    <div class="button nobutton" onclick="goToTwitter()">
+                        <div class="dashboard_icon icon_twitter"></div>
+                        <div class="text">Twitter</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
 <ons-template id="menu.html">
     <ons-page ng-controller="MenuController" class="">
 
@@ -381,7 +540,7 @@
 
             <div class="center" style="width:100%;height:100%;position:relative;">
 
-                <div id="planesHeader" class="header">
+                <div id="perfilHeader" class="header">
                     <div class="icons left">
                         <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
                     </div>
@@ -396,11 +555,11 @@
 
         </ons-toolbar>
 
-        <div id="planesScroll" class="scrollable">
+        <div id="perfilScroll" class="scrollable">
 
-            <div id="planesList" class="scroll-content scrollfix">
+            <div id="perfilList" class="scroll-content scrollfix">
 
-                <div id="planes_content">
+                <div id="perfil_content">
 					
 					<h2 class="ui-li-heading">M&iacute; Perfil</h2>
 					<div class="horizontal">

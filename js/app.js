@@ -430,13 +430,13 @@ function pagar_recompensa(id){
 function getValidarDeviceUuid(parent_id, device_uuid, token_notificacion){
     var parent = $("#"+parent_id);
         
-	$.getJSON(BASE_URL_APP + 'usuarios/mobileValidarDeviceUuid/'+device_uuid+'/'+token_notificacion, function(data) {
+	$.getJSON(BASE_URL_APP + 'usuarios/validarDeviceUuid/'+device_uuid+'/'+token_notificacion, function(data) {
 	    //mostramos loading
         $.mobile.loading('show');
        	   
 	    if(data.success){
 	        APP_INITIALIZED = true;
-	        var usuario = data.usuario.Usuario;
+	        var usuario = data.usuario;
             //guardamos los datos en la COOKIE
 	        createCookie("user", JSON.stringify(usuario), 365);
             //mandamos directo al home si es que la cookie se creo correctamente y tiene ciudad_id seleccionada
@@ -749,6 +749,20 @@ function goToPlanes() {
     }, function(){}, {});
 }
 
+function goToGuia() {
+
+    getJsonP(api_url + 'getCategorias/', function(data){
+
+        current_list = data;
+
+        mainnavigator.pushPage('guias.html', {});
+
+        if(current_list.list) {
+        }
+
+    }, function(){}, {});
+}
+
 function gotoMenuDiario() {
 
     getJsonP(api_url + 'getMenuDiario/', function(data){
@@ -807,6 +821,12 @@ function loadApplicationParams(callback) {
 function refreshHomeScroll() {
 
     scrolls['homeScroll'].refresh();
+}
+
+
+function refreshGuiasScroll() {
+
+    scrolls['guiasScroll'].refresh();
 }
 
 closeDetailSession = function() {
@@ -989,6 +1009,7 @@ module.controller('NavigatorController', function($scope) {
 			if(isLogin()){
 				
 				var user = COOKIE;
+
 				if($.trim(user.email) == ""){
 					mainnavigator.pushPage("perfil.html", {animation:'none'});
 				}
@@ -1201,6 +1222,147 @@ module.controller('PlanController', function($scope) {
         ons.compile($('#plan_content')[0]);
 
         initScroll('planScroll');
+
+    })
+});
+
+var GuiasController;
+module.controller('GuiasController', function($scope) {
+    ons.ready(function() {
+
+        current_page = 'guias.html';
+
+        GuiasController = this;
+
+        var factor = window.innerWidth/320;
+
+        $('#guiasHeader').css('max-height',  factor*60 );
+
+        loadIntoTemplate('#guias_content', current_list.items, 'guias_list');
+
+        ons.compile($('#guias_content')[0]);
+
+        initScroll('guiasScroll');
+
+    })
+});
+
+function gotoLocales(index) {
+
+    if(current_page != 'locales.html') {
+
+        current_page = 'locales.html';
+
+        current_categoria = current_list.items[index];
+
+        getJsonP(api_url + 'getLocales/', function(data){
+
+            list_locales = data;
+
+            mainnavigator.pushPage('locales.html');
+
+        }, function(){}, {categoria_id: current_categoria.id});
+    }
+}
+
+function gotoGuiaDetalle(index) {
+
+    if(current_page != 'guia.html') {
+
+        current_page = 'guia.html';
+
+        current_guia = list_locales.items[index];
+
+        mainnavigator.pushPage('guia.html');
+    }
+}
+
+function refreshLocalesScroll() {
+    scrolls.localesScroll.refresh();
+}
+
+var LocalesController;
+module.controller('LocalesController', function($scope) {
+    ons.ready(function() {
+
+        current_page = 'locales.html';
+
+        LocalesController = this;
+
+        var factor = window.innerWidth/320;
+
+        $('#localesHeader').css('max-height',  factor*60 );
+
+        loadIntoTemplate('#locales_content', list_locales.items, 'locales_list');
+
+        ons.compile($('#locales_content')[0]);
+
+        initScroll('localesScroll');
+
+    })
+});
+
+
+
+var GuiaController;
+var current_categoria;
+var current_guia;
+var list_locales;
+module.controller('GuiaController', function($scope) {
+    ons.ready(function() {
+
+        GuiaController = this;
+
+        var factor = window.innerWidth/320;
+
+        $('#guiaHeader').css('max-height',  factor*60 );
+
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*$('#guiaFooter').outerHeight();
+
+        $('#guiaFooter .banner').height( footerHeight );
+        $('#guiaHeader').height( footerHeight );
+
+        /*$('.header-logo').width($('.header-logo').width() * factor);
+         $('.header-logo').height($('.header-logo').height() * factor);*/
+
+        height = $(window).height() - ( 200*factor + $('#guiaFooter').outerHeight() + $('#guiaHeader').outerHeight() - 1 );
+
+        $('#guiaImages').height( height );
+        $('#guiaToolbar').height( height );
+
+        $('#guiaPage .page__content').css('top', (height + $('#guiaHeader').outerHeight() )+'px');
+        //$('#guiaPage .page__content').css('bottom', (footerHeight +'px') );
+
+        //$('#guiaScroll').height($('#guiaScroll').height() - footerHeight);
+
+        $('#guiaList').css('padding-bottom', footerHeight+'px');
+
+
+        loadIntoTemplate('#guiaImages', current_guia.images, 'slider_guia');
+        loadIntoTemplate('#guiaPaginator', current_guia.images, 'slider_paginator');
+
+        $('#guiaPaginator > div:first-child').addClass('selected');
+
+        $('#guiaDescripcion').html(current_guia.descripcion);
+        $('#guiaDireccion').html(current_guia.direccion);
+
+        GuiaController.carouselPostChange = function() {
+            $('#guiaPaginator > div').removeClass('selected');
+            $('#guiaPaginator > div:nth-child(' + (guiaImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+        };
+
+        setTimeout(function(){
+
+            guiaImages.on('postchange', GuiaController.carouselPostChange);
+
+        }, 1000);
+
+        ons.compile($('#guia_content')[0]);
+
+        initScroll('guiaScroll');
 
     })
 });

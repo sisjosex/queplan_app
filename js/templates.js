@@ -44,6 +44,30 @@ var templates = {
             '<div class="distance">%distance%</div>'+
         '</ons-list-item>',
 
+    guias_list:
+    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoLocales(%index%)">'+
+    '<div class="list-item-left">'+
+    '<img src="%imagen%" class="avator" onload="refreshGuiasScroll()">'+
+    '</div>'+
+    '<div class="list-item-right">'+
+    '<div class="list-item-content">'+
+    '<div class="name">%title%</div>'+
+    '</div>'+
+    '</div>'+
+    '</ons-list-item>',
+
+    locales_list:
+    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoGuiaDetalle(%index%)">'+
+    '<div class="list-item-left">'+
+    '<img src="%imagen%" class="avator" onload="refreshLocalesScroll()">'+
+    '</div>'+
+    '<div class="list-item-right">'+
+    '<div class="list-item-content">'+
+    '<div class="name">%title%</div>'+
+    '</div>'+
+    '</div>'+
+    '</ons-list-item>',
+
     btn_subir: '<div class="subir_container"><div class="button nobutton subir" onclick="subir(event)"></div></div>',
 
     btn_pdf: '<div class="pdf_container"><div class="button nobutton pdf" onclick="openPdf(\'http://lasterrazasdebecerril.es/noticias/forceDowload/%pdf%\')"></div></div>',
@@ -60,6 +84,13 @@ var templates = {
         '</ons-carousel-item>',
 
     slider_plan: '' +
+    '<ons-carousel-item class="item-bg detail session-item loading">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="title">%title%</div>'+
+    '</ons-carousel-item>',
+
+    slider_guia: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
