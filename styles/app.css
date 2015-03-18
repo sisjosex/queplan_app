@@ -1292,29 +1292,29 @@ i.invitado {
 
 .icon_maps {
     background-image: url("../img/icon_maps.png");
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-size: 100% 100%;
 }
 
 .icon_web {
     background-image: url("../img/btn_web.png");
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-size: 100% 100%;
 }
 
 .icon_facebook {
     background-image: url("../img/btn_facebook.png");
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-size: 100% 100%;
 }
 
 .icon_twitter {
     background-image: url("../img/btn_twitter.png");
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-size: 100% 100%;
 }
 
@@ -1330,7 +1330,7 @@ i.invitado {
 }
 
 .footer {
-    background: #000;
+    background: #20232b;
     width: 100%;
     text-align: center;
     padding: 0px;
@@ -1339,6 +1339,18 @@ i.invitado {
 .footer.fixed {
     position:absolute;
     bottom:0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.footer .button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer .button .text {
+    font-size:10px;
+    line-height: 16px;
 }
 
 .tabs .button .text {
@@ -1353,7 +1365,7 @@ i.invitado {
 @media all and (max-width: 320px) {
 
     .icons.right {
-        top: 7px;
+        top: 9px;
     }
 
     .icons.left {

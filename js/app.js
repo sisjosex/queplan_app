@@ -1068,7 +1068,9 @@ module.controller('HomeController', function($scope) {
             var footerHeight = factor*$('#homeFooter').outerHeight();
 
             $('#homeFooter .banner').height( footerHeight );
-            $('#homeHeader').height( footerHeight );
+            $('#homeHeader').height( footerHeight -8 );
+
+            $('#homeHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
             console.log(factor);
 
@@ -1140,7 +1142,9 @@ module.controller('PlanesController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#planesHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#planesHeader').height( footerHeight -8 );
+        $('#planesHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
         loadIntoTemplate('#planes_content', current_list.items, 'planes_list_content');
 
@@ -1174,15 +1178,13 @@ module.controller('PlanController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#planHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#planHeader').height( footerHeight -8 );
+        $('#planHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
-
-        var factor = window.innerWidth/320;
-
-        var footerHeight = factor*$('#planFooter').outerHeight();
+        footerHeight = factor*$('#planFooter').outerHeight();
 
         $('#planFooter .banner').height( footerHeight );
-        $('#planHeader').height( footerHeight );
 
         /*$('.header-logo').width($('.header-logo').width() * factor);
          $('.header-logo').height($('.header-logo').height() * factor);*/
@@ -1236,7 +1238,9 @@ module.controller('GuiasController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#guiasHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#guiasHeader').height( footerHeight -8 );
+        $('#guiasHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
         loadIntoTemplate('#guias_content', current_list.items, 'guias_list');
 
@@ -1291,7 +1295,9 @@ module.controller('LocalesController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#localesHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#localesHeader').height( footerHeight -8 );
+        $('#localesHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
         loadIntoTemplate('#locales_content', list_locales.items, 'locales_list');
 
@@ -1315,12 +1321,11 @@ module.controller('GuiaController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#guiaHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#guiaHeader').height( footerHeight -8 );
+        $('#guiaHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
-
-        var factor = window.innerWidth/320;
-
-        var footerHeight = factor*$('#guiaFooter').outerHeight();
+        footerHeight = factor*$('#guiaFooter').outerHeight();
 
         $('#guiaFooter .banner').height( footerHeight );
         $('#guiaHeader').height( footerHeight );
@@ -1375,7 +1380,9 @@ module.controller('MenuController', function($scope) {
 
         var factor = window.innerWidth/320;
 
-        $('#menuHeader').css('max-height',  factor*60 );
+        var footerHeight = factor*60;
+        $('#menuHeader').height( footerHeight -8 );
+        $('#menuHeader').css( 'min-height', (footerHeight-8) + 'px' );
         //$('#planesHeader').height( factor*$('#planesHeader').outerHeight() );
 
     })
