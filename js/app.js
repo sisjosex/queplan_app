@@ -94,11 +94,14 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
 
             //una vez registrado los datos, mandamos a la home
             mainnavigator.pushPage('ciudad.html');
+
         }else{
             showAlert('Ha ocurrido un error al momento de registrarse!, por favor intente de nuevo', 'Error', 'Aceptar');
         }
 
     }, function() {
+
+        showAlert("error", 'registrar_datos', 'Aceptar');
 
     }, {
         u_app_id:app_id,
