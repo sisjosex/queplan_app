@@ -66,6 +66,8 @@ function loginTwitterConnect() {
                                         }
                                     }, function(){
 
+                                        showAlert("error", 'getUsuarioByAppId', 'Aceptar');
+
                                     }, {
                                         app_id: user_id,
                                         device_uuid: device.uuid,
