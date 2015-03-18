@@ -86,7 +86,7 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
 
         var success = data.status == 'success';
         if(success){
-            var usuario = data.usuario.Usuario;
+            var usuario = data.usuario;
             var usuario_id = usuario.id;
 
             //una vez creado guardamos en cookies su datos importantes
