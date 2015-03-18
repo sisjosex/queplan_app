@@ -537,6 +537,92 @@
 </ons-template>
 
 
+<ons-template id="menu_detalle.html">
+    <ons-page ng-controller="MenuDetalleController" id="menu_detallePage" class="">
+
+        <ons-toolbar id="menu_detalleToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="menu_detalleHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('menu_detalle.html');current_page = 'menu.html';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="menu_detalleScroll" class="scrollable">
+
+            <div id="menu_detalleList" class="scroll-content scrollfix">
+
+                <div class="horizontal"></div>
+                <div class="horizontal"></div>
+
+                <div class="horizontal center">
+                    <div class="menu_header">
+                        <h3>
+                            <span>MEN&Uacute; D&Iacute;A</span> <span id="menu_detalleFecha"></span><br>
+                            <span id="menu_detalleNombre"></span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div id="menu_detalle_content" class="menu_content">
+
+                    <div class="horizontal justify">
+                        <div id="menu_detalleCotent"></div>
+                    </div>
+
+                    <div class="horizontal justify">
+                        <div id="Descripcion" class="text"></div>
+                    </div>
+
+                </div>
+
+                <div class="horizontal center">
+                    <b>Dirección:</b> <span id="menu_detalleDireccion"></span>
+                </div>
+
+                <div class="horizontal">
+                    <div class="button nobutton llamar"></div>
+                    <div class="button nobutton guiaes_de_hoy"></div>
+                </div>
+
+                <div class="horizontal">
+                    Indica que llamas de parte de QuéPlan? App
+                </div>
+
+            </div>
+        </div>
+
+        <div id="menu_detalleFooter" class="footer fixed">
+            <div class="tabs">
+
+                <div class="table-cell">
+                    <div class="button nobutton" onclick="goToMaps()">
+                        <div class="dashboard_icon icon_maps"></div>
+                        <div class="text">Maps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+
 <ons-template>
 <ons-page id="perfil.html">
 

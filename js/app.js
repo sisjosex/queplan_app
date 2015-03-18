@@ -1384,13 +1384,74 @@ module.controller('MenuController', function($scope) {
     ons.ready(function() {
 
         MenuController = this;
+        current_page = 'locales.html';
 
         var factor = window.innerWidth/320;
 
         var footerHeight = factor*60;
         $('#menuHeader').height( footerHeight -8 );
         $('#menuHeader').css( 'min-height', (footerHeight-8) + 'px' );
-        //$('#planesHeader').height( factor*$('#planesHeader').outerHeight() );
+
+        loadIntoTemplate('#menu_content', current_list.items, 'menu_list');
+
+        ons.compile($('#menu_content')[0]);
+
+        initScroll('menuScroll');
+
+    })
+});
+
+var current_menu;
+function gotoMenuDetalle(index) {
+
+    if(current_page != 'menu_detalle.html') {
+
+        current_page = 'menu_detalle.html';
+
+        current_menu = current_list.items[index];
+
+        mainnavigator.pushPage('menu_detalle.html');
+    }
+}
+
+function refreshMenuScroll() {
+    scrolls.menuScroll.refresh();
+}
+
+var MenuDetalleController;
+module.controller('MenuDetalleController', function($scope) {
+    ons.ready(function() {
+
+        MenuDetalleController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#menu_detalleHeader').height( footerHeight -8 );
+        $('#menu_detalleHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        footerHeight = factor*$('#menu_detalleFooter').outerHeight();
+
+        $('#menu_detalleFooter .banner').height( footerHeight );
+        $('#menu_detalleHeader').height( footerHeight );
+
+        var str = "";
+        for(var i in current_menu.content) {
+            str += "<h3>"+i+"</h3>";
+            str += '<div class="menu_platos">'+current_menu.content[i]+'</div>';
+        }
+
+        $('#menu_detalleCotent').html(str);
+
+        $('#menu_detalleFecha').html(current_menu.fecha);
+        $('#menu_detalleNombre').html(current_menu.title);
+
+        $('#menu_detalleDescripcion').html(current_menu.descripcion);
+        $('#menu_detalleDireccion').html(current_menu.direccion);
+
+        ons.compile($('#menu_detalle_content')[0]);
+
+        initScroll('menu_detalleScroll');
 
     })
 });

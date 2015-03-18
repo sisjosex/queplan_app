@@ -68,6 +68,18 @@ var templates = {
     '</div>'+
     '</ons-list-item>',
 
+    menu_list:
+    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoMenuDetalle(%index%)">'+
+    '<div class="list-item-left">'+
+    '<img src="%imagen%" class="avator" onload="refreshMenuScroll()">'+
+    '</div>'+
+    '<div class="list-item-right">'+
+    '<div class="list-item-content">'+
+    '<div class="name">%title%</div>'+
+    '</div>'+
+    '</div>'+
+    '</ons-list-item>',
+
     btn_subir: '<div class="subir_container"><div class="button nobutton subir" onclick="subir(event)"></div></div>',
 
     btn_pdf: '<div class="pdf_container"><div class="button nobutton pdf" onclick="openPdf(\'http://lasterrazasdebecerril.es/noticias/forceDowload/%pdf%\')"></div></div>',
