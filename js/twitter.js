@@ -31,7 +31,7 @@ function loginTwitterConnect() {
                                	"oauth_accessToken", {oauth_verifier: parameter[1]},
                                	function (reply) {
 
-                                    showAlert(reply, 'reply', 'Aceptar');
+                                    //showAlert(reply, 'reply', 'Aceptar');
 
                             	   	cb.setToken(reply.oauth_token, reply.oauth_token_secret);
                                     
@@ -44,9 +44,9 @@ function loginTwitterConnect() {
                                     var user_screen_name = reply.screen_name;
                                     var email = '';
 
-                                    getJsonP(api_url + 'getUsuarioByAppId', function(data) {
+                                    getJsonP(api_url + 'getUsuarioByAppId/', function(data) {
 
-                                        showAlert(data.status, 'getUsuarioByAppId', 'Aceptar');
+                                        //showAlert(data.status, 'getUsuarioByAppId', 'Aceptar');
 
                                         if(data.status== 'success'){
                                             var usuario = data.usuario;
