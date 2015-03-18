@@ -115,7 +115,8 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
         d_version:device.version,
         d_uuid:device.uuid,
         d_name:device.name,
-        u_token_notificacion:PUSH_NOTIFICATION_TOKEN
+        u_token_notificacion:PUSH_NOTIFICATION_TOKEN,
+        ciudad_id: ciudad_seleccionada
     });
 }
 
@@ -706,17 +707,6 @@ function imageLoaded(index) {
 function onError() {}
 
 var current_list = [];
-var carta_data = {};
-function goToCarta() {
-
-    getJsonP(api_url + 'get_carta', function(data){
-
-        carta_data = data;
-
-        splash.pushPage('carta.html', {});
-
-    }, function(){}, {});
-}
 
 function openEmail(email) {
 
@@ -753,7 +743,7 @@ function goToPlanes() {
         if(current_list.list) {
         }
 
-    }, function(){}, {});
+    }, function(){}, {ciudad_id: ciudad_seleccionada});
 }
 
 function goToGuia() {
@@ -767,7 +757,7 @@ function goToGuia() {
         if(current_list.list) {
         }
 
-    }, function(){}, {});
+    }, function(){}, {ciudad_id: ciudad_seleccionada});
 }
 
 function goToRecompensas() {
@@ -795,7 +785,7 @@ function gotoMenuDiario() {
         if(current_list.list) {
         }
 
-    }, function(){}, {});
+    }, function(){}, {ciudad_id: ciudad_seleccionada});
 }
 
 var currentPlan;
@@ -1298,7 +1288,7 @@ function gotoLocales(index) {
 
             mainnavigator.pushPage('locales.html');
 
-        }, function(){}, {categoria_id: current_categoria.id});
+        }, function(){}, {categoria_id: current_categoria.id, ciudad_id: ciudad_seleccionada});
     }
 }
 
