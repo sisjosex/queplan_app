@@ -82,7 +82,7 @@ function checkIn(urlamigable){
 
 function registrar_datos(app_id, email, registrado_mediante, username, nombre, imagen, genero){
 
-    getJsonP(api_url + 'newRegistro', function() {
+    getJsonP(api_url + 'newRegistro/', function() {
 
         var success = data.status == 'success';
         if(success){
