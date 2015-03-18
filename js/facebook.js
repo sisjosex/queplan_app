@@ -18,7 +18,7 @@ function loginFacebookConnect() {
                         var imagen = "";
 
                         //verificamos si este usuario no se logeo con anterioridad, si no lo hizo lo creamos como nuevo, si lo hizo solo actualizamos su estado logeado a 1
-                        getJsonPBackground(BASE_URL + 'getUsuarioByAppId/', function (data) {
+                        getJsonPBackground(api_url + 'getUsuarioByAppId/', function (data) {
 
                             if (data.status == 'success') {
                                 var usuario = data.usuario;
