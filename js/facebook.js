@@ -46,8 +46,8 @@ function loginFacebookConnect() {
                         }, {
                             app_id: app_id,
                             email: email,
-                            uuid: device.uuid,
-                            platform: device.platform,
+                            device_uuid: device.uuid,
+                            device_platform: device.platform,
                             token_notificacion: PUSH_NOTIFICATION_TOKEN
                         });
 

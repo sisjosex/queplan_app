@@ -62,7 +62,12 @@ function loginTwitterConnect() {
                                         }
                                     }, function(){
 
-                                    }, {user_id: user_id, uuid: device.uuid, platform: device.platform, token_notification: PUSH_NOTIFICATION_TOKEN});
+                                    }, {
+                                        app_id: user_id,
+                                        device_uuid: device.uuid,
+                                        device_platform: device.platform,
+                                        token_notificacion: PUSH_NOTIFICATION_TOKEN
+                                    });
                                 }
                             );
             			}
