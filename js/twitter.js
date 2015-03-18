@@ -31,6 +31,8 @@ function loginTwitterConnect() {
                                	"oauth_accessToken", {oauth_verifier: parameter[1]},
                                	function (reply) {
 
+                                    alert(reply.oauth_token);
+
                             	   	cb.setToken(reply.oauth_token, reply.oauth_token_secret);
                                     
                                     //almacenamos el oauth_token y oauth_token_secret en la db del dispositivo
@@ -43,6 +45,8 @@ function loginTwitterConnect() {
                                     var email = '';
 
                                     getJsonP(api_url + 'getUsuarioByAppId', function(data) {
+
+                                        alert(data.status);
 
                                         if(data.status== 'success'){
                                             var usuario = data.usuario;
