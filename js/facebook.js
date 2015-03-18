@@ -2,6 +2,8 @@ function loginFacebookConnect() {
     openFB.login(
         function (response) {
             if (response.status === 'connected') {
+                alert('connected');
+
                 FB_LOGIN_SUCCESS = true;
                 openFB.api({
                     path: '/me',
