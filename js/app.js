@@ -93,7 +93,7 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
             createCookie("user", JSON.stringify(usuario), 365);
 
             //una vez registrado los datos, mandamos a la home
-            $.mobile.changePage('#ciudades');
+            mainnavigator.pushPage('ciudad.html');
         }else{
             showAlert('Ha ocurrido un error al momento de registrarse!, por favor intente de nuevo', 'Error', 'Aceptar');
         }
