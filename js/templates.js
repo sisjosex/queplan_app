@@ -20,7 +20,7 @@ var templates = {
 
     planes_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoPlanDetalle(%index%)">'+
 '<div class="list-item-left">'+
-        '<img src="%imagen%" class="avator">'+
+        '<img src="%imagen%" class="avator" onload="refreshPlanesScroll()">'+
 '</div>'+
         '<div class="list-item-right">'+
 '<div class="list-item-content">'+
@@ -28,6 +28,17 @@ var templates = {
         '</div>'+
         '</div>'+
             '</ons-list-item>',
+
+    recompensas_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoPlanDetalle(%index%)">'+
+    '<div class="list-item-left">'+
+    '<img src="%imagen%" class="avator" onload="refreshRecompensasScroll()">'+
+    '</div>'+
+    '<div class="list-item-right">'+
+    '<div class="list-item-content">'+
+    '<div class="name">%title%</div>'+
+    '</div>'+
+    '</div>'+
+    '</ons-list-item>',
 
     novedades_list_content: '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron" onclick="goToNovedadDetalle(%index%, event)">' +
                             '<div class="arrow">' +

@@ -2,8 +2,7 @@ var api_url = 'http://web.queplanmadrid.es/api/';
 var img_url = 'http://www.queplanmadrid.es/img/';
 var thumb_url = 'http://web.queplanmadrid.es/helpers/timthumb.php?w=%width%&h=%height%&src=';
 
-var LATITUDE;
-var LONGITUDE;
+var ciudad_seleccionada=0;
 
 /*
 var api_url = 'http://lasterrazasdebecerril.es/services/app/api/';

@@ -770,6 +770,20 @@ function goToGuia() {
     }, function(){}, {});
 }
 
+function goToRecompensas() {
+
+    getJsonP(api_url + 'getRecompensas/', function(data){
+
+        current_list = data;
+
+        mainnavigator.pushPage('recompensas.html', {});
+
+        if(current_list.list) {
+        }
+
+    }, function(){}, {ciudad_id: ciudad_seleccionada});
+}
+
 function gotoMenuDiario() {
 
     getJsonP(api_url + 'getMenuDiario/', function(data){
@@ -803,6 +817,8 @@ function procesarRegistro(element, event, type) {
 
 function elegirCiudad(element, event) {
 
+    ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
+
     mainnavigator.pushPage('home.html');
 }
 
@@ -834,6 +850,16 @@ function refreshHomeScroll() {
 function refreshGuiasScroll() {
 
     scrolls['guiasScroll'].refresh();
+}
+
+function refreshPlanesScroll() {
+
+    scrolls['planesScroll'].refresh();
+}
+
+function refreshRecompensasScroll() {
+
+    scrolls['recompensasScroll'].refresh();
 }
 
 closeDetailSession = function() {
@@ -1454,6 +1480,31 @@ module.controller('MenuDetalleController', function($scope) {
         ons.compile($('#menu_detalle_content')[0]);
 
         initScroll('menu_detalleScroll');
+
+    })
+});
+
+
+
+var RecompensasController;
+module.controller('RecompensasController', function($scope) {
+    ons.ready(function() {
+
+        current_page = 'recompensas.html';
+
+        RecompensasController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#recompensasHeader').height( footerHeight -8 );
+        $('#recompensasHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        loadIntoTemplate('#recompensas_content', current_list.items, 'recompensas_list_content');
+
+        ons.compile($('#recompensas_content')[0]);
+
+        initScroll('recompensasScroll');
 
     })
 });

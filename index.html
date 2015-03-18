@@ -623,6 +623,40 @@
 </ons-template>
 
 
+<ons-template id="recompensas.html">
+    <ons-page ng-controller="RecompensasController" class="">
+
+        <ons-toolbar id="recompensasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="recompensasHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('recompensas.html')"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <div id="recompensasScroll" class="scrollable">
+
+            <div id="recompensasList" class="scroll-content scrollfix">
+
+                <ons-list id="recompensas_content"></ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+
 <ons-template>
 <ons-page id="perfil.html">
 
