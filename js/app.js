@@ -734,44 +734,62 @@ function goToContacto() {
 
 function goToPlanes() {
 
-    getJsonP(api_url + 'getPlanes/', function(data){
+    if(current_page != 'planes.html') {
 
-        current_list = data;
+        current_page = 'planes.html';
 
-        mainnavigator.pushPage('planes.html', {});
+        getJsonP(api_url + 'getPlanes/', function (data) {
 
-        if(current_list.list) {
-        }
+            current_list = data;
 
-    }, function(){}, {ciudad_id: ciudad_seleccionada});
+            mainnavigator.pushPage('planes.html', {});
+
+            if (current_list.list) {
+            }
+
+        }, function () {
+        }, {ciudad_id: ciudad_seleccionada});
+
+    }
 }
 
 function goToGuia() {
 
-    getJsonP(api_url + 'getCategorias/', function(data){
+    if(current_page != 'guias.html') {
 
-        current_list = data;
+        current_page = 'guias.html';
 
-        mainnavigator.pushPage('guias.html', {});
+        getJsonP(api_url + 'getCategorias/', function (data) {
 
-        if(current_list.list) {
-        }
+            current_list = data;
 
-    }, function(){}, {ciudad_id: ciudad_seleccionada});
+            mainnavigator.pushPage('guias.html', {});
+
+            if (current_list.list) {
+            }
+
+        }, function () {
+        }, {ciudad_id: ciudad_seleccionada});
+    }
 }
 
 function goToRecompensas() {
 
-    getJsonP(api_url + 'getRecompensas/', function(data){
+    if(current_page != 'recompensas.html') {
 
-        current_list = data;
+        current_page = 'recompensas.html';
 
-        mainnavigator.pushPage('recompensas.html', {});
+        getJsonP(api_url + 'getRecompensas/', function(data){
 
-        if(current_list.list) {
-        }
+            current_list = data;
 
-    }, function(){}, {ciudad_id: ciudad_seleccionada});
+            mainnavigator.pushPage('recompensas.html', {});
+
+            if(current_list.list) {
+            }
+
+        }, function(){}, {ciudad_id: ciudad_seleccionada});
+    }
 }
 
 function gotoMenuDiario() {
