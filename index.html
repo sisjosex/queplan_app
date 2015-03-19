@@ -227,7 +227,7 @@
 
                 <div id="planesHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -351,7 +351,7 @@
 
                 <div id="guiasHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guias.html')"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guias.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -386,7 +386,7 @@
 
                 <div id="localesHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('locales.html')"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('locales.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -510,7 +510,7 @@
 
                 <div id="menuHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -632,7 +632,7 @@
 
                 <div id="recompensasHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('recompensas.html');current_page='home.html';"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('recompensas.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -748,16 +748,16 @@
 </ons-template>
 
 
-<ons-template>
-<ons-page id="perfil.html">
+<ons-template id="perfil.html">
+<ons-page ng-controller="PerfilController" id="perfilPage" class="">
 
-		<ons-toolbar id="homeToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+		<ons-toolbar id="perfilToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 
             <div class="center" style="width:100%;height:100%;position:relative;">
 
                 <div id="perfilHeader" class="header">
                     <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html')"></div>
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('perfil.html');current_page='';"></div>
                     </div>
 
                     <div class="header-logo center"></div>
@@ -775,8 +775,10 @@
             <div id="perfilList" class="scroll-content scrollfix">
 
                 <div id="perfil_content">
-					
-					<h2 class="ui-li-heading">M&iacute; Perfil</h2>
+
+                    <div class="horizontal center">
+                        <h3 class="title">M&iacute; Perfil</h3>
+                    </div>
 					<div class="horizontal">
 						<div data-role="fieldcontain">
 							<p style="margin-bottom: 8px; color: #df086f;">Actualmente tiene acumulado.</p>
@@ -785,11 +787,26 @@
 							</div>
 							
 							<div class="content_options">
-								<a class="ui-btn-submit ui-btn-facebook" href="javascript:void(0)" onclick="logout()" data-role="button" data-icon="none" data-iconpos="left">Desconectar del Facebook</a>
-								<a class="ui-btn-submit ui-btn-twitter" href="javascript:void(0)" onclick="logout()" data-role="button" data-icon="none" data-iconpos="left">Desconectar del Twitter</a>
-								<a class="ui-btn-submit ui-btn-google" href="javascript:void(0)" onclick="logout()" data-role="button" data-icon="none" data-iconpos="left">Desconectar del Google</a>
-								<a class="ui-btn-submit ui-btn-orange ui-btn-email" href="javascript:void(0)" onclick="logout()" data-role="button" data-icon="none" data-iconpos="left">Desconectar del Email</a>
-								<a class="recibir_alertas ui-btn-submit ui-btn-purple" href="javascript:void(0)" data-role="button" data-icon="none" data-iconpos="left">Dejar de recibir alertas</a>
+
+                                <div class="horizontal">
+                                    <div class="button btn azul" onclick="loginFacebookConnect()"><span class="text fixed">Desconectar del Facebook</span> <i class="facebook"></i></div>
+                                </div>
+
+                                <div class="horizontal">
+                                    <div class="button btn celeste" onclick="loginTwitterConnect()"><span class="text fixed">Desconectar del Twitter</span> <i class="twitter"></i></div>
+                                </div>
+
+                                <div class="horizontal">
+                                    <div class="button btn rojo" onclick="loginGoogleConnect()"><span class="text fixed">Desconectar del Google</span> <i class="google"></i></div>
+                                </div>
+
+                                <div class="horizontal">
+                                    <div class="button btn naranja" onclick="procesarRegistro(this, event, 'email')"><span class="text fixed">Desconectar del Email</span> <i class="email"></i></div>
+                                </div>
+
+                                <div class="horizontal">
+                                    <div class="button btn" onclick="procesarRegistro(this, event, 'email')"><span class="text fixed">Dejar de recibir alertas</span></div>
+                                </div>
 							</div>
 							
 							<form id="form_change_email">

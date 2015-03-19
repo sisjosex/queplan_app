@@ -1485,9 +1485,13 @@ module.controller('MenuDetalleController', function($scope) {
         $('#menu_detalleDescripcion').html(current_menu.descripcion);
         $('#menu_detalleDireccion').html(current_menu.direccion);
 
-        ons.compile($('#menu_detalle_content')[0]);
+        ons.compile($('#menu_detalleScroll')[0]);
 
         initScroll('menu_detalleScroll');
+
+        setTimeout(function(){
+            scrolls.menu_detalleScroll.refresh();
+        }, 100);
 
     })
 });
@@ -1588,6 +1592,17 @@ module.controller('RecompensaController', function($scope) {
         initScroll('recompensaScroll');
 
     })
+});
+
+
+var PerfilController;
+module.controller('PerfilController', function($scope) {
+    ons.ready(function() {
+
+        PerfilController = this;
+
+        initScroll('perfilScroll');
+    });
 });
 
 
