@@ -408,6 +408,9 @@ function getJsonP(url, callback_success, callback_error, data) {
 
     if(data.lang === undefined) {
         data.lang = applicationLanguage;
+        data.lat1 = LATITUDE;
+        data.lon1 = LONGITUDE;
+        data.ciudad_id = ciudad_seleccionada;
     }
 
     modal.show();

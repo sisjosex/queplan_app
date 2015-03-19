@@ -1187,7 +1187,11 @@ module.controller('PlanesController', function($scope) {
         $('#planesHeader').height( footerHeight -8 );
         $('#planesHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
-        loadIntoTemplate('#planes_content', current_list.items, 'planes_list_content');
+        $('#planesPage .page__content').css('top', footerHeight + 'px');
+
+        loadIntoTemplate('#planes_content', current_list.items, 'planes_list');
+
+        $('.list-item-container').height( (window.innerHeight - footerHeight)/3 );
 
         ons.compile($('#planes_content')[0]);
 

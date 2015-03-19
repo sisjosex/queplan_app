@@ -795,7 +795,7 @@ label.checkbox {
 }
 
 .list {
-    margin:10px;
+    margin:0px;
 }
 
 .scrollable img {
@@ -1396,6 +1396,42 @@ i.invitado {
 
 .menu_platos p{
     display:inline;
+}
+
+.list-item-container {
+    position:relative;
+}
+
+.list-item-container.loading img {
+    visibility: hidden;
+}
+
+.distance {
+    padding-left: 20px;
+    background: url('../img/btn_marker_few_h.png') left bottom no-repeat transparent;
+    color: #e65792;
+    display: inline-block;
+    padding-top: 10px;
+    background-size: 15px auto;
+}
+
+.overlay.title {
+    position: absolute;
+    bottom: 0;
+    font-size: 16px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #e65792;
+    border-bottom: 2px solid #e65792;
+}
+
+.overlay.title > div {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
 }
 
 @media all and (max-width: 320px) {

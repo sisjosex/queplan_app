@@ -1,33 +1,13 @@
 var templates = {
 
-    carta_list_content: '<div class="price-row"><div class="name">%nombre%</div><div class="price">%precio%€</div></div>',
-
-    list_single: '<div class="price-row vinos_list"><div class="name">%nombre%</div><div class="price">%precio%€</div></div>',
-
-    fotos_list_content: '<div class="galeria-item button nobutton" onclick="goToFoto(%index%)"><img src="http://lasterrazasdebecerril.es/img/fotos/thumbnails/%url%" onload="refreshGaleriaScroll()"></div>',
-
-    carta_list_vino_content: '<h4><div class="name">%nombre%</div></h4>'+
-    '<div class="menu_grupo_content">'+
-    '%items%</div>',
-
-    page_list_content: '<div class="horizontal"><div class="title">%nombre%</div> <div class="description">%descripcion%</div>'+
-    '<figure><img src="http://lasterrazasdebecerril.es/img/fotos/%url%" alt="" onload="refreshPageScroll()"/></figure></div>',
-
-    grupo_list_content: '<div class="price-row"><div class="name">%nombre%</div><div class="price">%precio%€</div>' +
+    planes_list: '<div class="list-item-container loading" onclick="gotoPlanDetalle(%index%)">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%, \'planesScroll\')" src="%imagen%" /></div>'+
+    '<div class="overlay title">' +
+        '<div>%title%</div>' +
+        '<span class="distance">%distancia%</span>'+
     '</div>'+
-    '<div class="menu_grupo_content">'+
-    '%descripcion%</div>',
-
-    planes_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoPlanDetalle(%index%)">'+
-'<div class="list-item-left">'+
-        '<img src="%imagen%" class="avator" onload="refreshPlanesScroll()">'+
-'</div>'+
-        '<div class="list-item-right">'+
-'<div class="list-item-content">'+
-        '<div class="name">%title%</div>'+
-        '</div>'+
-        '</div>'+
-            '</ons-list-item>',
+    '</div>',
 
     recompensas_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoRecompensaDetalle(%index%)">'+
     '<div class="list-item-left">'+
@@ -39,21 +19,6 @@ var templates = {
     '</div>'+
     '</div>'+
     '</ons-list-item>',
-
-    novedades_list_content: '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron" onclick="goToNovedadDetalle(%index%, event)">' +
-                            '<div class="arrow">' +
-                            '<div class="list-item novedades">' +
-                                '<div class="image"></div>' +
-                            '<div class="list_title"><p><img align="left" src="http://lasterrazasdebecerril.es/img/novedades/thumbnails/%imagen%" onload="refreshNovedadesScroll()"/><span class="novedad_titulo">%nombre%</span><span class="novedad_fecha">%fecha%</span><span class="short_desc">%descripcion_cut%</span></p></div>' +
-                            '</div></div></ons-list-item>',
-
-    planes_list:
-        '<ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron" onclick="goToPlanesDetalle(%index%, event)">' +
-            '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-            '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%list_image%" /></div>'+
-            '<div class="title">%title%</div>'+
-            '<div class="distance">%distance%</div>'+
-        '</ons-list-item>',
 
     guias_list:
     '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoLocales(%index%)">'+
