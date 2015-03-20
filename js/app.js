@@ -794,16 +794,22 @@ function goToRecompensas() {
 
 function gotoMenuDiario() {
 
-    getJsonP(api_url + 'getMenuDiario/', function(data){
+    if(current_page != 'menu.html') {
 
-        current_list = data;
+        current_page = 'menu.html';
 
-        mainnavigator.pushPage('menu.html', {});
+        getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-        if(current_list.list) {
-        }
+            current_list = data;
 
-    }, function(){}, {ciudad_id: ciudad_seleccionada});
+            mainnavigator.pushPage('menu.html', {});
+
+            if (current_list.list) {
+            }
+
+        }, function () {
+        }, {ciudad_id: ciudad_seleccionada});
+    }
 }
 
 var currentPlan;
