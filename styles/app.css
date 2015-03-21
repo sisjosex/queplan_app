@@ -1421,11 +1421,12 @@ i.invitado {
     font-size: 16px;
     color: #fff;
     background: rgba(0,0,0,0.5);
-    width: 100%;
     text-align: center;
     padding: 10px;
     border-top: 2px solid #e65792;
     border-bottom: 2px solid #e65792;
+    left: 0;
+    right: 0;
 }
 
 .overlay.title > div {

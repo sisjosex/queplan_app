@@ -1125,48 +1125,41 @@ module.controller('HomeController', function($scope) {
 
             $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() )+'px');
 
-            loadApplicationParams(function(){
-
-                current_page = 'main.html';
-
-                $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
-
-                loadIntoTemplate('#homeImages', applicationParams.slider, 'slider_images');
-
-                loadIntoTemplate('#homePaginator', applicationParams.slider, 'slider_paginator');
-
-                $('#homePaginator > div:first-child').addClass('selected');
 
 
-                HomeController.carouselPostChange = function() {
-                    $('#homePaginator > div').removeClass('selected');
-                    $('#homePaginator > div:nth-child(' + (homeImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
-                };
+            current_page = 'main.html';
 
-                setTimeout(function(){
+            $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
 
-                    homeImages.on('postchange', HomeController.carouselPostChange);
+            loadIntoTemplate('#homeImages', applicationParams.slider, 'slider_images');
 
-                }, 1000);
+            loadIntoTemplate('#homePaginator', applicationParams.slider, 'slider_paginator');
 
-                ons.compile($('#homeImages')[0]);
-
-                //ons.compile($('#homeScroll')[0]);
-
-                initScroll('homeScroll');
-
-                //refreshHomeScroll();
-
-                setTimeout(function(){
-
-                    try { navigator.splashscreen.hide(); } catch(error){}
-
-                }, 1000);
+            $('#homePaginator > div:first-child').addClass('selected');
 
 
-                //registerNotifications();
+            HomeController.carouselPostChange = function() {
+                $('#homePaginator > div').removeClass('selected');
+                $('#homePaginator > div:nth-child(' + (homeImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+            };
 
-            });
+            setTimeout(function(){
+
+                homeImages.on('postchange', HomeController.carouselPostChange);
+
+            }, 1000);
+
+            ons.compile($('#homeImages')[0]);
+
+            initScroll('homeScroll');
+
+            setTimeout(function(){
+
+                try { navigator.splashscreen.hide(); } catch(error){}
+
+            }, 1000);
+
+
 
         }, 100);
 
