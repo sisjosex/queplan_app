@@ -9,9 +9,10 @@ var templates = {
     '</div>'+
     '</div>',
 
-    recompensas_list_content: '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoRecompensaDetalle(%index%)">'+
+    recompensas_list_content:
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoRecompensaDetalle(%index%)">'+
     '<div class="list-item-left">'+
-    '<img src="%imagen%" class="avator" onload="refreshRecompensasScroll()">'+
+    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+
@@ -33,13 +34,14 @@ var templates = {
     '</ons-list-item>',
 
     locales_list:
-    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoGuiaDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoGuiaDetalle(%index%)">'+
     '<div class="list-item-left">'+
-    '<img src="%imagen%" class="avator" onload="refreshLocalesScroll()">'+
+    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+
     '<div>%local_title%</div>' +
+    '<span class="distance">%distancia%</span>'+
     '</div>'+
     '</div>'+
     '</ons-list-item>',

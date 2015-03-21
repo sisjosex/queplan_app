@@ -1267,7 +1267,7 @@ i.invitado {
 }
 
 .list-item-left, .list-item-right {
-    display:inline-block;
+    display:table-cell;
     vertical-align: middle;
     line-height: 12px !important;
 }
@@ -1414,14 +1414,14 @@ i.invitado {
 }
 
 .distance {
-    padding-left: 20px;
+    padding-left: 15px;
     background: url('../img/btn_marker_few_h.png') left bottom no-repeat transparent;
     color: #e65792;
     display: inline-block;
     padding-top: 10px;
-    background-size: 15px auto;
+    background-size: 13px auto;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .overlay.title {
@@ -1452,6 +1452,31 @@ span.distance.right {
 
 h4 {
     margin:0;
+}
+
+.planes-list {
+    border-bottom: 1px solid #4d4d4d !important;
+}
+
+.planes-list .list-item-left {
+    width: 120px;
+    height: 84px;
+}
+
+.planes-list .distance {
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+}
+
+.planes-list .list-item-right {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.planes-list .list-item-right .list-item-content > div {
+    font-size: 18px;
+    line-height: 20px;
 }
 
 @media all and (max-width: 320px) {

@@ -977,6 +977,9 @@ function onSliderHomeIMGLoad(img, index) {
     var image = new Image();
     image.src=src;
 
+    var outerWidth = $(img).parent().outerWidth();
+    var outerHeight = $(img).parent().outerHeight();
+
     image.onload = function() {
 
         container.parent().find('ons-icon').remove();
@@ -992,39 +995,39 @@ function onSliderHomeIMGLoad(img, index) {
         var height = image.height;
         var factor = 1;
 
-        if (window.innerWidth > width) {
-            factor = window.innerWidth / width;
+        if (outerWidth > width) {
+            factor = outerWidth / width;
             width = width * factor;
             height = height * factor;
         }
 
-        if ($('#homeImages').outerHeight() > height) {
+        if (outerHeight > height) {
 
-            factor = ($('#homeImages').outerHeight())/height;
+            factor = (outerHeight)/height;
             width = width * factor;
             height = height * factor;
         }
 
-        if (window.innerWidth < width ) {
-            factor = $('#homeImages').outerHeight()/height;
+        if (outerWidth < width ) {
+            factor = outerHeight/height;
             width = width * factor;
-            height = $('#homeImages').outerHeight();
+            height = outerHeight;
 
-            if(window.innerWidth - width > 0) {
-                factor = window.innerWidth / width;
-                width = window.innerWidth;
+            if(outerWidth - width > 0) {
+                factor = outerWidth / width;
+                width = outerWidth;
                 height = height * factor;
             }
 
 
-        } else if ($('#homeImages').outerHeight() < height ) {
-            factor = window.innerWidth / width;
-            width = window.innerWidth;
+        } else if (outerHeight < height ) {
+            factor = outerWidth / width;
+            width = outerWidth;
             height = height * factor;
 
-            if($('#homeImages').outerHeight() - height > 0) {
-                factor = $('#homeImages').outerHeight() / height;
-                height = $('#homeImages').outerHeight();
+            if(outerHeight - height > 0) {
+                factor = outerHeight / height;
+                height = outerHeight;
                 width = width * factor;
             }
         }
@@ -1622,6 +1625,8 @@ module.controller('RecompensasController', function($scope) {
         var footerHeight = factor*60;
         $('#recompensasHeader').height( footerHeight -8 );
         $('#recompensasHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        $('#recompensasPage .page__content').css('top', (footerHeight-8) + 'px');
 
         loadIntoTemplate('#recompensas_content', current_list.items, 'recompensas_list_content');
 
