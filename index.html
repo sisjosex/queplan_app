@@ -73,7 +73,7 @@
 </ons-navigator>
 
 <ons-template id="registro.html">
-    <ons-page ng-controller="RegistroController">
+    <ons-page ng-controller="RegistroController" id="registroPage">
 
         <div id="registro_scroll" class="scrollable scrollfix">
 
@@ -116,7 +116,7 @@
 </ons-template>
 
 <ons-template id="ciudad.html">
-    <ons-page ng-controller="ciudadController" class="full-screen">
+    <ons-page ng-controller="ciudadController" id="ciudadPage" class="full-screen">
 
         <div class="relative full-screen">
             <ons-carousel id="ciudad_images" var="ciudad_images" class="relative slider" overscrollable="" auto-scroll="" full-screen="" style="width:100%;height:100%;"></ons-carousel>
@@ -298,13 +298,21 @@
                         <div id="planDescripcion" class="text"></div>
                     </div>
 
+                    <div class="horizontal justify">
+                        <div id="planCondicion" class="text"></div>
+                    </div>
+
+                    <div class="horizontal justify">
+                        <div id="planComoReservar" class="text"></div>
+                    </div>
+
                     <div class="horizontal center">
                         <b>Dirección:</b> <span id="planDireccion"></span>
                     </div>
 
                     <div class="horizontal">
-                        <div class="button nobutton llamar"></div>
-                        <div class="button nobutton planes_de_hoy"></div>
+                        <div id="planLlamar" class="button nobutton llamar"></div>
+                        <div id="planVerLocal" class="button nobutton ver_local"></div>
                     </div>
 
                     <div class="horizontal">
@@ -316,6 +324,83 @@
         </div>
 
         <div id="planFooter" class="footer fixed">
+            <div class="tabs">
+
+                <div class="table-cell">
+                    <div class="button nobutton" onclick="goToMaps()">
+                        <div class="dashboard_icon icon_maps"></div>
+                        <div class="text">Maps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="local.html">
+    <ons-page ng-controller="LocalController" id="localPage" class="">
+
+        <ons-toolbar id="localToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="localHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('local.html');current_page = '';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+
+                <div style="position:relative;">
+                    <ons-carousel class="slider slider-few" id="localImages" var="localImages"
+                                  style="position:relative;"
+                                  overscrollable="" auto-scroll="">
+
+                    </ons-carousel>
+                    <div id="localPaginator" class="slider-paginator"></div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="localScroll" class="scrollable">
+
+            <div id="localList" class="scroll-content scrollfix">
+
+                <div id="local_content">
+
+                    <div class="horizontal justify">
+                        <div id="localDescripcion" class="text"></div>
+                    </div>
+
+                    <div class="horizontal center">
+                        <b>Dirección:</b> <span id="localDireccion"></span>
+                    </div>
+
+                    <div class="horizontal">
+                        <div id="localLlamar" class="button nobutton llamar"></div>
+                        <div id="localVerPlanes" class="button nobutton planes_de_hoy"></div>
+                    </div>
+
+                    <div class="horizontal">
+                        Indica que llamas de parte de QuéPlan? App
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="localFooter" class="footer fixed">
             <div class="tabs">
 
                 <div class="table-cell">
@@ -343,7 +428,7 @@
 </ons-template>
 
 <ons-template id="guias.html">
-    <ons-page ng-controller="GuiasController" class="">
+    <ons-page ng-controller="GuiasController" id="guiasPage" class="">
 
         <ons-toolbar id="guiasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 
@@ -378,7 +463,7 @@
 </ons-template>
 
 <ons-template id="locales.html">
-    <ons-page ng-controller="LocalesController" class="">
+    <ons-page ng-controller="LocalesController" id="localesPage" class="">
 
         <ons-toolbar id="localesToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 
@@ -502,7 +587,7 @@
 </ons-template>
 
 <ons-template id="menu.html">
-    <ons-page ng-controller="MenuController" class="">
+    <ons-page ng-controller="MenuController" id="menuPage" class="">
 
         <ons-toolbar id="menuToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 
@@ -624,7 +709,7 @@
 
 
 <ons-template id="recompensas.html">
-    <ons-page ng-controller="RecompensasController" class="">
+    <ons-page ng-controller="RecompensasController" id="recompensasPage" class="">
 
         <ons-toolbar id="recompensasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
 

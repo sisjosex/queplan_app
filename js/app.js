@@ -1183,6 +1183,9 @@ module.controller('PlanesController', function($scope) {
         var factor = window.innerWidth/320;
 
         var footerHeight = factor*60;
+
+        console.log(footerHeight);
+
         $('#planesHeader').height( footerHeight -8 );
         $('#planesHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
@@ -1190,7 +1193,7 @@ module.controller('PlanesController', function($scope) {
 
         loadIntoTemplate('#planes_content', current_list.items, 'planes_list');
 
-        $('.list-item-container').height( (window.innerHeight - footerHeight)/3 );
+        $('.list-item-container').height( (window.innerHeight - (51*factor))/3 );
 
         ons.compile($('#planes_content')[0]);
 
@@ -1249,6 +1252,26 @@ module.controller('PlanController', function($scope) {
         loadIntoTemplate('#planImages', current_plan.images, 'slider_plan');
         loadIntoTemplate('#planPaginator', current_plan.images, 'slider_paginator');
 
+        if(current_plan.condicion) {
+            $('#planCondicion').html('<h4>Condición</h4><p align="left">' + current_plan.condicion + '</p>');
+        }
+
+        if(current_plan.como_reservar) {
+            $('#planComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_plan.como_reservar + '</p>');
+        }
+
+        $('#planLlamar').on('click', function(){
+            actionCall(current_plan.telefono);
+        });
+
+        $('#planVerLocal').on('click', function(){
+
+            current_local = current_plan;
+
+            mainnavigator.pushPage('local.html');
+        });
+
+
         $('#planPaginator > div:first-child').addClass('selected');
 
         $('#planDescripcion').html(current_plan.descripcion);
@@ -1272,6 +1295,84 @@ module.controller('PlanController', function($scope) {
     })
 });
 
+
+var LocalController;
+var current_local;
+module.controller('LocalController', function($scope) {
+    ons.ready(function() {
+
+        LocalController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#localHeader').height( footerHeight -8 );
+        $('#localHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        footerHeight = factor*$('#localFooter').outerHeight();
+
+        $('#localFooter .banner').height( footerHeight );
+
+        /*$('.header-logo').width($('.header-logo').width() * factor);
+         $('.header-logo').height($('.header-logo').height() * factor);*/
+
+        height = $(window).height() - ( 200*factor + $('#localFooter').outerHeight() + $('#localHeader').outerHeight() - 1 );
+
+        $('#localImages').height( height );
+        $('#localToolbar').height( height );
+
+        $('#localPage .page__content').css('top', (height + $('#localHeader').outerHeight() )+'px');
+        //$('#localPage .page__content').css('bottom', (footerHeight +'px') );
+
+        //$('#localScroll').height($('#localScroll').height() - footerHeight);
+
+        $('#localList').css('padding-bottom', footerHeight+'px');
+
+
+        loadIntoTemplate('#localImages', current_local.local_images, 'slider_local');
+        loadIntoTemplate('#localPaginator', current_local.local_images, 'slider_paginator');
+
+        if(current_local.condicion) {
+            $('#localCondicion').html('<h4>Condición</h4><p align="left">' + current_local.condicion + '</p>');
+        }
+
+        if(current_local.como_reservar) {
+            $('#localComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_local.como_reservar + '</p>');
+        }
+
+        $('#localLlamar').on('click', function(){
+            actionCall(current_local.telefono);
+        });
+
+        $('#localVerPlanes').on('click', function(){
+
+        });
+
+
+        $('#localPaginator > div:first-child').addClass('selected');
+
+        $('#localDescripcion').html(current_local.descripcion);
+        $('#localDireccion').html(current_local.direccion);
+
+        LocalController.carouselPostChange = function() {
+            $('#localPaginator > div').removeClass('selected');
+            $('#localPaginator > div:nth-child(' + (localImages.getActiveCarouselItemIndex()+1) + ')').addClass('selected');
+        };
+
+        setTimeout(function(){
+
+            localImages.on('postchange', LocalController.carouselPostChange);
+
+        }, 1000);
+
+        ons.compile($('#local_content')[0]);
+
+        initScroll('localScroll');
+
+    })
+});
+
+
 var GuiasController;
 module.controller('GuiasController', function($scope) {
     ons.ready(function() {
@@ -1285,6 +1386,8 @@ module.controller('GuiasController', function($scope) {
         var footerHeight = factor*60;
         $('#guiasHeader').height( footerHeight -8 );
         $('#guiasHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        $('#guiasPage .page__content').css('top', (footerHeight-8) + 'px');
 
         loadIntoTemplate('#guias_content', current_list.items, 'guias_list');
 
@@ -1315,13 +1418,13 @@ function gotoLocales(index) {
 
 function gotoGuiaDetalle(index) {
 
-    if(current_page != 'guia.html') {
+    if(current_page != 'local.html') {
 
-        current_page = 'guia.html';
+        current_page = 'local.html';
 
-        current_guia = list_locales.items[index];
+        current_local = list_locales.items[index];
 
-        mainnavigator.pushPage('guia.html');
+        mainnavigator.pushPage('local.html');
     }
 }
 
@@ -1342,6 +1445,8 @@ module.controller('LocalesController', function($scope) {
         var footerHeight = factor*60;
         $('#localesHeader').height( footerHeight -8 );
         $('#localesHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        $('#localesPage .page__content').css('top', (footerHeight-8) + 'px');
 
         loadIntoTemplate('#locales_content', list_locales.items, 'locales_list');
 
@@ -1388,6 +1493,9 @@ module.controller('GuiaController', function($scope) {
         //$('#guiaScroll').height($('#guiaScroll').height() - footerHeight);
 
         $('#guiaList').css('padding-bottom', footerHeight+'px');
+
+
+        $('#guiaPage .page__content').css('top', (footerHeight-8) + 'px');
 
 
         loadIntoTemplate('#guiaImages', current_guia.images, 'slider_guia');

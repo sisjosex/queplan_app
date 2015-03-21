@@ -39,7 +39,7 @@ var templates = {
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+
-    '<div class="name">%title%</div>'+
+    '<div>%local_title%</div>' +
     '</div>'+
     '</div>'+
     '</ons-list-item>',
@@ -75,7 +75,14 @@ var templates = {
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
-    '<div class="title">%title%</div>'+
+    '<div class="title">%title%<br/>%local_title%<span class="distance right">%distancia%</span></div>'+
+    '</ons-carousel-item>',
+
+    slider_local: '' +
+    '<ons-carousel-item class="item-bg detail session-item loading">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="title">%local_title%<span class="distance right">%distancia%</span></div>'+
     '</ons-carousel-item>',
 
     slider_recompensa: '' +
