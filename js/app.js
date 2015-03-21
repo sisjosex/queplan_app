@@ -794,16 +794,22 @@ function goToRecompensas() {
 
 function gotoMenuDiario() {
 
-    getJsonP(api_url + 'getMenuDiario/', function(data){
+    if(current_page != 'menu.html') {
 
-        current_list = data;
+        current_page = 'menu.html';
 
-        mainnavigator.pushPage('menu.html', {});
+        getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-        if(current_list.list) {
-        }
+            current_list = data;
 
-    }, function(){}, {ciudad_id: ciudad_seleccionada});
+            mainnavigator.pushPage('menu.html', {});
+
+            if (current_list.list) {
+            }
+
+        }, function () {
+        }, {ciudad_id: ciudad_seleccionada});
+    }
 }
 
 var currentPlan;
@@ -1180,7 +1186,7 @@ module.controller('PlanesController', function($scope) {
         $('#planesHeader').height( footerHeight -8 );
         $('#planesHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
-        $('#planesPage .page__content').css('top', footerHeight + 'px');
+        $('#planesPage .page__content').css('top', (footerHeight-8) + 'px');
 
         loadIntoTemplate('#planes_content', current_list.items, 'planes_list');
 
