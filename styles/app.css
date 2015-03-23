@@ -1115,6 +1115,15 @@ h3 {
     background-image: linear-gradient( #e84e3b /*{c-bup-background-start}*/, #f06958 /*{c-bup-background-end}*/);
 }
 
+.btn.rosa {
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #aa3967 /*{c-bup-background-start}*/), to( #e55892 /*{c-bup-background-end}*/));
+    background-image: -webkit-linear-gradient( #aa3967 /*{c-bup-background-start}*/, #e55892 /*{c-bup-background-end}*/);
+    background-image: -moz-linear-gradient( #aa3967 /*{c-bup-background-start}*/, #e55892 /*{c-bup-background-end}*/);
+    background-image: -ms-linear-gradient( #aa3967 /*{c-bup-background-start}*/, #e55892 /*{c-bup-background-end}*/);
+    background-image: -o-linear-gradient( #aa3967 /*{c-bup-background-start}*/, #e55892 /*{c-bup-background-end}*/);
+    background-image: linear-gradient( #aa3967 /*{c-bup-background-start}*/, #e55892 /*{c-bup-background-end}*/);
+}
+
 i {
     width:24px;
     height:24px;

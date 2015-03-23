@@ -277,7 +277,7 @@ function check_network() {
     confirm('Connection type:\n ' + states[networkState]);
 }
 
-function showConfirm(message, titlem, callback) {
+function showConfirm(message, title, callback) {
     navigator.notification.confirm(
          message, // message
          callback,            // callback to invoke with index of button pressed
@@ -287,12 +287,19 @@ function showConfirm(message, titlem, callback) {
 }
 
 function showAlert(message, title, buttom, callback) {
-    navigator.notification.alert(
-        message,  // message
-        callback,         // callback
-        title,            // title
-        buttom                  // buttonName
-    );
+    try {
+
+        navigator.notification.alert(
+            message,  // message
+            callback,         // callback
+            title,            // title
+            buttom                  // buttonName
+        );
+
+    } catch(error) {
+
+        alert(message, title, buttom, callback);
+    }
 }
 
 function valEmail(valor){

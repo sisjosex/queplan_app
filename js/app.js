@@ -126,32 +126,33 @@ function comprarRecompensa(local_id, recompensa_id){
         var user = COOKIE;
         var me = user.id;
         
-        showLoadingCustom('Compra de recompensa, en progreso...');
-        
-    	$.getJSON(BASE_URL_APP + 'recompensas/comprarRecompensa/'+me+'/'+local_id+'/'+recompensa_id, function(data) {
-            
+        //showLoadingCustom('Compra de recompensa, en progreso...');
+        modal.show();
+
+        getJsonP(api_url + 'comprarRecompensa/', function(data) {
+
             if(data){
                 //ocultamos loading
-                $.mobile.loading( 'hide' );
-                
+                //$.mobile.loading( 'hide' );
+
                 if(data.success){
                     var imagen = BASE_URL_APP+'img/logo_oficial.png';
-                    
+
                     //re-escribimos la cookie con los puntos restantes
                     reWriteCookie("user","puntos_acumulados",data.total_puntos_restantes);
                     reWriteCookie("user","Puntos",data.puntos);
-                    
+
                     //mostramos el mensaje de success y al cerrar mostramos la pantalla de compartir
                     //que puede ser de facebook o twitter
                     navigator.notification.alert(
                         data.mensaje,           // message
                         function(){
                             if(user.registrado_mediante == "facebook"){
-                                /*
+
                                 setTimeout(function(){
-                                    shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
-                                },500);
-                                */
+                                 shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
+                                 },500);
+
                             }else if(user.registrado_mediante == "twitter"){
                                 setTimeout(function(){
                                     shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
@@ -161,12 +162,15 @@ function comprarRecompensa(local_id, recompensa_id){
                         "Compra Realizada!",    // title
                         "Aceptar"               // buttonName
                     );
-                    
+
                 }else{
                     showAlert(data.mensaje, "Compra no disponible", "Aceptar");
                 }
             }
-    	});
+
+        }, function() {
+
+        }, {usuario_id: me, local_id: local_id, recompensa_id: recompensa_id});
     
     }else if(LOGIN_INVITADO){
         alertaInvitado();
@@ -205,7 +209,7 @@ function logout(){
                         }
                 	}, function() {
 
-                    }, {me: me});
+                    }, {usuario_id: me});
                 }
             },            // callback to invoke with index of button pressed
         'Salir',           // title
@@ -292,8 +296,13 @@ function redirectToPage(seccion, id){
 }
 
 function loginInvitado(){
-    LOGIN_INVITADO = true;
-    mainnavigator.pushPage('ciudad.html');
+    if(current_page != 'ciudad.html') {
+
+        current_page = 'ciudad.html';
+
+        LOGIN_INVITADO = true;
+        mainnavigator.pushPage('ciudad.html');
+    }
 }
 
 function goHome(ciudad_id){
@@ -319,7 +328,7 @@ function goHome(ciudad_id){
 
         }, function(){
 
-        }, {me: me, ciudad_id: CIUDAD_ID});
+        }, {usuario_id: me, ciudad_id: CIUDAD_ID});
     }
 
     mainnavigator.pushPage('home.html');
@@ -1840,9 +1849,14 @@ module.controller('RecompensaController', function($scope) {
         loadIntoTemplate('#recompensaImages', current_recompensa.images, 'slider_recompensa');
         loadIntoTemplate('#recompensaPaginator', current_recompensa.images, 'slider_paginator');
 
-        if(current_recompensa.condicion) {
+        if(current_recompensa.condicion != '') {
             $('#recompensaCondicion').html('<h4>Condición</h4><p align="left">' + current_recompensa.condicion + '</p>');
         }
+
+        $('#recompensaComprar').on('click', function(){
+
+            comprarRecompensa(current_recompensa.local_id, current_recompensa.id);
+        });
 
         $('#recompensaLlamar').on('click', function(){
 
@@ -1913,15 +1927,15 @@ function getArrayAsObjects(array, width, height) {
 }
 
 
-function alert(message) {
+function alert(message, title, button, callback) {
     ons.notification.alert({
         message: message,
         // or messageHTML: '<div>Message in HTML</div>',
-        title: 'Mensaje',
-        buttonLabel: 'OK',
+        title: title ? title : 'Mensaje',
+        buttonLabel: button  ? button : 'OK',
         animation: 'default', // or 'none'
         // modifier: 'optional-modifier'
-        callback: function() {
+        callback: callback ? callback : function() {
             // Alert button is closed!
         }
     });
