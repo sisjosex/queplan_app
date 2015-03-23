@@ -180,28 +180,32 @@ function logout(){
             function(buttonIndex){
                 //1:aceptar,2:cancelar
                 if(buttonIndex == 1){
-                    showLoadingCustom('Espere por favor...');
                     
                     var user = COOKIE;
                     var me = user.id;
                     
-                	$.getJSON(BASE_URL_APP + 'logout/'+me, function(data) {
+                	getJsonP(api_url + 'logout/', function(data) {
                         
                         if(data){
+
                             //ocultamos loading
-                            $.mobile.loading( 'hide' );
                             
                             if(data.success){
+
                                 //logout de fb y tw
                                 logoutFacebookConnect();
                                 
                                 eraseCookie("user");
-                                redirectLogin();
-                            }else{
+                                mainnavigator.pushPage('registro.html');
+
+                            } else {
+
                                 showAlert(data.mensaje, "Error", "Aceptar");
                             }
                         }
-                	});
+                	}, function() {
+
+                    }, {me: me});
                 }
             },            // callback to invoke with index of button pressed
         'Salir',           // title
@@ -299,32 +303,36 @@ function goHome(ciudad_id){
     if(isLogin()){
         var user = COOKIE;
         var me = user.id;
-        
-    	$.getJSON(BASE_URL_APP + 'usuarios/mobileSetCiudad/'+me+"/"+CIUDAD_ID, function(data) {
-            
+
+        getJsonP(api_url, 'mobileSetCiudad/', function(data) {
+
             if(data){
                 if(data.success){
+                    mainnavigator.pushPage('home.html');
                     //showAlert(data.mensaje, "Aviso", "Aceptar");
                     //re-escribimos la cookie con la nueva ciudad
                     reWriteCookie("user","ciudad_id",data.ciudad_id);
-                }else{
-                    //showAlert(data.mensaje, "Error", "Aceptar");
+                } else {
+                    showAlert(data.mensaje, "Error", "Aceptar");
                 }
             }
-    	});
+
+        }, function(){
+
+        }, {me: me, ciudad_id: CIUDAD_ID});
     }
-    
-    $.mobile.changePage('#home');
+
+    mainnavigator.pushPage('home.html');
 }
 
 function alertaInvitado(){
     navigator.notification.alert(
         "Hemos detectado que est\u00E1s navegando como invitado, para ingresar a esta secci\u00F3n debes hacer login",           // message
         function(){
-            $.mobile.changePage('#view');
-        },         // callback
+            mainnavigator.pushPage('registro.html');
+        },          // callback
         "INVITADO", // title
-        "Aceptar"               // buttonName
+        "Aceptar"   // buttonName
     );
 }
 
@@ -853,7 +861,7 @@ function elegirCiudad(element, event) {
 
     ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
 
-    mainnavigator.pushPage('home.html');
+    goHome(ciudad_seleccionada);
 }
 
 function loadApplicationParams(callback) {
