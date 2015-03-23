@@ -1424,6 +1424,15 @@ i.invitado {
     font-size: 15px;
 }
 
+.points {
+    color: #e65792;
+    display: inline-block;
+    padding-top: 10px;
+    background-size: 13px auto;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .overlay.title {
     position: absolute;
     bottom: 0;

@@ -1354,7 +1354,7 @@ module.controller('LocalController', function($scope) {
 
         $('#localPaginator > div:first-child').addClass('selected');
 
-        $('#localDescripcion').html(current_local.descripcion);
+        $('#localDescripcion').html(current_local.local_descripcion);
         $('#localDireccion').html(current_local.direccion);
 
         LocalController.carouselPostChange = function() {
@@ -1540,6 +1540,8 @@ module.controller('MenuController', function($scope) {
         $('#menuHeader').height( footerHeight -8 );
         $('#menuHeader').css( 'min-height', (footerHeight-8) + 'px' );
 
+        $('#menuPage .page__content').css('top', (footerHeight-8) + 'px');
+
         loadIntoTemplate('#menu_content', current_list.items, 'menu_list');
 
         ons.compile($('#menu_content')[0]);
@@ -1585,8 +1587,12 @@ module.controller('MenuDetalleController', function($scope) {
 
         var str = "";
         for(var i in current_menu.content) {
-            str += "<h3>"+i+"</h3>";
-            str += '<div class="menu_platos">'+current_menu.content[i]+'</div>';
+
+            if($.trim(current_menu.content[i]) != '') {
+
+                str += "<h3>"+i+"</h3>";
+                str += '<div class="menu_platos">'+current_menu.content[i]+'</div>';
+            }
         }
 
         $('#menu_detalleList').css('padding-bottom', footerHeight+'px');
@@ -1598,6 +1604,19 @@ module.controller('MenuDetalleController', function($scope) {
 
         $('#menu_detalleDescripcion').html(current_menu.descripcion);
         $('#menu_detalleDireccion').html(current_menu.direccion);
+
+        $('#menu_detalleLlamar').on('click', function(){
+
+            actionCall(current_menu.telefono);
+
+        });
+
+        $('#menu_detalleVerLocal').on('click', function(){
+
+            current_local = current_menu;
+
+            mainnavigator.pushPage('local.html');
+        });
 
         ons.compile($('#menu_detalleScroll')[0]);
 
@@ -1686,6 +1705,23 @@ module.controller('RecompensaController', function($scope) {
 
         loadIntoTemplate('#recompensaImages', current_recompensa.images, 'slider_recompensa');
         loadIntoTemplate('#recompensaPaginator', current_recompensa.images, 'slider_paginator');
+
+        if(current_recompensa.condicion) {
+            $('#recompensaCondicion').html('<h4>Condición</h4><p align="left">' + current_recompensa.condicion + '</p>');
+        }
+
+        $('#recompensaLlamar').on('click', function(){
+
+            actionCall(current_recompensa.telefono);
+
+        });
+
+        $('#recompensaVerLocal').on('click', function(){
+
+            current_local = current_recompensa;
+
+            mainnavigator.pushPage('local.html');
+        });
 
         $('#recompensaPaginator > div:first-child').addClass('selected');
 

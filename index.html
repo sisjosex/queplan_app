@@ -451,7 +451,7 @@
 
         <div id="guiasScroll" class="scrollable">
 
-            <div id="guiasList" class="scroll-content scrollfix">
+            <div id="guiasList" class="scroll-content">
 
                 <ons-list id="guias_content">
 
@@ -610,7 +610,7 @@
 
         <div id="menuScroll" class="scrollable">
 
-            <div id="menuList" class="scroll-content scrollfix">
+            <div id="menuList" class="scroll-content">
 
                 <div id="menu_content">
 
@@ -681,8 +681,8 @@
                 </div>
 
                 <div class="horizontal">
-                    <div class="button nobutton llamar"></div>
-                    <div class="button nobutton guiaes_de_hoy"></div>
+                    <div id="menu_detalleLlamar" class="button nobutton llamar"></div>
+                    <div id="menu_detalleVerLocal" class="button nobutton ver_local"></div>
                 </div>
 
                 <div class="horizontal">
@@ -732,7 +732,7 @@
 
         <div id="recompensasScroll" class="scrollable">
 
-            <div id="recompensasList" class="scroll-content scrollfix">
+            <div id="recompensasList" class="scroll-content">
 
                 <ons-list id="recompensas_content"></ons-list>
             </div>
@@ -788,13 +788,17 @@
                         <div id="recompensaDescripcion" class="text"></div>
                     </div>
 
+                    <div class="horizontal justify">
+                        <div id="recompensaCondicion" class="text"></div>
+                    </div>
+
                     <div class="horizontal center">
                         <b>Dirección:</b> <span id="recompensaDireccion"></span>
                     </div>
 
                     <div class="horizontal">
-                        <div class="button nobutton llamar"></div>
-                        <div class="button nobutton planes_de_hoy"></div>
+                        <div id="recompensaLlamar" class="button nobutton llamar"></div>
+                        <div id="recompensaVerLocal" class="button nobutton ver_local"></div>
                     </div>
 
                     <div class="horizontal">

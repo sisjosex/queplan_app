@@ -17,6 +17,7 @@ var templates = {
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+
     '<div class="name">%title%</div>'+
+    '<span class="points">%costo%</span>'+
     '</div>'+
     '</div>'+
     '</ons-list-item>',
@@ -47,13 +48,14 @@ var templates = {
     '</ons-list-item>',
 
     menu_list:
-    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoMenuDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoMenuDetalle(%index%)">'+
     '<div class="list-item-left">'+
-    '<img src="%imagen%" class="avator" onload="refreshMenuScroll()">'+
+    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+
-    '<div class="name">%title%</div>'+
+    '<div>%local_title%</div>' +
+    '<span class="distance">%distancia%</span>'+
     '</div>'+
     '</div>'+
     '</ons-list-item>',
