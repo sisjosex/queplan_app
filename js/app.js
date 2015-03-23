@@ -120,60 +120,66 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
     });
 }
 
-function comprarRecompensa(local_id, recompensa_id){
-    //verficamos que este logeado porque solo si lo esta podemos dejarle que haga la compra de la recompensa
-    if(isLogin()){
-        var user = COOKIE;
-        var me = user.id;
-        
-        //showLoadingCustom('Compra de recompensa, en progreso...');
-        modal.show();
+function comprarRecompensa(local_id, recompensa_id) {
 
-        getJsonP(api_url + 'comprarRecompensa/', function(data) {
+    if(current_page != 'comprar') {
 
-            if(data){
-                //ocultamos loading
-                //$.mobile.loading( 'hide' );
+        current_page = 'comprar';
 
-                if(data.success){
-                    var imagen = BASE_URL_APP+'img/logo_oficial.png';
+        //verficamos que este logeado porque solo si lo esta podemos dejarle que haga la compra de la recompensa
+        if(isLogin()){
+            var user = COOKIE;
+            var me = user.id;
 
-                    //re-escribimos la cookie con los puntos restantes
-                    reWriteCookie("user","puntos_acumulados",data.total_puntos_restantes);
-                    reWriteCookie("user","Puntos",data.puntos);
+            //showLoadingCustom('Compra de recompensa, en progreso...');
+            modal.show();
 
-                    //mostramos el mensaje de success y al cerrar mostramos la pantalla de compartir
-                    //que puede ser de facebook o twitter
-                    navigator.notification.alert(
-                        data.mensaje,           // message
-                        function(){
+            getJsonP(api_url + 'comprarRecompensa/', function(data) {
+
+                current_page = '';
+
+                if(data){
+
+                    //ocultamos loading
+                    //$.mobile.loading( 'hide' );
+
+                    if(data.success){
+                        var imagen = BASE_URL_APP+'img/logo_oficial.png';
+
+                        //re-escribimos la cookie con los puntos restantes
+                        reWriteCookie("user","puntos_acumulados",data.total_puntos_restantes);
+                        reWriteCookie("user","Puntos",data.puntos);
+
+                        showAlert(data.mensaje, "Compra Realizada!", "Aceptar", function() {
+
                             if(user.registrado_mediante == "facebook"){
 
                                 setTimeout(function(){
-                                 shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
-                                 },500);
+                                    shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
+                                },500);
 
-                            }else if(user.registrado_mediante == "twitter"){
+                            } else if(user.registrado_mediante == "twitter"){
                                 setTimeout(function(){
                                     shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
                                 },500);
                             }
-                        },         // callback
-                        "Compra Realizada!",    // title
-                        "Aceptar"               // buttonName
-                    );
+                        });
 
-                }else{
-                    showAlert(data.mensaje, "Compra no disponible", "Aceptar");
+                    }else{
+                        showAlert(data.mensaje, "Compra no disponible", "Aceptar");
+                    }
                 }
-            }
 
-        }, function() {
+            }, function() {
 
-        }, {usuario_id: me, local_id: local_id, recompensa_id: recompensa_id});
-    
-    }else if(LOGIN_INVITADO){
-        alertaInvitado();
+                current_page = '';
+
+            }, {usuario_id: me, local_id: local_id, recompensa_id: recompensa_id});
+
+        } else if (LOGIN_INVITADO){
+            alertaInvitado();
+        }
+
     }
 }
 
@@ -305,6 +311,16 @@ function loginInvitado(){
     }
 }
 
+function loginEmail() {
+
+    if(current_page != 'email.html') {
+
+        current_page = 'email.html';
+
+        mainnavigator.pushPage('email.html');
+    }
+}
+
 function goHome(ciudad_id){
     CIUDAD_ID = ciudad_id;
     
@@ -335,13 +351,15 @@ function goHome(ciudad_id){
 }
 
 function alertaInvitado(){
-    navigator.notification.alert(
-        "Hemos detectado que est\u00E1s navegando como invitado, para ingresar a esta secci\u00F3n debes hacer login",           // message
+
+    showAlert(
+        "Hemos detectado que est\u00E1s navegando como invitado, para ingresar a esta secci\u00F3n debes hacer login",
+        "INVITADO",
+        "Aceptar",
         function(){
-            mainnavigator.pushPage('registro.html');
-        },          // callback
-        "INVITADO", // title
-        "Aceptar"   // buttonName
+
+            window.location.reload();
+        }
     );
 }
 
