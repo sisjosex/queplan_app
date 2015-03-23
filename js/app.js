@@ -753,6 +753,26 @@ function goToPlanes() {
     }
 }
 
+function gotoComoFunciona() {
+
+    if(current_page != 'como_funciona.html') {
+
+        current_page = 'como_funciona.html';
+
+        mainnavigator.pushPage('como_funciona.html', {});
+    }
+}
+
+function gotoQuieroParticipar() {
+
+    if(current_page != 'quiero_participar.html') {
+
+        current_page = 'quiero_participar.html';
+
+        mainnavigator.pushPage('quiero_participar.html', {});
+    }
+}
+
 function goToGuia() {
 
     if(current_page != 'guias.html') {
@@ -1397,6 +1417,112 @@ module.controller('GuiasController', function($scope) {
         ons.compile($('#guias_content')[0]);
 
         initScroll('guiasScroll');
+
+    })
+});
+
+
+
+var ComoFuncionaController;
+module.controller('ComoFuncionaController', function($scope) {
+    ons.ready(function() {
+
+        current_page = 'como_funciona.html';
+
+        ComoFuncionaController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#como_funcionaHeader').height( footerHeight -8 );
+        $('#como_funcionaHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        $('#como_funcionaPage .page__content').css('top', (footerHeight-8) + 'px');
+
+        loadIntoTemplate('#como_funciona_content', applicationParams.como_funciona, 'como_funciona_list');
+
+        ons.compile($('#como_funciona_content')[0]);
+
+        initScroll('como_funcionaScroll');
+
+    })
+});
+
+function refreshComoFuncionaScroll() {
+    scrolls.como_funcionaScroll.refresh();
+}
+
+function gotoComofuncionaDetalle(index) {
+    if(current_page != 'como_funciona_detalle.html') {
+
+        current_page = 'como_funciona_detalle.html';
+
+        current_como_funciona = applicationParams.como_funciona[index];
+
+        mainnavigator.pushPage('como_funciona_detalle.html');
+    }
+}
+
+var ComoFuncionaDetalleController;
+var current_como_funciona;
+module.controller('ComoFuncionaDetalleController', function($scope) {
+    ons.ready(function() {
+
+        ComoFuncionaDetalleController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#como_funciona_detalleHeader').height( footerHeight -8 );
+        $('#como_funciona_detalleHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        footerHeight = factor*$('#como_funciona_detalleHeader').outerHeight();
+
+        $('#como_funciona_detalleHeader').height( footerHeight );
+
+        $('#como_funciona_detalle_title').html(current_como_funciona.title);
+
+        $('#como_funciona_detalleDescripcion').html(current_como_funciona.descripcion);
+
+        ons.compile($('#como_funciona_detalleScroll')[0]);
+
+        initScroll('como_funciona_detalleScroll');
+
+        setTimeout(function(){
+            scrolls.como_funciona_detalleScroll.refresh();
+        }, 100);
+
+    })
+});
+
+
+var QuieroParticiparController;
+module.controller('QuieroParticiparController', function($scope) {
+    ons.ready(function() {
+
+        QuieroParticiparController = this;
+
+        var factor = window.innerWidth/320;
+
+        var footerHeight = factor*60;
+        $('#quiero_participarHeader').height( footerHeight -8 );
+        $('#quiero_participarHeader').css( 'min-height', (footerHeight-8) + 'px' );
+
+        footerHeight = factor*$('#quiero_participarHeader').outerHeight();
+
+        $('#quiero_participarHeader').height( footerHeight );
+
+        $('#quiero_participar_title').html(applicationParams.quiero_participar.title);
+
+        $('#quiero_participarDescripcion').html(applicationParams.quiero_participar.descripcion);
+
+        ons.compile($('#quiero_participarScroll')[0]);
+
+        initScroll('quiero_participarScroll');
+
+        setTimeout(function(){
+            scrolls.quiero_participarScroll.refresh();
+        }, 100);
 
     })
 });

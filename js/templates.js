@@ -34,6 +34,18 @@ var templates = {
     '</div>'+
     '</ons-list-item>',
 
+    como_funciona_list:
+    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoComofuncionaDetalle(%index%)">'+
+    '<div class="list-item-left">'+
+    '<img src="%imagen%" class="avator" onload="refreshComoFuncionaScroll()">'+
+    '</div>'+
+    '<div class="list-item-right">'+
+    '<div class="list-item-content">'+
+    '<div class="name">%title%</div>'+
+    '</div>'+
+    '</div>'+
+    '</ons-list-item>',
+
     locales_list:
     '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoGuiaDetalle(%index%)">'+
     '<div class="list-item-left">'+

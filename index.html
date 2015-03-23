@@ -143,8 +143,8 @@
                     <div class="header-logo left"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton info"></div>
-                        <div class="button header nobutton ayuda"></div>
+                        <div class="button header nobutton info" onclick="gotoComoFunciona(this, event)"></div>
+                        <div class="button header nobutton ayuda" onclick="gotoQuieroParticipar(this, event)"></div>
                         <div class="button header nobutton perfil"></div>
                     </div>
                 </div>
@@ -456,6 +456,159 @@
                 <ons-list id="guias_content">
 
                 </ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="como_funciona.html">
+    <ons-page ng-controller="ComoFuncionaController" id="como_funcionaPage" class="">
+
+        <ons-toolbar id="como_funcionaToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="como_funcionaHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('como_funciona.html');current_page='';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <div id="como_funcionaScroll" class="scrollable">
+
+            <div id="como_funcionaList" class="scroll-content">
+
+                <ons-list id="como_funciona_content">
+
+                </ons-list>
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="como_funciona_detalle.html">
+    <ons-page ng-controller="ComoFuncionaDetalleController" id="como_funciona_detallePage" class="">
+
+        <ons-toolbar id="como_funciona_detalleToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="como_funciona_detalleHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('como_funciona_detalle.html');current_page = 'menu.html';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="como_funciona_detalleScroll" class="scrollable">
+
+            <div id="como_funciona_detalleList" class="scroll-content scrollfix">
+
+                <div class="horizontal"></div>
+                <div class="horizontal"></div>
+
+                <div class="horizontal center">
+                    <div class="menu_header">
+                        <h3>
+                            <span id="como_funciona_detalle_title"></span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div id="como_funciona_detalle_content" class="menu_content">
+
+                    <div class="horizontal justify">
+                        <div id="como_funciona_detalleCotent"></div>
+                    </div>
+
+                    <div class="horizontal justify">
+                        <div id="como_funciona_detalleDescripcion" class="text"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="quiero_participar.html">
+    <ons-page ng-controller="QuieroParticiparController" id="quiero_participarPage" class="">
+
+        <ons-toolbar id="quiero_participarToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
+
+            <div class="center" style="width:100%;height:100%;position:relative;">
+
+                <div id="quiero_participarHeader" class="header">
+                    <div class="icons left">
+                        <div class="button header nobutton back" onclick="mainnavigator.popPage('quiero_participar.html');current_page = 'menu.html';"></div>
+                    </div>
+
+                    <div class="header-logo center"></div>
+
+                    <div class="icons right">
+                        <div class="button header nobutton perfil"></div>
+                    </div>
+                </div>
+            </div>
+
+        </ons-toolbar>
+
+        <!--
+        <div class="center hascarousel">
+        </div>-->
+
+        <div id="quiero_participarScroll" class="scrollable">
+
+            <div id="quiero_participarList" class="scroll-content scrollfix">
+
+                <div class="horizontal"></div>
+                <div class="horizontal"></div>
+
+                <div class="horizontal center">
+                    <div class="menu_header">
+                        <h3>
+                            <span id="quiero_participar_title"></span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div id="quiero_participar_content" class="menu_content">
+
+                    <div class="horizontal justify">
+                        <div id="quiero_participarCotent"></div>
+                    </div>
+
+                    <div class="horizontal justify">
+                        <div id="quiero_participarDescripcion" class="text"></div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
@@ -852,7 +1005,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton info"></div>
+                        <div class="button header nobutton info" onclick="gotoComoFunciona(this, event)"></div>
                     </div>
                 </div>
             </div>
