@@ -1895,6 +1895,14 @@ module.controller('PerfilController', function ($scope) {
 
             $('#userPoints').text(user.puntos_acumulados + ' Puntos');
 
+            for(var i in applicationParams.ciudades) {
+
+                var selected = (applicationParams.ciudades[i].id == user.ciudad_id) ? 'selected="selected"' : '' ;
+
+                $('#perfil_ciudad').append('<option value="' + applicationParams.ciudades[i].title + '" ' + selected + ' >' +
+                    applicationParams.ciudades[i].title + '</option>');
+            }
+
         } else if(LOGIN_INVITADO){
 
             alertaInvitado();
@@ -2016,6 +2024,86 @@ function cambiarEmail() {
             showAlert("Por favor ingrese un email valido!.", "Mensaje", "Aceptar", function(){ editando_email = false; });
         }
     }
+}
+
+function cambiarCiudad(dropdown, event) {
+
+    var user = COOKIE;
+
+    $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
+    $('#perfil_ciudad option:selected').text();
+
+    getJsonP(api_url + 'setCiudad/', function(data) {
+
+        if( data.status == 'success' ){
+
+            showAlert(data.mensaje, "Aviso", "Aceptar");
+
+            CIUDAD_ID = ciudad_seleccionada = data.ciudad_id;
+
+            //re-escribimos la cookie con la nueva ciudad
+            reWriteCookie("user","ciudad_id",data.ciudad_id);
+
+            $('#zonas').html('');
+
+            reloadZonas();
+
+        } else {
+
+            showAlert(data.mensaje, "Error", "Aceptar");
+        }
+
+    }, function() {
+
+    }, {
+        usuario_id: user.id,
+        ciudad_id: $(dropdown).val()
+    });
+}
+
+function reloadZonas() {
+
+    var user = COOKIE;
+
+    getJsonP(api_url + 'getZonas/', function(data) {
+        if(data.items){
+
+            //mostramos loading
+            items = data.items;
+            var alertas = data.alertas;
+            var html = "";
+
+            if(items.length){
+
+                $.each(items, function(index, item) {
+
+                    var checked='';
+
+                    if(alertas == false) {
+
+                        checked='checked="checked"';
+
+                    } else if (item.recibir) {
+
+                        checked = 'checked="checked"';
+                    }
+
+                    var str = '<div class="checkbox" ><i class="check"></i><span class="text">' + item.title + '</span><input type="checkbox" value="' + item.id + '" ' + checked + ' /></div>';
+
+                    $('#zonas').append(str);
+
+                });
+
+            } else {
+
+            }
+        }
+    }, function() {
+
+    }, {
+        usuario_id: user.id,
+        ciudad_id: CIUDAD_ID
+    });
 }
 
 var EmailController;

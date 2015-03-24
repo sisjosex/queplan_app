@@ -1059,16 +1059,18 @@
 
                             <div class="horizontal">
                                 <h3 class="form_title">Ciudad Actual:</h3>
-
-                                <select name="city" class="clickable">
-                                    <option id="1">Madrid</option>
-                                    <option id="3">Ibiza</option>
-                                </select>
+                                <div class="dropdown">
+                                    <span class="text">Seleccione Ciudad </span>
+                                    <i class="dropdown"></i>
+                                    <select id="perfil_ciudad" name="city" class="clickable" onchange="cambiarCiudad(this, event)"></select>
+                                </div>
                             </div>
 
                             <div class="horizontal">
                                 <h3 class="form_title">Filtrar Zonas para recibir notificaciones:</h3>
-                                <div class="zonas"></div>
+                                <div id="zonas" class="zonas">
+
+                                </div>
                                 <div class="button btn" onclick="cambiarZonas()"><span class="text fixed">Guardar</span></div>
                             </div>
 						</div>
@@ -1120,11 +1122,11 @@
                         </div>
 
                         <div class="horizontal">
-                            <input id="email_email" type="email" class="clickable input" placeholder="email..." />
+                            <input id="email_email" type="email" class="clickable input" placeholder="email..." value="sisjosex@gmail.com" />
                         </div>
 
                         <div class="horizontal" style="margin-top:0;">
-                            <input id="email_password" type="password" class="clickable input" placeholder="password..." />
+                            <input id="email_password" type="password" class="clickable input" placeholder="password..." value="asdasd" />
                         </div>
 
                         <div id="codigo_validacion" class="horizontal" style="margin-top:0;display:none;">
