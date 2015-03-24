@@ -1152,6 +1152,14 @@ i.dropdown {
     background-image: url("../img/icon_select_ciudad.png");
 }
 
+i.alertas {
+    background-image: url("../img/icon_formconlapiz.png");
+}
+
+i.email2 {
+    background-image: url("../img/icon_mail_transparente.png");
+}
+
 i.google {
     background-image: url("../img/icon_google.png");
 }
@@ -1613,6 +1621,20 @@ h4 {
 
 .login_options .horizontal{
     display:none;
+}
+
+.perfil_title {
+    font-size: 15px;
+    color: #20232b;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.form_title {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 @media all and (max-width: 320px) {
