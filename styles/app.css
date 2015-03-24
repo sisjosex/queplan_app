@@ -1157,6 +1157,14 @@ i.dropdown {
     background-image: url("../img/icon_select_ciudad.png");
 }
 
+i.down_arrow {
+    background-image: url("../img/icon_flechaAbajo.png");
+    width: 16px;
+    height: 13px;
+    vertical-align: bottom;
+    margin-left: 3px;
+}
+
 i.alertas {
     background-image: url("../img/icon_formconlapiz.png");
 }

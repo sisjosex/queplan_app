@@ -1903,7 +1903,7 @@ module.controller('PerfilController', function ($scope) {
 
             $('#user_email').val(user.email);
 
-            $('#userPoints').text(user.puntos_acumulados + ' Puntos');
+            $('#userPoints').html(user.puntos_acumulados + ' Puntos' + '<i class="down_arrow"></i>');
 
             for(var i in applicationParams.ciudades) {
 
@@ -1916,12 +1916,21 @@ module.controller('PerfilController', function ($scope) {
             $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
             $('#perfil_ciudad option:selected').text();
 
+            refreshZonasAndPoints();
+
         } else if(LOGIN_INVITADO){
 
             alertaInvitado();
         }
     });
 });
+
+function refreshZonasAndPoints() {
+
+    getJsonP(api_url + 'getPointsAnd')
+
+    $('#points_list');
+}
 
 function ActivarDesactivarAlertas() {
 
@@ -2109,6 +2118,19 @@ function reloadZonas() {
 
             } else {
 
+            }
+
+            $('#points_list').html('');
+
+            if(data.puntos.length) {
+
+                $.each(data.zonas, function(index, item) {
+
+                    var str = '<div class="point_row"><b>' + item.puntos + '</b><span class="text">' + item.local_title + '</span></div>';
+
+                    $('#points_list').append(str);
+
+                });
             }
         }
     }, function() {
