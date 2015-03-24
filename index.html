@@ -1110,65 +1110,39 @@
 
         <div id="emailScroll" class="scrollable">
 
-            <div id="emailList" class="scroll-content scrollfix">
+            <div id="emailList" class="scroll-content">
 
                 <div id="email_content">
 
                     <div class="horizontal center">
-                        <h3 class="email_title">TIENES ACUMULADOS <span class="rosa">93 PUNTOS</span></h3>
+                        <h3>Registro O Login</h3>
                     </div>
                     <div class="horizontal">
-                        <div data-role="fieldcontain">
 
-                            <div class="horizontal content_options">
-                                <div class="horizontal">
-                                    <div class="button btn azul" onclick="logout('facebook')"><span class="text fixed">Desconectar del Facebook</span> <i class="facebook"></i></div>
-                                </div>
-
-                                <div class="horizontal">
-                                    <div class="button btn celeste" onclick="logout('twitter')"><span class="text fixed">Desconectar del Twitter</span> <i class="twitter"></i></div>
-                                </div>
-
-                                <div class="horizontal">
-                                    <div class="button btn rojo" onclick="logout('google')"><span class="text fixed">Desconectar del Google</span> <i class="google"></i></div>
-                                </div>
-
-                                <div class="horizontal">
-                                    <div class="button btn naranja" onclick="logout('email')"><span class="text fixed">Desconectar del Email</span> <i class="email"></i></div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal">
-                                <div class="horizontal">
-                                    <div class="button btn" onclick="ActivarDesactivarAlertas()"><span class="text fixed">Dejar de recibir alertas</span></div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal">
-                                <h3 class="form_title">Email Registrado:</h3>
-                                <input id="user_email" class="user_email" name="user_email" placeholder="Email..." autocomplete="off" autocapitalize="off" type="email" data-mini="true"/>
-                                <div class="button btn" onclick="cambiarEmail()"><span class="text fixed"><i class="email"></i>Editar mi Email</span></div>
-                            </div>
-
-                            <div class="horizontal">
-                                <h3 class="form_title">Ciudad Actual:</h3>
-                                <div class="dropdown">
-                                    <div class="native-select btn">
-                                        <span>City:</span>
-                                        <select name="city">
-                                            <option id="1">Madrid</option>
-                                            <option id="3">Ibiza</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal">
-                                <h3 class="form_title">Filtrar Zonas para recibir notificaciones:</h3>
-                                <div class="zonas"></div>
-                                <div class="button btn" onclick="cambiarZonas()"><span class="text fixed">Guardar</span></div>
-                            </div>
+                        <div class="horizontal">
+                            <h3 class="subtitle left"><span>Si ya est&aacute;s registrado haz Login. Si a&uacute;n no has registrado tu cuenta haz clic en Registrarse.</span></h3>
                         </div>
+
+                        <div class="horizontal">
+                            <input id="email_email" type="email" class="clickable input" placeholder="email..." />
+                        </div>
+
+                        <div class="horizontal" style="margin-top:0;">
+                            <input id="email_password" type="password" class="clickable input" placeholder="password..." />
+                        </div>
+
+                        <div id="codigo_validacion" class="horizontal" style="margin-top:0;display:none;">
+                            <input id="email_codigo" type="text" class="clickable input" placeholder="codigo..." />
+                        </div>
+
+                        <div class="horizontal" style="margin-top:0;">
+                            <div id="btnRegistrarse" class="button btn verde" style="width:100%;" onclick="logout('email')"><span class="text fixed2">Registrarse</span></div>
+                        </div>
+
+                        <div class="horizontal" style="margin-top:0;">
+                            <div id="btnAcceder" class="button btn verde" style="width:100%;" onclick="logout('email')"><span class="text fixed2">Acceder</span></div>
+                        </div>
+
                     </div>
 
                 </div>

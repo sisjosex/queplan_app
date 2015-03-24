@@ -89,4 +89,3 @@ var consumer_secret = '1L8V3qJwdDocLD653uYhgxU5TtIm45pdAhyE022EBLw'; //// YOUR T
 $(document).ready(function() {
     document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 });
-

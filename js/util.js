@@ -22,7 +22,6 @@ function initFiles() {
 }
 
 function read(path, success) {
-    console.log('reading ' + path);
     fileSystem.root.getFile(path, {create: true, exclusive: false}, function (entry) {
         var file = {entry: entry};
         file.entry.file(function (dbFile) {
@@ -45,7 +44,6 @@ function write(path, content) {
         var file = {entry: entry};
         file.entry.createWriter(function (writer) {
             writer.onwrite = function (evt) {
-                console.log('writed ' + path);
             };
 
             writer.write(content);
@@ -176,7 +174,6 @@ function downloadFile() {
                 "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
                 sPath + "theFile.pdf",
                 function (theFile) {
-                    console.log("download complete: " + theFile.toURI());
                     showLink(theFile.toURI());
                 },
                 function (error) {
@@ -218,19 +215,16 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 
 function createCookie(name,value,days) {
-    console.log("createCookie");
 	if (days) {
 		var date = new Date();
 		date.setTime(date.getTime()+(days*24*60*60*1000));
 		var expires = "; expires="+date.toGMTString();
 	}
 	else var expires = "";
-    console.log(expires);
     window.cookie = name+"="+value+expires+";path=/";
 }
 
 function readCookie(name) {
-    console.log("readCookie");
     var nameEQ = name + "=";
     var ca=0;
     if(window.cookie)
@@ -244,7 +238,6 @@ function readCookie(name) {
 }
 
 function reWriteCookie(name,attr,value) {
-    console.log("reWriteCookie");
     var cookie_name = readCookie(name);
     var parseData = $.parseJSON(cookie_name);
     parseData[attr] = value;
@@ -253,7 +246,6 @@ function reWriteCookie(name,attr,value) {
 }
 
 function eraseCookie(name) {
-    console.log("eraseCookie");
     createCookie(name,"",-1);
 }
 
