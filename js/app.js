@@ -1927,9 +1927,7 @@ module.controller('PerfilController', function ($scope) {
 
 function refreshZonasAndPoints() {
 
-    getJsonP(api_url + 'getPointsAnd')
-
-    $('#points_list');
+    reloadZonas();
 }
 
 function ActivarDesactivarAlertas() {
@@ -2124,7 +2122,7 @@ function reloadZonas() {
 
             if(data.puntos.length) {
 
-                $.each(data.zonas, function(index, item) {
+                $.each(data.puntos, function(index, item) {
 
                     var str = '<div class="point_row"><b>' + item.puntos + '</b><span class="text">' + item.local_title + '</span></div>';
 

@@ -1652,6 +1652,21 @@ h4 {
     margin-bottom:1px;
 }
 
+.point_row {
+    display: table;
+    width: 100%;
+}
+
+.point_row b {
+    display: table-cell;
+    text-align: left;
+}
+
+.point_row span.text {
+    display: table-cell;
+    text-align: right;
+}
+
 @media all and (max-width: 320px) {
 
     .icons.right {
