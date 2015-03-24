@@ -1024,6 +1024,11 @@ figure {
     min-width:275px;
 }
 
+.btn .text.fixed3 {
+    min-width:10px;
+    margin-left:5px;
+}
+
 .btn i {
     display:inline-block;
     vertical-align: middle;
@@ -1619,7 +1624,7 @@ h4 {
     z-index: 2;
 }
 
-.login_options .horizontal{
+.login_options .btn{
     display:none;
 }
 
@@ -1627,7 +1632,7 @@ h4 {
     font-size: 15px;
     color: #20232b;
     font-weight: bold;
-    margin-top: 30px;
+    margin: 0px;
 }
 
 .form_title {
@@ -1635,6 +1640,8 @@ h4 {
     margin: 0;
     padding: 0;
     text-align: left;
+    color:#20232b;
+    margin-bottom:1px;
 }
 
 @media all and (max-width: 320px) {

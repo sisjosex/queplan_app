@@ -1871,13 +1871,19 @@ module.controller('PerfilController', function ($scope) {
 
         PerfilController = this;
 
-        console.log('perfil');
+        var factor = window.innerWidth / 320;
+
+        var footerHeight = factor * 60;
+        $('#perfilHeader').height(footerHeight - 8);
+        $('#perfilHeader').css('min-height', (footerHeight - 8) + 'px');
+
+        $('#perfilPage .page__content').css('top', (footerHeight - 8) + 'px');
 
         if(isLogin()) {
 
             recibir_alertas = user.recibir_alertas == '1';
 
-            $('.login_options').find("."+user.registrado_mediante).parent().parent().show();
+            $('.login_options').find("."+user.registrado_mediante).parent().show();
 
             initScroll('perfilScroll');
 
@@ -1886,9 +1892,13 @@ module.controller('PerfilController', function ($scope) {
             }
 
             if(recibir_alertas) {
-                $('#btnAlertas .text').text('Dejar de recibir alertas');
+
+                $('#btnAlertas .text').text('DESACTIVAR NOTIFICACIONES');
+
             } else {
-                $('#btnAlertas .text').text('Recibir alertas');
+
+                $('#btnAlertas .text').text('ACTIVAR NOTIFICACIONES');
+
             }
 
             $('#user_email').val(user.email);
@@ -1902,6 +1912,9 @@ module.controller('PerfilController', function ($scope) {
                 $('#perfil_ciudad').append('<option value="' + applicationParams.ciudades[i].title + '" ' + selected + ' >' +
                     applicationParams.ciudades[i].title + '</option>');
             }
+
+            $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
+            $('#perfil_ciudad option:selected').text();
 
         } else if(LOGIN_INVITADO){
 
@@ -2030,9 +2043,6 @@ function cambiarCiudad(dropdown, event) {
 
     var user = COOKIE;
 
-    $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
-    $('#perfil_ciudad option:selected').text();
-
     getJsonP(api_url + 'setCiudad/', function(data) {
 
         if( data.status == 'success' ){
@@ -2040,6 +2050,9 @@ function cambiarCiudad(dropdown, event) {
             showAlert(data.mensaje, "Aviso", "Aceptar");
 
             CIUDAD_ID = ciudad_seleccionada = data.ciudad_id;
+
+            $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
+            $('#perfil_ciudad option:selected').text();
 
             //re-escribimos la cookie con la nueva ciudad
             reWriteCookie("user","ciudad_id",data.ciudad_id);
