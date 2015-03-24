@@ -82,10 +82,10 @@ function checkIn(urlamigable) {
 
 function registrar_datos(app_id, email, registrado_mediante, username, nombre, imagen, genero) {
 
-    getJsonP(api_url + 'newRegistro/', function () {
+    getJsonP(api_url + 'newRegistro/', function (data) {
 
-        var success = data.status == 'success';
-        if (success) {
+        if (data.status == 'success') {
+
             var usuario = data.usuario;
             var usuario_id = usuario.id;
 
@@ -96,6 +96,7 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
             mainnavigator.pushPage('ciudad.html');
 
         } else {
+
             showAlert('Ha ocurrido un error al momento de registrarse!, por favor intente de nuevo', 'Error', 'Aceptar');
         }
 
