@@ -29,7 +29,7 @@ function loginFacebookConnect() {
                                 }
                             } else {
 
-                                if (data.status == 'fail') {
+                                if (data.email_registrado) {
 
                                     showAlert(data.mensaje, 'Error Login', 'Aceptar');
 
