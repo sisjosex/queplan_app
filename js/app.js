@@ -200,14 +200,13 @@ function logout() {
                         if (data) {
 
                             //ocultamos loading
-
-                            if (data.success) {
+                            if (data.status == 'success') {
 
                                 //logout de fb y tw
                                 logoutFacebookConnect();
 
                                 eraseCookie("user");
-                                mainnavigator.pushPage('registro.html');
+                                window.location.reload();
 
                             } else {
 
@@ -338,11 +337,11 @@ function goHome(ciudad_id) {
             var user = COOKIE;
             var me = user.id;
 
-            getJsonP(api_url, 'mobileSetCiudad/', function (data) {
+            getJsonP(api_url + 'setCiudad/', function (data) {
 
                 if (data) {
 
-                    if (data.success) {
+                    if (data.status == 'success') {
 
                         mainnavigator.pushPage('home.html');
                         //showAlert(data.mensaje, "Aviso", "Aceptar");
@@ -1854,16 +1853,170 @@ module.controller('RecompensaController', function ($scope) {
     })
 });
 
+function gotoPerfil() {
+
+    if(current_page != 'perfil.html') {
+        current_page = 'perfil.html';
+
+        mainnavigator.pushPage('perfil.html');
+    }
+}
 
 var PerfilController;
+var recibir_alertas;
 module.controller('PerfilController', function ($scope) {
     ons.ready(function () {
 
+        var user = COOKIE;
+
         PerfilController = this;
 
-        initScroll('perfilScroll');
+        console.log('perfil');
+
+        if(isLogin()) {
+
+            recibir_alertas = user.recibir_alertas == '1';
+
+            $('.login_options').find("."+user.registrado_mediante).parent().parent().show();
+
+            initScroll('perfilScroll');
+
+            if ($.trim(user.email) == "") {
+                showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
+            }
+
+            if(recibir_alertas) {
+                $('#btnAlertas .text').text('Dejar de recibir alertas');
+            } else {
+                $('#btnAlertas .text').text('Recibir alertas');
+            }
+
+            $('#user_email').val(user.email);
+
+            $('#userPoints').text(user.puntos_acumulados + ' Puntos');
+
+        } else if(LOGIN_INVITADO){
+
+            alertaInvitado();
+        }
     });
 });
+
+function ActivarDesactivarAlertas() {
+
+    var user = COOKIE;
+
+    if(recibir_alertas) {
+
+        navigator.notification.confirm(
+            "Estas seguro que quieres dejar de recibir alertas?", // message
+            function (buttonIndex) {
+                //1:aceptar,2:cancelar
+                if (buttonIndex == 1) {
+                    showLoadingCustom('Espere por favor...');
+
+                    getJsonP(api_url + 'setAlerta/', function(data) {
+
+                        if (data) {
+                            if (data.status == 'success') {
+                                recibir_alertas = data.recibir_alertas;
+
+                                if(recibir_alertas) {
+                                    $('#btnAlertas .text').text('Dejar de recibir alertas');
+                                } else {
+                                    $('#btnAlertas .text').text('Recibir alertas');
+                                }
+                                //re-escribimos la cookie con el nuevo recibir_alertas
+                                reWriteCookie("user", "recibir_alertas", data.recibir_alertas);
+                                showAlert(data.mensaje, "Aviso", "Aceptar");
+
+                            } else {
+
+                                showAlert(data.mensaje, "Error", "Aceptar");
+                            }
+                        }
+
+                    }, function() {
+
+                    }, {
+                        usuario_id:user.id
+                    });
+                }
+            },            // callback to invoke with index of button pressed
+            'Salir',           // title
+            'Aceptar,Cancelar'         // buttonLabels
+        );
+
+    } else {
+
+        getJsonP(api_url + 'setAlerta/', function(data) {
+
+            if(data){
+
+                if(data.status == 'success'){
+                    recibir_alertas = data.recibir_alertas;
+
+                    if(recibir_alertas) {
+                        $('#btnAlertas .text').text('Dejar de recibir alertas');
+                    } else {
+                        $('#btnAlertas .text').text('Recibir alertas');
+                    }
+
+                    //re-escribimos la cookie con el nuevo recibir_alertas
+                    reWriteCookie("user","recibir_alertas",data.recibir_alertas);
+                    showAlert(data.mensaje, "Aviso", "Aceptar");
+                }else{
+                    showAlert(data.mensaje, "Error", "Aceptar");
+                }
+            }
+
+        }, function() {
+
+        }, {
+            usuario_id:user.id
+        });
+    }
+}
+
+var editando_email = false;
+function cambiarEmail() {
+
+    if(!editando_email) {
+
+        editando_email = true;
+
+        var user = COOKIE;
+        var email = $.trim($("#user_email").val());
+
+        if (valEmail(email)) {
+
+            getJsonP(api_url + 'changeEmail/', function (data) {
+
+                if (data.status == 'success') {
+
+                    showAlert(data.mensaje, "Aviso", "Aceptar", function(){ editando_email = false; });
+
+                    //re-escribimos la cookie con el nuevo email
+                    reWriteCookie("user", "email", data.new_email);
+
+                } else {
+
+                    showAlert(data.mensaje, "Error", "Aceptar", function(){ editando_email = false; });
+                }
+
+            }, function () {
+
+            }, {
+                usuario_id: user.id,
+                email: email
+            });
+
+        } else {
+
+            showAlert("Por favor ingrese un email valido!.", "Mensaje", "Aceptar", function(){ editando_email = false; });
+        }
+    }
+}
 
 var EmailController;
 var operacion_registro = false;

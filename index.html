@@ -144,7 +144,7 @@
                     <div class="icons right">
                         <div class="button header nobutton info" onclick="gotoComoFunciona(this, event)"></div>
                         <div class="button header nobutton ayuda" onclick="gotoQuieroParticipar(this, event)"></div>
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
 
@@ -232,7 +232,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -267,7 +267,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
 
@@ -352,7 +352,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
 
@@ -441,7 +441,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -476,7 +476,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -511,7 +511,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -570,7 +570,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -629,7 +629,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -664,7 +664,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
 
@@ -753,7 +753,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -789,7 +789,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -875,7 +875,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
             </div>
@@ -910,7 +910,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton perfil"></div>
+                        <div class="button header nobutton perfil" onclick="gotoPerfil(this, event)"></div>
                     </div>
                 </div>
 
@@ -1008,7 +1008,7 @@
                     <div class="header-logo center"></div>
 
                     <div class="icons right">
-                        <div class="button header nobutton info" onclick="gotoComoFunciona(this, event)"></div>
+
                     </div>
                 </div>
             </div>
@@ -1022,12 +1022,12 @@
                 <div id="perfil_content">
 
                     <div class="horizontal center">
-                        <h3 class="perfil_title">TIENES ACUMULADOS <span class="rosa">93 PUNTOS</span></h3>
+                        <h3 class="perfil_title">TIENES ACUMULADOS <span id="userPoints" class="rosa">93 PUNTOS</span></h3>
                     </div>
 					<div class="horizontal">
 						<div data-role="fieldcontain">
 
-							<div class="horizontal content_options">
+							<div class="horizontal content_options login_options">
                                 <div class="horizontal">
                                     <div class="button btn azul" onclick="logout('facebook')"><span class="text fixed">Desconectar del Facebook</span> <i class="facebook"></i></div>
                                 </div>
@@ -1047,27 +1047,23 @@
 
                             <div class="horizontal">
                                 <div class="horizontal">
-                                    <div class="button btn" onclick="ActivarDesactivarAlertas()"><span class="text fixed">Dejar de recibir alertas</span></div>
+                                    <div id="btnAlertas" class="button btn" onclick="ActivarDesactivarAlertas()"><span class="text fixed2">Dejar de recibir alertas</span></div>
                                 </div>
                             </div>
 
                             <div class="horizontal">
 								<h3 class="form_title">Email Registrado:</h3>
-								<input id="user_email" class="user_email" name="user_email" placeholder="Email..." autocomplete="off" autocapitalize="off" type="email" data-mini="true"/>
-                                    <div class="button btn" onclick="cambiarEmail()"><span class="text fixed"><i class="email"></i>Editar mi Email</span></div>
+								<input id="user_email" class="clickable" name="user_email" placeholder="Email..." autocomplete="off" autocapitalize="off" type="email" data-mini="true"/>
+                                    <div class="button btn" onclick="cambiarEmail()"><span class="text fixed2">Editar mi Email</span></div>
 							</div>
 
                             <div class="horizontal">
                                 <h3 class="form_title">Ciudad Actual:</h3>
-                                <div class="dropdown">
-                                    <div class="native-select btn">
-                                        <span>City:</span>
-                                        <select name="city">
-                                            <option id="1">Madrid</option>
-                                            <option id="3">Ibiza</option>
-                                        </select>
-                                    </div>
-                                </div>
+
+                                <select name="city" class="clickable">
+                                    <option id="1">Madrid</option>
+                                    <option id="3">Ibiza</option>
+                                </select>
                             </div>
 
                             <div class="horizontal">
