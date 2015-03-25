@@ -1025,7 +1025,7 @@
 
                         <h3 class="perfil_title">TIENES ACUMULADOS <span id="userPoints" class="rosa"></span></h3>
 
-                        <div id="points_list" class="points_list"></div>
+                        <div id="points_list" class="points_list" style="display:none;"></div>
 
                     </div>
 					<div class="horizontal">
@@ -1045,7 +1045,7 @@
                             <div class="horizontal">
 								<h3 class="form_title">Email Registrado:</h3>
 								<input id="user_email" class="clickable" name="user_email" placeholder="Email..." autocomplete="off" autocapitalize="off" type="email" data-mini="true"/>
-                                <div class="button btn rosa" onclick="cambiarEmail()" style="margin-top: 10px;"><i class="email2"></i><span class="text fixed3">EDITAR MI EMAIL</span></div>
+                                <div class="button btn rosa" onclick="cambiarEmail()" style="margin-top: 10px;"><i class="email2" style="margin-top: 7px;"></i><span class="text fixed3">EDITAR MI EMAIL</span></div>
 							</div>
 
                             <div class="horizontal">
@@ -1059,10 +1059,10 @@
 
                             <div class="horizontal">
                                 <h3 class="form_title">Filtrar Zonas para recibir notificaciones:</h3>
-                                <div id="zonas" class="zonas">
+                                <form id="zonas" class="zonas">
 
-                                </div>
-                                <div class="button btn" onclick="cambiarZonas()"><span class="text fixed">Guardar</span></div>
+                                </form>
+                                <div class="button btn" onclick="saveAlertas()" style="margin-top: 10px;"><span class="text fixed">Guardar</span></div>
                             </div>
 						</div>
 					</div>

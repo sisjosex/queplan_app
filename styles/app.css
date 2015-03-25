@@ -1163,6 +1163,19 @@ i.down_arrow {
     height: 13px;
     vertical-align: bottom;
     margin-left: 3px;
+
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.35s;
+    -moz-transition-duration: 0.35s;
+    -o-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
 }
 
 i.alertas {
@@ -1652,20 +1665,103 @@ h4 {
     margin-bottom:1px;
 }
 
+.points_list {
+
+}
+
+.down_arrow.up {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    margin-bottom: 7px;
+}
+
 .point_row {
     display: table;
     width: 100%;
 }
 
-.point_row b {
+.point_row span.text {
     display: table-cell;
     text-align: left;
 }
 
-.point_row span.text {
+.point_row b {
     display: table-cell;
     text-align: right;
+    padding-left:20px;
 }
+
+.checkbox .checkbox__checkmark {
+    display:inline-block;
+}
+
+.checkbox .checkbox__checkmark {
+    display:inline-block;
+}
+
+.checkbox .ons-checkbox-inner {
+    display:inline-block;
+    color:#fff;
+}
+
+.checkbox > .checkbox__checkmark:before {
+    content: '';
+    position: absolute;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 24px;
+    height: 24px;
+    background: #ccc;
+    border: 0;
+    -webkit-border-radius: 16px;
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    left: 0;
+    display: table-cell;
+}
+.checkbox .ons-checkbox-inner {
+    display: table-cell;
+    color: #fff;
+}
+
+label.checkbox {
+    min-width: 12em !important;
+    max-width: 12em !important;
+    text-align: left;
+    padding-left: 0em;
+    color: #abaaaa;
+    font-size: 1em;
+    text-align: left !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 6px !important;
+    display: table;
+    padding-top: 6px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    border-radius: 0;
+}
+
+label.checkbox:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+label.checkbox:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn .text.fixed4 {
+    min-width: 244px;
+    padding-left: 5px;
+}
+
 
 @media all and (max-width: 320px) {
 

@@ -1905,6 +1905,24 @@ module.controller('PerfilController', function ($scope) {
 
             $('#userPoints').html(user.puntos_acumulados + ' Puntos' + '<i class="down_arrow"></i>');
 
+            var toggling = false;
+            $('#userPoints').on('click', function() {
+
+                if(!toggling) {
+
+                    toggling = true;
+
+                    $('#points_list').slideToggle(200, function () {
+
+                        refreshPerfilScroll();
+
+                        toggling = false;
+                    });
+
+                    $('.down_arrow').toggleClass('up');
+                }
+            });
+
             for(var i in applicationParams.ciudades) {
 
                 var selected = (applicationParams.ciudades[i].id == user.ciudad_id) ? 'selected="selected"' : '' ;
@@ -1924,6 +1942,33 @@ module.controller('PerfilController', function ($scope) {
         }
     });
 });
+
+function saveAlertas() {
+
+    var user = COOKIE;
+    var data = $('#zonas').serializeArray();
+
+    data.push({
+        name: 'usuario_id',
+        value: user.id
+    });
+
+    getJsonP( api_url + 'saveAlertas/', function(data){
+
+        if( data.status == 'success' ){
+
+            showAlert(data.mensaje, "Aviso", "Aceptar");
+
+        } else {
+
+            showAlert(data.mensaje, "Error", "Aceptar");
+
+        }
+
+    }, function() {
+
+    }, data );
+}
 
 function refreshZonasAndPoints() {
 
@@ -2085,17 +2130,20 @@ function reloadZonas() {
 
     var user = COOKIE;
 
+    $('#zonas').html('');
+
     getJsonP(api_url + 'getZonas/', function(data) {
         if(data.items){
 
             //mostramos loading
-            items = data.items;
             var alertas = data.alertas;
             var html = "";
 
-            if(items.length){
+            if(data.items.length){
 
-                $.each(items, function(index, item) {
+                console.log(data.items);
+
+                $.each(data.items, function(index, item) {
 
                     var checked='';
 
@@ -2103,12 +2151,16 @@ function reloadZonas() {
 
                         checked='checked="checked"';
 
-                    } else if (item.recibir) {
+                    } else if (item.recibir == true) {
 
                         checked = 'checked="checked"';
                     }
 
-                    var str = '<div class="checkbox" ><i class="check"></i><span class="text">' + item.title + '</span><input type="checkbox" value="' + item.id + '" ' + checked + ' /></div>';
+                    var str = '<label class="checkbox btn">'+
+                        '<input name="zonas[]" type="checkbox" class="" value="' + item.id + '" ' + checked + ' >'+
+                    '<div class="checkbox__checkmark"></div>'+
+                    '<span class="ons-checkbox-inner text fixed4">' + item.title + '</span>'+
+                    '</label>';
 
                     $('#zonas').append(str);
 
@@ -2124,12 +2176,14 @@ function reloadZonas() {
 
                 $.each(data.puntos, function(index, item) {
 
-                    var str = '<div class="point_row"><b>' + item.puntos + '</b><span class="text">' + item.local_title + '</span></div>';
+                    var str = '<div class="point_row"><span class="text">' + item.local_title + '</span><b>' + item.puntos + ' Puntos</b></div>';
 
                     $('#points_list').append(str);
 
                 });
             }
+
+            refreshPerfilScroll();
         }
     }, function() {
 
@@ -2137,6 +2191,10 @@ function reloadZonas() {
         usuario_id: user.id,
         ciudad_id: CIUDAD_ID
     });
+}
+
+function refreshPerfilScroll() {
+    scrolls.perfilScroll.refresh();
 }
 
 var EmailController;
