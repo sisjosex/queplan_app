@@ -961,71 +961,67 @@ function onSliderHomeIMGLoad(img, index) {
     var src = $(img).attr('src');
     var container = $(img).parent();
 
-    var image = new Image();
-    image.src = src;
-
     var outerWidth = $(img).parent().outerWidth();
     var outerHeight = $(img).parent().outerHeight();
 
-    image.onload = function () {
+    var image = this;
 
-        container.parent().find('ons-icon').remove();
+    container.parent().find('ons-icon').remove();
 
-        container.html('');
-        container.addClass('noopaque');
+    container.html('');
+    container.addClass('noopaque');
 
-        container.css('background-image', "url('" + src + "')");
-        container.css('background-repeat', "no-repeat");
-        container.css('background-position', "center center");
+    container.css('background-image', "url('" + src + "')");
+    container.css('background-repeat', "no-repeat");
+    container.css('background-position', "center center");
 
-        var width = image.width;
-        var height = image.height;
-        var factor = 1;
+    var width = image.width;
+    var height = image.height;
+    var factor = 1;
 
-        if (outerWidth > width) {
-            factor = outerWidth / width;
-            width = width * factor;
-            height = height * factor;
-        }
+    if (outerWidth > width) {
+        factor = outerWidth / width;
+        width = width * factor;
+        height = height * factor;
+    }
 
-        if (outerHeight > height) {
+    if (outerHeight > height) {
 
-            factor = (outerHeight) / height;
-            width = width * factor;
-            height = height * factor;
-        }
+        factor = (outerHeight) / height;
+        width = width * factor;
+        height = height * factor;
+    }
 
-        if (outerWidth < width) {
-            factor = outerHeight / height;
-            width = width * factor;
-            height = outerHeight;
+    if (outerWidth < width) {
+        factor = outerHeight / height;
+        width = width * factor;
+        height = outerHeight;
 
-            if (outerWidth - width > 0) {
-                factor = outerWidth / width;
-                width = outerWidth;
-                height = height * factor;
-            }
-
-
-        } else if (outerHeight < height) {
+        if (outerWidth - width > 0) {
             factor = outerWidth / width;
             width = outerWidth;
             height = height * factor;
-
-            if (outerHeight - height > 0) {
-                factor = outerHeight / height;
-                height = outerHeight;
-                width = width * factor;
-            }
         }
 
-        width = parseInt(width + "");
-        height = parseInt(height + "");
 
-        container.css('background-size', (width) + "px" + " " + (height) + "px");
+    } else if (outerHeight < height) {
+        factor = outerWidth / width;
+        width = outerWidth;
+        height = height * factor;
 
-        container.removeClass('noopaque');
+        if (outerHeight - height > 0) {
+            factor = outerHeight / height;
+            height = outerHeight;
+            width = width * factor;
+        }
     }
+
+    width = parseInt(width + "");
+    height = parseInt(height + "");
+
+    container.css('background-size', (width) + "px" + " " + (height) + "px");
+
+    container.removeClass('noopaque');
 }
 
 function infoAction() {
@@ -1166,6 +1162,7 @@ module.controller('HomeController', function ($scope) {
 });
 
 var PlanesController;
+var counterPlanes = 0;
 module.controller('PlanesController', function ($scope) {
     ons.ready(function () {
 
@@ -1179,22 +1176,27 @@ module.controller('PlanesController', function ($scope) {
 
         var footerHeight = factor * 60;
 
-        $('#planesHeader').height(footerHeight - 8);
-        $('#planesHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#planesHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planesHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $('#planesPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
 
-        loadIntoTemplate('#planes_content', current_list.items, 'planes_list');
+        //loadIntoTemplate(('#planes_content')[0], current_list.items, 'planes_list');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0], current_list.items, 'planes_list');
 
-        $('#planesPage .list-item-container').height((window.innerHeight - (51 * factor)) / 3);
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 3);
 
-        $('#planesPage').find('.list-item-container').on('click', function(){
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
             gotoPlanDetalle( $(this).attr('rel'), current_list );
         });
 
-        ons.compile($('#planes_content')[0]);
+        ons.compile( $(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0] );
 
-        initScroll('planesScroll');
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#planesScroll').attr('id', 'planesScroll' + counterPlanes);
+
+        initScroll('planesScroll' + counterPlanes);
 
     })
 });
@@ -1221,63 +1223,63 @@ module.controller('PlanController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#planHeader').height(footerHeight - 8);
-        $('#planHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        footerHeight = factor * $('#planFooter').outerHeight();
+        footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#planFooter').outerHeight();
 
-        $('#planFooter .banner').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planFooter .banner').height(footerHeight);
 
         /*$('.header-logo').width($('.header-logo').width() * factor);
          $('.header-logo').height($('.header-logo').height() * factor);*/
 
-        height = $(window).height() - ( 200 * factor + $('#planFooter').outerHeight() + $('#planHeader').outerHeight() - 1 );
+        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#planFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() - 1 );
 
-        $('#planImages').height(height);
-        $('#planToolbar').height(height);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planImages').height(height);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planToolbar').height(height);
 
-        $('#planPage .page__content').css('top', (height + $('#planHeader').outerHeight() ) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() ) + 'px');
         //$('#planPage .page__content').css('bottom', (footerHeight +'px') );
 
         //$('#planScroll').height($('#planScroll').height() - footerHeight);
 
-        $('#planList').css('padding-bottom', footerHeight + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#planList').css('padding-bottom', footerHeight + 'px');
 
 
-        loadIntoTemplate('#planImages', current_plan.images, 'slider_plan');
-        loadIntoTemplate('#planPaginator', current_plan.images, 'slider_paginator');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planImages')[0], current_plan.images, 'slider_plan');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planPaginator')[0], current_plan.images, 'slider_paginator');
 
         if (current_plan.condicion) {
-            $('#planCondicion').html('<h4>Condición</h4><p align="left">' + current_plan.condicion + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planCondicion').html('<h4>Condición</h4><p align="left">' + current_plan.condicion + '</p>');
         }
 
         if (current_plan.como_reservar) {
-            $('#planComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_plan.como_reservar + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_plan.como_reservar + '</p>');
         }
 
-        $('#planLlamar').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#planLlamar').on('click', function () {
             actionCall(current_plan.telefono);
         });
 
-        $('#planVerLocal').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#planVerLocal').on('click', function () {
 
             mainnavigator.pushPage('local.html', {current_local: current_plan});
         });
 
-        $('#planMaps').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#planMaps').on('click', function () {
 
             gotoMaps(current_plan);
         });
 
 
-        $('#planPaginator > div:first-child').addClass('selected');
+        $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator > div:first-child').addClass('selected');
 
-        $('#planDescripcion').html(current_plan.descripcion);
-        $('#planDireccion').html(current_plan.direccion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planDescripcion').html(current_plan.descripcion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#planDireccion').html(current_plan.direccion);
 
         PlanController.carouselPostChange = function () {
-            $('#planPaginator > div').removeClass('selected');
-            $('#planPaginator > div:nth-child(' + (planImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator > div').removeClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator > div:nth-child(' + (planImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
         };
 
         setTimeout(function () {
@@ -1286,9 +1288,13 @@ module.controller('PlanController', function ($scope) {
 
         }, 1000);
 
-        ons.compile($('#plan_content')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#plan_content')[0]);
 
-        initScroll('planScroll');
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#planScroll').attr('id', 'planScroll' + counterPlanes);
+
+        initScroll('planScroll' + counterPlanes);
 
     })
 });
@@ -1305,87 +1311,87 @@ module.controller('LocalController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#localHeader').height(footerHeight - 8);
-        $('#localHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        footerHeight = factor * $('#localFooter').outerHeight();
+        footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#localFooter').outerHeight();
 
-        $('#localFooter .banner').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localFooter .banner').height(footerHeight);
 
-        /*$('.header-logo').width($('.header-logo').width() * factor);
-         $('.header-logo').height($('.header-logo').height() * factor);*/
+        /*$(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width() * factor);
+         $(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height() * factor);*/
 
-        height = $(window).height() - ( 200 * factor + $('#localFooter').outerHeight() + $('#localHeader').outerHeight() - 1 );
+        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#localFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() - 1 );
 
-        $('#localImages').height(height);
-        $('#localToolbar').height(height);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localImages').height(height);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localToolbar').height(height);
 
-        $('#localPage .page__content').css('top', (height + $('#localHeader').outerHeight() ) + 'px');
-        //$('#localPage .page__content').css('bottom', (footerHeight +'px') );
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() ) + 'px');
+        //$(mainnavigator.getCurrentPage().element[0]).find('#localPage .page__content').css('bottom', (footerHeight +'px') );
 
-        //$('#localScroll').height($('#localScroll').height() - footerHeight);
+        //$(mainnavigator.getCurrentPage().element[0]).find('#localScroll').height($(mainnavigator.getCurrentPage().element[0]).find('#localScroll').height() - footerHeight);
 
-        $('#localList').css('padding-bottom', footerHeight + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#localList').css('padding-bottom', footerHeight + 'px');
 
 
-        loadIntoTemplate('#localImages', current_local.local_images, 'slider_local');
-        loadIntoTemplate('#localPaginator', current_local.local_images, 'slider_paginator');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localImages')[0], current_local.local_images, 'slider_local');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localPaginator')[0], current_local.local_images, 'slider_paginator');
 
         if (current_local.condicion) {
-            $('#localCondicion').html('<h4>Condición</h4><p align="left">' + current_local.condicion + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localCondicion').html('<h4>Condición</h4><p align="left">' + current_local.condicion + '</p>');
         }
 
         if (current_local.como_reservar) {
-            $('#localComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_local.como_reservar + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_local.como_reservar + '</p>');
         }
 
-        $('#localLlamar').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localLlamar').on('click', function () {
             actionCall(current_local.telefono);
         });
 
         if(current_local.planes > 0) {
 
-            $('#localVerPlanes').find('.count').text(current_local.planes);
+            $(mainnavigator.getCurrentPage().element[0]).find('#localVerPlanes').find('.count').text(current_local.planes);
 
         } else {
 
-            $('#localVerPlanes').find('.count').remove();
+            $(mainnavigator.getCurrentPage().element[0]).find('#localVerPlanes').find('.count').remove();
         }
 
-        $('#localVerPlanes').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localVerPlanes').on('click', function () {
 
-            goToPlanes(current_local.id);
+            goToPlanes(current_local.local_id);
         });
 
-        $('#localMaps').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localMaps').on('click', function () {
 
             gotoMaps(current_local);
         });
 
-        $('#localWeb').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localWeb').on('click', function () {
 
             gotoLink(current_local.web);
         });
 
-        $('#localFacebook').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localFacebook').on('click', function () {
 
             gotoLink(current_local.facebook);
         });
 
-        $('#localTwitter').on('click', function () {
+        $(mainnavigator.getCurrentPage().element[0]).find('#localTwitter').on('click', function () {
 
             gotoLink(current_local.twitter);
         });
 
 
-        $('#localPaginator > div:first-child').addClass('selected');
+        $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator > div:first-child').addClass('selected');
 
-        $('#localDescripcion').html(current_local.local_descripcion);
-        $('#localDireccion').html(current_local.direccion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localDescripcion').html(current_local.local_descripcion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localDireccion').html(current_local.direccion);
 
         LocalController.carouselPostChange = function () {
-            $('#localPaginator > div').removeClass('selected');
-            $('#localPaginator > div:nth-child(' + (localImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator > div').removeClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator > div:nth-child(' + (localImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
         };
 
         setTimeout(function () {
@@ -1394,9 +1400,13 @@ module.controller('LocalController', function ($scope) {
 
         }, 1000);
 
-        ons.compile($('#local_content')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#local_content')[0]);
 
-        initScroll('localScroll');
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#localScroll').attr('id', 'localScroll' + counterPlanes);
+
+        initScroll('localScroll' + counterPlanes);
 
     })
 });
