@@ -688,8 +688,6 @@ function imageLoaded(index) {
 function onError() {
 }
 
-var current_list = [];
-
 function openEmail(email) {
 
     window.open('mailto:' + email + '?subject=Contacto&body=');
@@ -703,15 +701,6 @@ function gotoMaps(seccion) {
 function gotoLink(url) {
 
     openExternalLink(url);
-}
-
-function goToCartaDetalle(section) {
-
-    $('#carta_list').html('');
-
-    loadIntoTemplate('#carta_list', carta_data[section], 'carta_list_content');
-
-    scrolls['carta_scroll'].refresh();
 }
 
 function goToContacto() {
@@ -729,12 +718,7 @@ function goToPlanes(local_id) {
 
             if(data.list != false) {
 
-                current_list = data;
-
-                mainnavigator.pushPage('planes.html', {});
-
-                if (current_list.list) {
-                }
+                mainnavigator.pushPage('planes.html', {current_list: data});
 
             } else {
 
@@ -778,12 +762,7 @@ function goToGuia() {
 
         getJsonP(api_url + 'getCategorias/', function (data) {
 
-            current_list = data;
-
-            mainnavigator.pushPage('guias.html', {});
-
-            if (current_list.list) {
-            }
+            mainnavigator.pushPage('guias.html', {current_list: data});
 
         }, function () {
         }, {ciudad_id: ciudad_seleccionada});
@@ -798,12 +777,7 @@ function goToRecompensas() {
 
         getJsonP(api_url + 'getRecompensas/', function (data) {
 
-            current_list = data;
-
-            mainnavigator.pushPage('recompensas.html', {});
-
-            if (current_list.list) {
-            }
+            mainnavigator.pushPage('recompensas.html', {current_list: data});
 
         }, function () {
         }, {ciudad_id: ciudad_seleccionada});
@@ -818,24 +792,16 @@ function gotoMenuDiario() {
 
         getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-            current_list = data;
-
-            mainnavigator.pushPage('menu.html', {});
-
-            if (current_list.list) {
-            }
+            mainnavigator.pushPage('menu.html', {current_list: data});
 
         }, function () {
         }, {ciudad_id: ciudad_seleccionada});
     }
 }
 
-var currentPlan;
-function goToPlanesDetalle(id) {
+function goToPlanesDetalle(id, current_list) {
 
-    currentPlan = current_list[id];
-
-    mainnavigator.pushPage('plan.html', {id: id});
+    mainnavigator.pushPage('plan.html', {id: id, current_plan: current_list[id]});
 }
 
 function procesarRegistro(element, event, type) {
@@ -1205,6 +1171,8 @@ module.controller('PlanesController', function ($scope) {
 
         current_page = 'planes.html';
 
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
+
         PlanesController = this;
 
         var factor = window.innerWidth / 320;
@@ -1218,7 +1186,11 @@ module.controller('PlanesController', function ($scope) {
 
         loadIntoTemplate('#planes_content', current_list.items, 'planes_list');
 
-        $('.list-item-container').height((window.innerHeight - (51 * factor)) / 3);
+        $('#planesPage .list-item-container').height((window.innerHeight - (51 * factor)) / 3);
+
+        $('#planesPage').find('.list-item-container').on('click', function(){
+            gotoPlanDetalle( $(this).attr('rel'), current_list );
+        });
 
         ons.compile($('#planes_content')[0]);
 
@@ -1227,25 +1199,24 @@ module.controller('PlanesController', function ($scope) {
     })
 });
 
-function gotoPlanDetalle(index) {
+function gotoPlanDetalle(index, current_list) {
 
     if (current_page != 'plan.html') {
 
         current_page = 'plan.html';
 
-        current_plan = current_list.items[index];
-
-        mainnavigator.pushPage('plan.html');
+        mainnavigator.pushPage('plan.html', {current_plan: current_list.items[index]});
     }
 }
 
 
 var PlanController;
-var current_plan;
 module.controller('PlanController', function ($scope) {
     ons.ready(function () {
 
         PlanController = this;
+
+        var current_plan = mainnavigator.getCurrentPage().options.current_plan;
 
         var factor = window.innerWidth / 320;
 
@@ -1290,9 +1261,7 @@ module.controller('PlanController', function ($scope) {
 
         $('#planVerLocal').on('click', function () {
 
-            current_local = current_plan;
-
-            mainnavigator.pushPage('local.html');
+            mainnavigator.pushPage('local.html', {current_local: current_plan});
         });
 
         $('#planMaps').on('click', function () {
@@ -1326,11 +1295,12 @@ module.controller('PlanController', function ($scope) {
 
 
 var LocalController;
-var current_local;
 module.controller('LocalController', function ($scope) {
     ons.ready(function () {
 
         LocalController = this;
+
+        var current_local = mainnavigator.getCurrentPage().options.current_local;
 
         var factor = window.innerWidth / 320;
 
@@ -1440,6 +1410,8 @@ module.controller('GuiasController', function ($scope) {
 
         GuiasController = this;
 
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
+
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
@@ -1449,6 +1421,10 @@ module.controller('GuiasController', function ($scope) {
         $('#guiasPage .page__content').css('top', (footerHeight - 8) + 'px');
 
         loadIntoTemplate('#guias_content', current_list.items, 'guias_list');
+
+        $('#guiasPage').find('.list-item-container').on('click', function(){
+            gotoLocales( $(this).attr('rel'), current_list );
+        });
 
         ons.compile($('#guias_content')[0]);
 
@@ -1487,7 +1463,7 @@ function refreshComoFuncionaScroll() {
     scrolls.como_funcionaScroll.refresh();
 }
 
-function gotoComofuncionaDetalle(index) {
+function gotoComofuncionaDetalle(index, current_list) {
     if (current_page != 'como_funciona_detalle.html') {
 
         current_page = 'como_funciona_detalle.html';
@@ -1562,7 +1538,7 @@ module.controller('QuieroParticiparController', function ($scope) {
     })
 });
 
-function gotoLocales(index) {
+function gotoLocales(index, current_list) {
 
     if (current_page != 'locales.html') {
 
@@ -1572,24 +1548,20 @@ function gotoLocales(index) {
 
         getJsonP(api_url + 'getLocales/', function (data) {
 
-            list_locales = data;
-
-            mainnavigator.pushPage('locales.html');
+            mainnavigator.pushPage('locales.html', {current_list: data});
 
         }, function () {
         }, {categoria_id: current_categoria.id, ciudad_id: ciudad_seleccionada});
     }
 }
 
-function gotoGuiaDetalle(index) {
+function gotoGuiaDetalle(index, current_list) {
 
     if (current_page != 'local.html') {
 
         current_page = 'local.html';
 
-        current_local = list_locales.items[index];
-
-        mainnavigator.pushPage('local.html');
+        mainnavigator.pushPage('local.html', {current_local: current_list.items[index]});
     }
 }
 
@@ -1597,13 +1569,15 @@ function refreshLocalesScroll() {
     scrolls.localesScroll.refresh();
 }
 
-var LocalesController;
+
 module.controller('LocalesController', function ($scope) {
     ons.ready(function () {
 
         current_page = 'locales.html';
 
         LocalesController = this;
+
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
 
         var factor = window.innerWidth / 320;
 
@@ -1613,7 +1587,11 @@ module.controller('LocalesController', function ($scope) {
 
         $('#localesPage .page__content').css('top', (footerHeight - 8) + 'px');
 
-        loadIntoTemplate('#locales_content', list_locales.items, 'locales_list');
+        loadIntoTemplate('#locales_content', current_list.items, 'locales_list');
+
+        $('#localesPage').find('.list-item-container').on('click', function(){
+            gotoGuiaDetalle( $(this).attr('rel'), current_list );
+        });
 
         ons.compile($('#locales_content')[0]);
 
@@ -1625,12 +1603,12 @@ module.controller('LocalesController', function ($scope) {
 
 var GuiaController;
 var current_categoria;
-var current_guia;
-var list_locales;
 module.controller('GuiaController', function ($scope) {
     ons.ready(function () {
 
         GuiaController = this;
+
+        var current_guia = mainnavigator.getCurrentPage().options.current_local;
 
         var factor = window.innerWidth / 320;
 
@@ -1695,6 +1673,8 @@ module.controller('MenuController', function ($scope) {
         MenuController = this;
         current_page = 'locales.html';
 
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
+
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
@@ -1705,6 +1685,10 @@ module.controller('MenuController', function ($scope) {
 
         loadIntoTemplate('#menu_content', current_list.items, 'menu_list');
 
+        $('#menuPage').find('.list-item-container').on('click', function(){
+            gotoMenuDetalle( $(this).attr('rel'), current_list );
+        });
+
         ons.compile($('#menu_content')[0]);
 
         initScroll('menuScroll');
@@ -1713,15 +1697,13 @@ module.controller('MenuController', function ($scope) {
 });
 
 var current_menu;
-function gotoMenuDetalle(index) {
+function gotoMenuDetalle(index, current_list) {
 
     if (current_page != 'menu_detalle.html') {
 
-        current_page = 'menu_detalle.html';
+        current_page = 'menu_detalle.html';;
 
-        current_menu = current_list.items[index];
-
-        mainnavigator.pushPage('menu_detalle.html');
+        mainnavigator.pushPage('menu_detalle.html', {current_menu: current_list.items[index]});
     }
 }
 
@@ -1734,6 +1716,8 @@ module.controller('MenuDetalleController', function ($scope) {
     ons.ready(function () {
 
         MenuDetalleController = this;
+
+        var current_menu = mainnavigator.getCurrentPage().options.current_menu;
 
         var factor = window.innerWidth / 320;
 
@@ -1774,9 +1758,7 @@ module.controller('MenuDetalleController', function ($scope) {
 
         $('#menu_detalleVerLocal').on('click', function () {
 
-            current_local = current_menu;
-
-            mainnavigator.pushPage('local.html');
+            mainnavigator.pushPage('local.html', {current_local: current_menu});
         });
 
         $('#menu_detalleMaps').on('click', function () {
@@ -1804,6 +1786,8 @@ module.controller('RecompensasController', function ($scope) {
 
         RecompensasController = this;
 
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
+
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
@@ -1814,6 +1798,10 @@ module.controller('RecompensasController', function ($scope) {
 
         loadIntoTemplate('#recompensas_content', current_list.items, 'recompensas_list_content');
 
+        $('#recompensasPage').find('.list-item-container').on('click', function(){
+            gotoRecompensaDetalle( $(this).attr('rel'), current_list );
+        });
+
         ons.compile($('#recompensas_content')[0]);
 
         initScroll('recompensasScroll');
@@ -1821,24 +1809,23 @@ module.controller('RecompensasController', function ($scope) {
     })
 });
 
-function gotoRecompensaDetalle(index) {
+function gotoRecompensaDetalle(index, current_list) {
 
     if (current_page != 'recompensa.html') {
 
         current_page = 'recompensa.html';
 
-        current_recompensa = current_list.items[index];
-
-        mainnavigator.pushPage('recompensa.html');
+        mainnavigator.pushPage('recompensa.html', {current_recompensa: current_list.items[index]});
     }
 }
 
 var RecompensaController;
-var current_recompensa;
 module.controller('RecompensaController', function ($scope) {
     ons.ready(function () {
 
         current_page = 'recompensa.html';
+
+        var current_recompensa = mainnavigator.getCurrentPage().options.current_recompensa;
 
         RecompensaController = this;
 
@@ -1888,9 +1875,7 @@ module.controller('RecompensaController', function ($scope) {
 
         $('#recompensaVerLocal').on('click', function () {
 
-            current_local = current_recompensa;
-
-            mainnavigator.pushPage('local.html');
+            mainnavigator.pushPage('local.html', {current_local: current_recompensa});
         });
 
         $('#recompensaMaps').on('click', function () {
