@@ -32,7 +32,55 @@ function checkIn(urlamigable) {
         var user = COOKIE;
         var me = user.id;
 
-        showLoadingCustom('Estoy Aqu\u00ED, en progreso...');
+        getJsonP(api_url + 'checkIn/', function(data) {
+
+            if (data) {
+
+                if (data.status == 'success') {
+
+                    var imagen = app_url + 'img/logo_oficial.png';
+
+                    //re-escribimos la cookie con los puntos totales
+                    reWriteCookie("user", "puntos_acumulados", data.total_puntos_acumulados);
+                    reWriteCookie("user", "Puntos", data.puntos);
+
+                    //mostramos el mensaje de success y al cerrar mostramos la pantalla de compartir
+                    //que puede ser de facebook o twitter
+                    navigator.notification.alert(
+                        data.mensaje,           // message
+                        function () {
+                            if (user.registrado_mediante == "facebook") {
+
+                                 setTimeout(function(){
+                                 shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
+                                 },500);
+
+                            } else if (user.registrado_mediante == "twitter") {
+                                setTimeout(function () {
+                                    shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
+                                }, 500);
+                            }
+                        },         // callback
+                        "AQU\u00CD ESTOY!", // title
+                        "Aceptar"               // buttonName
+                    );
+
+                } else {
+
+                    showAlert(data.mensaje, "AQU\u00CD ESTOY NO DISPONIBLE", "Aceptar");
+                }
+            }
+
+        }, function() {
+
+
+
+        }, {
+
+            usuario_id: me,
+            urlamigable: urlamigable
+
+        });
 
         $.getJSON(BASE_URL + 'checkIn/' + me + '/' + urlamigable, function (data) {
 
@@ -635,9 +683,12 @@ var app = {
     },
     scan: function () {
         if (isLogin()) {
+
             var scanner = cordova.require("cordova/plugin/BarcodeScanner");
             scanner.scan(function (result) {
+
                 if (result.format == "QR_CODE") {
+
                     if (result.text != "") {
                         var params = (result.text).toString().split("/");
                         var urlamigable = params[params.length - 1].toString();
@@ -646,13 +697,17 @@ var app = {
                     } else {
                         showAlert("Scanner failed, please try again.", "Error", "Aceptar");
                     }
+
                 } else if (result.cancelled) {
                     showAlert("Scanner Cancelled.", "Error", "Aceptar");
                 }
+
             }, function (error) {
                 alert("Scanning failed: ", error);
             });
+
         } else if (LOGIN_INVITADO) {
+
             alertaInvitado();
         }
     }
