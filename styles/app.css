@@ -1782,6 +1782,14 @@ label.checkbox:last-child {
     min-width: 20px;
 }
 
+.validar {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 @media all and (max-width: 320px) {
 
     /*.icons.right {

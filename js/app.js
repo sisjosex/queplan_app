@@ -839,7 +839,7 @@ function goToRecompensas() {
             mainnavigator.pushPage('recompensas.html', {current_list: data});
 
         }, function () {
-        }, {ciudad_id: ciudad_seleccionada});
+        }, {ciudad_id: ciudad_seleccionada, usuario_id: !LOGIN_INVITADO ? COOKIE.id : ''});
     }
 }
 
@@ -1871,12 +1871,82 @@ module.controller('RecompensasController', function ($scope) {
             gotoRecompensaDetalle( $(this).attr('rel'), current_list );
         });
 
+        var i = 0;
+        $('#recompensasPage').find('.list-item-container').each( function() {
+
+            if(current_list.items[i].gane_recompensa) {
+
+                $(this).find('.validar').append('Validar');
+                $(this).find('.validar').attr('rel', current_list.items[i].id);
+
+                $(this).find('.validar').on('click', function(event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    pagar_recompensa($(this).attr('id'), this);
+                });
+            }
+
+            i ++;
+        });
+
         ons.compile($('#recompensas_content')[0]);
 
         initScroll('recompensasScroll');
 
     })
 });
+
+function pagar_recompensa(id, element){
+    navigator.notification.confirm(
+        "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
+        function(buttonIndex){
+            //1:aceptar,2:cancelar
+            if(buttonIndex == 1){
+
+                getJsonP(api_url + 'setPagado', function(data) {
+
+                    if(data){
+
+                        if(data.status == 'success'){
+
+                            $(element).html('');
+
+                            showAlert(data.mensaje, "Aviso", "Aceptar");
+                        }else{
+                            showAlert(data.mensaje, "Error", "Aceptar");
+                        }
+                    }
+
+                }, function() {
+
+                }, {
+                    id: id
+                });
+
+                $.getJSON(BASE_URL_APP + 'usuarios_recompensas/mobileSetPagado/'+id, function(data) {
+
+                    if(data){
+                        //ocultamos loading
+                        $.mobile.loading( 'hide' );
+
+                        if(data.success){
+                            var element = $("#"+id+".validar_recompensa")
+                            element.hide();
+                            element.parent().parent().find(".ui-icon-arrow-r").css("top","50%");
+                            showAlert(data.mensaje, "Aviso", "Aceptar");
+                        }else{
+                            showAlert(data.mensaje, "Error", "Aceptar");
+                        }
+                    }
+                });
+            }
+        },            // callback to invoke with index of button pressed
+        'Validar Recompensa',           // title
+        'Aceptar,Cancelar'         // buttonLabels
+    );
+}
 
 function gotoRecompensaDetalle(index, current_list) {
 

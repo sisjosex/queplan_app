@@ -18,6 +18,7 @@ var templates = {
     '<div class="list-item-content">'+
     '<div class="name">%title%</div>'+
     '<span class="points">%costo%</span>'+
+    '<div class="button validar"></div>'+
     '</div>'+
     '</div>'+
     '</ons-list-item>',
