@@ -1905,7 +1905,7 @@ function pagar_recompensa(id, element){
             //1:aceptar,2:cancelar
             if(buttonIndex == 1){
 
-                getJsonP(api_url + 'setPagado', function(data) {
+                getJsonP(api_url + 'setPagado/', function(data) {
 
                     if(data){
 
