@@ -13,16 +13,24 @@
 
 
 function loginGoogleConnect() {
-	
-	var oAuth = liquid.helper.oauth;
-	liquid.helper.oauth.authorize(authorizeWindowChange);
 
-    if (oAuth.isAuthorized()) {
-    	//TODO
+    if(!conectando) {
+        conectando = true;
+
+
+        var oAuth = liquid.helper.oauth;
+        liquid.helper.oauth.authorize(authorizeWindowChange);
+
+        if (oAuth.isAuthorized()) {
+            //TODO
+        }
     }
 }
 
 function authorizeWindowChange(uriLocation) {
+
+    conectando = false;
+
     //console.log("Location Changed: " + uriLocation); 
 	var oAuth = liquid.helper.oauth;
 	

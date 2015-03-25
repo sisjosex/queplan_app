@@ -13,7 +13,7 @@ var thumb_url = 'http://lasterrazasdebecerril.es/services/app/api/helpers/timthu
 
 var applicationLanguage = 'es';
 
-
+var conectando = false;
 
 var userData = null;
 
