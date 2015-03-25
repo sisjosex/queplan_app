@@ -365,6 +365,10 @@ function goHome(ciudad_id, save) {
 
                 mainnavigator.pushPage('home.html');
             }
+
+        } else if(LOGIN_INVITADO) {
+
+            mainnavigator.pushPage('home.html');
         }
     }
 }
@@ -849,9 +853,9 @@ function procesarRegistro(element, event, type) {
 
 function elegirCiudad(element, event) {
 
-    console.log('ciudad elegida');
-
     ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
+
+    console.log('ciudad elegida ' + ciudad_seleccionada);
 
     goHome(ciudad_seleccionada);
 }
