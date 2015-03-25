@@ -1109,13 +1109,15 @@ module.controller('NavigatorController', function ($scope) {
 
                 } else {
 
+                    CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
+
                     if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
 
                         mainnavigator.pushPage('ciudad.html');
 
                     } else {
 
-                        goHome(ciudad_seleccionada, false);
+                        mainnavigator.pushPage('home.html');
 
                     }
                 }
@@ -2199,12 +2201,17 @@ function ActivarDesactivarAlertas() {
 
                         if (data) {
                             if (data.status == 'success') {
+
                                 recibir_alertas = data.recibir_alertas;
 
-                                if(recibir_alertas) {
+                                if( recibir_alertas ) {
+
                                     $('#btnAlertas .text').text('Dejar de recibir alertas');
+
                                 } else {
+
                                     $('#btnAlertas .text').text('Recibir alertas');
+
                                 }
                                 //re-escribimos la cookie con el nuevo recibir_alertas
                                 reWriteCookie("user", "recibir_alertas", data.recibir_alertas);
