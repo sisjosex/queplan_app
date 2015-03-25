@@ -1877,7 +1877,7 @@ module.controller('RecompensasController', function ($scope) {
             if(current_list.items[i].gane_recompensa) {
 
                 $(this).find('.validar').append('Validar');
-                $(this).find('.validar').attr('rel', current_list.items[i].id);
+                $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
 
                 $(this).find('.validar').on('click', function(event) {
 
