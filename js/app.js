@@ -1115,7 +1115,7 @@ module.controller('NavigatorController', function ($scope) {
 
                     } else {
 
-                        goHome(ciudad_seleccionada);
+                        goHome(ciudad_seleccionada, false);
 
                     }
                 }
