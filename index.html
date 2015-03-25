@@ -326,7 +326,7 @@
             <div class="tabs">
 
                 <div class="table-cell">
-                    <div class="button nobutton" onclick="goToMaps()">
+                    <div id="planMaps" class="button nobutton" onclick="goToMaps()">
                         <div class="dashboard_icon icon_maps"></div>
                         <div class="text">Maps</div>
                     </div>
@@ -403,19 +403,19 @@
             <div class="tabs">
 
                 <div class="table-cell">
-                    <div class="button nobutton" onclick="goToMaps()">
+                    <div id="localMaps" class="button nobutton" onclick="goToMaps()">
                         <div class="dashboard_icon icon_maps"></div>
                         <div class="text">Maps</div>
                     </div>
-                    <div class="button nobutton" onclick="goWeb()">
+                    <div id="localWeb" class="button nobutton" onclick="goWeb()">
                         <div class="dashboard_icon icon_web"></div>
                         <div class="text">Web</div>
                     </div>
-                    <div class="button nobutton" onclick="goToFacebook()">
+                    <div id="localFacebook" class="button nobutton" onclick="goToFacebook()">
                         <div class="dashboard_icon icon_facebook"></div>
                         <div class="text">Facebook</div>
                     </div>
-                    <div class="button nobutton" onclick="goToTwitter()">
+                    <div id="localTwitter" class="button nobutton" onclick="goToTwitter()">
                         <div class="dashboard_icon icon_twitter"></div>
                         <div class="text">Twitter</div>
                     </div>
@@ -848,7 +848,7 @@
             <div class="tabs">
 
                 <div class="table-cell">
-                    <div class="button nobutton" onclick="goToMaps()">
+                    <div id="menu_detalleMaps" class="button nobutton" onclick="goToMaps()">
                         <div class="dashboard_icon icon_maps"></div>
                         <div class="text">Maps</div>
                     </div>
@@ -969,21 +969,9 @@
             <div class="tabs">
 
                 <div class="table-cell">
-                    <div class="button nobutton" onclick="goToMaps()">
+                    <div id="recompensaMaps" class="button nobutton" onclick="goToMaps()">
                         <div class="dashboard_icon icon_maps"></div>
                         <div class="text">Maps</div>
-                    </div>
-                    <div class="button nobutton" onclick="goWeb()">
-                        <div class="dashboard_icon icon_web"></div>
-                        <div class="text">Web</div>
-                    </div>
-                    <div class="button nobutton" onclick="goToFacebook()">
-                        <div class="dashboard_icon icon_facebook"></div>
-                        <div class="text">Facebook</div>
-                    </div>
-                    <div class="button nobutton" onclick="goToTwitter()">
-                        <div class="dashboard_icon icon_twitter"></div>
-                        <div class="text">Twitter</div>
                     </div>
                 </div>
             </div>
@@ -1029,7 +1017,7 @@
 
                     </div>
 					<div class="horizontal">
-						<div data-role="fieldcontain">
+						<div data-role="fieldcontain" style="max-width: 303px">
 
 							<div class="horizontal content_options login_options">
                                 <div class="button btn azul" onclick="logout('facebook')"><span class="text fixed">Desconectar del Facebook</span> <i class="facebook"></i></div>

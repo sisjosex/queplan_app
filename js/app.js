@@ -695,9 +695,14 @@ function openEmail(email) {
     window.open('mailto:' + email + '?subject=Contacto&body=');
 }
 
-function goToLocalizacion() {
+function gotoMaps(seccion) {
 
-    splash.pushPage('localizacion.html', {});
+    openExternalLink('https://www.google.com/maps/place/'+seccion.latitud+','+seccion.longitud+'/@'+seccion.latitud+','+seccion.longitud+'z/data=!3m1!4b1')
+}
+
+function gotoLink(url) {
+
+    openExternalLink(url);
 }
 
 function goToCartaDetalle(section) {
@@ -1280,6 +1285,11 @@ module.controller('PlanController', function ($scope) {
             mainnavigator.pushPage('local.html');
         });
 
+        $('#planMaps').on('click', function () {
+
+            gotoMaps(current_plan);
+        });
+
 
         $('#planPaginator > div:first-child').addClass('selected');
 
@@ -1355,6 +1365,26 @@ module.controller('LocalController', function ($scope) {
 
         $('#localVerPlanes').on('click', function () {
 
+        });
+
+        $('#localMaps').on('click', function () {
+
+            gotoMaps(current_local);
+        });
+
+        $('#localWeb').on('click', function () {
+
+            gotoLink(current_local.web);
+        });
+
+        $('#localFacebook').on('click', function () {
+
+            gotoLink(current_local.facebook);
+        });
+
+        $('#localTwitter').on('click', function () {
+
+            gotoLink(current_local.twitter);
         });
 
 
@@ -1729,6 +1759,11 @@ module.controller('MenuDetalleController', function ($scope) {
             mainnavigator.pushPage('local.html');
         });
 
+        $('#menu_detalleMaps').on('click', function () {
+
+            gotoMaps(current_menu);
+        });
+
         ons.compile($('#menu_detalleScroll')[0]);
 
         initScroll('menu_detalleScroll');
@@ -1837,6 +1872,12 @@ module.controller('RecompensaController', function ($scope) {
 
             mainnavigator.pushPage('local.html');
         });
+
+        $('#recompensaMaps').on('click', function () {
+
+            gotoMaps(current_recompensa);
+        });
+
 
         $('#recompensaPaginator > div:first-child').addClass('selected');
 
