@@ -324,39 +324,47 @@ function loginEmail() {
     }
 }
 
-function goHome(ciudad_id) {
+function goHome(ciudad_id, save) {
 
     if(current_page != 'home.html') {
 
         current_page = 'home.html';
 
-        CIUDAD_ID = ciudad_id;
+        CIUDAD_ID = ciudad_seleccionada = ciudad_id;
 
         //se guarda la ciudad
         if (isLogin()) {
-            var user = COOKIE;
-            var me = user.id;
 
-            getJsonP(api_url + 'setCiudad/', function (data) {
+            if(save == undefined) {
+                var user = COOKIE;
+                var me = user.id;
 
-                if (data) {
+                getJsonP(api_url + 'setCiudad/', function (data) {
 
-                    if (data.status == 'success') {
+                    if (data) {
 
-                        mainnavigator.pushPage('home.html');
-                        //showAlert(data.mensaje, "Aviso", "Aceptar");
-                        //re-escribimos la cookie con la nueva ciudad
-                        reWriteCookie("user", "ciudad_id", data.ciudad_id);
+                        if (data.status == 'success') {
 
-                    } else {
+                            mainnavigator.pushPage('home.html');
 
-                        showAlert(data.mensaje, "Error", "Aceptar");
+                            //showAlert(data.mensaje, "Aviso", "Aceptar");
+                            //re-escribimos la cookie con la nueva ciudad
+                            reWriteCookie("user", "ciudad_id", data.ciudad_id);
+
+                        } else {
+
+                            showAlert(data.mensaje, "Error", "Aceptar");
+                        }
                     }
-                }
 
-            }, function () {
+                }, function () {
 
-            }, {usuario_id: me, ciudad_id: CIUDAD_ID});
+                }, {usuario_id: me, ciudad_id: CIUDAD_ID});
+
+            } else {
+
+                mainnavigator.pushPage('home.html');
+            }
         }
     }
 }
@@ -1925,9 +1933,9 @@ module.controller('PerfilController', function ($scope) {
 
             for(var i in applicationParams.ciudades) {
 
-                var selected = (applicationParams.ciudades[i].id == user.ciudad_id) ? 'selected="selected"' : '' ;
+                var selected = (applicationParams.ciudades[i].id == CIUDAD_ID) ? 'selected="selected"' : '' ;
 
-                $('#perfil_ciudad').append('<option value="' + applicationParams.ciudades[i].title + '" ' + selected + ' >' +
+                $('#perfil_ciudad').append('<option value="' + applicationParams.ciudades[i].id + '" ' + selected + ' >' +
                     applicationParams.ciudades[i].title + '</option>');
             }
 
@@ -2095,9 +2103,13 @@ function cambiarCiudad(dropdown, event) {
 
     var user = COOKIE;
 
+    ciudad_seleccionada = $(dropdown).val();
+
     getJsonP(api_url + 'setCiudad/', function(data) {
 
         if( data.status == 'success' ){
+
+            console.log('nueva ciudad:' + data.ciudad_id);
 
             showAlert(data.mensaje, "Aviso", "Aceptar");
 
@@ -2330,7 +2342,17 @@ function autentificarUsuario(boton) {
                         $('#btnRegistrarse').css('visibility', 'hidden');
                         $("#codigo_validacion").hide();
 
-                        mainnavigator.pushPage('ciudad.html');
+                        console.log(usuario);
+
+                        if(usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
+
+                            mainnavigator.popPage('email.html');
+                            goHome(usuario.ciudad_id, false);
+
+                        } else {
+
+                            mainnavigator.pushPage('ciudad.html');
+                        }
                     }
 
                 } else {

@@ -54,7 +54,15 @@ function loginTwitterConnect() {
                                             createCookie("user", JSON.stringify(usuario), 365);
                                             //mandamos directo al home si es que la cookie se creo correctamente
                                             if(isLogin()){
-                                                mainnavigator.pushPage('ciudad.html');
+
+                                                if(usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
+
+                                                    goHome(usuario.ciudad_id, false);
+
+                                                } else {
+
+                                                    mainnavigator.pushPage('ciudad.html');
+                                                }
                                             }
                                         }else{
                                             if(data.email_registrado){
