@@ -1283,6 +1283,7 @@ i.invitado {
     max-height:52px;
     min-height: 60px;
     overflow: visible;
+    position:relative;
 }
 
 
@@ -1292,7 +1293,7 @@ i.invitado {
     width: 146px;
     height: 92px;
     z-index: 100;
-    margin-top: -8px;
+    margin-top: -2.6%;
 }
 
 .header-logo.left {
@@ -1306,7 +1307,7 @@ i.invitado {
     height: 100%;
     left: 5px;
     vertical-align: middle;
-    top: 4%;
+    top: 9px;
 }
 
 .icons.right {
@@ -1315,7 +1316,7 @@ i.invitado {
     height: 100%;
     right: 5px;
     vertical-align: middle;
-    top: 4%;
+    top: 5px;
 }
 
 .button.header {
@@ -1783,28 +1784,32 @@ label.checkbox:last-child {
 
 @media all and (max-width: 320px) {
 
-    .icons.right {
+    /*.icons.right {
         top: 6px;
     }
 
     .icons.left {
         top: 8px;
-    }
+    }*/
 }
 
 @media all and (min-width: 321px) {
 
     .button.header {
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .header-logo {
+        margin-top:-2px;
     }
 
     .icons.right {
-        top: 18px;
+        top: 10px;
     }
 
     .icons.left {
-        top: 18px;
+        top: 12px;
     }
 
     .header {
@@ -1812,19 +1817,24 @@ label.checkbox:last-child {
     }
 }
 
-@media all and (min-width: 360px) {
+@media all and (min-width: 376px) {
 
     .button.header {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
 
     .icons.right {
-        top: 5px;
+        top: 10px;
     }
 
     .icons.left {
-        top: 5px;
+        top: 17px;
+    }
+
+    .header-logo {
+        left: 35%;
+        margin-top: 0px;
     }
 }
 

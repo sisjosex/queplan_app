@@ -1,6 +1,6 @@
 var templates = {
 
-    planes_list: '<div class="list-item-container loading" onclick="gotoPlanDetalle(%index%)">'+
+    planes_list: '<div class="list-item-container loading" rel="%index%">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%, \'planesScroll\')" src="%imagen%" /></div>'+
     '<div class="overlay title">' +
@@ -10,7 +10,7 @@ var templates = {
     '</div>',
 
     recompensas_list_content:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoRecompensaDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+
@@ -23,7 +23,7 @@ var templates = {
     '</ons-list-item>',
 
     guias_list:
-    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoLocales(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container" rel="%index%">'+
     '<div class="list-item-left">'+
     '<img src="%imagen%" class="avator" onload="refreshGuiasScroll()">'+
     '</div>'+
@@ -47,7 +47,7 @@ var templates = {
     '</ons-list-item>',
 
     locales_list:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoGuiaDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+
@@ -60,7 +60,7 @@ var templates = {
     '</ons-list-item>',
 
     menu_list:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" onclick="gotoMenuDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
     '</div>'+

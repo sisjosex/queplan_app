@@ -1,4 +1,5 @@
 var api_url = 'http://web.queplanmadrid.es/api/';
+var app_url  = 'http://www.queplanmadrid.es/';
 var img_url = 'http://www.queplanmadrid.es/img/';
 var thumb_url = 'http://web.queplanmadrid.es/helpers/timthumb.php?w=%width%&h=%height%&src=';
 
