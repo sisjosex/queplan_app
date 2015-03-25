@@ -1767,6 +1767,19 @@ label.checkbox:last-child {
     padding-left: 5px;
 }
 
+.button .count {
+    background: #20232b;
+    padding: 0px;
+    border-radius: 10px;
+    color: #fff;
+    position: absolute;
+    right: -12px;
+    top: -11px;
+    line-height: 23px;
+    padding-left: 1px;
+    padding-right: 2px;
+    min-width: 20px;
+}
 
 @media all and (max-width: 320px) {
 

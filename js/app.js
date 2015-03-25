@@ -719,7 +719,7 @@ function goToContacto() {
     splash.pushPage('contacto.html', {});
 }
 
-function goToPlanes() {
+function goToPlanes(local_id) {
 
     if (current_page != 'planes.html') {
 
@@ -727,15 +727,25 @@ function goToPlanes() {
 
         getJsonP(api_url + 'getPlanes/', function (data) {
 
-            current_list = data;
+            if(data.list != false) {
 
-            mainnavigator.pushPage('planes.html', {});
+                current_list = data;
 
-            if (current_list.list) {
+                mainnavigator.pushPage('planes.html', {});
+
+                if (current_list.list) {
+                }
+
+            } else {
+
+                showAlert('No existen planes para mostrar', 'Mensaje', 'Aceptar');
+
+                current_page = 'planes.html';
             }
 
+
         }, function () {
-        }, {ciudad_id: ciudad_seleccionada});
+        }, {ciudad_id: ciudad_seleccionada, local_id: local_id});
 
     }
 }
@@ -1363,8 +1373,18 @@ module.controller('LocalController', function ($scope) {
             actionCall(current_local.telefono);
         });
 
+        if(current_local.planes > 0) {
+
+            $('#localVerPlanes').find('.count').text(current_local.planes);
+
+        } else {
+
+            $('#localVerPlanes').find('.count').remove();
+        }
+
         $('#localVerPlanes').on('click', function () {
 
+            goToPlanes(current_local.id);
         });
 
         $('#localMaps').on('click', function () {
