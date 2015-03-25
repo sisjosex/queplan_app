@@ -508,6 +508,7 @@ function isLogin() {
     if (cookie_user !== null) {
         res = true;
         COOKIE = cookie_user;
+        ciudad_seleccionada = cookie_user.ciudad_id;
     } else {
         REDIREC_TO = window.location.href;
     }
@@ -1103,7 +1104,20 @@ module.controller('NavigatorController', function ($scope) {
                 var user = COOKIE;
 
                 if ($.trim(user.email) == "") {
+
                     mainnavigator.pushPage("perfil.html", {animation: 'none'});
+
+                } else {
+
+                    if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
+
+                        mainnavigator.pushPage('ciudad.html');
+
+                    } else {
+
+                        goHome(ciudad_seleccionada);
+
+                    }
                 }
 
             } else {

@@ -221,28 +221,38 @@ function createCookie(name,value,days) {
 		var expires = "; expires="+date.toGMTString();
 	}
 	else var expires = "";
-    window.cookie = name+"="+value+expires+";path=/";
+    //window.cookie = name+"="+value+expires+";path=/";
+
+    localStorage.setItem(name, value);
 }
 
 function readCookie(name) {
-    var nameEQ = name + "=";
+    /*var nameEQ = name + "=";
     var ca=0;
-    if(window.cookie)
+    if(localStorage)
         var ca = window.cookie.split(';');
         for(var i=0;i < ca.length;i++) {
                 var c = ca[i];
                 while (c.charAt(0)==' ') c = c.substring(1,c.length);
                 if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
         }
-        return null;
+        return null;*/
+
+    return localStorage.getItem(name);
 }
 
 function reWriteCookie(name,attr,value) {
-    var cookie_name = readCookie(name);
+
+    //var cookie_name = readCookie(name);
+    var cookie_name = localStorage.getItem(name);
+
     var parseData = $.parseJSON(cookie_name);
     parseData[attr] = value;
     var stringify = JSON.stringify(parseData)
-    window.cookie = name+"="+stringify;
+
+    //window.cookie = name+"="+stringify;
+
+    localStorage.setItem(name, stringify);
 }
 
 function eraseCookie(name) {
