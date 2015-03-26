@@ -102,7 +102,7 @@
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
     
     <!-- BarcodeScanner -->
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" version="1.2.0" />
+    <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
     
     <!-- PhoneDialer -->
     <gap:plugin name="com.teamnemitoff.phonedialer" version="0.3.0" />
