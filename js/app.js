@@ -2096,6 +2096,15 @@ var recibir_alertas;
 module.controller('PerfilController', function ($scope) {
     ons.ready(function () {
 
+        setTimeout(function () {
+
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+
+        }, 1000);
+
         var user = COOKIE;
 
         PerfilController = this;
