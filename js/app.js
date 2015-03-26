@@ -51,14 +51,14 @@ function checkIn(urlamigable) {
                         function () {
                             if (user.registrado_mediante == "facebook") {
 
-                                 setTimeout(function(){
+                                 /*setTimeout(function(){
                                  shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
-                                 },500);
+                                 },500);*/
 
                             } else if (user.registrado_mediante == "twitter") {
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);
+                                }, 500);*/
                             }
                         },         // callback
                         "AQU\u00CD ESTOY!", // title
@@ -107,9 +107,9 @@ function checkIn(urlamigable) {
                                  },500);
                                  */
                             } else if (user.registrado_mediante == "twitter") {
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);
+                                }, 500);*/
                             }
                         },         // callback
                         "AQU\u00CD ESTOY!", // title
@@ -203,14 +203,14 @@ function comprarRecompensa(local_id, recompensa_id) {
 
                             if (user.registrado_mediante == "facebook") {
 
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);
+                                }, 500);*/
 
                             } else if (user.registrado_mediante == "twitter") {
-                                setTimeout(function () {
+                                /*setTimeout(function () {
                                     shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);
+                                }, 500);*/
                             }
                         });
 
@@ -771,13 +771,13 @@ function imageLoaded(index) {
     if (index == 0) {
         setInterval(function () {
 
-            if (homeSlider.getActiveCarouselItemIndex() < homeSlider._getCarouselItemCount() - 1) {
+            if (homeImages.getActiveCarouselItemIndex() < homeImages._getCarouselItemCount() - 1) {
 
-                homeSlider.next();
+                homeImages.next();
 
             } else {
 
-                homeSlider.setActiveCarouselItemIndex(0);
+                homeImages.setActiveCarouselItemIndex(0);
             }
 
         }, 5000);
@@ -912,11 +912,11 @@ function procesarRegistro(element, event, type) {
     }
 }
 
-function elegirCiudad(element, event) {
+function elegirCiudad(ciudad_id) {
 
-    ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
+    ciudad_seleccionada = CIUDAD_ID = ciudad_id;
 
-    console.log('ciudad elegida ' + ciudad_seleccionada);
+    //ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
 
     goHome(ciudad_seleccionada);
 }
@@ -1133,6 +1133,49 @@ function onSliderHomeIMGLoad(img, index) {
     image.src = src;
 }
 
+function adaptImage(img, index) {
+
+    var src = $(img).attr('src');
+    var container = $(img).parent();
+
+    var outerWidth = $(img).parent().outerWidth();
+    var outerHeight = $(img).parent().outerHeight();
+
+    var image = new Image();
+
+    container.parent().find('ons-icon').remove();
+
+    container.html('');
+    container.addClass('noopaque');
+
+    image.onload = function(event) {
+
+        container.css('background-image', "url('" + src + "')");
+        container.css('background-repeat', "no-repeat");
+        container.css('background-position', "0 0");
+
+        var width = image.width;
+        var height = image.height;
+
+        if(width > height) {
+
+            width = '100%';
+            height = 'auto';
+
+        } else {
+
+            width = 'auto';
+            height = '100%';
+        }
+
+        container.css('background-size', (width) + "" + " " + (height) + "");
+
+        container.removeClass('noopaque');
+    }
+
+    image.src = src;
+}
+
 function infoAction() {
     actionCall('918538002');
 }
@@ -1205,6 +1248,29 @@ module.controller('ciudadController', function ($scope) {
         CiudadController = this;
 
         loadIntoTemplate('#ciudad_images', applicationParams.ciudades, 'slider_ciudades');
+        loadIntoTemplate('#ciudadPaginator', applicationParams.ciudades, 'slider_paginator');
+
+        $('#ciudadPaginator > div:first-child').addClass('selected');
+
+
+        CiudadController.carouselPostChange = function () {
+            $('#ciudadPaginator > div').removeClass('selected');
+            $('#ciudadPaginator > div:nth-child(' + (ciudad_images.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+        };
+
+        setTimeout(function () {
+
+            ciudad_images.on('postchange', CiudadController.carouselPostChange);
+
+        }, 100);
+
+        $('#ciudadPage').find('.ciudad_slide').each(function() {
+
+            $(this).on('click', function() {
+                elegirCiudad( $(this).attr('rel') );
+            });
+
+        });
 
     })
 });
@@ -1264,7 +1330,7 @@ module.controller('HomeController', function ($scope) {
 
                 homeImages.on('postchange', HomeController.carouselPostChange);
 
-            }, 1000);
+            }, 100);
 
             ons.compile($('#homeImages')[0]);
 
@@ -1374,11 +1440,11 @@ module.controller('PlanController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planPaginator')[0], current_plan.images, 'slider_paginator');
 
         if (current_plan.condicion) {
-            $(mainnavigator.getCurrentPage().element[0]).find('#planCondicion').html('<h4>Condición</h4><p align="left">' + current_plan.condicion + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planCondicion').html('<h4 class="rosa">Condición</h4><p align="left">' + current_plan.condicion + '</p>');
         }
 
         if (current_plan.como_reservar) {
-            $(mainnavigator.getCurrentPage().element[0]).find('#planComoReservar').html('<h4>Como Reservar</h4><p align="left">' + current_plan.como_reservar + '</p>');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planComoReservar').html('<h4 class="rosa">Como Reservar</h4><p align="left">' + current_plan.como_reservar + '</p>');
         }
 
         $(mainnavigator.getCurrentPage().element[0]).find('#planLlamar').on('click', function () {
@@ -1875,6 +1941,8 @@ module.controller('MenuDetalleController', function ($scope) {
         }
 
         $('#menu_detalleList').css('padding-bottom', footerHeight + 'px');
+
+        $('#menuDetalleLogo').attr('src', current_menu.imagen);
 
         $('#menu_detalleCotent').html(str);
 
@@ -2866,26 +2934,32 @@ var currentLink;
 var isExternalShowing = false;
 function openExternalLink(url, e) {
 
-    currentLink = url;
+    if(!isExternalShowing) {
 
-    try {
+        isExternalShowing = true;
+        setTimeout(function(){ isExternalShowing = false; }, 100);
 
-        window.plugins.ChildBrowser.showWebPage(url,
-            {showLocationBar: true});
+        currentLink = url;
 
-        window.plugins.ChildBrowser.onClose = function () {
-            isExternalShowing = false;
-        };
+        try {
 
-    } catch (error) {
+            window.plugins.ChildBrowser.showWebPage(url,
+                {showLocationBar: true});
 
-        window.open(url, '_system');
-        //splash.pushPage('external.html', {});
-    }
+            window.plugins.ChildBrowser.onClose = function () {
+                isExternalShowing = false;
+            };
 
-    if (e != undefined) {
-        e.stopPropagation();
-        e.preventDefault();
+        } catch (error) {
+
+            window.open(url, '_blank', 'location=yes,closebuttoncaption=Salir');
+            //splash.pushPage('external.html', {});
+        }
+
+        if (e != undefined) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
     }
 }
 

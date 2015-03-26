@@ -84,7 +84,7 @@
 
                 <div class="panel" style="margin-top:-20px;">
 
-                    <h3 class="center">Accede a travéz de tu cuenta</h3>
+                    <h3 class="center">LOS MEJORES PLANES TE ESPERAN</h3>
 
                     <h3 class="center"><span class="azul">Facebook</span> <span class="celeste">Twitter</span> <span class="rojo">Google</span></h3>
 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="horizontal">
-                        <div class="button btn naranja" onclick="loginEmail(this, event, 'email')"><span class="text fixed">Ingresar con mi Email</span> <i class="email"></i></div>
+                        <div class="button btn naranja" onclick="loginEmail(this, event, 'email')"><span class="text fixed">Ingresar con mi Email</span> <i class="email2" style="margin-top: 6px;"></i></div>
                     </div>
 
                 </div>
@@ -120,8 +120,8 @@
         <div class="relative full-screen">
             <ons-carousel id="ciudad_images" var="ciudad_images" class="relative slider" overscrollable="" auto-scroll="" full-screen="" style="width:100%;height:100%;"></ons-carousel>
             <div style="position:fixed;bottom:5px;width:100%;">
-                <div class="horizontal">
-                    <div class="button btn rojo"  onclick="elegirCiudad(this, event)"><span class="text">Seleccionar</span></div>
+                <div class="horizontal center">
+                    <div id="ciudadPaginator" class="slider-paginator" style="position: relative;"></div>
                 </div>
             </div>
         </div>
@@ -306,7 +306,7 @@
                     </div>
 
                     <div class="horizontal center">
-                        <b>Dirección:</b> <span id="planDireccion"></span>
+                        <b class="rosa">Dirección:</b> <span id="planDireccion"></span>
                     </div>
 
                     <div class="horizontal">
@@ -804,8 +804,9 @@
 
             <div id="menu_detalleList" class="scroll-content scrollfix">
 
-                <div class="horizontal"></div>
-                <div class="horizontal"></div>
+                <div class="horizontal restaurante_logo" style="margin:0;">
+                    <img id="menuDetalleLogo" />
+                </div>
 
                 <div class="horizontal center">
                     <div class="menu_header">
