@@ -1063,64 +1063,74 @@ function onSliderHomeIMGLoad(img, index) {
     var outerWidth = $(img).parent().outerWidth();
     var outerHeight = $(img).parent().outerHeight();
 
-    var image = this;
+    var image = new Image();
 
     container.parent().find('ons-icon').remove();
 
     container.html('');
     container.addClass('noopaque');
 
-    container.css('background-image', "url('" + src + "')");
-    container.css('background-repeat', "no-repeat");
-    container.css('background-position', "center center");
+    image.onload = function(event) {
 
-    var width = image.width;
-    var height = image.height;
-    var factor = 1;
+        container.css('background-image', "url('" + src + "')");
+        container.css('background-repeat', "no-repeat");
+        container.css('background-position', "center center");
 
-    if (outerWidth > width) {
-        factor = outerWidth / width;
-        width = width * factor;
-        height = height * factor;
-    }
+        var width = image.width;
+        var height = image.height;
+        var factor = 1;
 
-    if (outerHeight > height) {
+        console.log('width: ' + outerWidth + ', height: ' + outerHeight);
+        console.log('img width: ' + this.width + ', height: ' + this.height);
 
-        factor = (outerHeight) / height;
-        width = width * factor;
-        height = height * factor;
-    }
-
-    if (outerWidth < width) {
-        factor = outerHeight / height;
-        width = width * factor;
-        height = outerHeight;
-
-        if (outerWidth - width > 0) {
+        if (outerWidth > width) {
             factor = outerWidth / width;
-            width = outerWidth;
+            width = width * factor;
             height = height * factor;
         }
 
+        if (outerHeight > height) {
 
-    } else if (outerHeight < height) {
-        factor = outerWidth / width;
-        width = outerWidth;
-        height = height * factor;
-
-        if (outerHeight - height > 0) {
-            factor = outerHeight / height;
-            height = outerHeight;
+            factor = (outerHeight) / height;
             width = width * factor;
+            height = height * factor;
         }
+
+        if (outerWidth < width) {
+            factor = outerHeight / height;
+            width = width * factor;
+            height = outerHeight;
+
+            if (outerWidth - width > 0) {
+                factor = outerWidth / width;
+                width = outerWidth;
+                height = height * factor;
+            }
+
+
+        } else if (outerHeight < height) {
+            factor = outerWidth / width;
+            width = outerWidth;
+            height = height * factor;
+
+            if (outerHeight - height > 0) {
+                factor = outerHeight / height;
+                height = outerHeight;
+                width = width * factor;
+            }
+        }
+
+        width = parseInt(width + "");
+        height = parseInt(height + "");
+
+        console.log('width: ' + width + ', height: ' + height);
+
+        container.css('background-size', (width) + "px" + " " + (height) + "px");
+
+        container.removeClass('noopaque');
     }
 
-    width = parseInt(width + "");
-    height = parseInt(height + "");
-
-    container.css('background-size', (width) + "px" + " " + (height) + "px");
-
-    container.removeClass('noopaque');
+    image.src = src;
 }
 
 function infoAction() {
