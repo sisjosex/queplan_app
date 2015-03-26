@@ -101,6 +101,8 @@
 
                         }, function() {
 
+                            showAlert("Ocurrio un problema al conectar al servidor", 'Error Login', 'Aceptar');
+
                         }, {
                             app_id: user_id,
                             email: email,
