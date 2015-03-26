@@ -326,30 +326,90 @@ function showNotification(event, type) {
 //redirectToPage
 function redirectToPage(seccion, id) {
     var page = "";
+    var options = {};
+    var url = api_url;
+
     if (seccion == "local") {
-        page = "#guia"
-        if (id != "") {
-            page = "local_descripcion.html?id=" + id;
+
+        page = "guia.html"
+
+        if (id == "") {
+
+            current_page = '';
+
+            goToGuia();
+
+        } else {
+
+            getJsonP(api_url + 'getLocales/', function (data) {
+
+                if(data.status == 'success') {
+
+                    mainnavigator.pushPage('local.html', {current_local: data.items});
+
+                } else {
+
+                    showAlert('No existe el local para mostrar', 'Mensaje', 'Aceptar');
+
+                    current_page = '';
+                }
+
+
+            }, function () {
+            }, {ciudad_id: ciudad_seleccionada, local_id: id});
         }
     } else if (seccion == "plan") {
+
         page = "planes.html";
-        if (id != "") {
-            page = "plan_descripcion.html?id=" + id;
+
+        if (id == "") {
+
+            goToPlanes();
+
+        } else {
+
+            getJsonP(api_url + 'getPlanes/', function (data) {
+
+                if(data.status == 'success') {
+
+                    mainnavigator.pushPage('plan.html', {current_plan: data.items});
+
+                } else {
+
+                    showAlert('No existe el plan para mostrar', 'Mensaje', 'Aceptar');
+                }
+
+            }, function () {
+            }, {ciudad_id: ciudad_seleccionada, plan_id: id});
+
         }
+
     } else if (seccion == "recompensa") {
-        page = "#recompesas";
-        if (id != "") {
-            page = "recompensa_descripcion.html?id=" + id;
+
+        page = "recompesas.html";
+
+        if (id == "") {
+
+            goToRecompensas();
+
+        } else {
+
+            getJsonP(api_url + 'getRecompensas/', function (data) {
+
+                if(data.status == 'success') {
+
+                    mainnavigator.pushPage('recompensa.html', {current_recompensa: data.items});
+
+                } else {
+
+                    showAlert('No existe el plan para mostrar', 'Mensaje', 'Aceptar');
+                }
+
+            }, function () {
+            }, {ciudad_id: ciudad_seleccionada, recompensa_id: id});
         }
     }
 
-    if (seccion != "") {
-        setTimeout(function () {
-            $.mobile.changePage(page);
-        }, 400);
-    } else {
-        //TODO
-    }
 }
 
 function loginInvitado() {
@@ -444,21 +504,26 @@ function pagar_recompensa(id) {
             if (buttonIndex == 1) {
                 showLoadingCustom('Espere por favor...');
 
-                $.getJSON(BASE_URL_APP + 'usuarios_recompensas/mobileSetPagado/' + id, function (data) {
+                getJsonP(api_url + 'setPagado/', function(data){
 
                     if (data) {
-                        //ocultamos loading
-                        $.mobile.loading('hide');
 
-                        if (data.success) {
-                            var element = $("#" + id + ".validar_recompensa")
-                            element.hide();
-                            element.parent().parent().find(".ui-icon-arrow-r").css("top", "50%");
+                        if (data.status == 'success') {
+
+                            $('#recompensa_' + id).removeClass('button').html('');
+
                             showAlert(data.mensaje, "Aviso", "Aceptar");
+
                         } else {
+
                             showAlert(data.mensaje, "Error", "Aceptar");
                         }
                     }
+
+                }, function() {
+
+                }, {
+                    id: id
                 });
             }
         },            // callback to invoke with index of button pressed
@@ -468,37 +533,43 @@ function pagar_recompensa(id) {
 }
 
 
-function getValidarDeviceUuid(parent_id, device_uuid, token_notificacion) {
-    var parent = $("#" + parent_id);
+function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
-    $.getJSON(BASE_URL_APP + 'usuarios/validarDeviceUuid/' + device_uuid + '/' + token_notificacion, function (data) {
-        //mostramos loading
-        $.mobile.loading('show');
+    getJsonP(api_url + 'validarDeviceUuid/', function(data) {
 
-        if (data.success) {
+        if (data.status == 'success') {
+
+            getLocationGPS();
+
             APP_INITIALIZED = true;
             var usuario = data.usuario;
             //guardamos los datos en la COOKIE
             createCookie("user", JSON.stringify(usuario), 365);
-            //mandamos directo al home si es que la cookie se creo correctamente y tiene ciudad_id seleccionada
-            //sino le pedimos que se logee con fb o tw
-            //recuperamos los datos de ciudad
-            var usuario_ciudad = data.usuario.Usuario.ciudad_id;
+
+            var usuario_ciudad = data.usuario.ciudad_id;
             //usuario_ciudad = '0';
-            if (usuario_ciudad && usuario_ciudad != '0') {
-                CIUDAD_ID = usuario_ciudad;
+            if (usuario_ciudad != '' && usuario_ciudad != '0') {
+                CIUDAD_ID = ciudad_seleccionada = usuario_ciudad;
+
                 if (isLogin()) {
-                    $.mobile.changePage('#home');
+                    mainnavigator.pushPage('home.html', {})
                 }
+
             } else {
-                $.mobile.changePage('#ciudades');
+
+                mainnavigator.pushPage('ciudad.html', {});
+
             }
         } else {
-            //ocultamos loading
-            $.mobile.loading('hide');
-            parent.find(".ui-header").fadeIn("slow");
-            parent.find(".ui-content").fadeIn("slow");
+
+            mainnavigator.pushPage('registro.html', {});
         }
+
+    }, function() {
+
+    }, {
+        device_uuid: device_uuid,
+        token_notificacion: token_notificacion
     });
 }
 
@@ -549,11 +620,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
-        //Hide the statusbar
-        try {
-            StatusBar.hide();
-        } catch (error) {
-        }
 
         //Inicializamos el api de facebook
         openFB.init({appId: '537875786305519'});
@@ -592,6 +658,38 @@ var app = {
                     "ecb": "app.onNotificationAPN"
                 });
             }
+
+        } else {
+
+            getLocationGPS();
+
+            if (isLogin()) {
+
+                var user = COOKIE;
+
+                if ($.trim(user.email) == "") {
+
+                    mainnavigator.pushPage("perfil.html", {animation: 'none'});
+
+                } else {
+
+                    CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
+
+                    if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
+
+                        mainnavigator.pushPage('ciudad.html');
+
+                    } else {
+
+                        mainnavigator.pushPage('home.html');
+
+                    }
+                }
+
+            } else {
+
+                mainnavigator.pushPage("registro.html", {animation: 'none'});
+            }
         }
     },
     // result contains any message sent from the plugin call
@@ -611,7 +709,7 @@ var app = {
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
             if (!APP_INITIALIZED) {
-                getValidarDeviceUuid("view", device.uuid, PUSH_NOTIFICATION_TOKEN);
+                getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
             }
         }
         //console.log("Regid " + result);
@@ -628,7 +726,7 @@ var app = {
 
                     //mandamos a guardar el token para las notificaciones solo si no se guardo antes
                     if (!APP_INITIALIZED) {
-                        getValidarDeviceUuid("view", device.uuid, PUSH_NOTIFICATION_TOKEN);
+                        getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
                     }
                 }
                 break;
@@ -1080,9 +1178,6 @@ function onSliderHomeIMGLoad(img, index) {
         var height = image.height;
         var factor = 1;
 
-        console.log('width: ' + outerWidth + ', height: ' + outerHeight);
-        console.log('img width: ' + this.width + ', height: ' + this.height);
-
         if (outerWidth > width) {
             factor = outerWidth / width;
             width = width * factor;
@@ -1122,8 +1217,6 @@ function onSliderHomeIMGLoad(img, index) {
 
         width = parseInt(width + "");
         height = parseInt(height + "");
-
-        console.log('width: ' + width + ', height: ' + height);
 
         container.css('background-size', (width) + "px" + " " + (height) + "px");
 
@@ -1187,37 +1280,14 @@ module.controller('NavigatorController', function ($scope) {
 
         NavigatorController = this;
 
+        try {
+            StatusBar.hide();
+        } catch (error) {
+        }
+
         loadApplicationParams(function () {
 
-            getLocationGPS();
-
-            if (isLogin()) {
-
-                var user = COOKIE;
-
-                if ($.trim(user.email) == "") {
-
-                    mainnavigator.pushPage("perfil.html", {animation: 'none'});
-
-                } else {
-
-                    CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
-
-                    if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
-
-                        mainnavigator.pushPage('ciudad.html');
-
-                    } else {
-
-                        mainnavigator.pushPage('home.html');
-
-                    }
-                }
-
-            } else {
-
-                mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }
+            /*getLocationGPS();*/
 
             app.onDeviceReady();
         });
@@ -1247,15 +1317,15 @@ module.controller('ciudadController', function ($scope) {
 
         CiudadController = this;
 
-        loadIntoTemplate('#ciudad_images', applicationParams.ciudades, 'slider_ciudades');
-        loadIntoTemplate('#ciudadPaginator', applicationParams.ciudades, 'slider_paginator');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#ciudad_images')[0], applicationParams.ciudades, 'slider_ciudades');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#ciudadPaginator')[0], applicationParams.ciudades, 'slider_paginator');
 
-        $('#ciudadPaginator > div:first-child').addClass('selected');
+        $(mainnavigator.getCurrentPage().element[0]).find('#ciudadPaginator > div:first-child').addClass('selected');
 
 
         CiudadController.carouselPostChange = function () {
-            $('#ciudadPaginator > div').removeClass('selected');
-            $('#ciudadPaginator > div:nth-child(' + (ciudad_images.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#ciudadPaginator > div').removeClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#ciudadPaginator > div:nth-child(' + (ciudad_images.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
         };
 
         setTimeout(function () {
@@ -1264,7 +1334,7 @@ module.controller('ciudadController', function ($scope) {
 
         }, 100);
 
-        $('#ciudadPage').find('.ciudad_slide').each(function() {
+        $(mainnavigator.getCurrentPage().element[0]).find('#ciudadPage .ciudad_slide').each(function() {
 
             $(this).on('click', function() {
                 elegirCiudad( $(this).attr('rel') );
@@ -1615,20 +1685,24 @@ module.controller('GuiasController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#guiasHeader').height(footerHeight - 8);
-        $('#guiasHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $('#guiasPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasPage .page__content').css('top', (footerHeight - 8) + 'px');
 
-        loadIntoTemplate('#guias_content', current_list.items, 'guias_list');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
 
-        $('#guiasPage').find('.list-item-container').on('click', function(){
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasPage .list-item-container').on('click', function(){
             gotoLocales( $(this).attr('rel'), current_list );
         });
 
-        ons.compile($('#guias_content')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0]);
 
-        initScroll('guiasScroll');
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasScroll').attr('id', 'guiasScroll' + counterPlanes);
+
+        initScroll('guiasScroll' + counterPlanes);
 
     })
 });
@@ -1645,16 +1719,21 @@ module.controller('ComoFuncionaController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#como_funcionaHeader').height(footerHeight - 8);
-        $('#como_funcionaHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $('#como_funcionaPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaPage .page__content').css('top', (footerHeight - 8) + 'px');
 
-        loadIntoTemplate('#como_funciona_content', applicationParams.como_funciona, 'como_funciona_list');
+        loadIntoTemplate( $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_content')[0], applicationParams.como_funciona, 'como_funciona_list');
 
-        ons.compile($('#como_funciona_content')[0]);
+        ons.compile( $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_content')[0]);
 
-        initScroll('como_funcionaScroll');
+
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaScroll').attr('id', 'como_funcionaScroll' + counterPlanes);
+
+        initScroll('como_funcionaScroll' + counterPlanes);
 
     })
 });
@@ -1684,24 +1763,25 @@ module.controller('ComoFuncionaDetalleController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#como_funciona_detalleHeader').height(footerHeight - 8);
-        $('#como_funciona_detalleHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        footerHeight = factor * $('#como_funciona_detalleHeader').outerHeight();
+        footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').outerHeight();
 
-        $('#como_funciona_detalleHeader').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').height(footerHeight);
 
-        $('#como_funciona_detalle_title').html(current_como_funciona.title);
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalle_title').html(current_como_funciona.title);
 
-        $('#como_funciona_detalleDescripcion').html(current_como_funciona.descripcion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleDescripcion').html(current_como_funciona.descripcion);
 
-        ons.compile($('#como_funciona_detalleScroll')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleScroll')[0]);
 
-        initScroll('como_funciona_detalleScroll');
 
-        setTimeout(function () {
-            scrolls.como_funciona_detalleScroll.refresh();
-        }, 100);
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleScroll').attr('id', 'como_funciona_detalleScroll' + counterPlanes);
+
+        initScroll('como_funciona_detalleScroll' + counterPlanes);
 
     })
 });
@@ -1716,24 +1796,24 @@ module.controller('QuieroParticiparController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#quiero_participarHeader').height(footerHeight - 8);
-        $('#quiero_participarHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        footerHeight = factor * $('#quiero_participarHeader').outerHeight();
+        footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').outerHeight();
 
-        $('#quiero_participarHeader').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').height(footerHeight);
 
-        $('#quiero_participar_title').html(applicationParams.quiero_participar.title);
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participar_title').html(applicationParams.quiero_participar.title);
 
-        $('#quiero_participarDescripcion').html(applicationParams.quiero_participar.descripcion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarDescripcion').html(applicationParams.quiero_participar.descripcion);
 
-        ons.compile($('#quiero_participarScroll')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarScroll')[0]);
 
-        initScroll('quiero_participarScroll');
+        counterPlanes += 1;
 
-        setTimeout(function () {
-            scrolls.quiero_participarScroll.refresh();
-        }, 100);
+        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarScroll').attr('id', 'quiero_participarScroll' + counterPlanes);
+
+        initScroll('quiero_participarScroll' + counterPlanes);
 
     })
 });
@@ -1782,20 +1862,24 @@ module.controller('LocalesController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#localesHeader').height(footerHeight - 8);
-        $('#localesHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#localesHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#localesHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $('#localesPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#localesPage .page__content').css('top', (footerHeight - 8) + 'px');
 
         loadIntoTemplate('#locales_content', current_list.items, 'locales_list');
 
-        $('#localesPage').find('.list-item-container').on('click', function(){
-            gotoGuiaDetalle( $(this).attr('rel'), current_list );
+        $(mainnavigator.getCurrentPage().element[0]).find('#localesPage').find('.list-item-container').on('click', function(){
+            gotoGuiaDetalle( $(mainnavigator.getCurrentPage().element[0]).find(this).attr('rel'), current_list );
         });
 
-        ons.compile($('#locales_content')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0]);
 
-        initScroll('localesScroll');
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').attr('id', 'localesScroll' + counterPlanes);
+
+        initScroll('localesScroll' + counterPlanes);
 
     })
 });
@@ -1813,44 +1897,41 @@ module.controller('GuiaController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $('#guiaHeader').height(footerHeight - 8);
-        $('#guiaHeader').css('min-height', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').height(footerHeight - 8);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        footerHeight = factor * $('#guiaFooter').outerHeight();
+        footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter').outerHeight();
 
-        $('#guiaFooter .banner').height(footerHeight);
-        $('#guiaHeader').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter .banner').height(footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').height(footerHeight);
 
-        /*$('.header-logo').width($('.header-logo').width() * factor);
-         $('.header-logo').height($('.header-logo').height() * factor);*/
+        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() - 1 );
 
-        height = $(window).height() - ( 200 * factor + $('#guiaFooter').outerHeight() + $('#guiaHeader').outerHeight() - 1 );
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaImages').height(height);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaToolbar').height(height);
 
-        $('#guiaImages').height(height);
-        $('#guiaToolbar').height(height);
-
-        $('#guiaPage .page__content').css('top', (height + $('#guiaHeader').outerHeight() ) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() ) + 'px');
         //$('#guiaPage .page__content').css('bottom', (footerHeight +'px') );
 
         //$('#guiaScroll').height($('#guiaScroll').height() - footerHeight);
 
-        $('#guiaList').css('padding-bottom', footerHeight + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaList').css('padding-bottom', footerHeight + 'px');
 
 
-        $('#guiaPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
 
 
         loadIntoTemplate('#guiaImages', current_guia.images, 'slider_guia');
         loadIntoTemplate('#guiaPaginator', current_guia.images, 'slider_paginator');
 
-        $('#guiaPaginator > div:first-child').addClass('selected');
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator > div:first-child').addClass('selected');
 
-        $('#guiaDescripcion').html(current_guia.descripcion);
-        $('#guiaDireccion').html(current_guia.direccion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaDescripcion').html(current_guia.descripcion);
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaDireccion').html(current_guia.direccion);
 
         GuiaController.carouselPostChange = function () {
-            $('#guiaPaginator > div').removeClass('selected');
-            $('#guiaPaginator > div:nth-child(' + (guiaImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator > div').removeClass('selected');
+            $(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator > div:nth-child(' + (guiaImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
         };
 
         setTimeout(function () {
@@ -1859,9 +1940,14 @@ module.controller('GuiaController', function ($scope) {
 
         }, 1000);
 
-        ons.compile($('#guia_content')[0]);
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guia_content')[0]);
 
-        initScroll('guiaScroll');
+
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiaScroll').attr('id', 'guiaScroll' + counterPlanes);
+
+        initScroll('guiaScroll' + counterPlanes);
 
     })
 });
@@ -2011,6 +2097,7 @@ module.controller('RecompensasController', function ($scope) {
 
                 $(this).find('.validar').addClass('button').append('Validar');
                 $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
+                $(this).find('.validar').attr('id', 'recompensa_' + current_list.items[i].gane_recompensa);
 
                 $(this).find('.validar').on('click', function(event) {
 
@@ -2493,8 +2580,6 @@ function cambiarCiudad(dropdown, event) {
 
         if( data.status == 'success' ){
 
-            console.log('nueva ciudad:' + data.ciudad_id);
-
             showAlert(data.mensaje, "Aviso", "Aceptar");
 
             CIUDAD_ID = ciudad_seleccionada = data.ciudad_id;
@@ -2536,8 +2621,6 @@ function reloadZonas() {
             var html = "";
 
             if(data.items.length){
-
-                console.log(data.items);
 
                 $.each(data.items, function(index, item) {
 
@@ -2725,8 +2808,6 @@ function autentificarUsuario(boton) {
 
                         $('#btnRegistrarse').css('visibility', 'hidden');
                         $("#codigo_validacion").hide();
-
-                        console.log(usuario);
 
                         if(usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
 
