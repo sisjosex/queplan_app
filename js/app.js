@@ -2226,29 +2226,38 @@ module.controller('PerfilController', function ($scope) {
 
 function saveAlertas() {
 
-    var user = COOKIE;
-    var data = $('#zonas').serializeArray();
+    if(!configurando_alertas) {
 
-    data.push({
-        name: 'usuario_id',
-        value: user.id
-    });
+        configurando_alertas = true;
 
-    getJsonP( api_url + 'saveAlertas/', function(data){
+        var user = COOKIE;
+        var data = $('#zonas').serializeArray();
 
-        if( data.status == 'success' ){
+        data.push({
+            name: 'usuario_id',
+            value: user.id
+        });
 
-            showAlert(data.mensaje, "Aviso", "Aceptar");
+        getJsonP(api_url + 'saveAlertas/', function (data) {
 
-        } else {
+            configurando_alertas = false;
 
-            showAlert(data.mensaje, "Error", "Aceptar");
+            if (data.status == 'success') {
 
-        }
+                showAlert(data.mensaje, "Aviso", "Aceptar");
 
-    }, function() {
+            } else {
 
-    }, data );
+                showAlert(data.mensaje, "Error", "Aceptar");
+
+            }
+
+        }, function () {
+
+            configurando_alertas = false;
+
+        }, data);
+    }
 }
 
 function refreshZonasAndPoints() {
