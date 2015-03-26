@@ -2256,84 +2256,98 @@ function refreshZonasAndPoints() {
     reloadZonas();
 }
 
+var configurando_alertas = false;
 function ActivarDesactivarAlertas() {
 
-    var user = COOKIE;
+    if(!configurando_alertas) {
 
-    if(recibir_alertas) {
+        configurando_alertas = true;
 
-        navigator.notification.confirm(
-            "Estas seguro que quieres dejar de recibir alertas?", // message
-            function (buttonIndex) {
-                //1:aceptar,2:cancelar
-                if (buttonIndex == 1) {
-                    showLoadingCustom('Espere por favor...');
+        var user = COOKIE;
 
-                    getJsonP(api_url + 'setAlerta/', function(data) {
+        if (recibir_alertas) {
 
-                        if (data) {
-                            if (data.status == 'success') {
+            navigator.notification.confirm(
+                "Estas seguro que quieres dejar de recibir alertas?", // message
+                function (buttonIndex) {
 
-                                recibir_alertas = data.recibir_alertas;
+                    configurando_alertas = false;
 
-                                if( recibir_alertas ) {
+                    //1:aceptar,2:cancelar
+                    if (buttonIndex == 1) {
+                        showLoadingCustom('Espere por favor...');
 
-                                    $('#btnAlertas .text').text('Dejar de recibir alertas');
+                        getJsonP(api_url + 'setAlerta/', function (data) {
+
+                            if (data) {
+                                if (data.status == 'success') {
+
+                                    recibir_alertas = data.recibir_alertas;
+
+                                    if (recibir_alertas) {
+
+                                        $('#btnAlertas .text').text('Dejar de recibir alertas');
+
+                                    } else {
+
+                                        $('#btnAlertas .text').text('Recibir alertas');
+
+                                    }
+                                    //re-escribimos la cookie con el nuevo recibir_alertas
+                                    reWriteCookie("user", "recibir_alertas", data.recibir_alertas);
+                                    showAlert(data.mensaje, "Aviso", "Aceptar");
 
                                 } else {
 
-                                    $('#btnAlertas .text').text('Recibir alertas');
-
+                                    showAlert(data.mensaje, "Error", "Aceptar");
                                 }
-                                //re-escribimos la cookie con el nuevo recibir_alertas
-                                reWriteCookie("user", "recibir_alertas", data.recibir_alertas);
-                                showAlert(data.mensaje, "Aviso", "Aceptar");
-
-                            } else {
-
-                                showAlert(data.mensaje, "Error", "Aceptar");
                             }
+
+                        }, function () {
+
+                        }, {
+                            usuario_id: user.id
+                        });
+                    }
+                },            // callback to invoke with index of button pressed
+                'Salir',           // title
+                'Aceptar,Cancelar'         // buttonLabels
+            );
+
+        } else {
+
+            getJsonP(api_url + 'setAlerta/', function (data) {
+
+                configurando_alertas = false;
+
+                if (data) {
+
+                    if (data.status == 'success') {
+                        recibir_alertas = data.recibir_alertas;
+
+                        if (recibir_alertas) {
+                            $('#btnAlertas .text').text('Dejar de recibir alertas');
+                        } else {
+                            $('#btnAlertas .text').text('Recibir alertas');
                         }
 
-                    }, function() {
-
-                    }, {
-                        usuario_id:user.id
-                    });
-                }
-            },            // callback to invoke with index of button pressed
-            'Salir',           // title
-            'Aceptar,Cancelar'         // buttonLabels
-        );
-
-    } else {
-
-        getJsonP(api_url + 'setAlerta/', function(data) {
-
-            if(data){
-
-                if(data.status == 'success'){
-                    recibir_alertas = data.recibir_alertas;
-
-                    if(recibir_alertas) {
-                        $('#btnAlertas .text').text('Dejar de recibir alertas');
+                        //re-escribimos la cookie con el nuevo recibir_alertas
+                        reWriteCookie("user", "recibir_alertas", data.recibir_alertas);
+                        showAlert(data.mensaje, "Aviso", "Aceptar");
                     } else {
-                        $('#btnAlertas .text').text('Recibir alertas');
+                        showAlert(data.mensaje, "Error", "Aceptar");
                     }
-
-                    //re-escribimos la cookie con el nuevo recibir_alertas
-                    reWriteCookie("user","recibir_alertas",data.recibir_alertas);
-                    showAlert(data.mensaje, "Aviso", "Aceptar");
-                }else{
-                    showAlert(data.mensaje, "Error", "Aceptar");
                 }
-            }
 
-        }, function() {
+            }, function () {
 
-        }, {
-            usuario_id:user.id
-        });
+                configurando_alertas = false;
+
+            }, {
+                usuario_id: user.id
+            });
+        }
+
     }
 }
 
