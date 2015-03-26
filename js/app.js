@@ -522,6 +522,8 @@ function redirectLogin() {
     $.mobile.changePage('#view');
 }
 
+var scanning = false;
+
 var app = {
     // Application Constructor
     initialize: function () {
@@ -687,59 +689,70 @@ var app = {
         clearInterval(INTERVAL);
     },
     scan: function () {
-        if (isLogin()) {
 
-            cordova.plugins.barcodeScanner.scan(
-                function (result) {
+        if(!scanning) {
 
-                    if (result.format == "QR_CODE") {
+            scanning = true;
 
-                        if (result.text != "") {
+            if (isLogin()) {
 
-                            var params = (result.text).toString().split("/");
-                            var urlamigable = params[params.length - 1].toString();
-                            //Mandamos al checkIn
-                            checkIn(urlamigable);
+                cordova.plugins.barcodeScanner.scan(
+                    function (result) {
 
-                        } else {
-                            showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+                        scanning = false;
+
+                        if (result.format == "QR_CODE") {
+
+                            if (result.text != "") {
+
+                                var params = (result.text).toString().split("/");
+                                var urlamigable = params[params.length - 1].toString();
+                                //Mandamos al checkIn
+                                checkIn(urlamigable);
+
+                            } else {
+                                showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+                            }
+
+                        } else if (result.cancelled) {
+
+                            //showAlert("Scanner Cancelled.", "Error", "Aceptar");
                         }
+                    },
+                    function (error) {
 
-                    } else if (result.cancelled) {
+                        scanning = false;
 
-                        showAlert("Scanner Cancelled.", "Error", "Aceptar");
+                        alert("Scanning failed: " + error);
                     }
-                },
-                function (error) {
-                    alert("Scanning failed: " + error);
-                }
-            );
+                );
 
-            /*var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-            scanner.scan(function (result) {
+                /*var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+                 scanner.scan(function (result) {
 
-                if (result.format == "QR_CODE") {
+                 if (result.format == "QR_CODE") {
 
-                    if (result.text != "") {
-                        var params = (result.text).toString().split("/");
-                        var urlamigable = params[params.length - 1].toString();
-                        //Mandamos al checkIn
-                        checkIn(urlamigable);
-                    } else {
-                        showAlert("Scanner failed, please try again.", "Error", "Aceptar");
-                    }
+                 if (result.text != "") {
+                 var params = (result.text).toString().split("/");
+                 var urlamigable = params[params.length - 1].toString();
+                 //Mandamos al checkIn
+                 checkIn(urlamigable);
+                 } else {
+                 showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+                 }
 
-                } else if (result.cancelled) {
-                    showAlert("Scanner Cancelled.", "Error", "Aceptar");
-                }
+                 } else if (result.cancelled) {
+                 showAlert("Scanner Cancelled.", "Error", "Aceptar");
+                 }
 
-            }, function (error) {
-                alert("Scanning failed: ", error);
-            });*/
+                 }, function (error) {
+                 alert("Scanning failed: ", error);
+                 });*/
 
-        } else if (LOGIN_INVITADO) {
+            } else if (LOGIN_INVITADO) {
 
-            alertaInvitado();
+                alertaInvitado();
+            }
         }
     }
 };
