@@ -1931,7 +1931,7 @@ module.controller('RecompensasController', function ($scope) {
 
             if(current_list.items[i].gane_recompensa) {
 
-                $(this).find('.validar').append('Validar');
+                $(this).find('.validar').addClass('button').append('Validar');
                 $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
 
                 $(this).find('.validar').on('click', function(event) {
@@ -1941,6 +1941,9 @@ module.controller('RecompensasController', function ($scope) {
 
                     pagar_recompensa($(this).attr('id'), this);
                 });
+            } else {
+
+                $(this).find('.validar').removeClass('button');
             }
 
             i ++;
