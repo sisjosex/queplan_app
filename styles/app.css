@@ -1198,7 +1198,8 @@ i.twitter {
 }
 
 i.email {
-    background-image: url("../img/icon_email.png");
+    background-image: url("../img/icon_mail_transparente.png");
+    margin-top:5px;
 }
 
 i.invitado {
