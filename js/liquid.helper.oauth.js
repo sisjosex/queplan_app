@@ -261,7 +261,7 @@
 			  }
 			})
 		    .done(function(data) {
-		    	console.log("Token Received / Found?");
+                   showAlert('Token Received / Found? >> ' + data.access_token, 'debug', 'Aceptar');
 		    	/* upon sucess, do a callback with the data received */
 		    	// temporary storing access token
 		    	$this.accessToken = data.access_token;
@@ -272,13 +272,14 @@
 		    	callback(data);
 		   	})
 		    .fail(function(xhr, textStatus) {
-		    	console.log("Token request error ?? >>" + xhr.responseText);
+                   showAlert('Token request error ?? >> ' + xhr.responseText, 'debug', 'Aceptar');
 		    	callback({
 		    		error: true,
 		    		message: xhr.responseText
 		    	});
 		    })
-		    .always(function() { //console.log("Token request complete"); 
+		    .always(function() { //console.log("Token request complete");
+                   showAlert('Request complete ?? ', 'debug', 'Aceptar');
 		    });			   
 	   },	   
 	   

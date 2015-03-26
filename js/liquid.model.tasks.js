@@ -127,6 +127,8 @@
 	    */
 	   getList: function(callback) {
 		   var $this = model.tasks;
+
+           showAlert('getList >> ', 'debug', 'Aceptar');
 		   
 		   liquid.helper.oauth.getAccessToken(function(tokenObj) {
 			   
