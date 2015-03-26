@@ -1490,7 +1490,7 @@ i.invitado {
 }
 
 .menu_platos p{
-    display:inline;
+    text-align: left !important;
 }
 
 .list-item-container {
