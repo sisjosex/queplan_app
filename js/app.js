@@ -1926,11 +1926,15 @@ function goBackFromProfile() {
         } else {
 
             mainnavigator.popPage('perfil.html');
+
+            current_page = '';
         }
 
     } else if( LOGIN_INVITADO ) {
 
         mainnavigator.popPage('perfil.html');
+
+        current_page = '';
     }
 }
 
@@ -2311,6 +2315,8 @@ function cambiarEmail() {
                 if (data.status == 'success') {
 
                     showAlert(data.mensaje, "Aviso", "Aceptar", function(){ editando_email = false; });
+
+                    COOKIE.email = data.new_email;
 
                     //re-escribimos la cookie con el nuevo email
                     reWriteCookie("user", "email", data.new_email);
