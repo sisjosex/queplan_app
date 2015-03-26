@@ -1914,6 +1914,26 @@ module.controller('RecompensasController', function ($scope) {
     })
 });
 
+function goBackFromProfile() {
+    var user = COOKIE;
+
+    if( isLogin() ) {
+
+        if( $.trim(user.email) == '' ) {
+
+            showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
+
+        } else {
+
+            mainnavigator.popPage('perfil.html');
+        }
+
+    } else if( LOGIN_INVITADO ) {
+
+        mainnavigator.popPage('perfil.html');
+    }
+}
+
 function pagar_recompensa(id, element){
     navigator.notification.confirm(
         "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
