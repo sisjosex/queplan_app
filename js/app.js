@@ -571,8 +571,6 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
     getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
 
-        showAlert(data, 'validarDeviceUuid', 'Aceptar');
-
         if (data.status == 'success') {
 
             getLocationGPS();
@@ -740,8 +738,6 @@ var app = {
         alert(error);
     },
     tokenHandler: function (result) {
-
-        showAlert('app ' + APP_INITIALIZED, 'Mensaje', 'Aceptar');
 
         PUSH_NOTIFICATION_REGISTER = 'ios';
 
