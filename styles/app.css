@@ -1565,6 +1565,14 @@ h4 {
     border-bottom: 1px solid #4d4d4d !important;
 }
 
+.guias-list {
+    border-bottom: 1px solid #4d4d4d !important;
+}
+
+.list__item--chevron:before {
+    color:#4d4d4d;
+}
+
 .planes-list .list-item-left {
     width: 120px;
     height: 84px;

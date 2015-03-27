@@ -24,7 +24,7 @@ var templates = {
     '</ons-list-item>',
 
     guias_list:
-    '<ons-list-item modifier="chevron" class="list-item-container loading" rel="%index%">'+
+    '<ons-list-item modifier="chevron" class="list-item-container guias-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<img src="%imagen%" class="avator" onload="refreshGuiasScroll(this)">'+
     '</div>'+
@@ -36,7 +36,7 @@ var templates = {
     '</ons-list-item>',
 
     como_funciona_list:
-    '<ons-list-item modifier="chevron" class="list-item-container loading" onclick="gotoComofuncionaDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container guias-list loading" onclick="gotoComofuncionaDetalle(%index%)">'+
     '<div class="list-item-left">'+
     '<img src="%imagen%" class="avator" onload="refreshComoFuncionaScroll(this)">'+
     '</div>'+
@@ -84,7 +84,7 @@ var templates = {
     slider_images: '' +
         '<ons-carousel-item class="item-bg detail session-item loading">'+
             '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-            '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%); imageLoaded(%index%);" src="%list_image%" /></div>'+
+            '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%); imageLoaded(%index%);" src="%image%" /></div>'+
             '<div class="title">%title%</div>'+
         '</ons-carousel-item>',
 
