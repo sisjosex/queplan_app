@@ -82,7 +82,7 @@ var templates = {
     vino_list_detail: '<div class="price-row"><div class="name">%nombre%</div><div class="price">%precio%</div></div>',
 
     slider_images: '' +
-        '<ons-carousel-item class="item-bg detail session-item loading">'+
+        '<ons-carousel-item class="item-bg detail home-slide session-item loading" url="%url%" section="%section%" section_id="%section_id%">'+
             '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
             '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%); imageLoaded(%index%);" src="%image%" /></div>'+
             '<div class="title">%title%</div>'+

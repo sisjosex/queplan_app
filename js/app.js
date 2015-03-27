@@ -569,7 +569,9 @@ function pagar_recompensa(id) {
 
 function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
-    getJsonP(api_url + 'validarDeviceUuid/', function(data) {
+    getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
+
+        showAlert(data, 'validarDeviceUuid', 'Aceptar');
 
         if (data.status == 'success') {
 
@@ -594,12 +596,15 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 mainnavigator.pushPage('ciudad.html', {});
 
             }
+
         } else {
 
             mainnavigator.pushPage('registro.html', {});
         }
 
     }, function() {
+
+        showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
 
     }, {
         device_uuid: device_uuid,
@@ -1439,7 +1444,31 @@ module.controller('HomeController', function ($scope) {
 
                     openExternalLink($(this).attr('rel'));
                 });
+            } else if( $.trim(applicationParams.banner.section) != '' ) {
+
+                $('#homeBanner').find('a').on('click', function() {
+
+                    redirectToPage(applicationParams.banner.section, applicationParams.banner.section_id);
+                });
             }
+
+            $('#homePage .home-slide').each(function() {
+
+                if ($.trim($(this).attr('url')) != '' ) {
+
+                    $(this).on('click', function() {
+
+                        openExternalLink($(this).attr('url'));
+                    });
+                } else if( $.trim($(this).attr('section')) != '' ) {
+
+                    $(this).on('click', function() {
+
+                        redirectToPage($(this).attr('section'), $(this).attr('section_id'));
+                    });
+                }
+
+            });
 
             if ($.trim(applicationParams.banner.image) != '' ) {
 
