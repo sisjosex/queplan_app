@@ -681,6 +681,8 @@ var app = {
 
         if (pushNotification != undefined) {
 
+            showAlert('Registrando Notificaciones', 'Aviso', 'Aceptar');
+
             if (device.platform == 'android' || devi + ce.platform == 'Android') {
                 //alert("Register called android");
                 pushNotification.register(this.successHandler, this.errorHandler, {
@@ -740,6 +742,9 @@ var app = {
         alert(error);
     },
     tokenHandler: function (result) {
+
+        showAlert('app ' + APP_INITIALIZED, 'Mensaje', 'Aceptar');
+
         PUSH_NOTIFICATION_REGISTER = 'ios';
 
         //solo si no se lleno antes con el token llenamos, porque viene otro tipo de mensajes igual
