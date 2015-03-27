@@ -10,7 +10,7 @@ var templates = {
     '</div>',
 
     recompensas_list_content:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list" rel="%index%">'+
+    '<ons-list-item modifier="chevron" class="list-item-container loading planes-list" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="adaptImage(this, %index%)"/></div>'+
     '</div>'+
@@ -24,21 +24,21 @@ var templates = {
     '</ons-list-item>',
 
     guias_list:
-    '<ons-list-item modifier="chevron" class="list-item-container" rel="%index%">'+
+    '<ons-list-item modifier="chevron" class="list-item-container loading" rel="%index%">'+
     '<div class="list-item-left">'+
-    '<img src="%imagen%" class="avator" onload="refreshGuiasScroll()">'+
+    '<img src="%imagen%" class="avator" onload="refreshGuiasScroll(this)">'+
     '</div>'+
     '<div class="list-item-right">'+
-    '<div class="list-item-content">'+
+    '<div class="list-item-content como_funciona_list">'+
     '<div class="name">%title%</div>'+
     '</div>'+
     '</div>'+
     '</ons-list-item>',
 
     como_funciona_list:
-    '<ons-list-item modifier="chevron" class="list-item-container" onclick="gotoComofuncionaDetalle(%index%)">'+
+    '<ons-list-item modifier="chevron" class="list-item-container loading" onclick="gotoComofuncionaDetalle(%index%)">'+
     '<div class="list-item-left">'+
-    '<img src="%imagen%" class="avator" onload="refreshComoFuncionaScroll()">'+
+    '<img src="%imagen%" class="avator" onload="refreshComoFuncionaScroll(this)">'+
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content como_funciona_list">'+
@@ -50,7 +50,7 @@ var templates = {
     locales_list:
     '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
-    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="onSliderHomeIMGLoad(this, %index%)"/></div>'+
+    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="adaptImage(this, %index%)"/></div>'+
     '</div>'+
     '<div class="list-item-right">'+
     '<div class="list-item-content">'+

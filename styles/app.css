@@ -805,9 +805,9 @@ label.checkbox {
 }
 
 .scrollable img {
-    max-width:100%;
+    /*max-width:100%;
     width:100%;
-    height:auto;
+    height:auto;*/
 }
 
 .novedades img {
@@ -1408,13 +1408,23 @@ i.invitado {
 }
 
 
+.list-item-left {
+    min-width: 60px;
+    min-height: 60px;
+    padding-left:5px;
+    padding-right:5px;
+    width:60px;
+    height: 60px;
+}
+
+
 .list-item-left img {
-    max-width: 50px;
+    /*max-width: 50px;
     width: 50px;
     height: auto;
     margin: 5px;
     min-width: 50px;
-    min-height: 50px;
+    min-height: 50px;*/
 }
 
 .justify {
