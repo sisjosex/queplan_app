@@ -681,37 +681,7 @@ var app = {
 
         if (pushNotification != undefined) {
 
-            getLocationGPS();
-
-            if (isLogin()) {
-
-                var user = COOKIE;
-
-                if ($.trim(user.email) == "") {
-
-                    mainnavigator.pushPage("perfil.html", {animation: 'none'});
-
-                } else {
-
-                    CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
-
-                    if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
-
-                        mainnavigator.pushPage('ciudad.html');
-
-                    } else {
-
-                        mainnavigator.pushPage('home.html');
-
-                    }
-                }
-
-            } else {
-
-                mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }
-
-            /*if (device.platform == 'android' || devi + ce.platform == 'Android') {
+            if (device.platform == 'android' || device.platform == 'Android') {
                 //alert("Register called android");
                 pushNotification.register(this.successHandler, this.errorHandler, {
                     "senderID": "629734064389",
@@ -726,7 +696,7 @@ var app = {
                     "alert": "true",
                     "ecb": "app.onNotificationAPN"
                 });
-            }*/
+            }
 
         } else {
 
