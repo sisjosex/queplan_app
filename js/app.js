@@ -1379,7 +1379,7 @@ module.controller('ciudadController', function ($scope) {
 
         }, 100);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('#ciudadPage .ciudad_slide').each(function() {
+        $(mainnavigator.getCurrentPage().element[0]).find('.ciudad_slide').each(function() {
 
             $(this).on('click', function() {
                 elegirCiudad( $(this).attr('rel') );
