@@ -1196,7 +1196,7 @@ function onSliderCiudadIMGLoad(img, index) {
 
         container.css('background-size', parseInt(width) + "px" + " " + parseInt(height) + "px");
 
-        container.removeClass('noopaque');
+        container.addClass('opaque');
     }
 }
 
@@ -1213,7 +1213,6 @@ function onSliderHomeIMGLoad(img, index) {
     container.parent().find('ons-icon').remove();
 
     container.html('');
-    container.addClass('noopaque');
 
     image.onload = function(event) {
 
@@ -1267,7 +1266,7 @@ function onSliderHomeIMGLoad(img, index) {
 
         container.css('background-size', (width) + "px" + " " + (height) + "px");
 
-        container.removeClass('noopaque');
+        container.addClass('opaque');
     }
 
     image.src = src;
@@ -1286,7 +1285,6 @@ function adaptImage(img, index) {
     container.parent().find('ons-icon').remove();
 
     container.html('');
-    container.addClass('noopaque');
 
     image.onload = function(event) {
 
@@ -1310,7 +1308,7 @@ function adaptImage(img, index) {
 
         container.css('background-size', (width) + "" + " " + (height) + "");
 
-        container.removeClass('noopaque');
+        container.addClass('opaque');
     }
 
     image.src = src;
@@ -1414,11 +1412,6 @@ module.controller('HomeController', function ($scope) {
             $('#homeFooter .banner').height(footerHeight + 8);
             $('#homeHeader').height(footerHeight - 8);
 
-            $('#homeHeader').css('min-height', (footerHeight - 8) + 'px');
-
-            /*$('.header-logo').width($('.header-logo').width() * factor);
-             $('.header-logo').height($('.header-logo').height() * factor);*/
-
             height = $(window).height() - ( $('#homeScroll').outerHeight() + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
 
             height = height - 12 - 8;
@@ -1521,10 +1514,7 @@ module.controller('PlanesController', function ($scope) {
 
         var footerHeight = factor * 60;
 
-        $(mainnavigator.getCurrentPage().element[0]).find('#planesHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#planesHeader').css('min-height', (footerHeight - 8) + 'px');
-
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0], current_list.items, 'planes_list');
 
@@ -1568,8 +1558,6 @@ module.controller('PlanController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#planFooter').outerHeight();
 
@@ -1578,12 +1566,12 @@ module.controller('PlanController', function ($scope) {
         /*$('.header-logo').width($('.header-logo').width() * factor);
          $('.header-logo').height($('.header-logo').height() * factor);*/
 
-        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#planFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() - 1 );
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#planImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#planToolbar').height(height);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() ) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + $(mainnavigator.getCurrentPage().element[0]).find('.slider').height() + 'px');
         //$('#planPage .page__content').css('bottom', (footerHeight +'px') );
 
         //$('#planScroll').height($('#planScroll').height() - footerHeight);
@@ -1656,8 +1644,6 @@ module.controller('LocalController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#localFooter').outerHeight();
 
@@ -1666,12 +1652,12 @@ module.controller('LocalController', function ($scope) {
         /*$(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width() * factor);
          $(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height() * factor);*/
 
-        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#localFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() - 1 );
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#localImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#localToolbar').height(height);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() ) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + $(mainnavigator.getCurrentPage().element[0]).find('.slider').height() + 'px');
         //$(mainnavigator.getCurrentPage().element[0]).find('#localPage .page__content').css('bottom', (footerHeight +'px') );
 
         //$(mainnavigator.getCurrentPage().element[0]).find('#localScroll').height($(mainnavigator.getCurrentPage().element[0]).find('#localScroll').height() - footerHeight);
@@ -1780,10 +1766,8 @@ module.controller('GuiasController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#guiasHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#guiasHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
 
@@ -1813,10 +1797,8 @@ module.controller('ComoFuncionaController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#como_funcionaHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_content')[0], applicationParams.como_funciona, 'como_funciona_list');
 
@@ -1861,13 +1843,11 @@ module.controller('ComoFuncionaDetalleController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').outerHeight();
 
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleHeader').height(footerHeight);
 
@@ -1896,13 +1876,11 @@ module.controller('QuieroParticiparController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').outerHeight();
 
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         $(mainnavigator.getCurrentPage().element[0]).find('#quiero_participarHeader').height(footerHeight);
 
@@ -1981,10 +1959,8 @@ module.controller('LocalesController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#localesHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#localesHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0], current_list.items, 'locales_list');
 
@@ -2016,20 +1992,17 @@ module.controller('GuiaController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter').outerHeight();
 
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter .banner').height(footerHeight);
-        $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').height(footerHeight);
 
-        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() - 1 );
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaToolbar').height(height);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() ) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + $(mainnavigator.getCurrentPage().element[0]).find('.slider').height() + 'px');
         //$('#guiaPage .page__content').css('bottom', (footerHeight +'px') );
 
         //$('#guiaScroll').height($('#guiaScroll').height() - footerHeight);
@@ -2037,7 +2010,7 @@ module.controller('GuiaController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaList').css('padding-bottom', footerHeight + 'px');
 
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guiaImages')[0], current_guia.images, 'slider_guia');
@@ -2082,10 +2055,8 @@ module.controller('MenuController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#menuHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#menuHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#menu_content')[0], current_list.items, 'menu_list');
 
@@ -2131,12 +2102,10 @@ module.controller('MenuDetalleController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFooter').outerHeight();
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFooter .banner').height(footerHeight);
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleHeader').height(footerHeight);
@@ -2202,14 +2171,10 @@ module.controller('RecompensasController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#recompensasHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#recompensasHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('#recompensasPage .page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#recompensas_content'), current_list.items, 'recompensas_list_content');
-
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
 
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
             gotoRecompensaDetalle( $(this).attr('rel'), current_list );
@@ -2345,25 +2310,17 @@ module.controller('RecompensaController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').css('min-height', (footerHeight - 8) + 'px');
 
         footerHeight = factor * $(mainnavigator.getCurrentPage().element[0]).find('#recompensaFooter').outerHeight();
 
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaFooter .banner').height(footerHeight);
 
-        /*$('.header-logo').width($('.header-logo').width() * factor);
-         $('.header-logo').height($('.header-logo').height() * factor);*/
-
-        height = $(window).height() - ( 200 * factor + $(mainnavigator.getCurrentPage().element[0]).find('#recompensaFooter').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').outerHeight() - 1 );
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaToolbar').height(height);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (height + $('#recompensaHeader').outerHeight() ) + 'px');
-        //$('#recompensaPage .page__content').css('bottom', (footerHeight +'px') );
-
-        //$('#recompensaScroll').height($('#recompensaScroll').height() - footerHeight);
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + $(mainnavigator.getCurrentPage().element[0]).find('.slider').height() + 'px');
 
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaList').css('padding-bottom', footerHeight + 'px');
 
@@ -2456,10 +2413,8 @@ module.controller('PerfilController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#perfilHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#perfilHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         if(isLogin()) {
 
@@ -2819,10 +2774,8 @@ module.controller('EmailController', function ($scope) {
         var factor = window.innerWidth / 320;
 
         var footerHeight = factor * 60;
-        $(mainnavigator.getCurrentPage().element[0]).find('#emailHeader').height(footerHeight - 8);
-        $(mainnavigator.getCurrentPage().element[0]).find('#emailHeader').css('min-height', (footerHeight - 8) + 'px');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', (footerHeight - 8) + 'px');
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         initScroll('emailScroll');
 
