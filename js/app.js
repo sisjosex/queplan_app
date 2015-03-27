@@ -322,13 +322,8 @@ function showNotification(event, type) {
 
 //redirectToPage
 function redirectToPage(seccion, id) {
-    var page = "";
-    var options = {};
-    var url = api_url;
 
     if (seccion == "local") {
-
-        page = "guia.html"
 
         if (id == "") {
 
@@ -357,8 +352,6 @@ function redirectToPage(seccion, id) {
         }
     } else if (seccion == "plan") {
 
-        page = "planes.html";
-
         if (id == "") {
 
             goToPlanes();
@@ -382,8 +375,6 @@ function redirectToPage(seccion, id) {
         }
 
     } else if (seccion == "recompensa") {
-
-        page = "recompesas.html";
 
         if (id == "") {
 
@@ -731,7 +722,6 @@ var app = {
     },
     // result contains any message sent from the plugin call
     successHandler: function (result) {
-        //console.log("Regid " + result);
         //alert('Callback Success! Result = '+result);
     },
     errorHandler: function (error) {
@@ -751,7 +741,6 @@ var app = {
                 getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
             }
         }
-        //console.log("Regid " + result);
         //alert('Callback Success! Result = '+result);
     },
     onNotificationGCM: function (e) {
@@ -760,7 +749,6 @@ var app = {
                 if (e.regid.length > 0) {
                     PUSH_NOTIFICATION_REGISTER = 'android';
                     PUSH_NOTIFICATION_TOKEN = e.regid;
-                    //console.log("Regid " + e.regid);
                     //alert('registration id = '+e.regid);
 
                     //mandamos a guardar el token para las notificaciones solo si no se guardo antes
@@ -1416,8 +1404,6 @@ module.controller('HomeController', function ($scope) {
 
             height = height - 12 - 8;
 
-            console.log('sliderH: ' + height);
-
             $('#homeImages').height(height);
             $('#homeToolbar').height(height);
 
@@ -1566,7 +1552,7 @@ module.controller('PlanController', function ($scope) {
         /*$('.header-logo').width($('.header-logo').width() * factor);
          $('.header-logo').height($('.header-logo').height() * factor);*/
 
-        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() ) / 2;
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#planHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#planImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#planToolbar').height(height);
@@ -1652,7 +1638,7 @@ module.controller('LocalController', function ($scope) {
         /*$(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').width() * factor);
          $(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height($(mainnavigator.getCurrentPage().element[0]).find('.header-logo').height() * factor);*/
 
-        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() ) / 2;
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#localHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#localImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#localToolbar').height(height);
@@ -1997,7 +1983,7 @@ module.controller('GuiaController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaFooter .banner').height(footerHeight);
 
-        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() ) / 2;
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#guiaHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaToolbar').height(height);
@@ -2315,7 +2301,7 @@ module.controller('RecompensaController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaFooter .banner').height(footerHeight);
 
-        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() + $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').outerHeight() ) / 2;
+        height = ( window.innerHeight - $(mainnavigator.getCurrentPage().element[0]).find('.footer').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#recompensaHeader').outerHeight() ) / 2;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaImages').height(height);
         $(mainnavigator.getCurrentPage().element[0]).find('#recompensaToolbar').height(height);
