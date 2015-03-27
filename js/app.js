@@ -681,8 +681,6 @@ var app = {
 
         if (pushNotification != undefined) {
 
-            showAlert('Registrando Notificaciones', 'Aviso', 'Aceptar');
-
             if (device.platform == 'android' || devi + ce.platform == 'Android') {
                 //alert("Register called android");
                 pushNotification.register(this.successHandler, this.errorHandler, {
@@ -752,6 +750,7 @@ var app = {
             PUSH_NOTIFICATION_TOKEN = result;
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
+
             if (!APP_INITIALIZED) {
                 getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
             }
