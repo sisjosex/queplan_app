@@ -607,7 +607,6 @@ function isLogin() {
     if (cookie_user !== null) {
         res = true;
         COOKIE = cookie_user;
-        ciudad_seleccionada = cookie_user.ciudad_id;
     } else {
         REDIREC_TO = window.location.href;
     }
