@@ -1345,10 +1345,14 @@ module.controller('RegistroController', function ($scope) {
 
         initScroll('registro_scroll');
 
-        try {
-            navigator.splashscreen.hide();
-        } catch (error) {
-        }
+        setTimeout(function () {
+
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+
+        }, 1000);
 
     })
 });
