@@ -2880,7 +2880,7 @@ function autentificarUsuario(boton) {
                         $('#btnRegistrarse').css('visibility', 'hidden');
                         $("#codigo_validacion").hide();
 
-                        if(usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
+                        if(usuario.ciudad_id != '' && usuario.ciudad_id != '0') {
 
                             mainnavigator.popPage('email.html');
                             goHome(usuario.ciudad_id, false);

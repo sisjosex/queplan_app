@@ -62,7 +62,7 @@ function loginTwitterConnect() {
                                                 //mandamos directo al home si es que la cookie se creo correctamente
                                                 if (isLogin()) {
 
-                                                    if (usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
+                                                    if (usuario.ciudad_id != '' && usuario.ciudad_id != '0') {
 
                                                         goHome(usuario.ciudad_id, false);
 

@@ -25,7 +25,7 @@ function loginFacebookConnect() {
 
                             //verificamos si este usuario no se logeo con anterioridad, si no lo hizo lo creamos como nuevo, si lo hizo solo actualizamos su estado logeado a 1
                             getJsonP(api_url + 'getUsuarioByAppId/', function (data) {
-
+                                console.log(data);
                                 if (data.status == 'success') {
                                     var usuario = data.usuario;
                                     //guardamos los datos en la COOKIE
@@ -33,7 +33,7 @@ function loginFacebookConnect() {
                                     //mandamos directo al home si es que la cookie se creo correctamente
                                     if (isLogin()) {
 
-                                        if (usuario.ciudad_id != '' || usuario.ciudad_id != '0') {
+                                        if (usuario.ciudad_id != '' && usuario.ciudad_id != '0') {
 
                                             goHome(usuario.ciudad_id, false);
 
