@@ -229,45 +229,53 @@ function comprarRecompensa(local_id, recompensa_id) {
     }
 }
 
+var procesing = false;
 function logout() {
-    if (isLogin()) {
-        navigator.notification.confirm(
-            "Estas seguro que quieres salir?", // message
-            function (buttonIndex) {
-                //1:aceptar,2:cancelar
-                if (buttonIndex == 1) {
 
-                    var user = COOKIE;
-                    var me = user.id;
+    if(!procesing) {
 
-                    getJsonP(api_url + 'logout/', function (data) {
+        procesing = true;
+        setTimeout(function(){ procesing = false; }, 100);
 
-                        if (data) {
+        if (isLogin()) {
+            navigator.notification.confirm(
+                "Estas seguro que quieres salir?", // message
+                function (buttonIndex) {
+                    //1:aceptar,2:cancelar
+                    if (buttonIndex == 1) {
 
-                            //ocultamos loading
-                            if (data.status == 'success') {
+                        var user = COOKIE;
+                        var me = user.id;
 
-                                //logout de fb y tw
-                                logoutFacebookConnect();
+                        getJsonP(api_url + 'logout/', function (data) {
 
-                                eraseCookie("user");
-                                window.location.reload();
+                            if (data) {
 
-                            } else {
+                                //ocultamos loading
+                                if (data.status == 'success') {
 
-                                showAlert(data.mensaje, "Error", "Aceptar");
+                                    //logout de fb y tw
+                                    logoutFacebookConnect();
+
+                                    eraseCookie("user");
+                                    window.location.reload();
+
+                                } else {
+
+                                    showAlert(data.mensaje, "Error", "Aceptar");
+                                }
                             }
-                        }
-                    }, function () {
+                        }, function () {
 
-                    }, {usuario_id: me});
-                }
-            },            // callback to invoke with index of button pressed
-            'Salir',           // title
-            'Aceptar,Cancelar'         // buttonLabels
-        );
-    } else if (LOGIN_INVITADO) {
-        alertaInvitado();
+                        }, {usuario_id: me});
+                    }
+                },            // callback to invoke with index of button pressed
+                'Salir',           // title
+                'Aceptar,Cancelar'         // buttonLabels
+            );
+        } else if (LOGIN_INVITADO) {
+            alertaInvitado();
+        }
     }
 }
 
