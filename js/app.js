@@ -141,7 +141,7 @@ function registrar_datos(app_id, email, registrado_mediante, username, nombre, i
             createCookie("user", JSON.stringify(usuario), 365);
 
             //una vez registrado los datos, mandamos a la home
-            mainnavigator.pushPage('ciudad.html');
+            mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
         } else {
 
@@ -504,7 +504,7 @@ function goHome(ciudad_id, save) {
 
             } else {
 
-                mainnavigator.pushPage('home.html');
+                mainnavigator.pushPage('home.html', {animation: "none"});
             }
 
         } else if(LOGIN_INVITADO) {
@@ -585,21 +585,23 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 CIUDAD_ID = ciudad_seleccionada = usuario_ciudad;
 
                 if (isLogin()) {
-                    mainnavigator.pushPage('home.html', {})
+                    mainnavigator.pushPage('home.html', {animation: "none"})
                 }
 
             } else {
 
-                mainnavigator.pushPage('ciudad.html', {});
+                mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
             }
 
         } else {
 
-            mainnavigator.pushPage('registro.html', {});
+            mainnavigator.pushPage('registro.html', {animation: "none"});
         }
 
     }, function() {
+
+        //mainnavigator.pushPage('registro.html', {animation: "none"});
 
         showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
 
@@ -710,13 +712,13 @@ var app = {
 
                     CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
 
-                    if(ciudad_seleccionada == '' || ciudad_seleccionada == '0') {
+                    if(user.ciudad_id == '' || user.ciudad_id == '0') {
 
-                        mainnavigator.pushPage('ciudad.html');
+                        mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
                     } else {
 
-                        mainnavigator.pushPage('home.html');
+                        mainnavigator.pushPage('home.html', {animation: "none"});
 
                     }
                 }
@@ -1381,6 +1383,15 @@ module.controller('ciudadController', function ($scope) {
             });
 
         });
+
+        setTimeout(function () {
+
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+
+        }, 1000);
 
     })
 });
