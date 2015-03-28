@@ -698,7 +698,7 @@ var app = {
 
         } else {
 
-            getLocationGPS();
+            /*getLocationGPS();
 
             if (isLogin()) {
 
@@ -726,7 +726,7 @@ var app = {
             } else {
 
                 mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }
+            }*/
         }
     },
     // result contains any message sent from the plugin call
