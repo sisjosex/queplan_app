@@ -603,7 +603,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
         //mainnavigator.pushPage('registro.html', {animation: "none"});
 
-        showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
+        mainnavigator.pushPage('registro.html', {animation: "none"});
+
+        //showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
 
     }, {
         device_uuid: device_uuid,
@@ -698,7 +700,7 @@ var app = {
 
         } else {
 
-            /*getLocationGPS();
+            getLocationGPS();
 
             if (isLogin()) {
 
@@ -726,7 +728,7 @@ var app = {
             } else {
 
                 mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }*/
+            }
         }
     },
     // result contains any message sent from the plugin call
