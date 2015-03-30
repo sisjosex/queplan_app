@@ -852,9 +852,9 @@ limitations under the License.
 */
 
 .ons-scroller {
-  display: block;
+  display: block;/*
   overflow: scroll;
-  -webkit-overflow-scrolling: touch;   
+  -webkit-overflow-scrolling: touch;*/
 }
 
 .ons-scroller::-webkit-scrollbar,
