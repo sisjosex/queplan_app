@@ -1713,8 +1713,6 @@ module.controller('PlanesController', function ($scope) {
             gotoPlanDetalle( $(this).attr('rel'), current_list );
         });
 
-        console.log(current_list);
-
         var i = 0;
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function(){
 
