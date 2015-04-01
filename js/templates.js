@@ -2,26 +2,23 @@ var templates = {
 
     planes_list: '<div class="list-item-container loading" rel="%index%">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%, \'planesScroll\')" src="%imagen%" /></div>'+
+    '<div class="full-screen animate"><img onload="onSliderIMGLoad(this, %index%, \'planesScroll\')" src="%imagen%" /></div>'+
     '<div class="overlay title">' +
         '<div>%title%</div>' +
         '<span class="distance">%distancia%</span>'+
+        '<span class="button validar">VALIDAR<i>por el responsable del local</i></span>'+
     '</div>'+
     '</div>',
 
-    recompensas_list_content:
-    '<ons-list-item modifier="chevron" class="list-item-container loading planes-list" rel="%index%">'+
-    '<div class="list-item-left">'+
-    '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="adaptImage(this, %index%)"/></div>'+
+    recompensas_list_content: '<div class="list-item-container loading" rel="%index%">'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
+    '<div class="full-screen animate"><img onload="onSliderIMGLoad(this, %index%, \'recompensasScroll\')" src="%imagen%" /></div>'+
+    '<div class="overlay title">' +
+        '<div>%title%</div>' +
+        '<span class="points">%costo%</span>'+
+        '<span class="button validar">VALIDAR<i>por el responsable del local</i></span>'+
     '</div>'+
-    '<div class="list-item-right">'+
-    '<div class="list-item-content">'+
-    '<div class="name">%title%</div>'+
-    '<span class="points">%costo%</span>'+
-    '<div class="button validar"></div>'+
-    '</div>'+
-    '</div>'+
-    '</ons-list-item>',
+    '</div>',
 
     guias_list:
     '<ons-list-item modifier="chevron" class="list-item-container guias-list loading" rel="%index%">'+
@@ -91,14 +88,14 @@ var templates = {
     slider_plan: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="full-screen animate"><img onload="onSliderIMGLoad(this, %index%)" src="%imagen%" /></div>'+
     '<div class="title">%title%<br/>%local_title%<span class="distance right">%distancia%</span></div>'+
     '</ons-carousel-item>',
 
     slider_local: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-    '<div class="full-screen animate"><img onload="onSliderHomeIMGLoad(this, %index%)" src="%imagen%" /></div>'+
+    '<div class="full-screen animate"><img onload="onSliderIMGLoad(this, %index%)" src="%imagen%" /></div>'+
     '<div class="title">%local_title%<span class="distance right">%distancia%</span></div>'+
     '</ons-carousel-item>',
 

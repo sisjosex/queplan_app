@@ -229,6 +229,63 @@ function comprarRecompensa(local_id, recompensa_id) {
     }
 }
 
+function comprarPlan(local_id, promocion_id) {
+
+    if (current_page != 'comprar') {
+
+        current_page = 'comprar';
+        setTimeout(function(){current_page = '';}, 100);
+
+        //verficamos que este logeado porque solo si lo esta podemos dejarle que haga la compra de la recompensa
+        if (isLogin()) {
+            var user = COOKIE;
+            var me = user.id;
+
+            //showLoadingCustom('Compra de recompensa, en progreso...');
+            modal.show();
+
+            getJsonP(api_url + 'comprarPromocion/', function (data) {
+
+                if (data) {
+
+                    //ocultamos loading
+                    //$.mobile.loading( 'hide' );
+
+                    if (data.success) {
+
+                        //var imagen = BASE_URL_APP + 'img/logo_oficial.png';
+
+                        showAlert(data.mensaje, "Te apuntaste con exito!", "Aceptar", function () {
+
+                            if (user.registrado_mediante == "facebook") {
+
+                                /*setTimeout(function () {
+                                 shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
+
+                            } else if (user.registrado_mediante == "twitter") {
+                                /*setTimeout(function () {
+                                 shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
+                            }
+                        });
+
+                    } else {
+                        showAlert(data.mensaje, "Plan no disponible", "Aceptar");
+                    }
+                }
+
+            }, function () {
+
+            }, {usuario_id: me, local_id: local_id, promocion_id: promocion_id});
+
+        } else if (LOGIN_INVITADO) {
+            alertaInvitado();
+        }
+
+    }
+}
+
 var procesing = false;
 function logout() {
 
@@ -529,7 +586,11 @@ function alertaInvitado() {
 
 
 //Pagar Recompensa
-function pagar_recompensa(id) {
+function pagar_recompensa(id, element) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
     navigator.notification.confirm(
         "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
         function (buttonIndex) {
@@ -537,13 +598,53 @@ function pagar_recompensa(id) {
             if (buttonIndex == 1) {
                 showLoadingCustom('Espere por favor...');
 
-                getJsonP(api_url + 'setPagado/', function(data){
+                getJsonP(api_url + 'pagarRecompensa/', function(data){
 
                     if (data) {
 
                         if (data.status == 'success') {
 
-                            $('#recompensa_' + id).removeClass('button').html('');
+                            $(element).remove();
+
+                            showAlert(data.mensaje, "Aviso", "Aceptar");
+
+                        } else {
+
+                            showAlert(data.mensaje, "Error", "Aceptar");
+                        }
+                    }
+
+                }, function() {
+
+                }, {
+                    id: id
+                });
+            }
+        },            // callback to invoke with index of button pressed
+        'Validar Recompensa',           // title
+        'Aceptar,Cancelar'         // buttonLabels
+    );
+}
+
+function pagar_promocion(id, element, event) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    navigator.notification.confirm(
+        "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
+        function (buttonIndex) {
+            //1:aceptar,2:cancelar
+            if (buttonIndex == 1) {
+                showLoadingCustom('Espere por favor...');
+
+                getJsonP(api_url + 'pagarPromocion/', function(data){
+
+                    if (data) {
+
+                        if (data.status == 'success') {
+
+                            $(element).remove();
 
                             showAlert(data.mensaje, "Aviso", "Aceptar");
 
@@ -1199,7 +1300,81 @@ function onSliderCiudadIMGLoad(img, index) {
     }
 }
 
+var home_slider_width;
+var home_slider_height;
 function onSliderHomeIMGLoad(img, index) {
+
+    var src = $(img).attr('src');
+    var container = $(img).parent();
+
+    var outerWidth = home_slider_width;
+    var outerHeight = home_slider_height;
+
+    var image = new Image();
+
+    container.parent().find('ons-icon').remove();
+
+    container.html('');
+
+    image.onload = function(event) {
+
+        container.css('background-image', "url('" + src + "')");
+        container.css('background-repeat', "no-repeat");
+        container.css('background-position', "center center");
+
+        var width = image.width;
+        var height = image.height;
+        var factor = 1;
+
+        if (outerWidth > width) {
+            factor = outerWidth / width;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if (outerHeight > height) {
+
+            factor = (outerHeight) / height;
+            width = width * factor;
+            height = height * factor;
+        }
+
+        if (outerWidth < width) {
+            factor = outerHeight / height;
+            width = width * factor;
+            height = outerHeight;
+
+            if (outerWidth - width > 0) {
+                factor = outerWidth / width;
+                width = outerWidth;
+                height = height * factor;
+            }
+
+
+        } else if (outerHeight < height) {
+            factor = outerWidth / width;
+            width = outerWidth;
+            height = height * factor;
+
+            if (outerHeight - height > 0) {
+                factor = outerHeight / height;
+                height = outerHeight;
+                width = width * factor;
+            }
+        }
+
+        width = parseInt(width + "");
+        height = parseInt(height + "");
+
+        container.css('background-size', (width) + "px" + " " + (height) + "px");
+
+        container.addClass('opaque');
+    }
+
+    image.src = src;
+}
+
+function onSliderIMGLoad(img, index) {
 
     var src = $(img).attr('src');
     var container = $(img).parent();
@@ -1405,6 +1580,7 @@ module.controller('ciudadController', function ($scope) {
 
 var HomeController;
 var height;
+
 module.controller('HomeController', function ($scope) {
     ons.ready(function () {
 
@@ -1430,6 +1606,9 @@ module.controller('HomeController', function ($scope) {
 
             $('#homeImages').height(height);
             $('#homeToolbar').height(height);
+
+            home_slider_width = window.innerWidth;
+            home_slider_height = height;
 
             $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
 
@@ -1534,6 +1713,26 @@ module.controller('PlanesController', function ($scope) {
             gotoPlanDetalle( $(this).attr('rel'), current_list );
         });
 
+        console.log(current_list);
+
+        var i = 0;
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function(){
+
+            if(current_list.items[i].usuario_estado == 'comprado') {
+                $(this).find('.validar').attr('id', current_list.items[i].usuarios_promocions_id);
+                $(this).find('.validar').on('click', function(event){
+                    pagar_promocion($(this).attr('id'), this, event);
+                });
+
+            } else {
+
+                $(this).find('.validar').remove();
+            }
+
+            i ++;
+
+        });
+
         ons.compile( $(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0] );
 
         counterPlanes += 1;
@@ -1613,6 +1812,23 @@ module.controller('PlanController', function ($scope) {
 
             gotoMaps(current_plan);
         });
+
+        if(current_plan.tipo == 'vip') {
+
+            if(current_plan.limite > 0) {
+
+                $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').on('click', function () {
+                    comprarPlan(current_plan.loca_id, current_plan.id);
+                });
+
+            } else {
+
+                $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').text('PLAN CERRADO');
+            }
+
+        } else {
+            $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').parent().hide();
+        }
 
 
         $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator > div:first-child').addClass('selected');
@@ -2186,6 +2402,8 @@ module.controller('RecompensasController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#recompensas_content'), current_list.items, 'recompensas_list_content');
 
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 3);
+
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
             gotoRecompensaDetalle( $(this).attr('rel'), current_list );
         });
@@ -2195,20 +2413,16 @@ module.controller('RecompensasController', function ($scope) {
 
             if(current_list.items[i].gane_recompensa) {
 
-                $(this).find('.validar').addClass('button').append('Validar');
                 $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
                 $(this).find('.validar').attr('id', 'recompensa_' + current_list.items[i].gane_recompensa);
 
                 $(this).find('.validar').on('click', function(event) {
 
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    pagar_recompensa($(this).attr('id'), this);
+                    pagar_recompensa($(this).attr('id'), this, event);
                 });
             } else {
 
-                $(this).find('.validar').removeClass('button');
+                $(this).find('.validar').remove();
             }
 
             i ++;
@@ -2243,56 +2457,6 @@ function goBackFromProfile() {
 
         mainnavigator.popPage('perfil.html');
     }
-}
-
-function pagar_recompensa(id, element){
-    navigator.notification.confirm(
-        "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
-        function(buttonIndex){
-            //1:aceptar,2:cancelar
-            if(buttonIndex == 1){
-
-                getJsonP(api_url + 'setPagado/', function(data) {
-
-                    if(data){
-
-                        if(data.status == 'success'){
-
-                            $(element).html('');
-
-                            showAlert(data.mensaje, "Aviso", "Aceptar");
-                        }else{
-                            showAlert(data.mensaje, "Error", "Aceptar");
-                        }
-                    }
-
-                }, function() {
-
-                }, {
-                    id: id
-                });
-
-                $.getJSON(BASE_URL_APP + 'usuarios_recompensas/mobileSetPagado/'+id, function(data) {
-
-                    if(data){
-                        //ocultamos loading
-                        $.mobile.loading( 'hide' );
-
-                        if(data.success){
-                            var element = $("#"+id+".validar_recompensa")
-                            element.hide();
-                            element.parent().parent().find(".ui-icon-arrow-r").css("top","50%");
-                            showAlert(data.mensaje, "Aviso", "Aceptar");
-                        }else{
-                            showAlert(data.mensaje, "Error", "Aceptar");
-                        }
-                    }
-                });
-            }
-        },            // callback to invoke with index of button pressed
-        'Validar Recompensa',           // title
-        'Aceptar,Cancelar'         // buttonLabels
-    );
 }
 
 function gotoRecompensaDetalle(index, current_list) {
