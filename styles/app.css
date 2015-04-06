@@ -1809,11 +1809,23 @@ label.checkbox:last-child {
 }
 
 .validar {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    right: 0px;
+    bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    margin-top: 7px;
+}
+
+.validar i {
+    color: #fff;
+    font-size: 12px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 4px;
+    text-align: center;
+    width: 100%;
 }
 
 .como_funciona_list .name {
