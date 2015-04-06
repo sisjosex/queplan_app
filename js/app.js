@@ -1715,7 +1715,7 @@ module.controller('LocalController', function ($scope) {
         });
 
         if( $.trim(current_local.web) == '' ) {
-            $('#localMaps').hide();
+            $('#localWeb').hide();
         }
 
         if( $.trim(current_local.facebook) == '' ) {
