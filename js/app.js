@@ -669,7 +669,11 @@ function pagar_promocion(id, element, event) {
 
 function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
+    console.log("getValidarDeviceUuid");
+
     getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
+
+        console.log(data);
 
         if (data.status == 'success') {
 
@@ -849,7 +853,7 @@ var app = {
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
 
-            if (!APP_INITIALIZED) {
+            if (!>) {
                 getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
             }
         }
