@@ -853,7 +853,7 @@ var app = {
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
 
-            if (!>) {
+            if (!APP_INITIALIZED) {
                 getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
             }
         }
