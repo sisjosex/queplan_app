@@ -669,7 +669,13 @@ function pagar_promocion(id, element, event) {
 
 function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
+    var data_sent = {
+        device_uuid: device_uuid,
+        token_notificacion: token_notificacion
+    };
+
     console.log("getValidarDeviceUuid");
+    console.log(data_sent);
 
     getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
 
@@ -712,10 +718,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
         //showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
 
-    }, {
-        device_uuid: device_uuid,
-        token_notificacion: token_notificacion
-    });
+    }, data_sent);
 }
 
 function isLogin() {
