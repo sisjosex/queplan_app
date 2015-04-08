@@ -3240,20 +3240,7 @@ function openExternalLink(url, e) {
 
         currentLink = url;
 
-        try {
-
-            window.plugins.ChildBrowser.showWebPage(url,
-                {showLocationBar: true});
-
-            window.plugins.ChildBrowser.onClose = function () {
-                isExternalShowing = false;
-            };
-
-        } catch (error) {
-
-            window.open(url, '_blank', 'location=yes,closebuttoncaption=Salir');
-            //splash.pushPage('external.html', {});
-        }
+        window.open(url, '_blank', 'location=yes,closebuttoncaption=Salir');
 
         if (e != undefined) {
             e.stopPropagation();
