@@ -3028,7 +3028,8 @@ function autentificarUsuario(boton) {
                 };
             }
 
-
+            console.log('newRegistro');
+            console.log(data);
 
             getJsonP(api_url + 'newRegistro/', function (data) {
 
