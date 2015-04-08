@@ -3015,7 +3015,7 @@ function autentificarUsuario(boton) {
                     d_plataforma: device ? device.platform: 'ios',
                     d_version: device ? device.version : '7',
                     d_uuid: device ? device.uuid : 'asdasd',
-                    d_name: devide ? device.name : 'iPhone',
+                    d_name: device ? device.name : 'iPhone',
                     u_token_notificacion: PUSH_NOTIFICATION_TOKEN
                 };
 
