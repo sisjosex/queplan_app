@@ -117,7 +117,7 @@ var templates = {
         '<div class="paginator-item"><div class="paginator-item-content"></div></div>',
 
     slider_ciudades: '' +
-    '<ons-carousel-item class="item-bg ciudad_slide detail session-item loading" rel="%id%">'+
+    '<ons-carousel-item class="item-bg ciudad_slide detail session-item loading" rel="%id%" onclick="elegirCiudad(%id%, event)">'+
         '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
         '<div class="full-screen animate"><img onload="onSliderCiudadIMGLoad(this, %index%)" src="%image%" /></div>'+
         '<div class="title">%title%</div>'+

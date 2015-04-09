@@ -1172,13 +1172,30 @@ function procesarRegistro(element, event, type) {
     }
 }
 
-function elegirCiudad(ciudad_id) {
+function elegirCiudad(ciudad_id, event) {
 
-    ciudad_seleccionada = CIUDAD_ID = ciudad_id;
-
-    //ciudad_seleccionada = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
+    ciudad_seleccionada = CIUDAD_ID = applicationParams.ciudades[ciudad_images.getActiveCarouselItemIndex()].id;
 
     goHome(ciudad_seleccionada);
+}
+
+function loadinitialParams(callback) {
+
+    try {
+        StatusBar.hide();
+    } catch (error) {
+    }
+
+    getJsonP(api_url + 'getInitialParams/', function (data) {
+
+        applicationParams = data;
+
+        callback();
+
+    }, function () {
+
+
+    }, {});
 }
 
 function loadApplicationParams(callback) {
@@ -1521,7 +1538,9 @@ module.controller('NavigatorController', function ($scope) {
         } catch (error) {
         }
 
-        app.onDeviceReady();
+        loadinitialParams(function(){
+            app.onDeviceReady();
+        });
 
     })
 });
@@ -1569,13 +1588,15 @@ module.controller('ciudadController', function ($scope) {
 
         }, 100);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.ciudad_slide').each(function() {
+        /*$(mainnavigator.getCurrentPage().element[0]).find('.ciudad_slide').each(function(event) {
 
-            $(this).on('click', function() {
-                elegirCiudad( $(this).attr('rel') );
+            $(this).unbind('click').on('click', function(event) {
+                console.log(event.target);
+                //elegirCiudad( $(this).attr('rel') );
+                console.log( $(this).attr('rel') );
             });
 
-        });
+        });*/
 
         setTimeout(function () {
 

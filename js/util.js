@@ -224,6 +224,9 @@ function createCookie(name,value,days) {
     //window.cookie = name+"="+value+expires+";path=/";
 
     localStorage.setItem(name, value);
+    if(days == -1) {
+        localStorage.removeItem(name);
+    }
 }
 
 function readCookie(name) {
