@@ -543,7 +543,9 @@ function goHome(ciudad_id, save) {
 
                         if (data.status == 'success') {
 
-                            mainnavigator.pushPage('home.html');
+                            loadApplicationParams(function () {
+                                mainnavigator.pushPage('home.html');
+                            });
 
                             //showAlert(data.mensaje, "Aviso", "Aceptar");
                             //re-escribimos la cookie con la nueva ciudad
@@ -561,12 +563,16 @@ function goHome(ciudad_id, save) {
 
             } else {
 
-                mainnavigator.pushPage('home.html', {animation: "none"});
+                loadApplicationParams(function () {
+                    mainnavigator.pushPage('home.html', {animation: "none"});
+                });
             }
 
         } else if(LOGIN_INVITADO) {
 
-            mainnavigator.pushPage('home.html');
+            loadApplicationParams(function () {
+                mainnavigator.pushPage('home.html');
+            });
         }
     }
 }
@@ -696,7 +702,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 CIUDAD_ID = ciudad_seleccionada = usuario_ciudad;
 
                 if (isLogin()) {
-                    mainnavigator.pushPage('home.html', {animation: "none"})
+                    loadApplicationParams(function () {
+                        mainnavigator.pushPage('home.html', {animation: "none"})
+                    });
                 }
 
             } else {
@@ -828,7 +836,9 @@ var app = {
 
                     } else {
 
-                        mainnavigator.pushPage('home.html', {animation: "none"});
+                        loadApplicationParams(function () {
+                            mainnavigator.pushPage('home.html', {animation: "none"});
+                        });
 
                     }
                 }
@@ -1178,7 +1188,7 @@ function loadApplicationParams(callback) {
     } catch (error) {
     }
 
-    getJsonPBackground(api_url + 'getParams/', function (data) {
+    getJsonP(api_url + 'getParams/', function (data) {
 
         applicationParams = data;
 
@@ -1187,7 +1197,7 @@ function loadApplicationParams(callback) {
     }, function () {
 
 
-    }, {});
+    }, {ciudad_id: ciudad_seleccionada});
 }
 
 function refreshHomeScroll() {
@@ -1511,12 +1521,7 @@ module.controller('NavigatorController', function ($scope) {
         } catch (error) {
         }
 
-        loadApplicationParams(function () {
-
-            /*getLocationGPS();*/
-
-            app.onDeviceReady();
-        });
+        app.onDeviceReady();
 
     })
 });
