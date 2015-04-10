@@ -635,12 +635,22 @@ label.checkbox {
 }
 
 .dashboard_icon {
+    width: 41px;
+    height: 41px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    background-size: 100% auto;
+}
+
+.dashboard_icon:after {
     width: 29px;
     height: 41px;
     display: block;
     margin: 0 auto;
     overflow: hidden;
     background-size: 100% auto;
+    content:"";
 }
 
 .zonas_icon {
@@ -653,36 +663,39 @@ label.checkbox {
 }
 
 /*icons*/
-.icon_planes_de_hoy {
+.icon_planes_de_hoy:after {
     background-image: url('../img/icon_planes_de_hoy.png');
 }
 
-.icon_menu_diario {
+.icon_menu_diario:after {
     background-image: url('../img/icon_menu_diario.png');
     width: 41px;
     height: 41px;
 }
 
-.icon_guia {
+.icon_guia:after {
     background-image: url('../img/icon_guia.png');
     width: 40px;
     height: 41px;
 }
 
-.icon_recompensas {
+.icon_recompensas:after {
     background-image: url('../img/icon_recompensas.png');
     width: 33px;
     height: 35px;
 }
 
-.icon_10_1 {
+.icon_10_1:after {
     background-image: url('../img/icon_10_1.png');
     width: 38px;
     height: 36px;
 }
 
-.icon_perfil {
-    width: 34px;
+.icon_perfil:after {
+    background-image: url('../img/icon_perfil.png');
+    width: 38px;
+    height: 38px;
+    /*width: 34px;
     height: 38px;
     font-size: 32px;
     border: solid 2px #20232b;
@@ -693,7 +706,7 @@ label.checkbox {
     vertical-align: top;
     border-radius: 5px;
     padding-left: 2px;
-    padding-right: 1px;
+    padding-right: 1px;*/
 }
 
 .participar-header {
@@ -713,7 +726,7 @@ label.checkbox {
 }
 
 .perfil-header {
-    background: none !important;
+    background: url('../img/icon_perfil.png') 0 0 no-repeat transparent;
     width: 34px;
     height: 38px;
     font-size: 32px;
@@ -1320,7 +1333,7 @@ i.invitado {
 }
 
 .dashboard.row .button .text {
-    margin-top: 10px;
+    margin-top: 2px;
 }
 
 .slider-few .title {
