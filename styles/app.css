@@ -1990,3 +1990,6 @@ label.checkbox:last-child {
     }*/
 }
 
+.btn.rosa .text {
+    color:#fff !important;
+}
