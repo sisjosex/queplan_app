@@ -1760,6 +1760,11 @@ module.controller('PlanesController', function ($scope) {
                 $(this).find('.validar').remove();
             }
 
+            if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
+
+                $(this).find('.overlay.title').addClass('rosa bold');
+            }
+
             i ++;
 
         });

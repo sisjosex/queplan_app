@@ -544,8 +544,12 @@ label.checkbox {
     display:block;
 }
 
-.rosa {
-    color: #fb00c2 !important;
+.rosa * {
+    color: #e65792 !important;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 .normal-page .toolbar {
@@ -723,6 +727,20 @@ label.checkbox {
     padding-left: 2px;
     padding-right: 1px;
     vertical-align: top !important;
+}
+
+.fa-facebook {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.fa-twitter {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #fff;
 }
 
 .ayuda-header {
