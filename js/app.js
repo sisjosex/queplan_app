@@ -2206,10 +2206,13 @@ function refreshLocalesScroll() {
 }
 
 
+var LocalesController;
 module.controller('LocalesController', function ($scope) {
     ons.ready(function () {
 
         LocalesController = this;
+
+        LocalesController.scroll = undefined;
 
         var current_list = mainnavigator.getCurrentPage().options.current_list;
 
@@ -2219,22 +2222,56 @@ module.controller('LocalesController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
-        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0], current_list.items, 'locales_list');
+        renderLocales(current_list);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-            gotoGuiaDetalle( $(this).attr('rel'), current_list );
-        });
+        loadIntoTemplate( $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0], current_list.zonas, 'zonas_tabs' );
 
-        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0]);
+    })
+});
+
+function renderLocales(current_list) {
+
+    $(mainnavigator.getCurrentPage().element[0]).find('#locales_content').html('');
+
+    loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0], current_list.items, 'locales_list');
+
+    $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
+        gotoGuiaDetalle( $(this).attr('rel'), current_list );
+    });
+
+    ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0]);
+
+    //$(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').height( $(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#localesFooter').outerHeight() )
+
+    if(LocalesController.scroll == undefined) {
 
         counterPlanes += 1;
 
         $(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').attr('id', 'localesScroll' + counterPlanes);
 
-        initScroll('localesScroll' + counterPlanes);
+        LocalesController.scroll = initScroll('localesScroll' + counterPlanes);
 
-    })
-});
+    } else {
+
+        LocalesController.scroll.refresh();
+    }
+}
+
+function filtrarLocalesByZona( zona_id ) {
+
+    if (current_page != 'locales.html') {
+
+        current_page = 'locales.html';
+        setTimeout(function(){current_page = '';}, 100);
+
+        getJsonP(api_url + 'getLocales/', function (data) {
+
+            renderLocales(data);
+
+        }, function () {
+        }, { categoria_id: current_categoria.id, ciudad_id: ciudad_seleccionada, zona_id: zona_id });
+    }
+}
 
 
 var GuiaController;
@@ -3233,6 +3270,8 @@ function initScroll(div) {
             });
         }, 10);
     }
+
+    return scrolls[div];
 }
 
 function updateContent(el, data) {

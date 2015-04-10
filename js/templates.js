@@ -129,7 +129,9 @@ var templates = {
 
     life_paginator: '<li class="carousel-page %selected%"></li>',
 
-    promo_paginator: '<li class="carousel-page %selected%"></li>'
+    promo_paginator: '<li class="carousel-page %selected%"></li>',
+
+    zonas_tabs: '<div class="button nobutton" onclick="filtrarLocalesByZona(%id%)"><div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div></div>'
 };
 
 

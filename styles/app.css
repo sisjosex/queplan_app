@@ -639,6 +639,15 @@ label.checkbox {
     background-size: 100% auto;
 }
 
+.zonas_icon {
+    width: 52px;
+    height: 35px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    background-size: 100% auto;
+}
+
 /*icons*/
 .icon_planes_de_hoy {
     background-image: url('../img/icon_planes_de_hoy.png');
@@ -668,10 +677,68 @@ label.checkbox {
     height: 36px;
 }
 
-.icon_realidad_aumentada {
-    background-image: url('../img/icon_realidad_aumentada.png');
-    width: 29px;
+.icon_perfil {
+    width: 34px;
     height: 38px;
+    font-size: 32px;
+    border: solid 2px #20232b;
+    min-height: 24px;
+    height: 24px;
+    padding-top: 2px;
+    padding-bottom: 7px;
+    vertical-align: top;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 1px;
+}
+
+.participar-header {
+    width: 34px;
+    height: 38px;
+    font-size: 32px;
+    border: solid 2px #fff;
+    min-height: 24px !important;
+    height: 24px;
+    padding-top: 9px;
+    padding-bottom: 7px;
+    vertical-align: top;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 1px;
+    vertical-align: top !important;
+}
+
+.perfil-header {
+    background: none !important;
+    width: 34px;
+    height: 38px;
+    font-size: 32px;
+    border: solid 2px #fff;
+    min-height: 24px !important;
+    height: 24px;
+    padding-top: 9px;
+    padding-bottom: 7px;
+    vertical-align: top;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 1px;
+    vertical-align: top !important;
+}
+
+.ayuda-header {
+    width: 34px;
+    height: 38px;
+    font-size: 32px;
+    border: solid 2px #fff;
+    min-height: 24px !important;
+    height: 24px;
+    padding-top: 9px;
+    padding-bottom: 7px;
+    vertical-align: top;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 1px;
+    vertical-align: top !important;
 }
 
 
@@ -1446,6 +1513,7 @@ i.invitado {
     bottom:0;
     padding-bottom: 5px;
     padding-top: 5px;
+    height: 52px;
 }
 
 .footer .button {
@@ -1844,6 +1912,9 @@ label.checkbox:last-child {
     width:auto;
 }
 
+#localesList {
+    padding-bottom: 60px;
+}
 
 @media all and (max-width: 320px) {
 
