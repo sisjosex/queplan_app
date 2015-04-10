@@ -1930,6 +1930,12 @@ module.controller('LocalController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localImages')[0], current_local.local_images, 'slider_local');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localPaginator')[0], current_local.local_images, 'slider_paginator');
 
+        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+            $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
+            $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
+        }
+
         if (current_local.condicion) {
             $(mainnavigator.getCurrentPage().element[0]).find('#localCondicion').html('<h4>Condición</h4><p align="left">' + current_local.condicion + '</p>');
         }
