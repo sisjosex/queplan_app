@@ -1524,7 +1524,7 @@ function adaptImage(img, index) {
 
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
-        container.css('background-position', "0 center");
+        container.css('background-position', "center center");
 
         var width = image.width;
         var height = image.height;
