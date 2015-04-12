@@ -34,7 +34,7 @@ var templates = {
 
     como_funciona_list:
     '<ons-list-item modifier="chevron" class="list-item-container guias-list loading" onclick="gotoComofuncionaDetalle(%index%)">'+
-    '<div class="list-item-left">'+
+    '<div class="list-item-left few">'+
     '<img src="%imagen%" class="avator" onload="refreshComoFuncionaScroll(this)">'+
     '</div>'+
     '<div class="list-item-right">'+

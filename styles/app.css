@@ -1528,6 +1528,10 @@ i.invitado {
     min-height: 50px;*/
 }
 
+.list-item-left.few img {
+    max-width: 33px;
+}
+
 .justify {
     text-align: justify;
 }

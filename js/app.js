@@ -2725,7 +2725,7 @@ module.controller('PerfilController', function ($scope) {
 
             $(mainnavigator.getCurrentPage().element[0]).find('.login_options').find("."+user.registrado_mediante).parent().show();
 
-            initScroll('perfilScroll');
+            PerfilController.scroll = initScroll('perfilScroll');
 
             if ($.trim(user.email) == "") {
                 showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
@@ -2791,6 +2791,8 @@ function saveAlertas() {
 
         var user = COOKIE;
         var data = $('#zonas').serializeArray();
+
+        console.log(data);
 
         data.push({
             name: 'usuario_id',
@@ -3066,7 +3068,7 @@ function reloadZonas() {
 }
 
 function refreshPerfilScroll() {
-    //scrolls.perfilScroll.refresh();
+    PerfilController.scroll.refresh();
 }
 
 var EmailController;
