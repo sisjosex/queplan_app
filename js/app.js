@@ -388,13 +388,34 @@ function showNotification(event, type) {
 //redirectToPage
 function redirectToPage(seccion, id) {
 
+    if( id == undefined) {
+        id = '';
+    }
+
     if (seccion == "local") {
 
         if (id == "") {
 
+            id = '1';
+
             current_page = '';
 
-            goToGuia();
+            getJsonP(api_url + 'getLocales/', function (data) {
+
+                if(data.status == 'success') {
+
+                    mainnavigator.pushPage('locales.html', {current_list: data});
+
+                } else {
+
+                    showAlert('No existen locales para mostrar', 'Mensaje', 'Aceptar');
+
+                    current_page = '';
+                }
+
+
+            }, function () {
+            }, {ciudad_id: ciudad_seleccionada, categoria_id: id});
 
         } else {
 
@@ -1021,20 +1042,24 @@ function resizeCardCarousel() {
     refreshHomeScroll();
 }
 
+var homeInterval = undefined;
 function imageLoaded(index) {
     if (index == 0) {
-        setInterval(function () {
 
-            if (homeImages.getActiveCarouselItemIndex() < homeImages._getCarouselItemCount() - 1) {
+        if(homeInterval == undefined) {
+            homeInterval = setInterval(function () {
 
-                homeImages.next();
+                if (homeImages.getActiveCarouselItemIndex() < homeImages._getCarouselItemCount() - 1) {
 
-            } else {
+                    homeImages.next();
 
-                homeImages.setActiveCarouselItemIndex(0);
-            }
+                } else {
 
-        }, 5000);
+                    homeImages.setActiveCarouselItemIndex(0);
+                }
+
+            }, 5000);
+        }
     }
 }
 
@@ -1624,104 +1649,116 @@ module.controller('HomeController', function ($scope) {
         } catch (error) {
         }
 
-        setTimeout(function () {
+            setTimeout( function() {
 
-            var factor = window.innerWidth / 320;
+                var factor = window.innerWidth / 320;
 
-            var footerHeight = factor * $('#homeFooter').outerHeight();
+                var footerHeight = factor * $('#homeFooter').outerHeight();
 
-            $('#homeFooter .banner').height(footerHeight + 8);
-            $('#homeHeader').height(footerHeight - 8);
+                $('#homeFooter .banner').height(footerHeight + 8);
+                $('#homeHeader').height(footerHeight - 8);
 
-            height = $(window).height() - ( $('#homeScroll').outerHeight() + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
+                height = $(window).height() - ( $('#homeScroll').outerHeight() + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
 
-            height = height - 12 - 8;
+                height = height - 12 - 8;
 
-            $('#homeImages').height(height);
-            $('#homeToolbar').height(height);
+                $('#homeImages').height(height);
+                $('#homeToolbar').height(height);
 
-            home_slider_width = window.innerWidth;
-            home_slider_height = height;
+                home_slider_width = window.innerWidth;
+                home_slider_height = height;
 
-            $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
+                $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
 
-            $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
-
-            loadIntoTemplate('#homeImages', applicationParams.slider, 'slider_images');
-
-            loadIntoTemplate('#homePaginator', applicationParams.slider, 'slider_paginator');
-
-            if ($.trim(applicationParams.banner.url) != '' ) {
-
-                $('#homeBanner').find('a').attr('rel', applicationParams.banner.url);
-
-                $('#homeBanner').find('a').on('click', function() {
-
-                    openExternalLink($(this).attr('rel'));
-                });
-            } else if( $.trim(applicationParams.banner.section) != '' ) {
-
-                $('#homeBanner').find('a').on('click', function() {
-
-                    redirectToPage(applicationParams.banner.section, applicationParams.banner.section_id);
-                });
-            }
-
-            $('#homePage .home-slide').each(function() {
-
-                if ($.trim($(this).attr('url')) != '' ) {
-
-                    $(this).on('click', function() {
-
-                        openExternalLink($(this).attr('url'));
-                    });
-                } else if( $.trim($(this).attr('section')) != '' ) {
-
-                    $(this).on('click', function() {
-
-                        redirectToPage($(this).attr('section'), $(this).attr('section_id'));
-                    });
-                }
-
-            });
-
-            if ($.trim(applicationParams.banner.image) != '' ) {
-
-                $('#homeBanner').find('img').attr('src', applicationParams.banner.image);
-            }
-
-            $('#homePaginator > div:first-child').addClass('selected');
-
-
-            HomeController.carouselPostChange = function () {
-                $('#homePaginator > div').removeClass('selected');
-                $('#homePaginator > div:nth-child(' + (homeImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
-            };
-
-            setTimeout(function () {
-
-                homeImages.on('postchange', HomeController.carouselPostChange);
+                renderHome();
 
             }, 100);
 
-            ons.compile($('#homeImages')[0]);
-
-            initScroll('homeScroll');
-
-            setTimeout(function () {
-
-                try {
-                    navigator.splashscreen.hide();
-                } catch (error) {
-                }
-
-            }, 1000);
-
-
-        }, 100);
-
     });
 });
+
+function renderHome() {
+
+    $('#homeImages').html('');
+    $('#homePaginator').html('');
+
+    loadIntoTemplate('#homeImages', applicationParams.slider, 'slider_images');
+
+    loadIntoTemplate('#homePaginator', applicationParams.slider, 'slider_paginator');
+
+    $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
+
+    if ($.trim(applicationParams.banner.url) != '' ) {
+
+        $('#homeBanner').find('a').attr('rel', applicationParams.banner.url);
+
+        $('#homeBanner').find('a').on('click', function() {
+
+            openExternalLink($(this).attr('rel'));
+        });
+    } else if( $.trim(applicationParams.banner.section) != '' ) {
+
+        $('#homeBanner').find('a').on('click', function() {
+
+            redirectToPage(applicationParams.banner.section, applicationParams.banner.section_id);
+        });
+    }
+
+    $('#homePage .home-slide').each(function() {
+
+        if ($.trim($(this).attr('url')) != '' ) {
+
+            $(this).on('click', function() {
+
+                openExternalLink($(this).attr('url'));
+            });
+        } else if( $.trim($(this).attr('section')) != '' ) {
+
+            $(this).on('click', function() {
+
+                redirectToPage($(this).attr('section'), $(this).attr('section_id'));
+            });
+        }
+
+    });
+
+    if ($.trim(applicationParams.banner.image) != '' ) {
+
+        $('#homeBanner').find('img').attr('src', applicationParams.banner.image);
+
+    } else {
+
+        $('#homeBanner').find('img').attr('src', '');
+    }
+
+    $('#homePaginator > div:first-child').addClass('selected');
+
+    ons.compile($('#homeImages')[0]);
+
+
+    HomeController.carouselPostChange = function () {
+        $('#homePaginator > div').removeClass('selected');
+        $('#homePaginator > div:nth-child(' + (homeImages.getActiveCarouselItemIndex() + 1) + ')').addClass('selected');
+    };
+
+    setTimeout(function () {
+
+        homeImages.on('postchange', HomeController.carouselPostChange);
+
+    }, 100);
+
+
+    initScroll('homeScroll');
+
+    setTimeout(function () {
+
+        try {
+            navigator.splashscreen.hide();
+        } catch (error) {
+        }
+
+    }, 1000);
+}
 
 var PlanesController;
 var counterPlanes = 0;
@@ -2932,6 +2969,8 @@ function cambiarCiudad(dropdown, event) {
             reWriteCookie("user","ciudad_id",data.ciudad_id);
 
             $('#zonas').html('');
+
+            loadApplicationParams(renderHome);
 
             reloadZonas();
 
