@@ -22,6 +22,7 @@
  * Add Google OAuth Capabilities to the helper
  * property/attribute of liquid
  */
+var loginWindow;
 (/** @lends liquid.helper */function(helper) {
 	
 	helper.oauth = {
@@ -141,6 +142,7 @@
 				
 				// close the ChildBrowser
 				//window.plugins.ChildBrowser.close();
+                loginWindow.close();
 			}
 		    else if(uriLocation.indexOf("error=") != -1) 
 		    {
@@ -148,6 +150,7 @@
 		    	$this.errorMessage = $this.getParameterByName("error", uriLocation);
 		    	
 		    	//window.plugins.ChildBrowser.close();
+                loginWindow.close();
 		    }
 		    else {
 		    	$this.requestStatus = $this.status.NOT_DETERMINED;
