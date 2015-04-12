@@ -1524,7 +1524,7 @@ function adaptImage(img, index) {
 
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
-        container.css('background-position', "0 0");
+        container.css('background-position', "0 center");
 
         var width = image.width;
         var height = image.height;
@@ -2280,6 +2280,8 @@ module.controller('LocalesController', function ($scope) {
         renderLocales(current_list);
 
         loadIntoTemplate( $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0], current_list.zonas, 'zonas_tabs' );
+
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0]);
 
     })
 });

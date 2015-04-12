@@ -1564,6 +1564,11 @@ i.invitado {
     line-height: 16px;
 }
 
+.tabs {
+    width:100%;
+    height:100%;
+}
+
 .tabs .button .text {
     color:#fff;
 }
