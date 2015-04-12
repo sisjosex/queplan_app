@@ -1525,8 +1525,11 @@ function adaptImage(img, index) {
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
         container.css('background-position', "center center");
+        container.css('background-size', "100% auto");
 
-        var width = image.width;
+        container.addClass('opaque');
+
+        /*var width = image.width;
         var height = image.height;
 
         if(width > height) {
@@ -1542,7 +1545,7 @@ function adaptImage(img, index) {
 
         container.css('background-size', (width) + "" + " " + (height) + "");
 
-        container.addClass('opaque');
+        container.addClass('opaque');*/
     }
 
     image.src = src;
