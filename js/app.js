@@ -1244,7 +1244,7 @@ function loadApplicationParams(callback) {
 
 function refreshHomeScroll() {
 
-    scrolls['homeScroll'].refresh();
+    //scrolls['homeScroll'].refresh();
 }
 
 
@@ -1252,17 +1252,17 @@ function refreshGuiasScroll(img) {
 
     $(img).css('visibility', 'visible');
 
-    scrolls['guiasScroll'].refresh();
+    //scrolls['guiasScroll'].refresh();
 }
 
 function refreshPlanesScroll() {
 
-    scrolls['planesScroll'].refresh();
+    //scrolls['planesScroll'].refresh();
 }
 
 function refreshRecompensasScroll() {
 
-    scrolls['recompensasScroll'].refresh();
+    //scrolls['recompensasScroll'].refresh();
 }
 
 closeDetailSession = function () {
@@ -2123,7 +2123,7 @@ function refreshComoFuncionaScroll(img) {
 
     $(img).css('visibility', 'visible');
 
-    scrolls.como_funcionaScroll.refresh();
+    //scrolls.como_funcionaScroll.refresh();
 }
 
 function gotoComofuncionaDetalle(index, current_list) {
@@ -2250,7 +2250,7 @@ function gotoGuiaDetalle(index, current_list) {
 }
 
 function refreshLocalesScroll() {
-    scrolls.localesScroll.refresh();
+    //scrolls.localesScroll.refresh();
 }
 
 
@@ -2430,7 +2430,7 @@ function gotoMenuDetalle(index, current_list) {
 }
 
 function refreshMenuScroll() {
-    scrolls.menuScroll.refresh();
+    //scrolls.menuScroll.refresh();
 }
 
 var MenuDetalleController;
@@ -3053,7 +3053,7 @@ function reloadZonas() {
 }
 
 function refreshPerfilScroll() {
-    scrolls.perfilScroll.refresh();
+    //scrolls.perfilScroll.refresh();
 }
 
 var EmailController;
@@ -3294,7 +3294,16 @@ function fixModalBottomHeight(height) {
 var scrolls = {};
 function initScroll(div) {
 
-    if (!scrolls[div]) {
+    return new iScroll(div, {
+        momentum: true,
+        hScrollbar: false,
+        vScrollbar: false,
+        click: true,
+        tap: true,
+        checkDOMChanges: true
+    });
+
+    /*if (!scrolls[div]) {
 
         scrolls[div] = new iScroll(div, {
             momentum: true,
@@ -3319,9 +3328,9 @@ function initScroll(div) {
                 checkDOMChanges: true
             });
         }, 10);
-    }
+    }*/
 
-    return scrolls[div];
+    //return scrolls[div];
 }
 
 function updateContent(el, data) {
