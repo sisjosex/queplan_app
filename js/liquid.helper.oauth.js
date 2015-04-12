@@ -91,9 +91,14 @@
 			$this.requestStatus = $this.status.NOT_DETERMINED;
 			
 			// Now open new browser
-			window.plugins.ChildBrowser.showWebPage(authUri, {showLocationBar : false}); 		
-			window.plugins.ChildBrowser.onClose = $this.onAuthClose;		
-			window.plugins.ChildBrowser.onLocationChange = $this.onAuthUrlChange;		
+			//window.plugins.ChildBrowser.showWebPage(authUri, {showLocationBar : false});
+			//window.plugins.ChildBrowser.onClose = $this.onAuthClose;
+			//window.plugins.ChildBrowser.onLocationChange = $this.onAuthUrlChange;
+
+            loginWindow = window.open(authUri, '_blank', 'location=no');
+
+            loginWindow.addEventListener('loadstart', $this.onAuthUrlChange);
+            loginWindow.addEventListener('exit', $this.onAuthClose);
 		},
 	
 		/* Auth Window closed */
@@ -122,6 +127,8 @@
 		 */
 		onAuthUrlChange: function(uriLocation) {
 
+            var uriLocation = uriLocation.url;
+
             //alert(uriLocation);
 
 			var $this = helper.oauth;
@@ -133,14 +140,14 @@
 				$this.authCode = $this.getParameterByName("code", uriLocation);
 				
 				// close the ChildBrowser
-				window.plugins.ChildBrowser.close();
+				//window.plugins.ChildBrowser.close();
 			}
 		    else if(uriLocation.indexOf("error=") != -1) 
 		    {
 		    	$this.requestStatus = $this.status.ERROR;		    	
 		    	$this.errorMessage = $this.getParameterByName("error", uriLocation);
 		    	
-		    	window.plugins.ChildBrowser.close();
+		    	//window.plugins.ChildBrowser.close();
 		    }
 		    else {
 		    	$this.requestStatus = $this.status.NOT_DETERMINED;

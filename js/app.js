@@ -88,7 +88,7 @@ function checkIn(urlamigable) {
                 //ocultamos loading
                 $.mobile.loading('hide');
 
-                if (data.success) {
+                if (data.status == 'success') {
                     var imagen = BASE_URL_APP + 'img/logo_oficial.png';
 
                     //re-escribimos la cookie con los puntos totales
@@ -191,14 +191,14 @@ function comprarRecompensa(local_id, recompensa_id) {
                     //ocultamos loading
                     //$.mobile.loading( 'hide' );
 
-                    if (data.success) {
+                    if (data.status == 'success') {
                         var imagen = BASE_URL_APP + 'img/logo_oficial.png';
 
                         //re-escribimos la cookie con los puntos restantes
                         reWriteCookie("user", "puntos_acumulados", data.total_puntos_restantes);
                         reWriteCookie("user", "Puntos", data.puntos);
 
-                        showAlert(data.mensaje, "Compra Realizada!", "Aceptar", function () {
+                        showAlert(data.mensaje, "GENIAL", "Aceptar", function () {
 
                             if (user.registrado_mediante == "facebook") {
 
@@ -251,11 +251,11 @@ function comprarPlan(local_id, promocion_id) {
                     //ocultamos loading
                     //$.mobile.loading( 'hide' );
 
-                    if (data.success) {
+                    if (data.status == 'success') {
 
                         //var imagen = BASE_URL_APP + 'img/logo_oficial.png';
 
-                        showAlert(data.mensaje, "Te apuntaste con exito!", "Aceptar", function () {
+                        showAlert(data.mensaje, "ENHORABUENA", "Aceptar", function () {
 
                             if (user.registrado_mediante == "facebook") {
 
@@ -271,6 +271,7 @@ function comprarPlan(local_id, promocion_id) {
                         });
 
                     } else {
+
                         showAlert(data.mensaje, "Plan no disponible", "Aceptar");
                     }
                 }
@@ -1864,6 +1865,12 @@ module.controller('PlanController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planImages')[0], current_plan.images, 'slider_plan');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planPaginator')[0], current_plan.images, 'slider_paginator');
 
+        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+            $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
+            $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
+        }
+
         if (current_plan.condicion) {
             $(mainnavigator.getCurrentPage().element[0]).find('#planCondicion').html('<h4 class="rosa">Condición</h4><p align="left">' + current_plan.condicion + '</p>');
         }
@@ -2357,6 +2364,12 @@ module.controller('GuiaController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guiaImages')[0], current_guia.images, 'slider_guia');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator')[0], current_guia.images, 'slider_paginator');
+
+        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+            $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
+            $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
+        }
 
         $(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator > div:first-child').addClass('selected');
 
