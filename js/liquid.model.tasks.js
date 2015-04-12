@@ -127,20 +127,15 @@
 	    */
 	   getList: function(callback) {
 		   var $this = model.tasks;
-
-           showAlert('getList >> ', 'debug', 'Aceptar');
 		   
 		   liquid.helper.oauth.getAccessToken(function(tokenObj) {
-			   
-			   showAlert('getAccessToken >> ' + tokenObj.access_token, 'debug', 'Aceptar');
+
 			   /* at first set the access Token */
 				gapi.auth.setToken({
 					access_token: tokenObj.access_token
 				});
 				
 				$this.loadGapi(function() {
-
-                    showAlert('loadGapi >> ' + $this.tasklistId, 'debug', 'Aceptar');
 
 					var request = gapi.client.tasks.tasks.list({
 					  	tasklist: $this.tasklistId // tasklist id
