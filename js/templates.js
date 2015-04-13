@@ -133,8 +133,11 @@ var templates = {
 
     //zonas_tabs: '<div class="button nobutton" onclick="filtrarLocalesByZona(%id%)"><div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div></div>'
 
-    zonas_tabs: '<ons-carousel-item onclick="filtrarLocalesByZona(%id%)" class="button nobutton">'+
-    '<div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div>'+
+    zonas_tabs:
+    '<ons-carousel-item>' +
+        '<div onclick="filtrarLocalesByZona(%id%)" class="button nobutton">'+
+            '<div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div>'+
+        '</div>'+
     '</ons-carousel-item>'
 };
 
