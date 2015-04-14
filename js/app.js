@@ -405,6 +405,10 @@ function redirectToPage(seccion, id) {
 
                 if(data.status == 'success') {
 
+                    current_categoria = {
+                        id: id
+                    };
+
                     mainnavigator.pushPage('locales.html', {current_list: data});
 
                 } else {
@@ -1662,7 +1666,7 @@ module.controller('HomeController', function ($scope) {
                 $('#homeFooter .banner').height(footerHeight + 8);
                 $('#homeHeader').height(footerHeight - 8);
 
-                height = $(window).height() - ( $('#homeScroll').outerHeight() + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
+                height = $(window).height() - ( $('#homeScroll').outerHeight()  + 40 + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
 
                 height = height - 12 - 8;
 
@@ -2240,6 +2244,10 @@ function gotoLocalesFromId(categoria_id) {
         setTimeout(function(){current_page = '';}, 100);
 
         getJsonP(api_url + 'getLocales/', function (data) {
+
+            current_categoria = {
+                id: categoria_id
+            };
 
             mainnavigator.pushPage('locales.html', {current_list: data});
 
