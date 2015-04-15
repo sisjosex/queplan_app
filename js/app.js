@@ -257,6 +257,38 @@ function comprarPlan(local_id, promocion_id) {
 
                         showAlert(data.mensaje, "ENHORABUENA", "Aceptar", function () {
 
+                            if( mainnavigator.getPages()[mainnavigator.getPages().length-2].name == 'planes.html' ) {
+
+                                var i = 0;
+
+                                $(mainnavigator.getPages()[mainnavigator.getPages().length-2].element[0]).find('.list-item-container').each(function(){
+
+                                    var current_list = mainnavigator.getPages()[mainnavigator.getPages().length-2].options.current_list;
+
+                                    if(current_list.items[i].id == data.item.id) {
+                                        $(this).find('.validar').attr('id', data.item.promocion_id);
+                                        $(this).find('.validar').on('click', function(event){
+                                            pagar_promocion($(this).attr('id'), this, event);
+                                        });
+
+                                        $(this).find('.validar').show();
+
+                                    } else {
+
+                                        $(this).find('.validar').hide();
+                                    }
+
+                                    if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
+
+                                        $(this).find('.overlay.title').addClass('rosa bold');
+                                    }
+
+                                    i ++;
+
+                                });
+
+                            }
+
                             if (user.registrado_mediante == "facebook") {
 
                                 /*setTimeout(function () {
@@ -461,7 +493,7 @@ function redirectToPage(seccion, id) {
                 }
 
             }, function () {
-            }, {ciudad_id: ciudad_seleccionada, plan_id: id});
+            }, {ciudad_id: ciudad_seleccionada, plan_id: id, usuario_id: (userData != undefined) ? userData.id : ''});
 
         }
 
@@ -1111,7 +1143,7 @@ function goToPlanes(local_id) {
 
 
         }, function () {
-        }, {ciudad_id: ciudad_seleccionada, local_id: local_id});
+        }, {ciudad_id: ciudad_seleccionada, local_id: local_id, usuario_id: (userData != undefined) ? userData.id : ''});
 
     }
 }
@@ -1802,7 +1834,7 @@ module.controller('PlanesController', function ($scope) {
 
             } else {
 
-                $(this).find('.validar').remove();
+                $(this).find('.validar').hide();
             }
 
             if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
@@ -2589,7 +2621,7 @@ module.controller('RecompensasController', function ($scope) {
                 });
             } else {
 
-                $(this).find('.validar').remove();
+                $(this).find('.validar').hide();
             }
 
             i ++;
