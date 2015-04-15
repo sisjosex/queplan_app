@@ -735,7 +735,14 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
     var data_sent = {
         device_uuid: device_uuid,
-        token_notificacion: token_notificacion
+        token_notificacion: token_notificacion,
+
+        u_email: '',
+        u_password: '',
+        u_login_con: 'free',
+        d_plataforma: device ? device.platform: 'ios',
+        d_version: device ? device.version : '7',
+        d_name: device ? device.name : 'iPhone'
     };
 
     console.log("getValidarDeviceUuid");
