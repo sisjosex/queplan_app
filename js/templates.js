@@ -45,7 +45,7 @@ var templates = {
     '</ons-list-item>',
 
     locales_list:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
+    '<ons-list-item modifier="chevron" class="list-item-container locales-list planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="adaptImage(this, %index%)"/></div>'+
     '</div>'+

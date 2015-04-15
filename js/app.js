@@ -2322,11 +2322,11 @@ module.controller('LocalesController', function ($scope) {
 
         renderLocales(current_list);
 
-        var tabs_content = '<ons-carousel-item>';
+        var tabs_content = '<ons-carousel-item class="table">';
         var i;
         for(i in current_list.zonas) {
 
-            if( i%3 == 0) {
+            if( i > 0 && i%3 == 0) {
                 tabs_content += '</ons-carousel-item>';
             }
 
@@ -2343,11 +2343,6 @@ module.controller('LocalesController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent').html(tabs_content);
 
         $(mainnavigator.getCurrentPage().element[0]).find('.footer .button').css( 'width',  (current_list.zonas.length < 4 ? Math.round(100/current_list.zonas.length) : 25) + '%' );
-
-        //loadIntoTemplate( $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0], current_list.zonas, 'zonas_tabs' );
-
-
-        //$('#localesTabContent').attr('item-width', (( current_list.zonas.length <= 4 ? Math.round(window.innerWidth / current_list.zonas.length) : Math.round(window.innerWidth / 4) ) - current_list.zonas.length * 10 ) + 'px')
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0]);
 
