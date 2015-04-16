@@ -489,7 +489,7 @@ function redirectToPage(seccion, id) {
 
                 } else {
 
-                    showAlert('No existe el plan para mostrar', 'Mensaje', 'Aceptar');
+                    showAlert('Ups! Ya no tenemos ese plan.', 'Mensaje', 'Aceptar');
                 }
 
             }, function () {
@@ -536,7 +536,7 @@ function redirectToPage(seccion, id) {
 
                 } else {
 
-                    showAlert('No existe el menu para mostrar', 'Mensaje', 'Aceptar');
+                    showAlert('Ups! Nuestros clientes hoy no han puesto el menú diario. Llámales para reservar!', 'Mensaje', 'Aceptar');
                 }
 
             }, function () {
@@ -700,7 +700,6 @@ function pagar_promocion(id, element, event) {
         function (buttonIndex) {
             //1:aceptar,2:cancelar
             if (buttonIndex == 1) {
-                showLoadingCustom('Espere por favor...');
 
                 getJsonP(api_url + 'pagarPromocion/', function(data){
 
@@ -1164,7 +1163,7 @@ function goToPlanes(local_id) {
 
             } else {
 
-                showAlert('No existen planes para mostrar', 'Mensaje', 'Aceptar');
+                showAlert('Ups! Hoy no tenemos ningún plan. Prueba mañana!', 'Mensaje', 'Aceptar');
             }
 
 
@@ -1243,7 +1242,7 @@ function gotoMenuDiario() {
 
             } else {
 
-                showAlert('No existen menús para mostrar', 'Mensaje', 'Aceptar');
+                showAlert('Ups! Nuestros clientes hoy no han puesto el menú diario. Llámales para reservar!', 'Mensaje', 'Aceptar');
             }
 
         }, function () {
