@@ -138,7 +138,12 @@ var templates = {
         '<div onclick="filtrarLocalesByZona(%id%)" class="button nobutton">'+
             '<div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div>'+
         '</div>'+
-    '</ons-carousel-item>'
+    '</ons-carousel-item>',
+
+    banner_items:
+        '<ons-carousel-item >'+
+            '<div class="banner-img" url="%url%" section="%section%" section_id="%section_id%"><img src="%image%" /></div>'+
+        '</ons-carousel-item>'
 };
 
 
