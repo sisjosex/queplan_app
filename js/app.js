@@ -1121,7 +1121,7 @@ function bannerLoaded(index) {
                     homeBanner.setActiveCarouselItemIndex(0);
                 }
 
-            }, 5000);
+            }, 10000);
         }
     }
 }
@@ -1243,7 +1243,7 @@ function gotoMenuDiario() {
 
             } else {
 
-                showAlert('No existen menus para mostrar', 'Mensaje', 'Aceptar');
+                showAlert('No existen menús para mostrar', 'Mensaje', 'Aceptar');
             }
 
         }, function () {
