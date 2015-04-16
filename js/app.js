@@ -1121,7 +1121,7 @@ function bannerLoaded(index) {
                     homeBanner.setActiveCarouselItemIndex(0);
                 }
 
-            }, 5000);
+            }, 10000);
         }
     }
 }
