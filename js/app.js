@@ -2800,9 +2800,9 @@ module.controller('PerfilController', function ($scope) {
 
             PerfilController.scroll = initScroll('perfilScroll');
 
-            if ($.trim(user.email) == "") {
+            /*if ($.trim(user.email) == "") {
                 showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
-            }
+            }*/
 
             if(recibir_alertas) {
 
