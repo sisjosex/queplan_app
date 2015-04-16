@@ -58,7 +58,7 @@ var templates = {
     '</ons-list-item>',
 
     menu_list:
-    '<ons-list-item modifier="chevron" class="list-item-container planes-list loading" rel="%index%">'+
+    '<ons-list-item modifier="chevron" class="list-item-container locales-list planes-list loading" rel="%index%">'+
     '<div class="list-item-left">'+
     '<div class="full-screen animate"><img src="%imagen%" class="avator" onload="adaptImage(this, %index%)"/></div>'+
     '</div>'+
@@ -134,7 +134,7 @@ var templates = {
     //zonas_tabs: '<div class="button nobutton" onclick="filtrarLocalesByZona(%id%)"><div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div></div>'
 
     zonas_tabs:
-    '<ons-carousel-item>' +
+    '<ons-carousel-item class="tab-item">' +
         '<div onclick="filtrarLocalesByZona(%id%)" class="button nobutton">'+
             '<div class="zonas_icon"><img src="%imagen%" onload="adaptImage(this, %index%)" /></div><div class="text">%title%</div>'+
         '</div>'+

@@ -1139,7 +1139,7 @@ function goToPlanes(local_id) {
 
         getJsonP(api_url + 'getPlanes/', function (data) {
 
-            if(data.list != false) {
+            if(data.items != false && data.items.length > 0) {
 
                 mainnavigator.pushPage('planes.html', {current_list: data});
 
@@ -1218,7 +1218,14 @@ function gotoMenuDiario() {
 
         getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-            mainnavigator.pushPage('menu.html', {current_list: data});
+            if(data.items && data.items.length > 0) {
+
+                mainnavigator.pushPage('menu.html', {current_list: data});
+
+            } else {
+
+                showAlert('No existen menus para mostrar', 'Mensaje', 'Aceptar');
+            }
 
         }, function () {
         }, {ciudad_id: ciudad_seleccionada});
@@ -2329,12 +2336,13 @@ module.controller('LocalesController', function ($scope) {
 
         renderLocales(current_list);
 
-        var tabs_content = '<ons-carousel-item class="table">';
+        var tabs_content = '<ons-carousel-item class="table tab-item">';
         var i;
         for(i in current_list.zonas) {
 
             if( i > 0 && i%3 == 0) {
                 tabs_content += '</ons-carousel-item>';
+                tabs_content += '<ons-carousel-item>';
             }
 
             tabs_content +=
