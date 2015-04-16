@@ -750,11 +750,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
     getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
 
-        console.log(data);
+        //console.log(data);
 
-        if (data.status == 'success') {
-
-            getLocationGPS();
+        //if (data.status == 'success') {
 
             APP_INITIALIZED = true;
             var usuario = data.usuario;
@@ -777,11 +775,11 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
             }
-
+            /*
         } else {
 
             mainnavigator.pushPage('registro.html', {animation: "none"});
-        }
+        }*/
 
     }, function() {
 
@@ -1609,6 +1607,8 @@ function infoAction() {
 var NavigatorController;
 module.controller('NavigatorController', function ($scope) {
     ons.ready(function () {
+
+        getLocationGPS();
 
         NavigatorController = this;
 
