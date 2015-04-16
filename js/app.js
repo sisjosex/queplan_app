@@ -267,6 +267,7 @@ function comprarPlan(local_id, promocion_id) {
 
                                     if(current_list.items[i].id == data.item.id) {
                                         $(this).find('.validar').attr('id', data.item.promocion_id);
+                                        $(this).find('.validar').attr('index', i);
                                         $(this).find('.validar').on('click', function(event){
                                             pagar_promocion($(this).attr('id'), this, event);
                                         });
@@ -697,7 +698,36 @@ function pagar_promocion(id, element, event) {
         current_page = 'pagar';
         setTimeout(function(){current_page = '';}, 100);
 
-        event.preventDefault();
+        getJsonP(api_url + 'pagarPromocion/', function (data) {
+
+            if (data) {
+
+                if (data.status == 'success') {
+
+                    $(element).html('VALIDADO<i>por el responsable del local</i>');
+
+                    mainnavigator.getCurrentPage().options.current_list[ parseInt($(element).attr('index'))].usuario_estado = 'pagado';
+
+                    $(element).unbind('click').on('click', function(e){
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+
+                    showAlert(data.mensaje, "Aviso", "Aceptar");
+
+                } else {
+
+                    showAlert(data.mensaje, "Error", "Aceptar");
+                }
+            }
+
+        }, function () {
+
+        }, {
+            id: id
+        });
+
+        /*event.preventDefault();
         event.stopPropagation();
 
         navigator.notification.confirm(
@@ -712,7 +742,14 @@ function pagar_promocion(id, element, event) {
 
                             if (data.status == 'success') {
 
-                                $(element).remove();
+                                $(element).html('VALIDADO<i>por el responsable del local</i>');
+
+                                mainnavigator.getCurrentPage().options.current_list[ parseInt($(element).attr('index'))].usuario_estado = 'pagado';
+
+                                $(element).unbind('click').on('click', function(e){
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                });
 
                                 showAlert(data.mensaje, "Aviso", "Aceptar");
 
@@ -731,7 +768,7 @@ function pagar_promocion(id, element, event) {
             },            // callback to invoke with index of button pressed
             'Validar Recompensa',           // title
             'Aceptar,Cancelar'         // buttonLabels
-        );
+        );*/
     }
 }
 
@@ -1894,13 +1931,18 @@ module.controller('PlanesController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function(){
 
             if(current_list.items[i].usuario_estado == 'comprado') {
+
                 $(this).find('.validar').attr('id', current_list.items[i].usuarios_promocions_id);
+                $(this).find('.validar').attr('index', i);
                 $(this).find('.validar').on('click', function(event){
                     pagar_promocion($(this).attr('id'), this, event);
                 });
 
-            } else {
+            } else if(current_list.items[i].usuario_estado == 'pagado') {
 
+                $(this).find('.validar').html('VALIDADO<i>por el responsable del local</i>');
+
+            } else {
                 $(this).find('.validar').hide();
             }
 
@@ -2677,6 +2719,7 @@ module.controller('RecompensasController', function ($scope) {
 
                 $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
                 $(this).find('.validar').attr('id', 'recompensa_' + current_list.items[i].gane_recompensa);
+                $(this).find('.validar').attr('index', i);
 
                 $(this).find('.validar').on('click', function(event) {
 
