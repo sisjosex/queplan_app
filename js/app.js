@@ -692,41 +692,47 @@ function pagar_recompensa(id, element) {
 
 function pagar_promocion(id, element, event) {
 
-    event.preventDefault();
-    event.stopPropagation();
+    if (current_page != 'pagar') {
 
-    navigator.notification.confirm(
-        "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
-        function (buttonIndex) {
-            //1:aceptar,2:cancelar
-            if (buttonIndex == 1) {
+        current_page = 'pagar';
+        setTimeout(function(){current_page = '';}, 100);
 
-                getJsonP(api_url + 'pagarPromocion/', function(data){
+        event.preventDefault();
+        event.stopPropagation();
 
-                    if (data) {
+        navigator.notification.confirm(
+            "\u00BFSeguro que quieres VALIDAR? S\u00F3lo el responsable del local puede hacer este proceso. Si validas sin estar en el local perder\u00E1s tu recompensa.", // message
+            function (buttonIndex) {
+                //1:aceptar,2:cancelar
+                if (buttonIndex == 1) {
 
-                        if (data.status == 'success') {
+                    getJsonP(api_url + 'pagarPromocion/', function (data) {
 
-                            $(element).remove();
+                        if (data) {
 
-                            showAlert(data.mensaje, "Aviso", "Aceptar");
+                            if (data.status == 'success') {
 
-                        } else {
+                                $(element).remove();
 
-                            showAlert(data.mensaje, "Error", "Aceptar");
+                                showAlert(data.mensaje, "Aviso", "Aceptar");
+
+                            } else {
+
+                                showAlert(data.mensaje, "Error", "Aceptar");
+                            }
                         }
-                    }
 
-                }, function() {
+                    }, function () {
 
-                }, {
-                    id: id
-                });
-            }
-        },            // callback to invoke with index of button pressed
-        'Validar Recompensa',           // title
-        'Aceptar,Cancelar'         // buttonLabels
-    );
+                    }, {
+                        id: id
+                    });
+                }
+            },            // callback to invoke with index of button pressed
+            'Validar Recompensa',           // title
+            'Aceptar,Cancelar'         // buttonLabels
+        );
+    }
 }
 
 
