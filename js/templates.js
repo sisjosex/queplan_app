@@ -143,7 +143,9 @@ var templates = {
     banner_items:
         '<ons-carousel-item >'+
             '<div class="banner-img" url="%url%" section="%section%" section_id="%section_id%"><img onload="bannerLoaded(%index%)" src="%image%" /></div>'+
-        '</ons-carousel-item>'
+        '</ons-carousel-item>',
+
+    planes_page: '<div id="planesScroll" class="scrollable"> <div id="planesList" class="scroll-content"> <ons-list id="planes_content"> </ons-list> </div> </div>'
 };
 
 

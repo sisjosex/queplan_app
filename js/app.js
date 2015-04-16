@@ -1873,6 +1873,8 @@ module.controller('PlanesController', function ($scope) {
 
         var footerHeight = factor * 60;
 
+        //$(mainnavigator.getCurrentPage().element[0]).find('#planesPageContent').append(templates.planes_page);
+
         $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0], current_list.items, 'planes_list');
