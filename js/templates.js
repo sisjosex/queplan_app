@@ -142,7 +142,7 @@ var templates = {
 
     banner_items:
         '<ons-carousel-item >'+
-            '<div class="banner-img" url="%url%" section="%section%" section_id="%section_id%"><img src="%image%" /></div>'+
+            '<div class="banner-img" url="%url%" section="%section%" section_id="%section_id%"><img onload="bannerLoaded(%index%)" src="%image%" /></div>'+
         '</ons-carousel-item>'
 };
 

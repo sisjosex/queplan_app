@@ -1105,6 +1105,27 @@ function imageLoaded(index) {
     }
 }
 
+var bannerInterval = undefined;
+function bannerLoaded(index) {
+    if (index == 0) {
+
+        if(bannerInterval == undefined) {
+            bannerInterval = setInterval(function () {
+
+                if (homeBanner.getActiveCarouselItemIndex() < homeBanner._getCarouselItemCount() - 1) {
+
+                    homeBanner.next();
+
+                } else {
+
+                    homeBanner.setActiveCarouselItemIndex(0);
+                }
+
+            }, 5000);
+        }
+    }
+}
+
 function onError() {
 }
 
