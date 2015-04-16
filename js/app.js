@@ -257,6 +257,38 @@ function comprarPlan(local_id, promocion_id) {
 
                         showAlert(data.mensaje, "ENHORABUENA", "Aceptar", function () {
 
+                            if( mainnavigator.getPages()[mainnavigator.getPages().length-2].name == 'planes.html' ) {
+
+                                var i = 0;
+
+                                $(mainnavigator.getPages()[mainnavigator.getPages().length-2].element[0]).find('.list-item-container').each(function(){
+
+                                    var current_list = mainnavigator.getPages()[mainnavigator.getPages().length-2].options.current_list;
+
+                                    if(current_list.items[i].id == data.item.id) {
+                                        $(this).find('.validar').attr('id', data.item.promocion_id);
+                                        $(this).find('.validar').on('click', function(event){
+                                            pagar_promocion($(this).attr('id'), this, event);
+                                        });
+
+                                        $(this).find('.validar').show();
+
+                                    } else {
+
+                                        $(this).find('.validar').hide();
+                                    }
+
+                                    if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
+
+                                        $(this).find('.overlay.title').addClass('rosa bold');
+                                    }
+
+                                    i ++;
+
+                                });
+
+                            }
+
                             if (user.registrado_mediante == "facebook") {
 
                                 /*setTimeout(function () {
@@ -461,7 +493,7 @@ function redirectToPage(seccion, id) {
                 }
 
             }, function () {
-            }, {ciudad_id: ciudad_seleccionada, plan_id: id});
+            }, {ciudad_id: ciudad_seleccionada, plan_id: id, usuario_id: (userData != undefined) ? userData.id : ''});
 
         }
 
@@ -703,7 +735,14 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
     var data_sent = {
         device_uuid: device_uuid,
-        token_notificacion: token_notificacion
+        token_notificacion: token_notificacion,
+
+        u_email: '',
+        u_password: '',
+        u_login_con: 'free',
+        d_plataforma: device ? device.platform: 'ios',
+        d_version: device ? device.version : '7',
+        d_name: device ? device.name : 'iPhone'
     };
 
     console.log("getValidarDeviceUuid");
@@ -1111,7 +1150,7 @@ function goToPlanes(local_id) {
 
 
         }, function () {
-        }, {ciudad_id: ciudad_seleccionada, local_id: local_id});
+        }, {ciudad_id: ciudad_seleccionada, local_id: local_id, usuario_id: (userData != undefined) ? userData.id : ''});
 
     }
 }
@@ -1802,7 +1841,7 @@ module.controller('PlanesController', function ($scope) {
 
             } else {
 
-                $(this).find('.validar').remove();
+                $(this).find('.validar').hide();
             }
 
             if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
@@ -2290,11 +2329,11 @@ module.controller('LocalesController', function ($scope) {
 
         renderLocales(current_list);
 
-        var tabs_content = '<ons-carousel-item>';
+        var tabs_content = '<ons-carousel-item class="table">';
         var i;
         for(i in current_list.zonas) {
 
-            if( i%3 == 0) {
+            if( i > 0 && i%3 == 0) {
                 tabs_content += '</ons-carousel-item>';
             }
 
@@ -2311,11 +2350,6 @@ module.controller('LocalesController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent').html(tabs_content);
 
         $(mainnavigator.getCurrentPage().element[0]).find('.footer .button').css( 'width',  (current_list.zonas.length < 4 ? Math.round(100/current_list.zonas.length) : 25) + '%' );
-
-        //loadIntoTemplate( $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0], current_list.zonas, 'zonas_tabs' );
-
-
-        //$('#localesTabContent').attr('item-width', (( current_list.zonas.length <= 4 ? Math.round(window.innerWidth / current_list.zonas.length) : Math.round(window.innerWidth / 4) ) - current_list.zonas.length * 10 ) + 'px')
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0]);
 
@@ -2589,7 +2623,7 @@ module.controller('RecompensasController', function ($scope) {
                 });
             } else {
 
-                $(this).find('.validar').remove();
+                $(this).find('.validar').hide();
             }
 
             i ++;
