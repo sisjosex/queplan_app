@@ -2613,7 +2613,8 @@ function goBackFromProfile() {
 
         if( $.trim(user.email) == '' ) {
 
-            showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
+            //showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
+            mainnavigator.popPage('perfil.html');
 
         } else {
 
@@ -2883,7 +2884,6 @@ function ActivarDesactivarAlertas() {
 
                     //1:aceptar,2:cancelar
                     if (buttonIndex == 1) {
-                        showLoadingCustom('Espere por favor...');
 
                         getJsonP(api_url + 'setAlerta/', function (data) {
 
