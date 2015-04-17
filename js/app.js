@@ -291,6 +291,8 @@ function comprarPlan(local_id, promocion_id) {
 
                                 });
 
+                                $('#planApuntarse').hide();
+
                             }
 
                             if (user.registrado_mediante == "facebook") {
