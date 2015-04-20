@@ -713,6 +713,10 @@ label.checkbox {
     background-position:0px -41px;
 }
 
+.dashboard.row .button:hover {
+    opacity: 1 !important;
+}
+
 .dashboard.row .button.hover .dashboard_icon:after {
     background-position:0px -41px;
 }
