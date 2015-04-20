@@ -495,7 +495,7 @@ function redirectToPage(seccion, id) {
 
                 } else {
 
-                    showAlert('Ups! Ya no tenemos ese plan.', 'Mensaje', 'Aceptar');
+                    showAlert('Ups! Hoy no tenemos ningún plan. Prueba mañana!', 'Mensaje', 'Aceptar');
                 }
 
             }, function () {
@@ -1768,6 +1768,18 @@ module.controller('HomeController', function ($scope) {
                 $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
 
                 renderHome();
+
+                $('.dashboard.row .button').on("touchstart", function (e) {
+                    $(this).addClass("hover");
+
+                    return true;
+                });
+
+                $('.dashboard.row .button').on("touchend", function (e) {
+                    $(this).removeClass("hover");
+
+                    return true;
+                });
 
             }, 100);
 

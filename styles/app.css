@@ -709,6 +709,22 @@ label.checkbox {
     padding-right: 1px;*/
 }
 
+.dashboard_icon:after:hover {
+    background-position:0px -41px;
+}
+
+.dashboard.row .button.hover .dashboard_icon:after {
+    background-position:0px -41px;
+}
+
+.dashboard.row .button.hover .text {
+    color: #e65792;
+}
+
+.dashboard.row .dashboard_icon.hover {
+
+}
+
 .participar-header {
     width: 34px;
     height: 38px;
@@ -1352,6 +1368,7 @@ i.invitado {
     text-align: center;
     line-height: 20px;
     width: 100%;
+    margin-left: 3px;
 }
 
 .paginator-item {
