@@ -715,6 +715,7 @@ label.checkbox {
 
 .dashboard.row .button:hover {
     opacity: 1 !important;
+    background: none !important;
 }
 
 .dashboard.row .button.hover .dashboard_icon:after {
