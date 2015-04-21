@@ -1346,7 +1346,7 @@ i.invitado {
 }
 
 .dashboard.row .button {
-    width: 104px;
+    width: 33.3333%;
     display: table-cell;
     text-align: center;
     vertical-align: top;
@@ -2001,6 +2001,10 @@ label.checkbox:last-child {
     .icons.left {
         top: 8px;
     }*/
+
+    .slider-paginator {
+        margin-left: 11px;
+    }
 }
 
 @media all and (min-width: 321px) {
@@ -2025,6 +2029,10 @@ label.checkbox:last-child {
     .header {
         max-height:60px !important;
     }*/
+
+    .slider-paginator {
+        margin-left: 11px;
+    }
 }
 
 @media all and (min-width: 376px) {
@@ -2046,6 +2054,10 @@ label.checkbox:last-child {
         left: 35%;
         margin-top: 0px;
     }*/
+
+    .slider-paginator {
+        margin-left: 11px;
+    }
 }
 
 .btn.rosa .text {
