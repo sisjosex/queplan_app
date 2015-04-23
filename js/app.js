@@ -1898,6 +1898,8 @@ var counterPlanes = 0;
 module.controller('PlanesController', function ($scope) {
     ons.ready(function () {
 
+        modal.show();
+
         var current_list = mainnavigator.getCurrentPage().options.current_list;
 
         PlanesController = this;
@@ -1953,6 +1955,10 @@ module.controller('PlanesController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('#planesScroll').attr('id', 'planesScroll' + counterPlanes);
 
         initScroll('planesScroll' + counterPlanes);
+
+        setTimeout(function() {
+            modal.hide();
+        }, 500);
 
     })
 });
