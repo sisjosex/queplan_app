@@ -2,9 +2,9 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		    = "com.sysdecom.queplan"
-    versionCode = "1500"
-    android-versionCode="1500"
-	version 	= "15.00">
+    versionCode = "1600"
+    android-versionCode="1600"
+	version 	= "16.00">
 
 	<name>QuéPlan?</name>
 
@@ -20,7 +20,7 @@
 	<content src="index.html" />
     
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>15.00</string>
+        <string>16.00</string>
     </gap:config-file>
 
 <feature name="File">
@@ -56,7 +56,16 @@
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
+    <preference name="DisallowOverscroll" value="true" />
     
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="android-package" value="org.apache.cordova.SplashScreen" />
+    </feature>
+
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.dialogs" />
@@ -69,8 +78,8 @@
     <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
 
     <!-- Define app icon for each platform. -->
-    
-    <icon src="res/icon/android/icon-57.png"        gap:platform="android"    width="47" height="47" />
+
+    <icon src="res/icon/android/icon-50.png"        gap:platform="android"    width="47" height="47" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
