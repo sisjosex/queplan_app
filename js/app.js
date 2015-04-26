@@ -1781,6 +1781,9 @@ module.controller('HomeController', function ($scope) {
                     return true;
                 });
 
+
+                verifyNotification();
+
             }, 100);
 
     });

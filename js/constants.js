@@ -26,13 +26,15 @@ try {
 
 var TOKEN_PUSH_NOTIFICATION = 0;
 
+/*
 try {
     TOKEN_PUSH_NOTIFICATION = (localStorage.getItem("push_token") !== null || localStorage.getItem("push_token") !== undefined) ? JSON.parse(localStorage.getItem("push_token")) : 0;;
 } catch(error) {
     TOKEN_PUSH_NOTIFICATION = 0;
-}
+}*/
 
-var DEVICE_UUID = (localStorage.getItem("uuid") !== null || localStorage.getItem("uuid") !== undefined) ? JSON.parse(localStorage.getItem("uuid")) : 0;
+var DEVICE_UUID;
+//= (localStorage.getItem("uuid") !== null || localStorage.getItem("uuid") !== undefined) ? JSON.parse(localStorage.getItem("uuid")) : 0;
 
 var offline_data = undefined;
 
@@ -70,6 +72,17 @@ var CIUDAD_ID = 0; //NADA;
 var HAVE_NOTIFICATION = false;
 var TYPE_NOTIFICATION = '';
 var EVENT = '';
+
+
+try {
+    PUSH_NOTIFICATION_TOKEN = (localStorage.getItem("push_token") !== null || localStorage.getItem("push_token") !== undefined) ? JSON.parse(localStorage.getItem("push_token")) : 0;;
+} catch(error) {
+    PUSH_NOTIFICATION_TOKEN = 0;
+}
+
+if( PUSH_NOTIFICATION_TOKEN == '' || PUSH_NOTIFICATION_TOKEN == undefined || PUSH_NOTIFICATION_TOKEN == 'undefined' ){
+    PUSH_NOTIFICATION_TOKEN = 0;
+}
 
 //Twitter Codebird
 var cb = new Codebird; // we will require this everywhere
