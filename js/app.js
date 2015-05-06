@@ -1534,7 +1534,7 @@ function onSliderIMGLoad(img, index) {
 
     var image = new Image();
 
-    container.parent().find('ons-icon').remove();
+    container.parent().find('ons-icon.ons-icon').remove();
 
     container.html('');
 
@@ -2125,6 +2125,15 @@ module.controller('LocalController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localImages')[0], current_local.local_images, 'slider_local');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localPaginator')[0], current_local.local_images, 'slider_paginator');
+
+        if(current_local.video_url != '') {
+            var video = $(templates.slider_video);
+            video.find('img').attr('src', current_local.video_thumb);
+            video.on('click', function(e){
+                openExternalLink(current_local.video_url, e);
+            });
+            $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
+        }
 
         if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
             ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {

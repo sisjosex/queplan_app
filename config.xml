@@ -73,9 +73,9 @@
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
+    <gap:plugin name="org.li8.inappbrowser" />
     <!-- StatusBar -->
-    <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
+    <gap:plugin name="org.apache.cordova.statusbar" />
 
     <!-- Define app icon for each platform. -->
 
@@ -105,16 +105,16 @@
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png"          gap:platform="ios"     width="1024" height="768" />
     <gap:splash src="splash.png" />
     <!-- childbrowser -->
-    <gap:plugin name="com.phonegap.plugins.childbrowser" version="5.0.0" />
+    <gap:plugin name="com.phonegap.plugins.childbrowser" />
     
     <!-- pushNotification -->
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
     
     <!-- BarcodeScanner -->
-    <gap:plugin name="com.ams.plugins.barcodescanner" version="2.0.1" />
+    <gap:plugin name="com.ams.plugins.barcodescanner" />
     
     <!-- PhoneDialer -->
-    <gap:plugin name="com.teamnemitoff.phonedialer" version="0.3.0" />
+    <gap:plugin name="com.teamnemitoff.phonedialer" />
 
     <plugins>
         <plugin name="InAppBrowser" value="CDVInAppBrowser" />
