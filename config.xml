@@ -60,6 +60,7 @@
     
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashScreenDelay" value="1000000" />
     
     <feature name="SplashScreen">
         <param name="ios-package" value="CDVSplashScreen" />
