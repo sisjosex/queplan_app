@@ -3568,7 +3568,7 @@ function openExternalLink(url, e) {
 
         currentLink = url;
 
-        window.open(url, '_blank', 'location=yes,closebuttoncaption=Salir,toolbar=no');
+        window.open(url, '_blank', 'location=yes,closebuttoncaption=Salir,location=no');
 
         if (e != undefined) {
             e.stopPropagation();
