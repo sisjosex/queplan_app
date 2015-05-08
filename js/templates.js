@@ -103,7 +103,7 @@ var templates = {
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     //'<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     //'<div class="full-screen animate"><img onload="onSliderIMGLoad(this, 0)" src="" /></div>'+
-        '<iframe src="" width="100%" height="100%" frameborder="0"></iframe>'+
+        '<iframe src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>'+
     //'<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 72px;position: absolute;top: 50%;color: #ea5a96;left: 50%;margin-left: -27px;margin-top: -36px;"></ons-icon>'+
     '<div class="title2"></div>'+
     '</ons-carousel-item>',
