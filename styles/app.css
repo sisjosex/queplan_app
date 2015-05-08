@@ -2083,3 +2083,5 @@ label.checkbox:last-child {
 #localesTabContent ons-carousel-item {
     display:table;
 }
+
+iframe { overflow:hidden; }

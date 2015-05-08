@@ -2093,6 +2093,11 @@ module.controller('PlanController', function ($scope) {
 });
 
 
+function hidePreloader() {
+    $(mainnavigator.getCurrentPage().element[0]).find('.ons-icon').hide();
+}
+
+
 var LocalController;
 module.controller('LocalController', function ($scope) {
     ons.ready(function () {
@@ -2136,7 +2141,10 @@ module.controller('LocalController', function ($scope) {
             });*/
             video.find('iframe').attr('src', current_local.video_url);
             video.find('.title2').html(current_local.local_title);
-
+            video.find('iframe').on('touchstart', function(e){
+                //e.stopPropagation();
+                e.preventDefault();
+            });
 
 
             $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
