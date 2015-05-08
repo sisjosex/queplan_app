@@ -2128,10 +2128,12 @@ module.controller('LocalController', function ($scope) {
 
         if(current_local.video_url != '') {
             var video = $(templates.slider_video);
-            video.find('img').attr('src', current_local.video_thumb);
+            /*video.find('img').attr('src', current_local.video_thumb);
             video.on('click', function(e){
                 openExternalLink(current_local.video_url, e);
-            });
+            });*/
+            video.find('iframe').attr('src', current_local.video_url);
+            video.find('.title2').html(current_local.local_title);
             $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
         }
 
