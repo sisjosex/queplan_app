@@ -806,7 +806,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
         //mainnavigator.pushPage('registro.html', {animation: "none"});
 
-        mainnavigator.pushPage('registro.html', {animation: "none"});
+        //mainnavigator.pushPage('registro.html', {animation: "none"});
+        eraseCookie("user");
+        window.location.reload();
 
         //showAlert('Problema al contactar con el servidor', 'Error', 'Aceptar');
 
@@ -2134,8 +2136,15 @@ module.controller('LocalController', function ($scope) {
             });*/
             video.find('iframe').attr('src', current_local.video_url);
             video.find('.title2').html(current_local.local_title);
+
+
+
             $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
+
+            ons.compile(video[0]);
         }
+
+
 
         if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
             ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
