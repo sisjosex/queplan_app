@@ -103,11 +103,21 @@ var templates = {
     '<ons-carousel-item class="item-bg detail session-item loading">'+
     //'<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
     //'<div class="full-screen animate"><img onload="onSliderIMGLoad(this, 0)" src="" /></div>'+
-        '<iframe src="" width="100%" height="100%" frameborder="0" allowfullscreen scrolling="no" onload="hidePreloader()"></iframe>'+
+        '<iframe src="" width="100%" height="100%" frameborder="0" allowfullscreen scrolling="no" onload="hidePreloader(this)"></iframe>'+
     //'<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 72px;position: absolute;top: 50%;color: #ea5a96;left: 50%;margin-left: -27px;margin-top: -36px;"></ons-icon>'+
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>'+
-    '<div class="title2"></div>'+
+    '<div class="title">%local_title%<span class="distance right">%distancia%</span></div>'+
     '</ons-carousel-item>',
+
+    iframe_player:
+    '<iframe src="" width="100%" height="100%" frameborder="0" allowfullscreen scrolling="no" onload="hidePreloader(this)"></iframe>'+
+    '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>',
+
+    slider_player_navigator:
+    '<div style="position:absolute;left:0;right:0;top:50%;">'+
+        '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;left:0;"></ons-icon>'+
+        '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;right:0;"></ons-icon>'+
+    '</div>'+
 
     slider_recompensa: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+

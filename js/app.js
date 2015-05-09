@@ -2093,8 +2093,8 @@ module.controller('PlanController', function ($scope) {
 });
 
 
-function hidePreloader() {
-    $(mainnavigator.getCurrentPage().element[0]).find('.ons-icon').hide();
+function hidePreloader(element) {
+    $(element).parent().find('.ons-icon').hide();
 }
 
 
@@ -2133,12 +2133,12 @@ module.controller('LocalController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localImages')[0], current_local.local_images, 'slider_local');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localPaginator')[0], current_local.local_images, 'slider_paginator');
 
-        if(current_local.video_url != '') {
+        /*if(current_local.video_url != '') {
             var video = $(templates.slider_video);
-            /*video.find('img').attr('src', current_local.video_thumb);
-            video.on('click', function(e){
-                openExternalLink(current_local.video_url, e);
-            });*/
+            //video.find('img').attr('src', current_local.video_thumb);
+            //video.on('click', function(e){
+            //    openExternalLink(current_local.video_url, e);
+            //});
             video.find('iframe').attr('src', current_local.video_url);
             video.find('.title2').html(current_local.local_title);
             video.find('iframe').on('touchstart', function(e){
@@ -2150,8 +2150,33 @@ module.controller('LocalController', function ($scope) {
             $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
 
             ons.compile(video[0]);
-        }
+        }*/
 
+        console.log(current_local.local_images);
+
+        var i = 0;
+        var hasVideo = false;
+        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each( function() {
+
+            if(current_local.local_images[i].video_url != '') {
+
+                var video = $(templates.iframe_player);
+
+                $(this).html('');
+                $(this).append(video);
+
+                video.parent().find('iframe').attr('src', current_local.local_images[i].video_url);
+
+                hasVideo = true;
+            }
+
+            i ++;
+        });
+
+        if(hasVideo) {
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').;
+        }
 
 
         if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
