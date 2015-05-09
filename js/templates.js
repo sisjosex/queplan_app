@@ -117,7 +117,7 @@ var templates = {
     '<div style="position:absolute;left:0;right:0;top:50%;">'+
         '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;left:0;"></ons-icon>'+
         '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;right:0;"></ons-icon>'+
-    '</div>'+
+    '</div>',
 
     slider_recompensa: '' +
     '<ons-carousel-item class="item-bg detail session-item loading">'+
