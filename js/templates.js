@@ -114,9 +114,9 @@ var templates = {
     '<ons-icon icon="ion-loading-c" spin="true" class="ons-icon ons-icon--ion ion-loading-c fa-lg"></ons-icon>',
 
     slider_player_navigator:
-    '<div style="position:absolute;left:0;right:0;top:50%;">'+
-        '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;left:0;"></ons-icon>'+
-        '<ons-icon icon="fa-play" spin="false" class="fa fa-play-circle-o" style="font-size: 32px;position:absolute;right:0;"></ons-icon>'+
+    '<div style="position:absolute;left:0;right:0;top:50%;margin-top: -17px;">'+
+        '<ons-icon icon="fa-play" spin="false" class="prev fa fa-arrow-circle-o-left" style="font-size: 32px;position:absolute;left:0;color:#e65792;"></ons-icon>'+
+        '<ons-icon icon="fa-play" spin="false" class="next fa fa-arrow-circle-o-right" style="font-size: 32px;position:absolute;right:0;color:#e65792;"></ons-icon>'+
     '</div>',
 
     slider_recompensa: '' +

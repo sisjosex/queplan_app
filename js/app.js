@@ -2175,7 +2175,17 @@ module.controller('LocalController', function ($scope) {
 
         if(hasVideo) {
 
-            //$(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').;
+            var navigation = $(templates.slider_player_navigator);
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').parent().append(navigation);
+
+            navigation.find('.prev').on('click', function(){
+                localImages.prev();
+            });
+
+            navigation.find('.next').on('click', function(){
+                localImages.next();
+            });
         }
 
 
