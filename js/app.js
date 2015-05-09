@@ -2175,7 +2175,7 @@ module.controller('LocalController', function ($scope) {
 
         if(hasVideo) {
 
-            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').;
+            //$(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').;
         }
 
 
