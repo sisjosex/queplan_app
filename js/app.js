@@ -761,9 +761,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
         u_email: '',
         u_password: '',
         u_login_con: 'free',
-        d_plataforma: device ? device.platform: 'ios',
-        d_version: device ? device.version : '7',
-        d_name: device ? device.name : 'iPhone'
+        d_plataforma: device_uuid ? device.platform: 'ios',
+        d_version: device_uuid ? device.version : '7',
+        d_name: device_uuid ? device.name : 'iPhone'
     };
 
     console.log("getValidarDeviceUuid");
@@ -773,19 +773,15 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
         //console.log(data);
 
-        $('#token').val(token_notificacion);
-        //modal2.show();
-        //setTimeout(10000, function(){ modal2.hide(); });
-
         //if (data.status == 'success') {
 
-            APP_INITIALIZED = true;
+        if(!APP_INITIALIZED) {
+
             var usuario = data.usuario;
-            //guardamos los datos en la COOKIE
             createCookie("user", JSON.stringify(usuario), 365);
 
             var usuario_ciudad = data.usuario.ciudad_id;
-            //usuario_ciudad = '0';
+            APP_INITIALIZED = true;
             if (usuario_ciudad != '' && usuario_ciudad != '0') {
                 CIUDAD_ID = ciudad_seleccionada = usuario_ciudad;
 
@@ -800,6 +796,17 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
             }
+        } else {
+
+            $('#token').val(token_notificacion);
+            modal2.show();
+
+            var usuario = data.usuario;
+            createCookie("user", JSON.stringify(usuario), 365);
+
+            var usuario_ciudad = data.usuario.ciudad_id;
+            APP_INITIALIZED = true;
+        }
             /*
         } else {
 
@@ -1666,7 +1673,15 @@ module.controller('NavigatorController', function ($scope) {
         }
 
         loadinitialParams(function(){
-            app.onDeviceReady();
+            /*
+            getValidarDeviceUuid(exists_device ? device.uuid : '', '', function() {
+                app.onDeviceReady();
+            });
+            */
+
+            getValidarDeviceUuid('', '', function() {
+                app.onDeviceReady();
+            });
         });
 
     })
@@ -2184,11 +2199,21 @@ module.controller('LocalController', function ($scope) {
             $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').parent().append(navigation);
 
             navigation.find('.prev').on('click', function(){
+
                 localImages.prev();
+
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
+                    $(this).attr('src', $(this).attr('src') );
+                });
             });
 
             navigation.find('.next').on('click', function(){
+
                 localImages.next();
+
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
+                    $(this).attr('src', $(this).attr('src') );
+                });
             });
 
             $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').css('position', 'relative');
