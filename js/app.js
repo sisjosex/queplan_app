@@ -803,10 +803,10 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
         } else {
 
-            console.log('showing modal2: ' + token_notificacion);
+            //console.log('showing modal2: ' + token_notificacion);
 
-            $('#token').val(PUSH_NOTIFICATION_TOKEN);
-            modal2.show();
+            //$('#token').val(PUSH_NOTIFICATION_TOKEN);
+            //modal2.show();
 
             var usuario = data.usuario;
             eraseCookie("user");
