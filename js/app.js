@@ -803,7 +803,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
             console.log('showing modal2: ' + token_notificacion);
 
-            $('#token').val(token_notificacion);
+            $('#token').val(PUSH_NOTIFICATION_TOKEN);
             modal2.show();
 
             var usuario = data.usuario;
@@ -1679,14 +1679,7 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', function() {
-                app.onDeviceReady();
-            });
-
-
-            /*getValidarDeviceUuid('', '', function() {
-                app.onDeviceReady();
-            });*/
+            getValidarDeviceUuid(device ? device.uuid : '', '', app.onDeviceReady);
         });
 
     })
