@@ -797,7 +797,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
             }
 
-            callback ? app.onDeviceReady() : '';
+            if(callback) {
+                app.onDeviceReady();
+            }
 
         } else {
 
