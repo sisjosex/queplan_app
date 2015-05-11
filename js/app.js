@@ -1,6 +1,6 @@
 var module = ons.bootstrap();
 
-angular.module('MyApp', []);
+var myApp = angular.module('MyApp', []);
 
 var calendar;
 
@@ -21,6 +21,17 @@ window.onresize = function () {
     resizeCardCarousel();
 };
 
+// Fix initial android white screen and exists app
+myApp.run(function($rootScope){
+    document.addEventListener("backbutton", function (e) {
+        if ($rootScope.ons.navigator.getPages().length > 1) {
+            e.preventDefault();
+            $rootScope.ons.navigator.popPage();
+        } else {
+            navigator.app.exitApp();
+        }
+    }, false);
+});
 
 //REALIZAMOS EL CHECK-IN
 function checkIn(urlamigable) {
