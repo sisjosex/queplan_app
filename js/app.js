@@ -774,8 +774,8 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
         //console.log(data);
 
         $('#token').val(token_notificacion);
-        modal2.show();
-        setTimeout(10000, function(){ modal2.hide(); });
+        //modal2.show();
+        //setTimeout(10000, function(){ modal2.hide(); });
 
         //if (data.status == 'success') {
 
@@ -2190,6 +2190,12 @@ module.controller('LocalController', function ($scope) {
             navigation.find('.next').on('click', function(){
                 localImages.next();
             });
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').css('position', 'relative');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').css('background', '#000');
+            $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').css('margin', '0');
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#localDescripcion').css('padding-top', '20px');
         }
 
 
