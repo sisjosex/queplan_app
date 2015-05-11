@@ -35,6 +35,7 @@ function registerNotifications() {
 function successHandler() {}
 
 // android
+/*
 function tokenHandler(result) {
 
     //if(TOKEN_PUSH_NOTIFICATION === 0){
@@ -42,7 +43,7 @@ function tokenHandler(result) {
 
         //console.log('tokenHandler ' + result);
     //}
-}
+}*/
 
 function onNotificationGCM(e) {
 

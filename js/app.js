@@ -962,10 +962,13 @@ var app = {
     },
     tokenHandler: function (result) {
 
+        console.log(result);
+
         PUSH_NOTIFICATION_REGISTER = 'ios';
 
         //solo si no se lleno antes con el token llenamos, porque viene otro tipo de mensajes igual
-        if (PUSH_NOTIFICATION_TOKEN == 0) {
+        //if (PUSH_NOTIFICATION_TOKEN == 0)
+        {
             PUSH_NOTIFICATION_TOKEN = result;
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
