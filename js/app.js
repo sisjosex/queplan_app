@@ -802,10 +802,10 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
             modal2.show();
 
             var usuario = data.usuario;
+            eraseCookie("user");
             createCookie("user", JSON.stringify(usuario), 365);
 
             var usuario_ciudad = data.usuario.ciudad_id;
-            APP_INITIALIZED = true;
         }
             /*
         } else {
