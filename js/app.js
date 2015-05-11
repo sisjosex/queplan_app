@@ -752,7 +752,7 @@ function pagar_promocion(id, element, event) {
 }
 
 
-function getValidarDeviceUuid( device_uuid, token_notificacion) {
+function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
     var data_sent = {
         device_uuid: device_uuid,
@@ -796,6 +796,9 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
                 mainnavigator.pushPage('ciudad.html', {animation: "none"});
 
             }
+
+            callback ? callback() : '';
+
         } else {
 
             $('#token').val(token_notificacion);
@@ -1673,15 +1676,15 @@ module.controller('NavigatorController', function ($scope) {
         }
 
         loadinitialParams(function(){
-            /*
+
             getValidarDeviceUuid(exists_device ? device.uuid : '', '', function() {
                 app.onDeviceReady();
             });
-            */
 
-            getValidarDeviceUuid('', '', function() {
+
+            /*getValidarDeviceUuid('', '', function() {
                 app.onDeviceReady();
-            });
+            });*/
         });
 
     })
