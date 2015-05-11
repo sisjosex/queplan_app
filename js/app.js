@@ -1747,7 +1747,7 @@ module.controller('ciudadController', function ($scope) {
             } catch (error) {
             }
 
-        }, 1000);
+        }, 2000);
 
     })
 });
@@ -1890,7 +1890,7 @@ function renderHome() {
         } catch (error) {
         }
 
-    }, 1000);
+    }, 2000);
 
 
     loadIntoTemplate('#homeBanner', applicationParams.banners, 'banner_items');
