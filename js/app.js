@@ -773,6 +773,10 @@ function getValidarDeviceUuid( device_uuid, token_notificacion) {
 
         //console.log(data);
 
+        $('#token').val(token_notificacion);
+        modal2.show();
+        setTimeout(10000, function(){ modal2.hide(); });
+
         //if (data.status == 'success') {
 
             APP_INITIALIZED = true;
@@ -937,7 +941,7 @@ var app = {
     },
     // result contains any message sent from the plugin call
     successHandler: function (result) {
-        //alert('Callback Success! Result = '+result);
+        alert('Callback Success! Result = '+result);
     },
     errorHandler: function (error) {
         alert(error);
