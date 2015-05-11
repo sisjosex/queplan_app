@@ -973,9 +973,9 @@ var app = {
             //alert(PUSH_NOTIFICATION_TOKEN);
             //mandamos a guardar el token para las notificaciones solo si no se guardo antes
 
-            if (!APP_INITIALIZED) {
+            //if (!APP_INITIALIZED) {
                 getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
-            }
+            //}
         }
         //alert('Callback Success! Result = '+result);
     },
@@ -988,22 +988,22 @@ var app = {
                     //alert('registration id = '+e.regid);
 
                     //mandamos a guardar el token para las notificaciones solo si no se guardo antes
-                    if (!APP_INITIALIZED) {
+                    //if (!APP_INITIALIZED) {
                         getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
-                    }
+                    //}
                 }
                 break;
 
             case 'message':
                 // this is the actual push notification. its format depends on the data model from the push server
                 //alert('message = '+e.message+' msgcnt = '+e.msgcnt);
-                if (APP_INITIALIZED) {
+                //if (APP_INITIALIZED) {
                     showNotification(e, 'android');
-                } else {
+                /*} else {
                     HAVE_NOTIFICATION = true;
                     TYPE_NOTIFICATION = 'android';
                     EVENT = e;
-                }
+                }*/
                 break;
 
             case 'error':
@@ -1017,13 +1017,13 @@ var app = {
     },
     onNotificationAPN: function (event) {
         if (event.alert) {
-            if (APP_INITIALIZED) {
+            //if (APP_INITIALIZED) {
                 showNotification(event, 'ios');
-            } else {
+            /*} else {
                 HAVE_NOTIFICATION = true;
                 TYPE_NOTIFICATION = 'ios';
                 EVENT = event;
-            }
+            }*/
         }
         /*
          if (event.badge) {
