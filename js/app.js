@@ -801,6 +801,8 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
         } else {
 
+            console.log('showing modal2: ' + token_notificacion);
+
             $('#token').val(token_notificacion);
             modal2.show();
 
