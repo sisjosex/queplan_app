@@ -797,7 +797,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
             }
 
-            callback ? callback() : '';
+            callback ? app.onDeviceReady() : '';
 
         } else {
 
@@ -1679,7 +1679,7 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', app.onDeviceReady);
+            getValidarDeviceUuid(device ? device.uuid : '', '', true);
         });
 
     })
