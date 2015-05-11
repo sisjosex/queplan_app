@@ -1677,7 +1677,7 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(exists_device ? device.uuid : '', '', function() {
+            getValidarDeviceUuid(device ? device.uuid : '', '', function() {
                 app.onDeviceReady();
             });
 
