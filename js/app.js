@@ -17,6 +17,15 @@ var applicationParams = '';
 
 var currentSessionFromNotification = null;
 
+document.addEventListener("backbutton", function (e) {
+    if (mainnavigator.getPages().length > 1) {
+        e.preventDefault();
+        mainnavigator.getPages().popPage();
+    } else {
+        navigator.app.exitApp();
+    }
+}, false);
+
 window.onresize = function () {
     resizeCardCarousel();
 };
@@ -1695,7 +1704,8 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            getValidarDeviceUuid('', '', true);
         });
 
     })
