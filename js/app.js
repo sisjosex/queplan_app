@@ -1063,9 +1063,31 @@ var app = {
          */
     },
     onPause: function () {
+        if(!APP_INITIALIZED) {
+            try {
+                navigator.splashscreen.show();
+            } catch (error) {
+            }
+        } else {
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+        }
         app.stopIntervalNotificacion();
     },
     onResume: function () {
+        if(!APP_INITIALIZED) {
+            try {
+                navigator.splashscreen.show();
+            } catch (error) {
+            }
+        } else {
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+        }
         app.initIntervalNotificacion();
     },
     initIntervalNotificacion: function () {
