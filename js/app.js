@@ -793,6 +793,11 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
         //console.log(data);
 
+        if(data.status == 'success') {
+
+            applicationParams = data;
+        }
+
         //if (data.status == 'success') {
 
         if(!APP_INITIALIZED) {
@@ -805,11 +810,13 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
             if (usuario_ciudad != '' && usuario_ciudad != '0') {
                 CIUDAD_ID = ciudad_seleccionada = usuario_ciudad;
 
-                if (isLogin()) {
+                mainnavigator.pushPage('home.html', {animation: "none"})
+
+                /*if (isLogin()) {
                     loadApplicationParams(function () {
                         mainnavigator.pushPage('home.html', {animation: "none"})
                     });
-                }
+                }*/
 
             } else {
 
@@ -1708,8 +1715,8 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', true);
-            //getValidarDeviceUuid('', '', true);
+            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            getValidarDeviceUuid('', '', true);
         });
 
     })
