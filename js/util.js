@@ -432,7 +432,7 @@ function getJsonP(url, callback_success, callback_error, data) {
         url: url,
         data: data,
         dataType: 'JSONp',
-        timeout: 30000,
+        timeout: 100000,
         async:true,
         success: function(data) {
 
@@ -466,7 +466,7 @@ function getJsonPBackground(url, callback_success, callback_error, data) {
         url: url,
         data: data,
         dataType: 'JSONp',
-        timeout: 30000,
+        timeout: 100000,
         async:true,
         success: function(data) {
 
