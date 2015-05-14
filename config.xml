@@ -2,9 +2,9 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		    = "com.sysdecom.queplan"
-    versionCode = "1604"
-    android-versionCode="1604"
-	version 	= "16.04">
+    versionCode = "1605"
+    android-versionCode="1605"
+	version 	= "16.05">
 
 	<name>QuéPlan?</name>
 
@@ -20,7 +20,7 @@
 	<content src="index.html" />
     
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>16.04</string>
+        <string>16.05</string>
     </gap:config-file>
 
 <feature name="File">
