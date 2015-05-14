@@ -1742,8 +1742,8 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
-            getValidarDeviceUuid('', '', true);
+            getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            //getValidarDeviceUuid('', '', true);
         });
 
     })
