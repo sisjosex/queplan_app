@@ -1,6 +1,6 @@
 var module = ons.bootstrap();
 
-angular.module('MyApp', []);
+var myApp = angular.module('MyApp', []);
 
 var calendar;
 
@@ -17,10 +17,30 @@ var applicationParams = '';
 
 var currentSessionFromNotification = null;
 
+document.addEventListener("backbutton", function (e) {
+    if (mainnavigator.getPages().length > 1) {
+        e.preventDefault();
+        mainnavigator.getPages().popPage();
+    } else {
+        navigator.app.exitApp();
+    }
+}, false);
+
 window.onresize = function () {
     resizeCardCarousel();
 };
 
+// Fix initial android white screen and exists app
+myApp.run(function($rootScope){
+    document.addEventListener("backbutton", function (e) {
+        if ($rootScope.ons.navigator.getPages().length > 1) {
+            e.preventDefault();
+            $rootScope.ons.navigator.popPage();
+        } else {
+            navigator.app.exitApp();
+        }
+    }, false);
+});
 
 //REALIZAMOS EL CHECK-IN
 function checkIn(urlamigable) {
@@ -803,10 +823,10 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
         } else {
 
-            console.log('showing modal2: ' + token_notificacion);
+            //console.log('showing modal2: ' + token_notificacion);
 
-            $('#token').val(PUSH_NOTIFICATION_TOKEN);
-            modal2.show();
+            //$('#token').val(PUSH_NOTIFICATION_TOKEN);
+            //modal2.show();
 
             var usuario = data.usuario;
             eraseCookie("user");
@@ -1684,7 +1704,8 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            getValidarDeviceUuid('', '', true);
         });
 
     })
