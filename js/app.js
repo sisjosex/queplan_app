@@ -1169,6 +1169,8 @@ var app = {
     }
 };
 
+app.onDeviceReady();
+
 function resizeCardCarousel() {
     /*
      thumb_width = window.innerWidth;
@@ -1729,8 +1731,6 @@ module.controller('NavigatorController', function ($scope) {
     ons.ready(function () {
 
         getLocationGPS();
-
-        app.onDeviceReady();
 
         NavigatorController = this;
 
