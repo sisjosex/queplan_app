@@ -17,14 +17,14 @@ var applicationParams = '';
 
 var currentSessionFromNotification = null;
 
-document.addEventListener("backbutton", function (e) {
+/*document.addEventListener("backbutton", function (e) {
     if (mainnavigator.getPages().length > 1) {
         e.preventDefault();
         mainnavigator.getPages().popPage();
     } else {
         navigator.app.exitApp();
     }
-}, false);
+}, false);*/
 
 window.onresize = function () {
     resizeCardCarousel();
@@ -1340,12 +1340,16 @@ function elegirCiudad(ciudad_id, event) {
 
 function loadinitialParams(callback) {
 
+
+
     try {
         StatusBar.hide();
     } catch (error) {
     }
 
-    getJsonP(api_url + 'getInitialParams/', function (data) {
+    callback();
+
+    /*getJsonP(api_url + 'getInitialParams/', function (data) {
 
         applicationParams = data;
 
@@ -1354,7 +1358,7 @@ function loadinitialParams(callback) {
     }, function () {
 
 
-    }, {});
+    }, {});*/
 }
 
 function loadApplicationParams(callback) {
@@ -1704,8 +1708,8 @@ module.controller('NavigatorController', function ($scope) {
 
         loadinitialParams(function(){
 
-            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
-            getValidarDeviceUuid('', '', true);
+            getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            //getValidarDeviceUuid('', '', true);
         });
 
     })
