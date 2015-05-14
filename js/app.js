@@ -908,10 +908,10 @@ var app = {
     receivedEvent: function (id) {
 
         //Inicializamos el api de facebook
-        openFB.init({appId: '537875786305519'});
+        //openFB.init({appId: '537875786305519'});
 
         //Inicializamos el api de twitter
-        cb.setConsumerKey(consumer_key, consumer_secret);
+        //cb.setConsumerKey(consumer_key, consumer_secret);
 
         //Iniciamos el intervalo de mostrar la notificaion local
         this.initIntervalNotificacion();
@@ -947,7 +947,7 @@ var app = {
 
         } else {
 
-            getLocationGPS();
+            /*getLocationGPS();
 
             if (isLogin()) {
 
@@ -977,7 +977,7 @@ var app = {
             } else {
 
                 mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }
+            }*/
         }
     },
     // result contains any message sent from the plugin call
@@ -1170,6 +1170,7 @@ var app = {
 };
 
 app.onDeviceReady();
+$('body').css('display', 'block');
 
 function resizeCardCarousel() {
     /*
