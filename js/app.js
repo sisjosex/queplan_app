@@ -825,7 +825,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
             }
 
             //if(callback) {
-                app.onDeviceReady();
+                app.receivedEvent('deviceready');
             //}
 
         } else {
@@ -898,7 +898,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
         //pause
         document.addEventListener("pause", this.onPause, false);
         //resume
@@ -1073,8 +1073,9 @@ var app = {
                 navigator.splashscreen.hide();
             } catch (error) {
             }
+
+            app.stopIntervalNotificacion();
         }
-        app.stopIntervalNotificacion();
     },
     onResume: function () {
         if(!APP_INITIALIZED) {
@@ -1087,8 +1088,9 @@ var app = {
                 navigator.splashscreen.hide();
             } catch (error) {
             }
+
+            app.initIntervalNotificacion();
         }
-        app.initIntervalNotificacion();
     },
     initIntervalNotificacion: function () {
         INTERVAL = setInterval(function () {
@@ -1727,6 +1729,8 @@ module.controller('NavigatorController', function ($scope) {
     ons.ready(function () {
 
         getLocationGPS();
+
+        app.onDeviceReady();
 
         NavigatorController = this;
 
