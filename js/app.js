@@ -1309,6 +1309,20 @@ function goToGuia() {
         }, {ciudad_id: ciudad_seleccionada});
     }
 }
+function goToSubcategorias(categoria_id){
+	if (current_page != 'subcategorias.html') {
+		
+		current_page = 'subcategorias.html';
+	    setTimeout(function(){current_page = '';}, 100);
+
+	    getJsonP(api_url + 'getSubcategorias/', function (data) {
+
+	        mainnavigator.pushPage('subcategorias.html', {current_list: data});
+
+	    }, function () {
+	    }, {categoria_id: categoria_id});
+	}
+}
 
 function goToRecompensas() {
 
@@ -1762,6 +1776,8 @@ module.controller('RegistroController', function ($scope) {
             try {
                 navigator.splashscreen.hide();
             } catch (error) {
+				console.log("error: ");
+				console.log(error);
             }
 
         }, 1000);
@@ -2093,8 +2109,62 @@ module.controller('PlanController', function ($scope) {
         $(mainnavigator.getCurrentPage().element[0]).find('#planList').css('padding-bottom', footerHeight + 'px');
 
 
-        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planImages')[0], current_plan.images, 'slider_plan');
-        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planPaginator')[0], current_plan.images, 'slider_paginator');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planImages')[0], current_plan.local_images, 'slider_plan');
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planPaginator')[0], current_plan.local_images, 'slider_paginator');
+
+        console.log(current_plan.local_images);
+
+        var i = 0;
+        var hasVideo = false;
+        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each( function() {
+
+            if(current_plan.local_images[i].video_url != '') {
+
+                var video = $(templates.iframe_player);
+
+                $(this).html('');
+                $(this).append(video);
+
+                video.parent().find('iframe').attr('src', current_plan.local_images[i].video_url);
+
+                hasVideo = true;
+            }
+
+            i ++;
+        });
+
+        if(hasVideo) {
+
+            var navigation = $(templates.slider_player_navigator);
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator').parent().append(navigation);
+
+            navigation.find('.prev').on('click', function(){
+
+                planImages.prev();
+
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
+                    $(this).attr('src', $(this).attr('src') );
+                });
+            });
+
+            navigation.find('.next').on('click', function(){
+
+                planImages.next();
+
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
+                    $(this).attr('src', $(this).attr('src') );
+                });
+            });
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator').css('position', 'relative');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator').css('background', '#000');
+            $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator').css('margin', '0');
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#planDescripcion').css('padding-top', '20px');
+        }
+
+
 
         if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
             ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
@@ -2396,7 +2466,44 @@ module.controller('GuiasController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
 
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-            gotoLocales( $(this).attr('rel'), current_list );
+			current_categoria = current_list.items[$(this).attr('rel')];
+			if(current_categoria.id == 1) {
+				goToSubcategorias(current_categoria.id);
+			}else{
+	            gotoLocales( $(this).attr('rel'), current_list );	
+			}
+        });
+
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0]);
+
+
+        counterPlanes += 1;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('#guiasScroll').attr('id', 'guiasScroll' + counterPlanes);
+
+        initScroll('guiasScroll' + counterPlanes);
+
+    })
+});
+
+var SubcategoriasController;
+module.controller('SubcategoriasController', function ($scope) {
+    ons.ready(function () {
+
+        GuiasController = this;
+
+        var current_list = mainnavigator.getCurrentPage().options.current_list;
+
+        var factor = window.innerWidth / 320;
+
+        var footerHeight = factor * 60;
+
+        $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
+
+        loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
+
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
+			gotoLocales( $(this).attr('rel'), current_list );
         });
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0]);
@@ -2479,6 +2586,27 @@ module.controller('ComoFuncionaDetalleController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleDescripcion').html(current_como_funciona.descripcion);
 
+        $(mainnavigator.getCurrentPage().element[0]).find('#phone').on('click', function (e) {
+            e.preventDefault();
+            actionCall($(this).text());
+        });
+        $(mainnavigator.getCurrentPage().element[0]).find('#mail').on('click', function (e) {
+            e.preventDefault();
+            var email = $(this).text();
+            cordova.plugins.email.isAvailable(
+                function (isAvailable) {
+                    // alert('Service is not available') unless isAvailable;
+                    cordova.plugins.email.open({
+                        to:      [email],
+                        subject: '',
+                        body:    ''
+                    }, function(){
+                        //close composer
+                    });
+                }
+            );
+        });
+
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#como_funciona_detalleScroll')[0]);
 
         counterPlanes += 1;
@@ -2531,9 +2659,12 @@ function gotoLocales(index, current_list) {
         setTimeout(function(){current_page = '';}, 100);
 
         current_categoria = current_list.items[index];
-
+		console.log("current_categoria:*********");
+		console.log(current_categoria);
+		console.log(current_categoria.id);
+		console.log("current_categoria://///////");
         getJsonP(api_url + 'getLocales/', function (data) {
-
+			console.log(data);
             mainnavigator.pushPage('locales.html', {current_list: data});
 
         }, function () {
