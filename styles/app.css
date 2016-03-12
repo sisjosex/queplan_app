@@ -2085,3 +2085,28 @@ label.checkbox:last-child {
 }
 
 iframe { overflow:hidden; }
+
+.text-description * {
+    font-family:'Century Gothic' !important;
+}
+
+.text-description p {
+    padding:0px !important;
+    padding-top:5px !important;
+    padding-bottom:5px !important;
+    margin:0 !important;
+}
+
+.text-description br {
+    display:none !important;
+}
+
+.text-description i {
+    width:auto !important;
+    height:auto !important;
+}
+
+#menu_detalle_content {
+    margin-left:20px;
+    margin-right:20px;
+}

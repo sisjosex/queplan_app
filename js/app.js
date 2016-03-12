@@ -2956,6 +2956,11 @@ module.controller('MenuDetalleController', function ($scope) {
             $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFecha').html(current_menu.precio);
         }
 
+        if( $.trim(current_menu.descripcion) != '' ) {
+
+            str += '<div class="text-description">' + current_menu.descripcion + '</div>';
+        }
+
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleCotent').html(str);
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFecha').html(current_menu.fecha);
