@@ -2949,6 +2949,13 @@ module.controller('MenuDetalleController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menuDetalleLogo').attr('src', current_menu.imagen);
 
+        if( str != '' && $.trim(current_menu.precio) != '' ) {
+
+            //str += '<div class="menu_header"><h3><span class="" style="background:none">Precio: &nbsp;&nbsp;&nbsp;</span>' + current_menu.precio + '</h3></div>';
+
+            $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFecha').html(current_menu.precio);
+        }
+
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleCotent').html(str);
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFecha').html(current_menu.fecha);
