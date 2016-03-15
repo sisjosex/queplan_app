@@ -2949,7 +2949,7 @@ module.controller('MenuDetalleController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menuDetalleLogo').attr('src', current_menu.imagen);
 
-        if( str != '' && $.trim(current_menu.precio) != '' ) {
+        if( $.trim(current_menu.precio) != '' ) {
 
             //str += '<div class="menu_header"><h3><span class="" style="background:none">Precio: &nbsp;&nbsp;&nbsp;</span>' + current_menu.precio + '</h3></div>';
 

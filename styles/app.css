@@ -20,6 +20,19 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'century_light_ssilight';
+    src: url('../fonts/century_light_ssi_light-webfont.eot');
+    src: url('../fonts/century_light_ssi_light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/century_light_ssi_light-webfont.woff2') format('woff2'),
+    url('../fonts/century_light_ssi_light-webfont.woff') format('woff'),
+    url('../fonts/century_light_ssi_light-webfont.ttf') format('truetype'),
+    url('../fonts/century_light_ssi_light-webfont.svg#century_light_ssilight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 * {
     font-family: 'Century Gothic';
     font-size:13px;
@@ -1686,8 +1699,8 @@ i.invitado {
     background: rgba(0,0,0,0.7);
     text-align: center;
     padding: 10px;
-    border-top: 2px solid #e65792;
-    border-bottom: 2px solid #e65792;
+    /*border-top: 2px solid #e65792;
+    border-bottom: 2px solid #e65792;*/
     left: 0;
     right: 0;
 }
