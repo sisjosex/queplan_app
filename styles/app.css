@@ -7,6 +7,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+b {
+    font-weight: bolder !important;
+}
+
 
 @font-face {
     font-family: 'Century Gothic';
@@ -639,6 +643,11 @@ label.checkbox {
     font-size: 40px;
     padding: 0px;
     background: rgba(225, 83, 142, 0.5);
+    font-weight: 100;
+}
+
+#ciudad_images .title {
+    font-family: 'century_light_ssilight';
 }
 
 .cuadrado {
@@ -1699,8 +1708,8 @@ i.invitado {
     background: rgba(0,0,0,0.7);
     text-align: center;
     padding: 10px;
-    /*border-top: 2px solid #e65792;
-    border-bottom: 2px solid #e65792;*/
+    /*border-top: 2px solid #e65792;*/
+    border-bottom: 2px solid #e65792;
     left: 0;
     right: 0;
 }
