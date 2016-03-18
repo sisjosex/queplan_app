@@ -2,9 +2,9 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		    = "com.sysdecom.queplan"
-    versionCode = "1705"
-    android-versionCode="1705"
-	version 	= "17.05">
+    versionCode = "1706"
+    android-versionCode="1706"
+	version 	= "17.06">
 
 	<name>QuePlan</name>
 
