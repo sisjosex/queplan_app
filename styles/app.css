@@ -2108,22 +2108,22 @@ label.checkbox:last-child {
 
 iframe { overflow:hidden; }
 
-.text-description * {
+#menu_detalleCotent .text-description * {
     font-family:'Century Gothic' !important;
 }
 
-.text-description p {
+#menu_detalleCotent .text-description p {
     padding:0px !important;
     padding-top:5px !important;
     padding-bottom:5px !important;
     margin:0 !important;
 }
 
-.text-description br {
+#menu_detalleCotent .text-description br {
     display:none !important;
 }
 
-.text-description i {
+#menu_detalleCotent .text-description i {
     width:auto !important;
     height:auto !important;
 }
