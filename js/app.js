@@ -2016,7 +2016,7 @@ module.controller('PlanesController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0], current_list.items, 'planes_list');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 2);
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 1.6);
 
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
             gotoPlanDetalle( $(this).attr('rel'), current_list );
