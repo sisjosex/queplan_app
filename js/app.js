@@ -1907,6 +1907,10 @@ module.controller('HomeController', function ($scope) {
 
         setTimeout(function () {
 
+            try {
+                navigator.splashscreen.hide();
+            } catch(error) {}
+
             var factor = window.innerWidth / 320;
 
             var footerHeight = factor * $('#homeFooter').outerHeight();
