@@ -2,11 +2,11 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		    = "com.sysdecom.queplan"
-    versionCode = "1709"
-    android-versionCode="1709"
-	version 	= "17.09">
+    versionCode = "1800"
+    android-versionCode="1800"
+	version 	= "18.00">
 
-	<name>QuePlan</name>
+	<name>QuéPlan? Ibiza</name>
 
 	<description>
 		Aplicacion mobile - QuéPlan?
@@ -20,7 +20,7 @@
 	<content src="index.html" />
     
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>13.1</string>
+        <string>18.00</string>
     </gap:config-file>
 
 <feature name="File">
@@ -63,11 +63,17 @@
     <preference name="SplashScreenDelay" value="1000000" />
 
     <preference name="splash-screen-duration" value="1000000" />
-    
+
     <feature name="SplashScreen">
         <param name="ios-package" value="CDVSplashScreen" />
-        <param name="android-package" value="org.apache.cordova.SplashScreen" />
     </feature>
+
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+    </feature>
+
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="30000" />
 
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.device" />
@@ -75,7 +81,8 @@
     <!--<gap:plugin name="org.apache.cordova.file" />-->
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="cordova-plugin-splashscreen" />
+    <!--<gap:plugin name="cordova-plugin-splashscreen" />-->
+    <gap:plugin name="org.apache.cordova.splashscreen" />
     <!--gap:plugin name="org.apache.cordova.splashscreen" /-->
     <!--gap:plugin name="org.li8.inappbrowser" /-->
     <!-- StatusBar -->

@@ -18,20 +18,20 @@ var applicationParams = '';
 var currentSessionFromNotification = null;
 
 /*document.addEventListener("backbutton", function (e) {
-    if (mainnavigator.getPages().length > 1) {
-        e.preventDefault();
-        mainnavigator.getPages().popPage();
-    } else {
-        navigator.app.exitApp();
-    }
-}, false);*/
+ if (mainnavigator.getPages().length > 1) {
+ e.preventDefault();
+ mainnavigator.getPages().popPage();
+ } else {
+ navigator.app.exitApp();
+ }
+ }, false);*/
 
 window.onresize = function () {
     resizeCardCarousel();
 };
 
 // Fix initial android white screen and exists app
-myApp.run(function($rootScope){
+myApp.run(function ($rootScope) {
     document.addEventListener("backbutton", function (e) {
         if ($rootScope.ons.navigator.getPages().length > 1) {
             e.preventDefault();
@@ -52,7 +52,7 @@ function checkIn(urlamigable) {
         var user = COOKIE;
         var me = user.id;
 
-        getJsonP(api_url + 'checkIn/', function(data) {
+        getJsonP(api_url + 'checkIn/', function (data) {
 
             if (data) {
 
@@ -71,14 +71,14 @@ function checkIn(urlamigable) {
                         function () {
                             if (user.registrado_mediante == "facebook") {
 
-                                 /*setTimeout(function(){
+                                /*setTimeout(function(){
                                  shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
                                  },500);*/
 
                             } else if (user.registrado_mediante == "twitter") {
                                 /*setTimeout(function () {
-                                    shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);*/
+                                 shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
                             }
                         },         // callback
                         "AQU\u00CD ESTOY!", // title
@@ -91,8 +91,7 @@ function checkIn(urlamigable) {
                 }
             }
 
-        }, function() {
-
+        }, function () {
 
 
         }, {
@@ -128,8 +127,8 @@ function checkIn(urlamigable) {
                                  */
                             } else if (user.registrado_mediante == "twitter") {
                                 /*setTimeout(function () {
-                                    shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);*/
+                                 shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
                             }
                         },         // callback
                         "AQU\u00CD ESTOY!", // title
@@ -194,7 +193,9 @@ function comprarRecompensa(local_id, recompensa_id) {
     if (current_page != 'comprar') {
 
         current_page = 'comprar';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         //verficamos que este logeado porque solo si lo esta podemos dejarle que haga la compra de la recompensa
         if (isLogin()) {
@@ -223,13 +224,13 @@ function comprarRecompensa(local_id, recompensa_id) {
                             if (user.registrado_mediante == "facebook") {
 
                                 /*setTimeout(function () {
-                                    shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);*/
+                                 shareFacebookWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
 
                             } else if (user.registrado_mediante == "twitter") {
                                 /*setTimeout(function () {
-                                    shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
-                                }, 500);*/
+                                 shareTwitterWallPost(data.subtitulo, data.descripcion, imagen);
+                                 }, 500);*/
                             }
                         });
 
@@ -254,7 +255,9 @@ function comprarPlan(local_id, promocion_id) {
     if (current_page != 'comprar') {
 
         current_page = 'comprar';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         //verficamos que este logeado porque solo si lo esta podemos dejarle que haga la compra de la recompensa
         if (isLogin()) {
@@ -277,21 +280,21 @@ function comprarPlan(local_id, promocion_id) {
 
                         showAlert(data.mensaje, "ENHORABUENA", "Aceptar", function () {
 
-                            if( mainnavigator.getPages()[mainnavigator.getPages().length-2].name == 'planes.html' ) {
+                            if (mainnavigator.getPages()[mainnavigator.getPages().length - 2].name == 'planes.html') {
 
                                 var i = 0;
 
-                                $(mainnavigator.getPages()[mainnavigator.getPages().length-2].element[0]).find('.list-item-container').each(function(){
+                                $(mainnavigator.getPages()[mainnavigator.getPages().length - 2].element[0]).find('.list-item-container').each(function () {
 
-                                    var current_list = mainnavigator.getPages()[mainnavigator.getPages().length-2].options.current_list;
+                                    var current_list = mainnavigator.getPages()[mainnavigator.getPages().length - 2].options.current_list;
 
-                                    if(current_list.items[i].id == data.item.id) {
+                                    if (current_list.items[i].id == data.item.id) {
 
                                         current_list.items[i].usuario_estado = 'comprado';
 
                                         $(this).find('.validar').attr('id', data.item.promocion_id);
                                         $(this).find('.validar').attr('index', i);
-                                        $(this).find('.validar').on('click', function(event){
+                                        $(this).find('.validar').on('click', function (event) {
                                             pagar_promocion($(this).attr('id'), this, event);
                                         });
 
@@ -302,12 +305,12 @@ function comprarPlan(local_id, promocion_id) {
                                         $(this).find('.validar').hide();
                                     }
 
-                                    if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
+                                    if (current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
 
                                         $(this).find('.overlay.title').addClass('rosa bold');
                                     }
 
-                                    i ++;
+                                    i++;
 
                                 });
 
@@ -348,10 +351,12 @@ function comprarPlan(local_id, promocion_id) {
 var procesing = false;
 function logout() {
 
-    if(!procesing) {
+    if (!procesing) {
 
         procesing = true;
-        setTimeout(function(){ procesing = false; }, 100);
+        setTimeout(function () {
+            procesing = false;
+        }, 100);
 
         if (isLogin()) {
             navigator.notification.confirm(
@@ -403,11 +408,10 @@ function mobileCheckDistance() {
         var user = COOKIE;
         var app_id = user.app_id;
 
-        getJsonPBackground(api_url + 'checkDistance/', function(data) {
+        getJsonPBackground(api_url + 'checkDistance/', function (data) {
 
 
-
-        }, function() {
+        }, function () {
 
         }, {
             app_id: app_id,
@@ -447,7 +451,7 @@ function showNotification(event, type) {
 //redirectToPage
 function redirectToPage(seccion, id) {
 
-    if( id == undefined) {
+    if (id == undefined) {
         id = '';
     }
 
@@ -461,7 +465,7 @@ function redirectToPage(seccion, id) {
 
             getJsonP(api_url + 'getLocales/', function (data) {
 
-                if(data.status == 'success') {
+                if (data.status == 'success') {
 
                     current_categoria = {
                         id: id
@@ -484,7 +488,7 @@ function redirectToPage(seccion, id) {
 
             getJsonP(api_url + 'getLocales/', function (data) {
 
-                if(data.status == 'success') {
+                if (data.status == 'success') {
 
                     mainnavigator.pushPage('local.html', {current_local: data.items});
 
@@ -509,7 +513,7 @@ function redirectToPage(seccion, id) {
 
             getJsonP(api_url + 'getPlanes/', function (data) {
 
-                if(data.status == 'success') {
+                if (data.status == 'success') {
 
                     mainnavigator.pushPage('plan.html', {current_plan: data.items});
 
@@ -533,7 +537,7 @@ function redirectToPage(seccion, id) {
 
             getJsonP(api_url + 'getRecompensas/', function (data) {
 
-                if(data.status == 'success') {
+                if (data.status == 'success') {
 
                     mainnavigator.pushPage('recompensa.html', {current_recompensa: data.items});
 
@@ -556,7 +560,7 @@ function redirectToPage(seccion, id) {
 
             getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-                if(data.status == 'success') {
+                if (data.status == 'success') {
 
                     mainnavigator.pushPage('menu_detalle.html', {current_menu: data.items});
 
@@ -587,7 +591,9 @@ function loginInvitado() {
     if (current_page != 'ciudad.html') {
 
         current_page = 'ciudad.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         LOGIN_INVITADO = true;
         mainnavigator.pushPage('ciudad.html');
@@ -599,7 +605,9 @@ function loginEmail() {
     if (current_page != 'email.html') {
 
         current_page = 'email.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('email.html');
     }
@@ -607,17 +615,19 @@ function loginEmail() {
 
 function goHome(ciudad_id, save) {
 
-    if(current_page != 'home.html') {
+    if (current_page != 'home.html') {
 
         current_page = 'home.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         CIUDAD_ID = ciudad_seleccionada = ciudad_id;
 
         //se guarda la ciudad
         if (isLogin()) {
 
-            if(save == undefined) {
+            if (save == undefined) {
                 var user = COOKIE;
                 var me = user.id;
 
@@ -652,7 +662,7 @@ function goHome(ciudad_id, save) {
                 });
             }
 
-        } else if(LOGIN_INVITADO) {
+        } else if (LOGIN_INVITADO) {
 
             loadApplicationParams(function () {
                 mainnavigator.pushPage('home.html');
@@ -688,7 +698,7 @@ function pagar_recompensa(id, element) {
             if (buttonIndex == 1) {
                 showLoadingCustom('Espere por favor...');
 
-                getJsonP(api_url + 'pagarRecompensa/', function(data){
+                getJsonP(api_url + 'pagarRecompensa/', function (data) {
 
                     if (data) {
 
@@ -704,7 +714,7 @@ function pagar_recompensa(id, element) {
                         }
                     }
 
-                }, function() {
+                }, function () {
 
                 }, {
                     id: id
@@ -724,7 +734,9 @@ function pagar_promocion(id, element, event) {
     if (current_page != 'pagar') {
 
         current_page = 'pagar';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         event.preventDefault();
         event.stopPropagation();
@@ -741,11 +753,11 @@ function pagar_promocion(id, element, event) {
 
                             if (data.status == 'success') {
 
-                                mainnavigator.getCurrentPage().options.current_list.items[ parseInt($(element).attr('index')) ].usuario_estado = 'pagado';
+                                mainnavigator.getCurrentPage().options.current_list.items[parseInt($(element).attr('index'))].usuario_estado = 'pagado';
 
                                 $(element).html('VALIDADO<i>por el responsable del local</i>');
 
-                                $(element).unbind('click').on('click', function(e){
+                                $(element).unbind('click').on('click', function (e) {
                                     e.preventDefault();
                                     e.stopPropagation();
                                 });
@@ -772,7 +784,7 @@ function pagar_promocion(id, element, event) {
 }
 
 
-function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
+function getValidarDeviceUuid(device_uuid, token_notificacion, callback) {
 
     var data_sent = {
         device_uuid: device_uuid,
@@ -781,7 +793,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
         u_email: '',
         u_password: '',
         u_login_con: 'free',
-        d_plataforma: device_uuid ? device.platform: 'ios',
+        d_plataforma: device_uuid ? device.platform : 'ios',
         d_version: device_uuid ? device.version : '7',
         d_name: device_uuid ? device.name : 'iPhone'
     };
@@ -789,18 +801,18 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
     console.log("getValidarDeviceUuid");
     console.log(data_sent);
 
-    getJsonPBackground(api_url + 'validarDeviceUuid/', function(data) {
+    getJsonPBackground(api_url + 'validarDeviceUuid/', function (data) {
 
         //console.log(data);
 
-        if(data.status == 'success') {
+        if (data.status == 'success') {
 
             applicationParams = data;
         }
 
         //if (data.status == 'success') {
 
-        if(!APP_INITIALIZED) {
+        if (!APP_INITIALIZED) {
 
             var usuario = data.usuario;
             createCookie("user", JSON.stringify(usuario), 365);
@@ -813,10 +825,10 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
                 mainnavigator.pushPage('home.html', {animation: "none"})
 
                 /*if (isLogin()) {
-                    loadApplicationParams(function () {
-                        mainnavigator.pushPage('home.html', {animation: "none"})
-                    });
-                }*/
+                 loadApplicationParams(function () {
+                 mainnavigator.pushPage('home.html', {animation: "none"})
+                 });
+                 }*/
 
             } else {
 
@@ -825,7 +837,7 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
             }
 
             //if(callback) {
-                app.receivedEvent('deviceready');
+            app.receivedEvent('deviceready');
             //}
 
         } else {
@@ -841,13 +853,13 @@ function getValidarDeviceUuid( device_uuid, token_notificacion, callback) {
 
             var usuario_ciudad = data.usuario.ciudad_id;
         }
-            /*
-        } else {
+        /*
+         } else {
 
-            mainnavigator.pushPage('registro.html', {animation: "none"});
-        }*/
+         mainnavigator.pushPage('registro.html', {animation: "none"});
+         }*/
 
-    }, function() {
+    }, function () {
 
         //mainnavigator.pushPage('registro.html', {animation: "none"});
 
@@ -882,292 +894,320 @@ function redirectLogin() {
 var scanning = false;
 
 var app = {
-    // Application Constructor
-    initialize: function () {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
-        //app.receivedEvent('deviceready');
-        //pause
-        document.addEventListener("pause", this.onPause, false);
-        //resume
-        document.addEventListener("resume", this.onResume, false);
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-
-        //Inicializamos el api de facebook
-        //openFB.init({appId: '537875786305519'});
-
-        //Inicializamos el api de twitter
-        //cb.setConsumerKey(consumer_key, consumer_secret);
-
-        //Iniciamos el intervalo de mostrar la notificaion local
-        this.initIntervalNotificacion();
-
-        //Inicializamos el pushNotification
-        var pushNotification;
-
-        try {
-
-            pushNotification = window.plugins.pushNotification;
-
-        } catch (error) {
+        // Application Constructor
+        initialize: function
+            () {
+            this.bindEvents();
         }
+        ,
+// Bind Event Listeners
+//
+// Bind any events that are required on startup. Common events are:
+// 'load', 'deviceready', 'offline', and 'online'.
+        bindEvents: function () {
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+        }
+        ,
+// deviceready Event Handler
+//
+// The scope of 'this' is the event. In order to call the 'receivedEvent'
+// function, we must explicity call 'app.receivedEvent(...);'
+        onDeviceReady: function () {
+            //app.receivedEvent('deviceready');
+            //pause
+            document.addEventListener("pause", this.onPause, false);
+            //resume
+            document.addEventListener("resume", this.onResume, false);
 
-        if (pushNotification != undefined) {
+            document.addEventListener("resume", this.onPressBack);
+        }
+        ,
+// Update DOM on a Received Event
+        receivedEvent: function (id) {
 
-            if (device.platform == 'android' || device.platform == 'Android') {
-                //alert("Register called android");
-                pushNotification.register(this.successHandler, this.errorHandler, {
-                    "senderID": "629734064389",
-                    "ecb": "app.onNotificationGCM"
-                });
+            //Inicializamos el api de facebook
+            //openFB.init({appId: '537875786305519'});
+
+            //Inicializamos el api de twitter
+            //cb.setConsumerKey(consumer_key, consumer_secret);
+
+            //Iniciamos el intervalo de mostrar la notificaion local
+            this.initIntervalNotificacion();
+
+            //Inicializamos el pushNotification
+            var pushNotification;
+
+            try {
+
+                pushNotification = window.plugins.pushNotification;
+
+            } catch (error) {
             }
-            else {
-                //alert("Register called ios");
-                pushNotification.register(this.tokenHandler, this.errorHandler, {
-                    "badge": "true",
-                    "sound": "true",
-                    "alert": "true",
-                    "ecb": "app.onNotificationAPN"
-                });
-            }
 
-        } else {
+            if (pushNotification != undefined) {
 
-            /*getLocationGPS();
-
-            if (isLogin()) {
-
-                var user = COOKIE;
-
-                if ($.trim(user.email) == "") {
-
-                    mainnavigator.pushPage("perfil.html", {animation: 'none'});
-
-                } else {
-
-                    CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
-
-                    if(user.ciudad_id == '' || user.ciudad_id == '0') {
-
-                        mainnavigator.pushPage('ciudad.html', {animation: "none"});
-
-                    } else {
-
-                        loadApplicationParams(function () {
-                            mainnavigator.pushPage('home.html', {animation: "none"});
-                        });
-
-                    }
+                if (device.platform == 'android' || device.platform == 'Android') {
+                    //alert("Register called android");
+                    pushNotification.register(this.successHandler, this.errorHandler, {
+                        "senderID": "629734064389",
+                        "ecb": "app.onNotificationGCM"
+                    });
+                }
+                else {
+                    //alert("Register called ios");
+                    pushNotification.register(this.tokenHandler, this.errorHandler, {
+                        "badge": "true",
+                        "sound": "true",
+                        "alert": "true",
+                        "ecb": "app.onNotificationAPN"
+                    });
                 }
 
             } else {
 
-                mainnavigator.pushPage("registro.html", {animation: 'none'});
-            }*/
-        }
-    },
-    // result contains any message sent from the plugin call
-    successHandler: function (result) {
-        //alert('Callback Success! Result = '+result);
-    },
-    errorHandler: function (error) {
-        alert(error);
-    },
-    tokenHandler: function (result) {
+                /*getLocationGPS();
 
-        console.log(result);
+                 if (isLogin()) {
 
-        PUSH_NOTIFICATION_REGISTER = 'ios';
+                 var user = COOKIE;
 
-        //solo si no se lleno antes con el token llenamos, porque viene otro tipo de mensajes igual
-        //if (PUSH_NOTIFICATION_TOKEN == 0)
-        {
-            PUSH_NOTIFICATION_TOKEN = result;
-            //alert(PUSH_NOTIFICATION_TOKEN);
-            //mandamos a guardar el token para las notificaciones solo si no se guardo antes
+                 if ($.trim(user.email) == "") {
 
-            //if (!APP_INITIALIZED) {
-                getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
-            //}
-        }
-        //alert('Callback Success! Result = '+result);
-    },
-    onNotificationGCM: function (e) {
-        switch (e.event) {
-            case 'registered':
-                if (e.regid.length > 0) {
-                    PUSH_NOTIFICATION_REGISTER = 'android';
-                    PUSH_NOTIFICATION_TOKEN = e.regid;
-                    //alert('registration id = '+e.regid);
+                 mainnavigator.pushPage("perfil.html", {animation: 'none'});
 
-                    //mandamos a guardar el token para las notificaciones solo si no se guardo antes
-                    //if (!APP_INITIALIZED) {
-                        getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
-                    //}
-                }
-                break;
-
-            case 'message':
-                // this is the actual push notification. its format depends on the data model from the push server
-                //alert('message = '+e.message+' msgcnt = '+e.msgcnt);
-                //if (APP_INITIALIZED) {
-                    showNotification(e, 'android');
-                /*} else {
-                    HAVE_NOTIFICATION = true;
-                    TYPE_NOTIFICATION = 'android';
-                    EVENT = e;
-                }*/
-                break;
-
-            case 'error':
-                alert('GCM error = ' + e.msg);
-                break;
-
-            default:
-                alert('An unknown GCM event has occurred');
-                break;
-        }
-    },
-    onNotificationAPN: function (event) {
-        if (event.alert) {
-            //if (APP_INITIALIZED) {
-                showNotification(event, 'ios');
-            /*} else {
-                HAVE_NOTIFICATION = true;
-                TYPE_NOTIFICATION = 'ios';
-                EVENT = event;
-            }*/
-        }
-        /*
-         if (event.badge) {
-         window.plugins.pushNotification.setApplicationIconBadgeNumber(this.successHandler, this.errorHandler, event.badge);
-         }
-         if (event.sound) {
-         var snd = new Media(event.sound);
-         snd.play();
-         }
-         */
-    },
-    onPause: function () {
-        if(!APP_INITIALIZED) {
-            try {
-                navigator.splashscreen.show();
-            } catch (error) {
-            }
-        } else {
-            try {
-                navigator.splashscreen.hide();
-            } catch (error) {
-            }
-
-            app.stopIntervalNotificacion();
-        }
-    },
-    onResume: function () {
-        if(!APP_INITIALIZED) {
-            try {
-                navigator.splashscreen.show();
-            } catch (error) {
-            }
-        } else {
-            try {
-                navigator.splashscreen.hide();
-            } catch (error) {
-            }
-
-            app.initIntervalNotificacion();
-        }
-    },
-    initIntervalNotificacion: function () {
-        INTERVAL = setInterval(function () {
-            mobileCheckDistance();
-        }, 30000); // 300000 - 5min, 30000 - 30seg
-    },
-    stopIntervalNotificacion: function () {
-        clearInterval(INTERVAL);
-    },
-    scan: function () {
-
-        if(!scanning) {
-
-            scanning = true;
-
-            if (isLogin()) {
-
-                cordova.plugins.barcodeScanner.scan(
-                    function (result) {
-
-                        scanning = false;
-
-                        if (result.format == "QR_CODE") {
-
-                            if (result.text != "") {
-
-                                var params = (result.text).toString().split("/");
-                                var urlamigable = params[params.length - 1].toString();
-                                //Mandamos al checkIn
-                                checkIn(urlamigable);
-
-                            } else {
-                                showAlert("Scanner failed, please try again.", "Error", "Aceptar");
-                            }
-
-                        } else if (result.cancelled) {
-
-                            //showAlert("Scanner Cancelled.", "Error", "Aceptar");
-                        }
-                    },
-                    function (error) {
-
-                        scanning = false;
-
-                        alert("Scanning failed: " + error);
-                    }
-                );
-
-                /*var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-                 scanner.scan(function (result) {
-
-                 if (result.format == "QR_CODE") {
-
-                 if (result.text != "") {
-                 var params = (result.text).toString().split("/");
-                 var urlamigable = params[params.length - 1].toString();
-                 //Mandamos al checkIn
-                 checkIn(urlamigable);
                  } else {
-                 showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+
+                 CIUDAD_ID = ciudad_seleccionada = user.ciudad_id;
+
+                 if(user.ciudad_id == '' || user.ciudad_id == '0') {
+
+                 mainnavigator.pushPage('ciudad.html', {animation: "none"});
+
+                 } else {
+
+                 loadApplicationParams(function () {
+                 mainnavigator.pushPage('home.html', {animation: "none"});
+                 });
+
+                 }
                  }
 
-                 } else if (result.cancelled) {
-                 showAlert("Scanner Cancelled.", "Error", "Aceptar");
-                 }
+                 } else {
 
-                 }, function (error) {
-                 alert("Scanning failed: ", error);
-                 });*/
+                 mainnavigator.pushPage("registro.html", {animation: 'none'});
+                 }*/
+            }
+        }
+        ,
+// result contains any message sent from the plugin call
+        successHandler: function (result) {
+            //alert('Callback Success! Result = '+result);
+        }
+        ,
+        errorHandler: function (error) {
+            alert(error);
+        }
+        ,
+        tokenHandler: function (result) {
 
-            } else if (LOGIN_INVITADO) {
+            console.log(result);
 
-                alertaInvitado();
+            PUSH_NOTIFICATION_REGISTER = 'ios';
+
+            //solo si no se lleno antes con el token llenamos, porque viene otro tipo de mensajes igual
+            //if (PUSH_NOTIFICATION_TOKEN == 0)
+            {
+                PUSH_NOTIFICATION_TOKEN = result;
+                //alert(PUSH_NOTIFICATION_TOKEN);
+                //mandamos a guardar el token para las notificaciones solo si no se guardo antes
+
+                //if (!APP_INITIALIZED) {
+                getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
+                //}
+            }
+            //alert('Callback Success! Result = '+result);
+        }
+        ,
+        onNotificationGCM: function (e) {
+            switch (e.event) {
+                case 'registered':
+                    if (e.regid.length > 0) {
+                        PUSH_NOTIFICATION_REGISTER = 'android';
+                        PUSH_NOTIFICATION_TOKEN = e.regid;
+                        //alert('registration id = '+e.regid);
+
+                        //mandamos a guardar el token para las notificaciones solo si no se guardo antes
+                        //if (!APP_INITIALIZED) {
+                        getValidarDeviceUuid(device.uuid, PUSH_NOTIFICATION_TOKEN);
+                        //}
+                    }
+                    break;
+
+                case 'message':
+                    // this is the actual push notification. its format depends on the data model from the push server
+                    //alert('message = '+e.message+' msgcnt = '+e.msgcnt);
+                    //if (APP_INITIALIZED) {
+                    showNotification(e, 'android');
+                    /*} else {
+                     HAVE_NOTIFICATION = true;
+                     TYPE_NOTIFICATION = 'android';
+                     EVENT = e;
+                     }*/
+                    break;
+
+                case 'error':
+                    alert('GCM error = ' + e.msg);
+                    break;
+
+                default:
+                    alert('An unknown GCM event has occurred');
+                    break;
+            }
+        }
+        ,
+        onNotificationAPN: function (event) {
+            if (event.alert) {
+                //if (APP_INITIALIZED) {
+                showNotification(event, 'ios');
+                /*} else {
+                 HAVE_NOTIFICATION = true;
+                 TYPE_NOTIFICATION = 'ios';
+                 EVENT = event;
+                 }*/
+            }
+            /*
+             if (event.badge) {
+             window.plugins.pushNotification.setApplicationIconBadgeNumber(this.successHandler, this.errorHandler, event.badge);
+             }
+             if (event.sound) {
+             var snd = new Media(event.sound);
+             snd.play();
+             }
+             */
+        }
+        ,
+        onPause: function () {
+            if (!APP_INITIALIZED) {
+                try {
+                    navigator.splashscreen.show();
+                } catch (error) {
+                }
+            } else {
+                try {
+                    navigator.splashscreen.hide();
+                } catch (error) {
+                }
+
+                app.stopIntervalNotificacion();
+            }
+        }
+        ,
+        onResume: function () {
+            if (!APP_INITIALIZED) {
+                try {
+                    navigator.splashscreen.show();
+                } catch (error) {
+                }
+            } else {
+                try {
+                    navigator.splashscreen.hide();
+                } catch (error) {
+                }
+
+                app.initIntervalNotificacion();
+            }
+        },
+        onPressBack: function (e) {
+
+            e.preventDefault();
+
+            if ( mainnavigator.getCurrentPage().page == 'login.html' ) {
+
+                navigator.app.exitApp();
+            }
+
+            return false;
+        }
+        ,
+        initIntervalNotificacion: function () {
+            INTERVAL = setInterval(function () {
+                mobileCheckDistance();
+            }, 30000); // 300000 - 5min, 30000 - 30seg
+        }
+        ,
+        stopIntervalNotificacion: function () {
+            clearInterval(INTERVAL);
+        }
+        ,
+        scan: function () {
+
+            if (!scanning) {
+
+                scanning = true;
+
+                if (isLogin()) {
+
+                    cordova.plugins.barcodeScanner.scan(
+                        function (result) {
+
+                            scanning = false;
+
+                            if (result.format == "QR_CODE") {
+
+                                if (result.text != "") {
+
+                                    var params = (result.text).toString().split("/");
+                                    var urlamigable = params[params.length - 1].toString();
+                                    //Mandamos al checkIn
+                                    checkIn(urlamigable);
+
+                                } else {
+                                    showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+                                }
+
+                            } else if (result.cancelled) {
+
+                                //showAlert("Scanner Cancelled.", "Error", "Aceptar");
+                            }
+                        },
+                        function (error) {
+
+                            scanning = false;
+
+                            alert("Scanning failed: " + error);
+                        }
+                    );
+
+                    /*var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+                     scanner.scan(function (result) {
+
+                     if (result.format == "QR_CODE") {
+
+                     if (result.text != "") {
+                     var params = (result.text).toString().split("/");
+                     var urlamigable = params[params.length - 1].toString();
+                     //Mandamos al checkIn
+                     checkIn(urlamigable);
+                     } else {
+                     showAlert("Scanner failed, please try again.", "Error", "Aceptar");
+                     }
+
+                     } else if (result.cancelled) {
+                     showAlert("Scanner Cancelled.", "Error", "Aceptar");
+                     }
+
+                     }, function (error) {
+                     alert("Scanning failed: ", error);
+                     });*/
+
+                } else if (LOGIN_INVITADO) {
+
+                    alertaInvitado();
+                }
             }
         }
     }
-};
+    ;
 
 app.onDeviceReady();
 $('body').css('display', 'block');
@@ -1186,7 +1226,7 @@ var homeInterval = undefined;
 function imageLoaded(index) {
     if (index == 0) {
 
-        if(homeInterval == undefined) {
+        if (homeInterval == undefined) {
             homeInterval = setInterval(function () {
 
                 if (homeImages.getActiveCarouselItemIndex() < homeImages._getCarouselItemCount() - 1) {
@@ -1207,7 +1247,7 @@ var bannerInterval = undefined;
 function bannerLoaded(index) {
     if (index == 0) {
 
-        if(bannerInterval == undefined) {
+        if (bannerInterval == undefined) {
             bannerInterval = setInterval(function () {
 
                 if (homeBanner.getActiveCarouselItemIndex() < homeBanner._getCarouselItemCount() - 1) {
@@ -1234,7 +1274,7 @@ function openEmail(email) {
 
 function gotoMaps(seccion) {
 
-    openExternalLink('https://www.google.com/maps/place/'+seccion.latitud+','+seccion.longitud+'/@'+seccion.latitud+','+seccion.longitud+'z/data=!3m1!4b1')
+    openExternalLink('https://www.google.com/maps/place/' + seccion.latitud + ',' + seccion.longitud + '/@' + seccion.latitud + ',' + seccion.longitud + 'z/data=!3m1!4b1')
 }
 
 function gotoLink(url) {
@@ -1252,11 +1292,13 @@ function goToPlanes(local_id) {
     if (current_page != 'planes.html') {
 
         current_page = 'planes.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getPlanes/', function (data) {
 
-            if(data.items != false && data.items.length > 0) {
+            if (data.items != false && data.items.length > 0) {
 
                 mainnavigator.pushPage('planes.html', {current_list: data});
 
@@ -1267,7 +1309,11 @@ function goToPlanes(local_id) {
 
 
         }, function () {
-        }, {ciudad_id: ciudad_seleccionada, local_id: local_id, usuario_id: (userData != undefined) ? userData.id : ''});
+        }, {
+            ciudad_id: ciudad_seleccionada,
+            local_id: local_id,
+            usuario_id: (userData != undefined) ? userData.id : ''
+        });
 
     }
 }
@@ -1277,7 +1323,9 @@ function gotoComoFunciona() {
     if (current_page != 'como_funciona.html') {
 
         current_page = 'como_funciona.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('como_funciona.html', {});
     }
@@ -1288,7 +1336,9 @@ function gotoQuieroParticipar() {
     if (current_page != 'quiero_participar.html') {
 
         current_page = 'quiero_participar.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('quiero_participar.html', {});
     }
@@ -1299,7 +1349,9 @@ function goToGuia() {
     if (current_page != 'guias.html') {
 
         current_page = 'guias.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getCategorias/', function (data) {
 
@@ -1309,19 +1361,21 @@ function goToGuia() {
         }, {ciudad_id: ciudad_seleccionada});
     }
 }
-function goToSubcategorias(categoria_id){
-	if (current_page != 'subcategorias.html') {
-		
-		current_page = 'subcategorias.html';
-	    setTimeout(function(){current_page = '';}, 100);
+function goToSubcategorias(categoria_id) {
+    if (current_page != 'subcategorias.html') {
 
-	    getJsonP(api_url + 'getSubcategorias/', function (data) {
+        current_page = 'subcategorias.html';
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
-	        mainnavigator.pushPage('subcategorias.html', {current_list: data});
+        getJsonP(api_url + 'getSubcategorias/', function (data) {
 
-	    }, function () {
-	    }, {categoria_id: categoria_id});
-	}
+            mainnavigator.pushPage('subcategorias.html', {current_list: data});
+
+        }, function () {
+        }, {categoria_id: categoria_id});
+    }
 }
 
 function goToRecompensas() {
@@ -1329,7 +1383,9 @@ function goToRecompensas() {
     if (current_page != 'recompensas.html') {
 
         current_page = 'recompensas.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getRecompensas/', function (data) {
 
@@ -1345,11 +1401,13 @@ function gotoMenuDiario() {
     if (current_page != 'menu.html') {
 
         current_page = 'menu.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getMenuDiario/', function (data) {
 
-            if(data.items && data.items.length > 0) {
+            if (data.items && data.items.length > 0) {
 
                 mainnavigator.pushPage('menu.html', {current_list: data});
 
@@ -1373,7 +1431,9 @@ function procesarRegistro(element, event, type) {
     if (current_page != 'ciudad.html') {
 
         current_page = 'ciudad.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('ciudad.html');
     }
@@ -1389,7 +1449,6 @@ function elegirCiudad(ciudad_id, event) {
 function loadinitialParams(callback) {
 
 
-
     try {
         StatusBar.hide();
     } catch (error) {
@@ -1399,14 +1458,14 @@ function loadinitialParams(callback) {
 
     /*getJsonP(api_url + 'getInitialParams/', function (data) {
 
-        applicationParams = data;
+     applicationParams = data;
 
-        callback();
+     callback();
 
-    }, function () {
+     }, function () {
 
 
-    }, {});*/
+     }, {});*/
 }
 
 function loadApplicationParams(callback) {
@@ -1561,7 +1620,7 @@ function onSliderHomeIMGLoad(img, index) {
 
     container.html('');
 
-    image.onload = function(event) {
+    image.onload = function (event) {
 
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
@@ -1633,7 +1692,7 @@ function onSliderIMGLoad(img, index) {
 
     container.html('');
 
-    image.onload = function(event) {
+    image.onload = function (event) {
 
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
@@ -1705,7 +1764,7 @@ function adaptImage(img, index) {
 
     container.html('');
 
-    image.onload = function(event) {
+    image.onload = function (event) {
 
         container.css('background-image', "url('" + src + "')");
         container.css('background-repeat', "no-repeat");
@@ -1715,22 +1774,22 @@ function adaptImage(img, index) {
         container.addClass('opaque');
 
         /*var width = image.width;
-        var height = image.height;
+         var height = image.height;
 
-        if(width > height) {
+         if(width > height) {
 
-            width = '100%';
-            height = 'auto';
+         width = '100%';
+         height = 'auto';
 
-        } else {
+         } else {
 
-            width = 'auto';
-            height = '100%';
-        }
+         width = 'auto';
+         height = '100%';
+         }
 
-        container.css('background-size', (width) + "" + " " + (height) + "");
+         container.css('background-size', (width) + "" + " " + (height) + "");
 
-        container.addClass('opaque');*/
+         container.addClass('opaque');*/
     }
 
     image.src = src;
@@ -1747,6 +1806,8 @@ module.controller('NavigatorController', function ($scope) {
 
         getLocationGPS();
 
+        $('#body').css('display', 'block');
+
         NavigatorController = this;
 
         try {
@@ -1754,10 +1815,10 @@ module.controller('NavigatorController', function ($scope) {
         } catch (error) {
         }
 
-        loadinitialParams(function(){
+        loadinitialParams(function () {
 
-            getValidarDeviceUuid(device ? device.uuid : '', '', true);
-            //getValidarDeviceUuid('', '', true);
+            //getValidarDeviceUuid(device ? device.uuid : '', '', true);
+            getValidarDeviceUuid('', '', true);
         });
 
     })
@@ -1776,8 +1837,8 @@ module.controller('RegistroController', function ($scope) {
             try {
                 navigator.splashscreen.hide();
             } catch (error) {
-				console.log("error: ");
-				console.log(error);
+                console.log("error: ");
+                console.log(error);
             }
 
         }, 1000);
@@ -1810,13 +1871,13 @@ module.controller('ciudadController', function ($scope) {
 
         /*$(mainnavigator.getCurrentPage().element[0]).find('.ciudad_slide').each(function(event) {
 
-            $(this).unbind('click').on('click', function(event) {
-                console.log(event.target);
-                //elegirCiudad( $(this).attr('rel') );
-                console.log( $(this).attr('rel') );
-            });
+         $(this).unbind('click').on('click', function(event) {
+         console.log(event.target);
+         //elegirCiudad( $(this).attr('rel') );
+         console.log( $(this).attr('rel') );
+         });
 
-        });*/
+         });*/
 
         setTimeout(function () {
 
@@ -1844,46 +1905,46 @@ module.controller('HomeController', function ($scope) {
         } catch (error) {
         }
 
-            setTimeout( function() {
+        setTimeout(function () {
 
-                var factor = window.innerWidth / 320;
+            var factor = window.innerWidth / 320;
 
-                var footerHeight = factor * $('#homeFooter').outerHeight();
+            var footerHeight = factor * $('#homeFooter').outerHeight();
 
-                $('#homeFooter .banner').height(footerHeight + 8);
-                $('#homeBanner').height(footerHeight + 8);
-                $('#homeHeader').height(footerHeight - 8);
+            $('#homeFooter .banner').height(footerHeight + 8);
+            $('#homeBanner').height(footerHeight + 8);
+            $('#homeHeader').height(footerHeight - 8);
 
-                height = $(window).height() - ( $('#homeScroll').outerHeight()  + 40 + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
+            height = $(window).height() - ( $('#homeScroll').outerHeight() + 40 + $('#homeFooter').outerHeight() + $('#homeHeader').outerHeight() - 1 );
 
-                height = height - 12 - 8;
+            height = height - 12 - 8;
 
-                $('#homeImages').height(height);
-                $('#homeToolbar').height(height);
+            $('#homeImages').height(height);
+            $('#homeToolbar').height(height);
 
-                home_slider_width = window.innerWidth;
-                home_slider_height = height;
+            home_slider_width = window.innerWidth;
+            home_slider_height = height;
 
-                $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
+            $('#homePage .page__content').css('top', (height + $('#homeHeader').outerHeight() ) + 'px');
 
-                renderHome();
+            renderHome();
 
-                $('.dashboard.row .button').on("touchstart", function (e) {
-                    $(this).addClass("hover");
+            $('.dashboard.row .button').on("touchstart", function (e) {
+                $(this).addClass("hover");
 
-                    return true;
-                });
+                return true;
+            });
 
-                $('.dashboard.row .button').on("touchend", function (e) {
-                    $(this).removeClass("hover");
+            $('.dashboard.row .button').on("touchend", function (e) {
+                $(this).removeClass("hover");
 
-                    return true;
-                });
+                return true;
+            });
 
 
-                verifyNotification();
+            verifyNotification();
 
-            }, 100);
+        }, 100);
 
     });
 });
@@ -1899,33 +1960,33 @@ function renderHome() {
 
     $('#home_slider_paginator > li:nth-child(1)').addClass('selected');
 
-    if ($.trim(applicationParams.banner.url) != '' ) {
+    if ($.trim(applicationParams.banner.url) != '') {
 
         $('#homeBanner').find('a').attr('rel', applicationParams.banner.url);
 
-        $('#homeBanner').find('a').on('click', function() {
+        $('#homeBanner').find('a').on('click', function () {
 
             openExternalLink($(this).attr('rel'));
         });
-    } else if( $.trim(applicationParams.banner.section) != '' ) {
+    } else if ($.trim(applicationParams.banner.section) != '') {
 
-        $('#homeBanner').find('a').on('click', function() {
+        $('#homeBanner').find('a').on('click', function () {
 
             redirectToPage(applicationParams.banner.section, applicationParams.banner.section_id);
         });
     }
 
-    $('#homePage .home-slide').each(function() {
+    $('#homePage .home-slide').each(function () {
 
-        if ($.trim($(this).attr('url')) != '' ) {
+        if ($.trim($(this).attr('url')) != '') {
 
-            $(this).on('click', function() {
+            $(this).on('click', function () {
 
                 openExternalLink($(this).attr('url'));
             });
-        } else if( $.trim($(this).attr('section')) != '' ) {
+        } else if ($.trim($(this).attr('section')) != '') {
 
-            $(this).on('click', function() {
+            $(this).on('click', function () {
 
                 redirectToPage($(this).attr('section'), $(this).attr('section_id'));
             });
@@ -1935,12 +1996,12 @@ function renderHome() {
 
     /*if ($.trim(applicationParams.banner.image) != '' ) {
 
-        $('#homeBanner').find('img').attr('src', applicationParams.banner.image);
+     $('#homeBanner').find('img').attr('src', applicationParams.banner.image);
 
-    } else {
+     } else {
 
-        $('#homeBanner').find('img').attr('src', '');
-    }*/
+     $('#homeBanner').find('img').attr('src', '');
+     }*/
 
     $('#homePaginator > div:first-child').addClass('selected');
 
@@ -1975,18 +2036,18 @@ function renderHome() {
     ons.compile($('#homeBanner')[0]);
 
 
-    $('#homePage .banner-img').each(function() {
+    $('#homePage .banner-img').each(function () {
 
-        if ($.trim($(this).attr('url')) != '' ) {
+        if ($.trim($(this).attr('url')) != '') {
 
-            $(this).on('click', function() {
+            $(this).on('click', function () {
 
                 openExternalLink($(this).attr('url'));
             });
 
-        } else if( $.trim($(this).attr('section')) != '' ) {
+        } else if ($.trim($(this).attr('section')) != '') {
 
-            $(this).on('click', function() {
+            $(this).on('click', function () {
 
                 redirectToPage($(this).attr('section'), $(this).attr('section_id'));
             });
@@ -2018,22 +2079,22 @@ module.controller('PlanesController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 1.6);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-            gotoPlanDetalle( $(this).attr('rel'), current_list );
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+            gotoPlanDetalle($(this).attr('rel'), current_list);
         });
 
         var i = 0;
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function(){
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function () {
 
-            if(current_list.items[i].usuario_estado == 'comprado') {
+            if (current_list.items[i].usuario_estado == 'comprado') {
 
                 $(this).find('.validar').attr('id', current_list.items[i].usuarios_promocions_id);
                 $(this).find('.validar').attr('index', i);
-                $(this).find('.validar').on('click', function(event){
+                $(this).find('.validar').on('click', function (event) {
                     pagar_promocion($(this).attr('id'), this, event);
                 });
 
-            } else if(current_list.items[i].usuario_estado == 'pagado') {
+            } else if (current_list.items[i].usuario_estado == 'pagado') {
 
                 $(this).find('.validar').html('VALIDADO<i>por el responsable del local</i>');
 
@@ -2041,16 +2102,16 @@ module.controller('PlanesController', function ($scope) {
                 $(this).find('.validar').hide();
             }
 
-            if(current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
+            if (current_list.items[i].tipo == 'vip' || current_list.items[i].tipo == 'promocional') {
 
                 $(this).find('.overlay.title').addClass('rosa bold');
             }
 
-            i ++;
+            i++;
 
         });
 
-        ons.compile( $(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0] );
+        ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#planes_content')[0]);
 
         counterPlanes += 1;
 
@@ -2058,7 +2119,7 @@ module.controller('PlanesController', function ($scope) {
 
         initScroll('planesScroll' + counterPlanes);
 
-        setTimeout(function() {
+        setTimeout(function () {
             modal.hide();
         }, 500);
 
@@ -2070,7 +2131,9 @@ function gotoPlanDetalle(index, current_list) {
     if (current_page != 'plan.html') {
 
         current_page = 'plan.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('plan.html', {current_plan: current_list.items[index]});
     }
@@ -2116,9 +2179,9 @@ module.controller('PlanController', function ($scope) {
 
         var i = 0;
         var hasVideo = false;
-        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each( function() {
+        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each(function () {
 
-            if(current_plan.local_images[i].video_url != '') {
+            if (current_plan.local_images[i].video_url != '') {
 
                 var video = $(templates.iframe_player);
 
@@ -2130,30 +2193,30 @@ module.controller('PlanController', function ($scope) {
                 hasVideo = true;
             }
 
-            i ++;
+            i++;
         });
 
-        if(hasVideo) {
+        if (hasVideo) {
 
             var navigation = $(templates.slider_player_navigator);
 
             $(mainnavigator.getCurrentPage().element[0]).find('#planPaginator').parent().append(navigation);
 
-            navigation.find('.prev').on('click', function(){
+            navigation.find('.prev').on('click', function () {
 
                 planImages.prev();
 
-                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
-                    $(this).attr('src', $(this).attr('src') );
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function () {
+                    $(this).attr('src', $(this).attr('src'));
                 });
             });
 
-            navigation.find('.next').on('click', function(){
+            navigation.find('.next').on('click', function () {
 
                 planImages.next();
 
-                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
-                    $(this).attr('src', $(this).attr('src') );
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function () {
+                    $(this).attr('src', $(this).attr('src'));
                 });
             });
 
@@ -2165,9 +2228,8 @@ module.controller('PlanController', function ($scope) {
         }
 
 
-
-        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
-            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+        if (window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth() + 11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
             $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
             $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
         }
@@ -2194,9 +2256,9 @@ module.controller('PlanController', function ($scope) {
             gotoMaps(current_plan);
         });
 
-        if(current_plan.tipo == 'vip') {
+        if (current_plan.tipo == 'vip') {
 
-            if(current_plan.limite > 0) {
+            if (current_plan.limite > 0) {
 
                 $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').on('click', function () {
                     comprarPlan(current_plan.loca_id, current_plan.id);
@@ -2207,7 +2269,7 @@ module.controller('PlanController', function ($scope) {
                 $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').text('PLAN CERRADO');
             }
 
-            if(current_plan.usuario_estado == 'pagado' || current_plan.usuario_estado == 'comprado') {
+            if (current_plan.usuario_estado == 'pagado' || current_plan.usuario_estado == 'comprado') {
                 $(mainnavigator.getCurrentPage().element[0]).find('#planApuntarse').hide();
             }
 
@@ -2285,31 +2347,31 @@ module.controller('LocalController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#localPaginator')[0], current_local.local_images, 'slider_paginator');
 
         /*if(current_local.video_url != '') {
-            var video = $(templates.slider_video);
-            //video.find('img').attr('src', current_local.video_thumb);
-            //video.on('click', function(e){
-            //    openExternalLink(current_local.video_url, e);
-            //});
-            video.find('iframe').attr('src', current_local.video_url);
-            video.find('.title2').html(current_local.local_title);
-            video.find('iframe').on('touchstart', function(e){
-                //e.stopPropagation();
-                e.preventDefault();
-            });
+         var video = $(templates.slider_video);
+         //video.find('img').attr('src', current_local.video_thumb);
+         //video.on('click', function(e){
+         //    openExternalLink(current_local.video_url, e);
+         //});
+         video.find('iframe').attr('src', current_local.video_url);
+         video.find('.title2').html(current_local.local_title);
+         video.find('iframe').on('touchstart', function(e){
+         //e.stopPropagation();
+         e.preventDefault();
+         });
 
 
-            $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
+         $(mainnavigator.getCurrentPage().element[0]).find('#localImages').prepend(video);
 
-            ons.compile(video[0]);
-        }*/
+         ons.compile(video[0]);
+         }*/
 
         console.log(current_local.local_images);
 
         var i = 0;
         var hasVideo = false;
-        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each( function() {
+        $(mainnavigator.getCurrentPage().element[0]).find('ons-carousel-item').each(function () {
 
-            if(current_local.local_images[i].video_url != '') {
+            if (current_local.local_images[i].video_url != '') {
 
                 var video = $(templates.iframe_player);
 
@@ -2321,30 +2383,30 @@ module.controller('LocalController', function ($scope) {
                 hasVideo = true;
             }
 
-            i ++;
+            i++;
         });
 
-        if(hasVideo) {
+        if (hasVideo) {
 
             var navigation = $(templates.slider_player_navigator);
 
             $(mainnavigator.getCurrentPage().element[0]).find('#localPaginator').parent().append(navigation);
 
-            navigation.find('.prev').on('click', function(){
+            navigation.find('.prev').on('click', function () {
 
                 localImages.prev();
 
-                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
-                    $(this).attr('src', $(this).attr('src') );
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function () {
+                    $(this).attr('src', $(this).attr('src'));
                 });
             });
 
-            navigation.find('.next').on('click', function(){
+            navigation.find('.next').on('click', function () {
 
                 localImages.next();
 
-                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function(){
-                    $(this).attr('src', $(this).attr('src') );
+                $(mainnavigator.getCurrentPage().element[0]).find('iframe').each(function () {
+                    $(this).attr('src', $(this).attr('src'));
                 });
             });
 
@@ -2356,8 +2418,8 @@ module.controller('LocalController', function ($scope) {
         }
 
 
-        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
-            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+        if (window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth() + 11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
             $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
             $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
         }
@@ -2374,7 +2436,7 @@ module.controller('LocalController', function ($scope) {
             actionCall(current_local.telefono);
         });
 
-        if(current_local.planes > 0) {
+        if (current_local.planes > 0) {
 
             $(mainnavigator.getCurrentPage().element[0]).find('#localVerPlanes').find('.count').text(current_local.planes);
 
@@ -2398,15 +2460,15 @@ module.controller('LocalController', function ($scope) {
             gotoLink(current_local.web);
         });
 
-        if( $.trim(current_local.web) == '' ) {
+        if ($.trim(current_local.web) == '') {
             $('#localWeb').hide();
         }
 
-        if( $.trim(current_local.facebook) == '' ) {
+        if ($.trim(current_local.facebook) == '') {
             $('#localFacebook').hide();
         }
 
-        if( $.trim(current_local.twitter) == '' ) {
+        if ($.trim(current_local.twitter) == '') {
             $('#localTwitter').hide();
         }
 
@@ -2465,13 +2527,13 @@ module.controller('GuiasController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-			current_categoria = current_list.items[$(this).attr('rel')];
-			if(current_categoria.id == 1) {
-				goToSubcategorias(current_categoria.id);
-			}else{
-	            gotoLocales( $(this).attr('rel'), current_list );	
-			}
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+            current_categoria = current_list.items[$(this).attr('rel')];
+            if (current_categoria.id == 1) {
+                goToSubcategorias(current_categoria.id);
+            } else {
+                gotoLocales($(this).attr('rel'), current_list);
+            }
         });
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0]);
@@ -2502,8 +2564,8 @@ module.controller('SubcategoriasController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0], current_list.items, 'guias_list');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-			gotoLocales( $(this).attr('rel'), current_list );
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+            gotoLocales($(this).attr('rel'), current_list);
         });
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#guias_content')[0]);
@@ -2556,7 +2618,9 @@ function gotoComofuncionaDetalle(index, current_list) {
     if (current_page != 'como_funciona_detalle.html') {
 
         current_page = 'como_funciona_detalle.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         current_como_funciona = applicationParams.como_funciona[index];
 
@@ -2597,10 +2661,10 @@ module.controller('ComoFuncionaDetalleController', function ($scope) {
                 function (isAvailable) {
                     // alert('Service is not available') unless isAvailable;
                     cordova.plugins.email.open({
-                        to:      [email],
+                        to: [email],
                         subject: '',
-                        body:    ''
-                    }, function(){
+                        body: ''
+                    }, function () {
                         //close composer
                     });
                 }
@@ -2656,15 +2720,17 @@ function gotoLocales(index, current_list) {
     if (current_page != 'locales.html') {
 
         current_page = 'locales.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         current_categoria = current_list.items[index];
-		console.log("current_categoria:*********");
-		console.log(current_categoria);
-		console.log(current_categoria.id);
-		console.log("current_categoria://///////");
+        console.log("current_categoria:*********");
+        console.log(current_categoria);
+        console.log(current_categoria.id);
+        console.log("current_categoria://///////");
         getJsonP(api_url + 'getLocales/', function (data) {
-			console.log(data);
+            console.log(data);
             mainnavigator.pushPage('locales.html', {current_list: data});
 
         }, function () {
@@ -2677,7 +2743,9 @@ function gotoLocalesFromId(categoria_id) {
     if (current_page != 'locales.html') {
 
         current_page = 'locales.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getLocales/', function (data) {
 
@@ -2697,7 +2765,9 @@ function gotoGuiaDetalle(index, current_list) {
     if (current_page != 'local.html') {
 
         current_page = 'local.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('local.html', {current_local: current_list.items[index]});
     }
@@ -2728,26 +2798,26 @@ module.controller('LocalesController', function ($scope) {
 
         var tabs_content = '<ons-carousel-item class="table tab-item">';
         var i;
-        for(i in current_list.zonas) {
+        for (i in current_list.zonas) {
 
-            if( i > 0 && i%3 == 0) {
+            if (i > 0 && i % 3 == 0) {
                 tabs_content += '</ons-carousel-item>';
                 tabs_content += '<ons-carousel-item>';
             }
 
             tabs_content +=
-            '<div onclick="filtrarLocalesByZona(' + current_list.zonas[i].id + ')" class="button nobutton">'+
-            '<div class="zonas_icon"><img src="' + current_list.zonas[i].imagen + '" onload="adaptImage(this, ' + i + ')" /></div><div class="text">' + current_list.zonas[i].title + '</div>'+
-            '</div>';
+                '<div onclick="filtrarLocalesByZona(' + current_list.zonas[i].id + ')" class="button nobutton">' +
+                '<div class="zonas_icon"><img src="' + current_list.zonas[i].imagen + '" onload="adaptImage(this, ' + i + ')" /></div><div class="text">' + current_list.zonas[i].title + '</div>' +
+                '</div>';
         }
 
-        if( i%3 != 0 ) {
+        if (i % 3 != 0) {
             tabs_content += '</ons-carousel-item>';
         }
 
         $(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent').html(tabs_content);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.footer .button').css( 'width',  (current_list.zonas.length < 4 ? Math.round(100/current_list.zonas.length) : 25) + '%' );
+        $(mainnavigator.getCurrentPage().element[0]).find('.footer .button').css('width', (current_list.zonas.length < 4 ? Math.round(100 / current_list.zonas.length) : 25) + '%');
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#localesTabContent')[0]);
 
@@ -2760,15 +2830,15 @@ function renderLocales(current_list) {
 
     loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0], current_list.items, 'locales_list');
 
-    $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-        gotoGuiaDetalle( $(this).attr('rel'), current_list );
+    $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+        gotoGuiaDetalle($(this).attr('rel'), current_list);
     });
 
     ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#locales_content')[0]);
 
     //$(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').height( $(mainnavigator.getCurrentPage().element[0]).find('#localesScroll').outerHeight() - $(mainnavigator.getCurrentPage().element[0]).find('#localesFooter').outerHeight() )
 
-    if(LocalesController.scroll == undefined) {
+    if (LocalesController.scroll == undefined) {
 
         counterPlanes += 1;
 
@@ -2782,19 +2852,21 @@ function renderLocales(current_list) {
     }
 }
 
-function filtrarLocalesByZona( zona_id ) {
+function filtrarLocalesByZona(zona_id) {
 
     if (current_page != 'locales.html') {
 
         current_page = 'locales.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         getJsonP(api_url + 'getLocales/', function (data) {
 
             renderLocales(data);
 
         }, function () {
-        }, { categoria_id: current_categoria.id, ciudad_id: ciudad_seleccionada, zona_id: zona_id });
+        }, {categoria_id: current_categoria.id, ciudad_id: ciudad_seleccionada, zona_id: zona_id});
     }
 }
 
@@ -2835,8 +2907,8 @@ module.controller('GuiaController', function ($scope) {
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guiaImages')[0], current_guia.images, 'slider_guia');
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#guiaPaginator')[0], current_guia.images, 'slider_paginator');
 
-        if( window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
-            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth()+11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
+        if (window.innerWidth - $(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').length *
+            ($(mainnavigator.getCurrentPage().element[0]).find('.paginator-item').outerWidth() + 11) < $(mainnavigator.getCurrentPage().element[0]).find('.distance').width() || $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() > 20) {
             $(mainnavigator.getCurrentPage().element[0]).find('.title').css('padding-bottom', 30 + $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height());
             $(mainnavigator.getCurrentPage().element[0]).find('.distance').css('margin-bottom', $(mainnavigator.getCurrentPage().element[0]).find('.slider-paginator').height() + 'px');
         }
@@ -2885,8 +2957,8 @@ module.controller('MenuController', function ($scope) {
 
         loadIntoTemplate($(mainnavigator.getCurrentPage().element[0]).find('#menu_content')[0], current_list.items, 'menu_list');
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-            gotoMenuDetalle( $(this).attr('rel'), current_list );
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+            gotoMenuDetalle($(this).attr('rel'), current_list);
         });
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#menu_content')[0]);
@@ -2906,7 +2978,9 @@ function gotoMenuDetalle(index, current_list) {
     if (current_page != 'menu_detalle.html') {
 
         current_page = 'menu_detalle.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('menu_detalle.html', {current_menu: current_list.items[index]});
     }
@@ -2949,14 +3023,14 @@ module.controller('MenuDetalleController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('#menuDetalleLogo').attr('src', current_menu.imagen);
 
-        if( $.trim(current_menu.precio) != '' ) {
+        if ($.trim(current_menu.precio) != '') {
 
             //str += '<div class="menu_header"><h3><span class="" style="background:none">Precio: &nbsp;&nbsp;&nbsp;</span>' + current_menu.precio + '</h3></div>';
 
             $(mainnavigator.getCurrentPage().element[0]).find('#menu_detalleFecha').html(current_menu.precio);
         }
 
-        if( $.trim(current_menu.descripcion) != '' ) {
+        if ($.trim(current_menu.descripcion) != '') {
 
             str += '<div class="text-description">' + current_menu.descripcion + '</div>';
         }
@@ -3015,20 +3089,20 @@ module.controller('RecompensasController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').height((window.innerHeight - (51 * factor)) / 3);
 
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function(){
-            gotoRecompensaDetalle( $(this).attr('rel'), current_list );
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').on('click', function () {
+            gotoRecompensaDetalle($(this).attr('rel'), current_list);
         });
 
         var i = 0;
-        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each( function() {
+        $(mainnavigator.getCurrentPage().element[0]).find('.list-item-container').each(function () {
 
-            if(current_list.items[i].gane_recompensa) {
+            if (current_list.items[i].gane_recompensa) {
 
                 $(this).find('.validar').attr('rel', current_list.items[i].gane_recompensa);
                 $(this).find('.validar').attr('id', 'recompensa_' + current_list.items[i].gane_recompensa);
                 $(this).find('.validar').attr('index', i);
 
-                $(this).find('.validar').on('click', function(event) {
+                $(this).find('.validar').on('click', function (event) {
 
                     pagar_recompensa($(this).attr('id'), this, event);
                 });
@@ -3037,7 +3111,7 @@ module.controller('RecompensasController', function ($scope) {
                 $(this).find('.validar').hide();
             }
 
-            i ++;
+            i++;
         });
 
         ons.compile($(mainnavigator.getCurrentPage().element[0]).find('#recompensas_content')[0]);
@@ -3054,9 +3128,9 @@ module.controller('RecompensasController', function ($scope) {
 function goBackFromProfile() {
     var user = COOKIE;
 
-    if( isLogin() ) {
+    if (isLogin()) {
 
-        if( $.trim(user.email) == '' ) {
+        if ($.trim(user.email) == '') {
 
             //showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
             mainnavigator.popPage('perfil.html');
@@ -3066,7 +3140,7 @@ function goBackFromProfile() {
             mainnavigator.popPage('perfil.html');
         }
 
-    } else if( LOGIN_INVITADO ) {
+    } else if (LOGIN_INVITADO) {
 
         mainnavigator.popPage('perfil.html');
     }
@@ -3077,7 +3151,9 @@ function gotoRecompensaDetalle(index, current_list) {
     if (current_page != 'recompensa.html') {
 
         current_page = 'recompensa.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('recompensa.html', {current_recompensa: current_list.items[index]});
     }
@@ -3088,7 +3164,9 @@ module.controller('RecompensaController', function ($scope) {
     ons.ready(function () {
 
         current_page = 'recompensa.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         var current_recompensa = mainnavigator.getCurrentPage().options.current_recompensa;
 
@@ -3170,10 +3248,12 @@ module.controller('RecompensaController', function ($scope) {
 
 function gotoPerfil() {
 
-    if(current_page != 'perfil.html') {
+    if (current_page != 'perfil.html') {
 
         current_page = 'perfil.html';
-        setTimeout(function(){current_page = '';}, 100);
+        setTimeout(function () {
+            current_page = '';
+        }, 100);
 
         mainnavigator.pushPage('perfil.html');
     }
@@ -3203,19 +3283,19 @@ module.controller('PerfilController', function ($scope) {
 
         $(mainnavigator.getCurrentPage().element[0]).find('.page__content').css('top', $(mainnavigator.getCurrentPage().element[0]).find('.header').height() + 'px');
 
-        if(isLogin()) {
+        if (isLogin()) {
 
             recibir_alertas = user.recibir_alertas == '1';
 
-            $(mainnavigator.getCurrentPage().element[0]).find('.login_options').find("."+user.registrado_mediante).parent().show();
+            $(mainnavigator.getCurrentPage().element[0]).find('.login_options').find("." + user.registrado_mediante).parent().show();
 
             PerfilController.scroll = initScroll('perfilScroll');
 
             /*if ($.trim(user.email) == "") {
-                showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
-            }*/
+             showAlert("Hemos detectado que no tienes un email asociado a tu cuenta. Para poder seguir por favor debes rellenar tu email, as\u00ED cuando ganes una recompensa podremos estar en contacto. Gracias", "Aviso", "Aceptar");
+             }*/
 
-            if(recibir_alertas) {
+            if (recibir_alertas) {
 
                 $(mainnavigator.getCurrentPage().element[0]).find('#btnAlertas .text').text('DESACTIVAR NOTIFICACIONES');
 
@@ -3230,9 +3310,9 @@ module.controller('PerfilController', function ($scope) {
             $(mainnavigator.getCurrentPage().element[0]).find('#userPoints').html(user.puntos_acumulados + ' Puntos' + '<i class="down_arrow"></i>');
 
             var toggling = false;
-            $(mainnavigator.getCurrentPage().element[0]).find('#userPoints').on('click', function() {
+            $(mainnavigator.getCurrentPage().element[0]).find('#userPoints').on('click', function () {
 
-                if(!toggling) {
+                if (!toggling) {
 
                     toggling = true;
 
@@ -3247,20 +3327,20 @@ module.controller('PerfilController', function ($scope) {
                 }
             });
 
-            for(var i in applicationParams.ciudades) {
+            for (var i in applicationParams.ciudades) {
 
-                var selected = (applicationParams.ciudades[i].id == CIUDAD_ID) ? 'selected="selected"' : '' ;
+                var selected = (applicationParams.ciudades[i].id == CIUDAD_ID) ? 'selected="selected"' : '';
 
                 $(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad').append('<option value="' + applicationParams.ciudades[i].id + '" ' + selected + ' >' +
                     applicationParams.ciudades[i].title + '</option>');
             }
 
-            $(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad').parent().find('.text').text( $(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad option:selected').text() );
+            $(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad').parent().find('.text').text($(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad option:selected').text());
             $(mainnavigator.getCurrentPage().element[0]).find('#perfil_ciudad option:selected').text();
 
             refreshZonasAndPoints();
 
-        } else if(LOGIN_INVITADO){
+        } else if (LOGIN_INVITADO) {
 
             alertaInvitado();
         }
@@ -3269,7 +3349,7 @@ module.controller('PerfilController', function ($scope) {
 
 function saveAlertas() {
 
-    if(!configurando_alertas) {
+    if (!configurando_alertas) {
 
         configurando_alertas = true;
 
@@ -3313,7 +3393,7 @@ function refreshZonasAndPoints() {
 var configurando_alertas = false;
 function ActivarDesactivarAlertas() {
 
-    if(!configurando_alertas) {
+    if (!configurando_alertas) {
 
         configurando_alertas = true;
 
@@ -3407,7 +3487,7 @@ function ActivarDesactivarAlertas() {
 var editando_email = false;
 function cambiarEmail() {
 
-    if(!editando_email) {
+    if (!editando_email) {
 
         editando_email = true;
 
@@ -3420,7 +3500,9 @@ function cambiarEmail() {
 
                 if (data.status == 'success') {
 
-                    showAlert(data.mensaje, "Aviso", "Aceptar", function(){ editando_email = false; });
+                    showAlert(data.mensaje, "Aviso", "Aceptar", function () {
+                        editando_email = false;
+                    });
 
                     COOKIE.email = data.new_email;
 
@@ -3429,7 +3511,9 @@ function cambiarEmail() {
 
                 } else {
 
-                    showAlert(data.mensaje, "Error", "Aceptar", function(){ editando_email = false; });
+                    showAlert(data.mensaje, "Error", "Aceptar", function () {
+                        editando_email = false;
+                    });
                 }
 
             }, function () {
@@ -3441,7 +3525,9 @@ function cambiarEmail() {
 
         } else {
 
-            showAlert("Por favor ingrese un email valido!.", "Mensaje", "Aceptar", function(){ editando_email = false; });
+            showAlert("Por favor ingrese un email valido!.", "Mensaje", "Aceptar", function () {
+                editando_email = false;
+            });
         }
     }
 }
@@ -3452,19 +3538,19 @@ function cambiarCiudad(dropdown, event) {
 
     ciudad_seleccionada = $(dropdown).val();
 
-    getJsonP(api_url + 'setCiudad/', function(data) {
+    getJsonP(api_url + 'setCiudad/', function (data) {
 
-        if( data.status == 'success' ){
+        if (data.status == 'success') {
 
             showAlert(data.mensaje, "Aviso", "Aceptar");
 
             CIUDAD_ID = ciudad_seleccionada = data.ciudad_id;
 
-            $('#perfil_ciudad').parent().find('.text').text( $('#perfil_ciudad option:selected').text() );
+            $('#perfil_ciudad').parent().find('.text').text($('#perfil_ciudad option:selected').text());
             $('#perfil_ciudad option:selected').text();
 
             //re-escribimos la cookie con la nueva ciudad
-            reWriteCookie("user","ciudad_id",data.ciudad_id);
+            reWriteCookie("user", "ciudad_id", data.ciudad_id);
 
             $('#zonas').html('');
 
@@ -3477,7 +3563,7 @@ function cambiarCiudad(dropdown, event) {
             showAlert(data.mensaje, "Error", "Aceptar");
         }
 
-    }, function() {
+    }, function () {
 
     }, {
         usuario_id: user.id,
@@ -3491,33 +3577,33 @@ function reloadZonas() {
 
     $('#zonas').html('');
 
-    getJsonP(api_url + 'getZonas/', function(data) {
-        if(data.items){
+    getJsonP(api_url + 'getZonas/', function (data) {
+        if (data.items) {
 
             //mostramos loading
             var alertas = data.alertas;
             var html = "";
 
-            if(data.items.length){
+            if (data.items.length) {
 
-                $.each(data.items, function(index, item) {
+                $.each(data.items, function (index, item) {
 
-                    var checked='';
+                    var checked = '';
 
-                    if(alertas == false) {
+                    if (alertas == false) {
 
-                        checked='checked="checked"';
+                        checked = 'checked="checked"';
 
                     } else if (item.recibir == true) {
 
                         checked = 'checked="checked"';
                     }
 
-                    var str = '<label class="checkbox btn">'+
-                        '<input name="zonas[]" type="checkbox" class="" value="' + item.id + '" ' + checked + ' >'+
-                    '<div class="checkbox__checkmark"></div>'+
-                    '<span class="ons-checkbox-inner text fixed4">' + item.title + '</span>'+
-                    '</label>';
+                    var str = '<label class="checkbox btn">' +
+                        '<input name="zonas[]" type="checkbox" class="" value="' + item.id + '" ' + checked + ' >' +
+                        '<div class="checkbox__checkmark"></div>' +
+                        '<span class="ons-checkbox-inner text fixed4">' + item.title + '</span>' +
+                        '</label>';
 
                     $('#zonas').append(str);
 
@@ -3529,9 +3615,9 @@ function reloadZonas() {
 
             $('#points_list').html('');
 
-            if(data.puntos.length) {
+            if (data.puntos.length) {
 
-                $.each(data.puntos, function(index, item) {
+                $.each(data.puntos, function (index, item) {
 
                     var str = '<div class="point_row"><span class="text">' + item.local_title + '</span><b>' + item.puntos + ' Puntos</b></div>';
 
@@ -3542,7 +3628,7 @@ function reloadZonas() {
 
             refreshPerfilScroll();
         }
-    }, function() {
+    }, function () {
 
     }, {
         usuario_id: user.id,
@@ -3585,7 +3671,7 @@ module.controller('EmailController', function ($scope) {
 
 function autentificarUsuario(boton) {
 
-    if(!operacion_registro) {
+    if (!operacion_registro) {
 
         operacion_registro = true;
 
@@ -3594,22 +3680,30 @@ function autentificarUsuario(boton) {
         var codigo = $.trim($('#email_codigo').val());
 
         if (email == '') {
-            showAlert('Email es requerido', 'Error', 'Aceptar', function(){ operacion_registro = false; });
+            showAlert('Email es requerido', 'Error', 'Aceptar', function () {
+                operacion_registro = false;
+            });
             return;
         }
 
         if (!/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/.exec(email)) {
-            showAlert('Email inválido', 'Error', 'Aceptar', function(){ operacion_registro = false; });
+            showAlert('Email inválido', 'Error', 'Aceptar', function () {
+                operacion_registro = false;
+            });
             return;
         }
 
         if (password == '') {
-            showAlert('Password es requerido', 'Error', 'Aceptar', function(){ operacion_registro = false; });
+            showAlert('Password es requerido', 'Error', 'Aceptar', function () {
+                operacion_registro = false;
+            });
             return;
         }
 
         if ($('#btnRegistrarse').css('visibility') == 'hidden' && codigo == '') {
-            showAlert('Codigo es requerido', 'Error', 'Aceptar', function(){ operacion_registro = false; });
+            showAlert('Codigo es requerido', 'Error', 'Aceptar', function () {
+                operacion_registro = false;
+            });
             return;
         }
 
@@ -3623,14 +3717,14 @@ function autentificarUsuario(boton) {
                     u_email: email,
                     u_password: password,
                     u_login_con: 'email',
-                    d_plataforma: device ? device.platform: 'ios',
+                    d_plataforma: device ? device.platform : 'ios',
                     d_version: device ? device.version : '7',
                     d_uuid: device ? device.uuid : 'asdasd',
                     d_name: device ? device.name : 'iPhone',
                     u_token_notificacion: PUSH_NOTIFICATION_TOKEN
                 };
 
-            } catch(error) {
+            } catch (error) {
 
                 data = {
                     u_email: email,
@@ -3686,7 +3780,7 @@ function autentificarUsuario(boton) {
                         $('#btnRegistrarse').css('visibility', 'hidden');
                         $("#codigo_validacion").hide();
 
-                        if(usuario.ciudad_id != '' && usuario.ciudad_id != '0') {
+                        if (usuario.ciudad_id != '' && usuario.ciudad_id != '0') {
 
                             mainnavigator.popPage('email.html');
                             goHome(usuario.ciudad_id, false);
@@ -3803,30 +3897,30 @@ function initScroll(div) {
 
     /*if (!scrolls[div]) {
 
-        scrolls[div] = new iScroll(div, {
-            momentum: true,
-            hScrollbar: false,
-            vScrollbar: false,
-            click: true,
-            tap: true,
-            checkDOMChanges: true
-        });
+     scrolls[div] = new iScroll(div, {
+     momentum: true,
+     hScrollbar: false,
+     vScrollbar: false,
+     click: true,
+     tap: true,
+     checkDOMChanges: true
+     });
 
-    } else {
+     } else {
 
-        scrolls[div].scrollTo(0, 0);
-        setTimeout(function () {
-            scrolls[div].destroy();
-            scrolls[div] = new iScroll(div, {
-                momentum: true,
-                hScrollbar: false,
-                vScrollbar: false,
-                click: true,
-                tap: true,
-                checkDOMChanges: true
-            });
-        }, 10);
-    }*/
+     scrolls[div].scrollTo(0, 0);
+     setTimeout(function () {
+     scrolls[div].destroy();
+     scrolls[div] = new iScroll(div, {
+     momentum: true,
+     hScrollbar: false,
+     vScrollbar: false,
+     click: true,
+     tap: true,
+     checkDOMChanges: true
+     });
+     }, 10);
+     }*/
 
     //return scrolls[div];
 }
@@ -3855,10 +3949,12 @@ var currentLink;
 var isExternalShowing = false;
 function openExternalLink(url, e) {
 
-    if(!isExternalShowing) {
+    if (!isExternalShowing) {
 
         isExternalShowing = true;
-        setTimeout(function(){ isExternalShowing = false; }, 100);
+        setTimeout(function () {
+            isExternalShowing = false;
+        }, 100);
 
         currentLink = url;
 
