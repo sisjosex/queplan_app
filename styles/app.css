@@ -656,7 +656,7 @@ label.checkbox {
 }
 
 #ciudad_images .title {
-    font-family: 'century_light_ssilight';
+    font-family: 'Mohave';
 }
 
 .cuadrado {
@@ -2140,8 +2140,4 @@ iframe { overflow:hidden; }
 #menu_detalle_content {
     margin-left:20px;
     margin-right:20px;
-}
-
-.ciudad_slide .title {
-	font-family: 'Mohave';
 }
