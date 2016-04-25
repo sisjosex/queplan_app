@@ -34,8 +34,17 @@ b {
     url('../fonts/century_light_ssi_light-webfont.svg#century_light_ssilight') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
+
+
+@font-face {
+  font-family: 'Mohave';
+  src: url('../fonts/Mohave.eot?#iefix') format('embedded-opentype'),  url('../fonts/Mohave.otf')  format('opentype'),
+	     url('../fonts/Mohave.woff') format('woff'), url('../fonts/Mohave.ttf')  format('truetype'), url('../fonts/Mohave.svg#Mohave') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 * {
     font-family: 'Century Gothic';
@@ -2131,4 +2140,8 @@ iframe { overflow:hidden; }
 #menu_detalle_content {
     margin-left:20px;
     margin-right:20px;
+}
+
+.ciudad_slide .title {
+	font-family: 'Mohave';
 }
