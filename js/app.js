@@ -1,5 +1,5 @@
-var API_URL = 'http://localhost/queplan/api2/';
-var WEB_URL = 'http://cocinamosconfino.com/';
+var API_URL = 'http://web.queplanmadrid.es/api2/';
+var WEB_URL = 'http://web.queplanmadrid.es/';
 
 var module = ons.bootstrap('MyApp', ['services', 'ngSanitize']);
 
@@ -174,13 +174,13 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         if (document.location.protocol == 'http:') {
 
-            API_URL = 'http://localhost/queplan/api2/';
+            API_URL = 'http://web.queplanmadrid.es/api2/';
 
             setTimeout(onDeviceReady, 500);
 
         } else {
 
-            API_URL = 'http://queplanmadrid.es/api2/';
+            API_URL = 'http://web.queplanmadrid.es/api2/';
 
             document.addEventListener("deviceready", onDeviceReady, false);
         }
