@@ -3,13 +3,15 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.motion.cocinamos"
-        version   = "2.0.0">
+        id        = "com.sysdecom.queplan"
+         versionCode = "1905"
+		android-versionCode="1905"
+		version 	= "19.05">
 
-    <name>Cocinamos</name>
+    <name>¿QuePlan?</name>
 
     <description>
-        cocinando con Fino
+        Aplicacion mobile - QuéPlan?
     </description>
 
     <author href="http://josex.info" email="sisjosex@gmail.com">
