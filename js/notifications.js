@@ -1,7 +1,6 @@
-
 function registerNotifications() {
 
-    //console.log('registerNotifications');
+    console.log('registerNotifications');
 
     if(window.plugins && window.plugins.pushNotification) {
 
@@ -10,7 +9,7 @@ function registerNotifications() {
         if (device.platform === 'android' || device.platform === 'Android') {
 
             pushNotification.register(successHandler, this.errorHandler, {
-                "senderID": "190246177152",
+                "senderID": "51393321226",
                 "ecb": "onNotificationGCM"
             });
 
@@ -35,15 +34,14 @@ function registerNotifications() {
 function successHandler() {}
 
 // android
-/*
 function tokenHandler(result) {
 
     //if(TOKEN_PUSH_NOTIFICATION === 0){
-        storeToken(device.uuid, result, 'iphone');
+    storeToken(device.uuid, result, 'iphone');
 
-        //console.log('tokenHandler ' + result);
+    //console.log('tokenHandler ' + result);
     //}
-}*/
+}
 
 function onNotificationGCM(e) {
 
@@ -202,11 +200,11 @@ function storeToken(uuid, token, device) {
 
     //console.log('uuid: ' + uuid + ' token: ' + token + ' device: ' + device);
 
-    getJsonPBackground(api_url + 'registrar_nuevo_dispositivo', storePushInfoInMobile, onError, {
-        //user_id: userData.id,
-        token: TOKEN_PUSH_NOTIFICATION,
-        uuid: uuid,
-        device: device == 'android' ? 'Android' : 'iOS'
+    getJsonPBackground(api_url + 'updateUUID/', storePushInfoInMobile, onError, {
+        user_id: userData.id,
+        uuid: TOKEN_PUSH_NOTIFICATION,
+        uuid_device: uuid,
+        device: device
     });
 }
 
@@ -259,40 +257,5 @@ function verifyNotification(){
             showNotification(EVENT, TYPE_NOTIFICATION);
         },800);
         HAVE_NOTIFICATION = false;
-    }
-}
-
-function createUserAndRegisterNotifications() {
-    if(userData === null) {
-
-        userData = {
-            first_name: '',
-            last_name: '',
-            email: '',
-            phone: '',
-            persons: '',
-            session_id: '',
-            language: applicationLanguage
-        };
-
-        getJsonPBackground(api_url + 'registerUser/', function(data){
-
-            userData = data.user;
-
-            localStorage.setItem("user", JSON.stringify(userData));
-
-            registerNotifications();
-
-        }, function(){
-
-
-
-        }, userData);
-
-    } else if (TOKEN_PUSH_NOTIFICATION === 0 || TOKEN_PUSH_NOTIFICATION === null || TOKEN_PUSH_NOTIFICATION === 'null') {
-
-        TOKEN_PUSH_NOTIFICATION = 0;
-
-        registerNotifications();
     }
 }

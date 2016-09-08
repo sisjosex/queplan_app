@@ -1,0 +1,36 @@
+@media all and (max-width:400px) {
+
+
+}
+
+@media all and (max-width:320px) {
+
+    .navigation-bar__title {
+        font-size: 15px;
+    }
+
+    .navigation-bar .button img, .back-button img, .toolbar-transparent .button img, .toolbar-transparent .back-button img {
+        height: 24px;
+    }
+
+    .back-button__label {
+        margin-left:0;
+    }
+
+    .navigation-bar__center img {
+        max-height: 30px;
+    }
+
+    .button {
+        line-height: 20px;
+    }
+
+    .list__item__center {
+        line-height: 1.2em;
+    }
+
+    .list__item__subtitle {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}

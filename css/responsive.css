@@ -1,0 +1,46 @@
+@media all and (max-width:400px) {
+
+    .bottom-bar .button, .bottom-toolbar .button .text {
+        font-size:14px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media all and (max-width:320px) {
+
+    .notification-title, .menu-title {
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    .list__item__subtitle {
+        font-size: 12px;
+    }
+
+    .button, .bottom-toolbar .button {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .video {
+        top: 30%;
+    }
+
+    .menu-search-title {
+        font-size: 12px;
+    }
+
+    .button .text {
+        font-size: 13px;
+    }
+
+    .btn-with-icon img {
+        width: 25px;
+    }
+
+    .menu-box figure {
+        width: 100px;
+        height: 75px;
+    }
+}

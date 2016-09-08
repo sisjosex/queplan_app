@@ -1,725 +1,796 @@
 <!doctype html>
-<html lang="es" style="background:#000;">
+<html lang="es">
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' http://web.queplanmadrid.es 'unsafe-inline' 'unsafe-eval'">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' http://10.0.0.24:3000 'unsafe-inline' 'unsafe-eval'">-->
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>QuéPlan?</title>
 
-    <link rel="stylesheet" href="lib/onsen/css/onsenui.css"/>
-    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css"/>
-    <link rel="stylesheet" href="styles/app.css"/>
+    <!--<link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css">-->
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="lib/onsen/js/angular/angular.min.js"></script>
-    <script type="text/javascript" src="lib/jquery1.7.1.min.js"></script>
-    <script type="text/javascript" src="lib/onsen/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="lib/onsen2/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsen2/css/onsen-css-components-blue-basic-theme.css">
 
-    <!--<script type="text/javascript" src="lib/moment.js"></script>-->
+    <script src="lib/onsen2/js/onsenui.js"></script>
+    <script src="lib/onsen/js/angular/angular.min.js"></script>
+    <script src="lib/onsen2/js/angular-onsenui.min.js"></script>
 
-    <!-- External Libraries -->
+    <link rel="stylesheet" href="css/framework-fixes.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/framework-responsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
     <!--
-    <script type="text/javascript" src="js/codebird.js"></script>
-    <script type="text/javascript" src="js/openfb.js"></script>
-    <script type="text/javascript" src="js/facebook.js"></script>
-    <script type="text/javascript" src="js/sha1.js"></script>
-    <script type="text/javascript" src="js/twitter.js"></script>
+    <script src="lib/onsen/js/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>-->
 
-
-    <script type="text/javascript" charset="utf-8" src="js/liquid.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/liquid.helper.oauth.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/liquid.model.tasks.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/gtaskdemo.main.js"></script>
-    <!-- refer to GAPI directly
-    <script type="text/javascript" charset="utf-8" src="https://apis.google.com/js/client.js"></script>
-    -->
-    <script type="text/javascript" src="js/constants.js"></script>
-    <!--<script type="text/javascript" src="js/notifications.js"></script>-->
-    <script type="text/javascript" src="js/language.js"></script>
-    <script type="text/javascript" src="js/util.js"></script>
-    <script type="text/javascript" src="js/templates.js"></script>
-
-    <script type="text/javascript" src="lib/iscroll/iscroll.js"></script>
-
-    <!--<script type="text/javascript" src="lib/img-touch-canvas.js"></script>-->
-
-    <!--<script src="lib/easyscroller.js"></script>-->
-    <!--<script src="lib/ftscroller.js"></script>-->
-    <script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="lib/fastclick.js"></script>
-
-    
-    <script>
-        function loadScripts() {
-            /*var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
-            'callback=initializeMap';
-            document.body.appendChild(script);
-			*/
-			
-			FastClick.attach(document.body);
-        }
-
-        function initializeMap() {
-
-        }
-    </script>
-    
-
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/util.js"></script>
+    <script src="lib/angular-satinize.min.js"></script>
+    <script src="lib/ng-tags-input.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/notifications.js"></script>
 </head>
-
-<body id="body" style="display:none" onload="loadScripts()">
+<body>
 
 <ons-modal var="modal">
-    <ons-icon icon="ion-loading-c" spin="true"></ons-icon>
+    <ons-icon icon="ion-load-d" spin="true"></ons-icon>
 </ons-modal>
 
-<ons-modal var="modal2">
-    <textarea id="token"></textarea>
-    <br>
-    <a class="btn button" onclick="modal2.hide();">CERRAR</a>
-</ons-modal>
+<ons-navigator animation="slide" id="mainNavigator" ng-controller="MainNavigatorController" class=""></ons-navigator>
 
-<ons-navigator animation="slide" var="mainnavigator">
-    <ons-page ng-controller="NavigatorController"></ons-page>
-</ons-navigator>
-
-<ons-template id="registro.html">
-    <ons-page ng-controller="RegistroController" id="registroPage">
-
-        <div id="registro_scroll" class="scrollable scrollfix">
-
-            <div id="registro_list" class="scroll-content">
-
-                <div class="horizontal">
-                    <div class="logo center"></div>
-                </div>
-
-                <div class="panel" style="margin-top:-20px;">
-
-                    <h3 class="center">LOS MEJORES PLANES<br> TE ESPERAN</h3>
-
-                    <h3 class="center"><span class="azul">Facebook</span> <span class="celeste">Twitter</span> <span class="rojo">Google</span></h3>
-
-                    <div class="horizontal">
-                        <div class="button btn azul" onclick="loginFacebookConnect()"><span class="text fixed">Conectar con Facebook</span> <i class="fa fa-facebook"></i></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div class="button btn celeste" onclick="loginTwitterConnect()"><span class="text fixed">Conectar con Twitter</span> <i class="fa fa-twitter"></i></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div class="button btn rojo" onclick="loginGoogleConnect()"><span class="text fixed">Conectar con Google</span> <i class="google"></i></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div class="button btn verde" onclick="loginInvitado(this, event, 'email')"><span class="text fixed">Ingresar como Invitado</span> <i class="invitado"></i></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div class="button btn naranja" onclick="loginEmail(this, event, 'email')"><span class="text fixed">Ingresar con mi Email</span> <i class="email2" style="margin-top: 6px;"></i></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+<ons-template id="cities.html">
+    <ons-page ng-controller="Cities" class="cities">
+        <ons-carousel swipeable overscrollable auto-scroll fullscreen auto-scroll-ratio="0.2">
+            <ons-carousel-item ng-repeat="item in params.ciudades" class="preview" src="{{ trustSrc(item.image) }}"
+                               ng-click="setCity(item.id)" class="relative full-screen-slider">
+                <div class="slider-label-city">{{ item.title }}</div>
+            </ons-carousel-item>
+        </ons-carousel>
     </ons-page>
 </ons-template>
-
-    <ons-template id="ciudad.html">
-    <ons-page ng-controller="ciudadController" id="ciudadPage" class="full-screen">
-
-        <div class="relative full-screen">
-            <ons-carousel id="ciudad_images" var="ciudad_images" class="relative slider" overscrollable="" auto-scroll="" full-screen="" style="width:100%;height:100%;"></ons-carousel>
-            <div style="position:fixed;bottom:5px;width:100%;">
-                <div class="horizontal center">
-                    <div id="ciudadPaginator" class="slider-paginator" style="position: relative;"></div>
-                </div>
-            </div>
-        </div>
-    </ons-page>
-</ons-template>
-
 
 <ons-template id="home.html">
-    <ons-page ng-controller="HomeController" id="homePage" class="">
-
-        <ons-toolbar id="homeToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="homeHeader" class="header">
-                    <div class="icons left"></div>
-
-                    <div class="header-logo left"></div>
-
-                    <div class="icons right">
-                        <div class="button header nobutton ayuda-header fa fa-question" onclick="gotoComoFunciona(this, event)"></div>
-                        <div class="button header nobutton participar-header fa fa-phone" onclick="gotoQuieroParticipar(this, event)"></div>
-                        <div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>
-                    </div>
-                </div>
-
-                <div style="position:relative;">
-                    <ons-carousel class="slider slider-few" id="homeImages" var="homeImages"
-                                  style="position:relative;"
-                                  overscrollable="" auto-scroll="">
-
-                    </ons-carousel>
-                    <div id="homePaginator" class="slider-paginator"></div>
-                </div>
+    <ons-page ng-controller="Home" class="home fullscreen">
+        <ons-toolbar class="toolbar-transparent">
+            <div class="left">
+                <ons-button ng-click="goToProfile()"><img class="header-icon" src="img/icon_profile.png" alt="">
+                </ons-button>
             </div>
-
+            <div class="center"></div>
+            <div class="right">
+                <ons-button ng-click="goToNotifications()"><img class="header-icon" src="img/icon_notification.png"
+                                                                alt=""></ons-button>
+            </div>
         </ons-toolbar>
 
-        <!--
-        <div class="center hascarousel">
-        </div>-->
+        <ons-carousel swipeable overscrollable auto-scroll fullscreen auto-scroll-ratio="0.2" class="relative"
+                      var="homeCarousel">
+            <ons-carousel-item ng-repeat="item in params.slider" ng-click="setCity(item.id)">
+                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+                <div class="video" ng-show="item.video != ''"></div>
+            </ons-carousel-item>
 
-        <div id="homeScroll" class="scrollable">
-
-            <div id="homeList" class="scroll-content">
-
-                <div id="home_content">
-
-                    <div class="dashboard row" style="margin-top: 30px;margin-bottom: 30px;">
-                        <div class="horizontal" style="display: table;width: 100%;">
-                            <div class="button nobutton doble" onclick="goToPlanes()">
-                                <div class="dashboard_icon icon_planes_de_hoy"></div>
-                                <div class="text" style="padding-left: 6px;padding-top: 3px;">Planes de Hoy</div>
-                            </div>
-                            <div class="button nobutton" onclick="gotoMenuDiario()">
-                                <div class="dashboard_icon icon_menu_diario"></div>
-                                <div class="text" style="padding-right: 1px;padding-top: 3px;">Menú</div>
-                            </div>
-                            <div class="button nobutton" onclick="goToGuia()">
-                                <div class="dashboard_icon icon_guia"></div>
-                                <div class="text" style="padding-right: 7px;padding-top: 3px;">Guía</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--<div class="dashboard row" style="margin-top:10px">
-                        <div class="table-cell horizontal">
-                            <div class="button nobutton" onclick="goToRecompensas()">
-                                <div class="dashboard_icon icon_recompensas"></div>
-                                <div class="text">Recompensas</div>
-                            </div>
-                            <div class="button nobutton" onclick="app.scan()">
-                                <div class="dashboard_icon icon_10_1"></div>
-                                <div class="text">10+1</div>
-                            </div>
-                            <div class="button nobutton" onclick="gotoPerfil(this, event)">
-                                <div class="dashboard_icon icon_perfil"></div>
-                                <div class="text">Mi Perfil</div>
-                            </div>
-                        </div>
-                    </div>-->
-                </div>
+            <div class="carousel-paginator">
+                <div class="paginator-item" ng-repeat="item in params.slider track by $index"
+                     ng-class="{'active': current_carousel_index==$index}"></div>
             </div>
-        </div>
 
-        <div id="homeFooter">
-            <div class="banner" style="">
-                <ons-carousel class="slider slider-few" id="homeBanner" var="homeBanner"
-                              style="position:relative;"
-                              overscrollable="" auto-scroll="">
-
-                </ons-carousel>
+            <div class="carousel-external">
+                <ons-button class="full-width btn-with-icon" ng-click="goToPlans()">
+                    <img src="img/icon_planes.png" alt="">
+                    <span class="text">PLANES DE HOY</span>
+                </ons-button>
+                <ons-button class="full-width btn-with-icon" ng-click="gotoDailyMenus()">
+                    <img src="img/icon_menus.png" alt="">
+                    <span class="text">MENÚ / LA CARTA</span>
+                </ons-button>
+                <ons-button class="full-width btn-with-icon" ng-click="goToGuia()">
+                    <img src="img/icon_guia.png" alt="">
+                    <span class="text">GUÍA</span>
+                </ons-button>
+                <ons-button class="full-width" ng-click="gotoComoFunciona()">
+                    <img src="img/icon_queplan_button.png" alt="">
+                </ons-button>
             </div>
-        </div>
+        </ons-carousel>
     </ons-page>
 </ons-template>
 
+<ons-template id="notifications.html">
+    <ons-page ng-controller="Notifications" class="notifications">
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button><img class="header-icon" src="img/icon_close.png" alt=""></ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+            <div class="right"></div>
+        </ons-toolbar>
 
+        <ons-list class="notification-list">
 
-<ons-template id="planes.html">
-    <ons-page ng-controller="PlanesController" id="planesPage" class="">
-
-        <ons-toolbar id="homeToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="planesHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page='';"></div>
+            <ons-list-item class="notification-box" ng-repeat="item in notifications track by $index">
+                <figure ng-show="item.image != ''">
+                    <div class="preview" src="{{ trustSrc(item.image) }}">
+                </figure>
+                <h1 class="notification-title" ng-show="item.title != ''">{{ item.title }}</h1>
+                <p class="notification-text" ng-show="item.content != ''">{{ item.content }}</p>
+                <div class="notification-buttons">
+                    <div class="button btn rosa" ng-show="item.seccion=='local'" ng-click="goToLocal(item.seccion_id)">
+                        VER LOCAL
                     </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
+                    <div class="button btn rosa" ng-show="item.seccion=='plan'" ng-click="goToPlan(item.seccion_id)">VER
+                        PLAN
                     </div>
+                </div>
+            </ons-list-item>
+
+
+        </ons-list>
+    </ons-page>
+</ons-template>
+
+<ons-template id="profile.html">
+    <ons-page ng-controller="Profile" class="profile">
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button><img class="header-icon" src="img/back.png" alt=""></ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+            <div class="right"></div>
+        </ons-toolbar>
+
+        <div class="profile-content">
+            <div class="horizontal">
+                <div id="btnAlertas" class="button btn-with-icon" ng-click="onOffNotifications()">
+                    <img src="img/notificaciones.png" alt="">
+                    <span class="text">{{ alertas_on_off_text }}</span>
                 </div>
             </div>
 
-        </ons-toolbar>
+            <div class="form-content">
+                <div class="horizontal">
+                    <h3 class="form_title">TU CIUDAD:</h3>
+                </div>
 
-        <div id="planesScroll" class="scrollable">
+                <div class="horizontal">
+                    <div class="dropdown">
+                        <span class="text">{{ city_name }}</span>
+                        <i class="dropdown"></i>
 
-            <div id="planesList" class="scroll-content">
-
-                <ons-list id="planes_content">
-
-                </ons-list>
+                        <select class="form-control" ng-change="setCity(item)" ng-model="city_id"
+                                ng-options="item.id as item.title for item in params.ciudades"></select>
+                    </div>
+                </div>
             </div>
         </div>
 
     </ons-page>
+</ons-template>
+
+<ons-template id="daily_menus.html">
+    <ons-splitter ng-controller="DailyMenus" class="dailymenus">
+        <ons-splitter-content>
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button><img class="header-icon" src="img/back.png" alt=""></ons-back-button>
+                    </div>
+                    <div class="center">
+                        <img src="img/logo-header.png" alt="">
+                    </div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()"><img class="header-icon" src="img/icon_search.png"
+                                                                           alt=""></ons-button>
+                    </div>
+                </ons-toolbar>
+
+                <ons-list class="menu-list">
+                    <ons-list-item class="menu-box" ng-repeat="item in menus track by $index" modifier="chevron"
+                                   ng-click="goToMenuDetail(item)">
+                        <div class="left">
+                            <figure>
+                                <div class="list__item__thumbnail preview" src="{{ trustSrc(item.image) }}"></div>
+                            </figure>
+                        </div>
+
+                        <div class="center">
+                            <div class="list__item__title"><h1 class="menu-title">{{ item.title }}</h1></div>
+                            <div class="list__item__subtitle menu-price-title">{{ item.price }}</div>
+                            <div class="list__item__subtitle menu-category">{{ item.category }}</div>
+                            <div class="list__item__subtitle menu-distance">{{ item.distancia }}</div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+
+                <ons-bottom-toolbar>
+                    <ons-button ng-class="{'active': menu_type==''}" ng-click="filterByType('')">TODOS</ons-button>
+                    <ons-button ng-class="{'active': menu_type=='menu'}" ng-click="filterByType('menu')">DE MENÚ
+                    </ons-button>
+                    <ons-button ng-class="{'active': menu_type=='carta'}" ng-click="filterByType('carta')">A LA CARTA
+                    </ons-button>
+                </ons-bottom-toolbar>
+
+            </ons-page>
+        </ons-splitter-content>
+
+        <ons-splitter-side var="rightSplitter" side="right" width="300px" collapse swipeable
+                           threhold-ratio-should-open="0.4">
+            <ons-page class="menusearch">
+                <ons-toolbar>
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()">
+                            <img class="header-icon" src="img/icon_close.png" alt="">
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list class="menu-list">
+                    <ons-list-item class="menu-box" ng-repeat="item in categories track by $index" modifier="chevron"
+                                   ng-click="search(item.id)">
+                        <div class="center">
+                            <div class="list__item__title"><h1 class="menu-search-title">{{ item.title }}</h1></div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+    </ons-splitter>
+</ons-template>
+
+<ons-template id="menu_detail.html">
+    <ons-page ng-controller="MenuDetail" class="menudetail slider-page">
+        <ons-toolbar class="single-title">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
+                RESTAURANTE {{ menu.title }}
+            </div>
+
+            <div class="fixed bottom-toolbar">
+                <ons-button ng-class="{'active': menu_type=='menu'}" ng-click="filterByType('menu')" class="">
+                    <img src="img/icon_menu_diario.png" alt="">
+                    <span class="text">MENÚ DIARIO</span></ons-button>
+                <ons-button ng-class="{'active': menu_type=='carta'}" ng-click="filterByType('carta')" class="">
+                    <img src="img/icon_carta.png" alt="">
+                    <span class="text">A LA CARTA</span></ons-button>
+            </div>
+        </ons-toolbar>
+
+        <figure>
+            <img ng-src="{{ trustSrc(menu.image) }}" class="preview">
+        </figure>
+
+        <div class="bottom-toolbar">
+            <ons-button ng-click="filterByType('menu')" class="" ng-class="{'active': menu_type=='menu'}">
+                <img src="img/icon_menu_diario.png" alt="">
+                <span class="text">MENÚ DIARIO</span></ons-button>
+            <ons-button ng-click="filterByType('carta')" class="" ng-class="{'active': menu_type=='carta'}">
+                <img src="img/icon_carta.png" alt="">
+                <span class="text">A LA CARTA</span></ons-button>
+        </div>
+
+        <div class="menu-detail-content">
+
+            <div class="menu-content" ng-show="menu_type=='menu'">
+                <div class="platos"
+                     ng-show="menu.menu.content.primeros != '' && menu.menu.content.primeros != undefined">
+                    <h3 class="menu-detail-title">PRIMEROS</h3>
+                    <div ng-bind-html="menu.menu.content.primeros" class="plato-nombre"></div>
+                </div>
+                <div class="platos"
+                     ng-show="menu.menu.content.segundos != '' && menu.menu.content.segundos != undefined">
+                    <h3 class="menu-detail-title">segundos</h3>
+                    <div ng-bind-html="menu.menu.content.segundos" class="plato-nombre"></div>
+                </div>
+                <div class="platos" ng-show="menu.menu.content.postres != '' && menu.menu.content.postres != undefined">
+                    <h3 class="menu-detail-title">postres</h3>
+                    <div ng-bind-html="menu.menu.content.postres" class="plato-nombre"></div>
+                </div>
+            </div>
+
+            <div class="menu-content" ng-show="menu_type=='carta'">
+                <div class="platos" ng-repeat="item in menu.carta">
+                    <h3 class="menu-detail-title">{{ item.title }}</h3>
+                    <div ng-bind-html="item.content"></div>
+                </div>
+            </div>
+        </div>
+
+        <ons-bottom-toolbar>
+            <ons-button ng-click="goToLocal(menu.id)" class="button2">
+                <img src="img/icon_local.png" alt="">
+                <span class="text">VER LOCAL</span></ons-button>
+            <ons-button ng-click="call(menu.telefono)" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LLAMAR</span></ons-button>
+            </ons-button>
+        </ons-bottom-toolbar>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="local_restaurant.html">
+    <ons-page ng-controller="Local" class="local slider-page">
+        <ons-toolbar class="single-title">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+
+            <div class="fixed bottom-toolbar">
+                <ons-button ng-class="{'active': section=='carta'}" ng-click="filterByType('menu')" class="button">
+                    <img src="img/icon_carta.png" alt="">
+                    <span class="text">LA CARTA</span></ons-button>
+                <ons-button ng-class="{'active': section=='menu'}" ng-click="filterByType('carta')" class="button">
+                    <img src="img/icon_menu_diario.png" alt="">
+                    <span class="text">MENÚ</span></ons-button>
+                <ons-button ng-class="{'active': section=='info'}" ng-click="filterByType('carta')" class="button">
+                    <img src="img/icon_info.png" alt="">
+                    <span class="text">INFO</span></ons-button>
+            </div>
+        </ons-toolbar>
+
+        <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
+                      var="localCarousel">
+            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
+                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+                <div class="video" ng-show="item.video != ''"></div>
+                <div class="local-gallery-title">{{ item.title }}</div>
+            </ons-carousel-item>
+
+            <div class="carousel-paginator">
+                <div class="paginator-item" ng-repeat="item in local.images track by $index"
+                     ng-class="{'active': current_carousel_index==$index}"></div>
+            </div>
+
+            <div class="legend">
+                <div class="left"><h2 class="local-title-left">{{ local.title }}</h2></div>
+                <div class="right"><h3 class="distance">{{ local.distancia }}</h3></div>
+            </div>
+        </ons-carousel>
+
+        <div class="bottom-toolbar">
+            <ons-button ng-class="{'active': section=='carta'}" ng-click="filterByType('carta')" class="button">
+                <img src="img/icon_carta.png" alt="">
+                <span class="text">LA CARTA</span></ons-button>
+            <ons-button ng-class="{'active': section=='menu'}" ng-click="filterByType('menu')" class="button">
+                <img src="img/icon_menu_diario.png" alt="">
+                <span class="text">MENÚ</span></ons-button>
+            <ons-button ng-class="{'active': section=='info'}" ng-click="filterByType('info')" class="button">
+                <img src="img/icon_info.png" alt="">
+                <span class="text">INFO</span></ons-button>
+        </div>
+
+        <div class="section" ng-show="section=='menu'">
+            <div class="platos"
+                 ng-show="local.menu.content.primeros != '' && local.menu.content.primeros != undefined">
+                <h3 class="menu-detail-title">PRIMEROS</h3>
+                <div ng-bind-html="local.menu.content.primeros" class="plato-nombre"></div>
+            </div>
+            <div class="platos"
+                 ng-show="local.menu.content.segundos != '' && local.menu.content.segundos != undefined">
+                <h3 class="menu-detail-title">segundos</h3>
+                <div ng-bind-html="local.menu.content.segundos" class="plato-nombre"></div>
+            </div>
+            <div class="platos" ng-show="local.menu.content.postres != '' && local.menu.content.postres != undefined">
+                <h3 class="menu-detail-title">postres</h3>
+                <div ng-bind-html="local.menu.content.postres" class="plato-nombre"></div>
+            </div>
+        </div>
+
+        <div class="section" ng-show="section=='carta'">
+            <div class="platos" ng-repeat="item in local.carta">
+                <h3 class="menu-detail-title">{{ item.title }}</h3>
+                <div ng-bind-html="item.content"></div>
+            </div>
+        </div>
+
+        <div class="section" ng-show="section=='info'">
+            <div class="local-detail-content" ng-show="local.descripcion != ''">
+                <h3 class="local-title"><img src="img/icon_description.png" alt=""><span>DESCRIPCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.descripcion"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.horario != ''">
+                <h3 class="local-title"><img src="img/icon_time.png" alt=""><span>HORARIO</span></h3>
+                <div class="local-description" ng-bind-html="local.horario"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.direccion != ''">
+                <h3 class="local-title"><img src="img/icon_direccion.png" alt=""><span>DIRECCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.direccion"></div>
+            </div>
+        </div>
+
+        <ons-bottom-toolbar>
+            <ons-button ng-click="" class="button2">
+                <img src="img/icon_localizacion.png" alt="">
+                <span class="text">LOCALIZACIÓN</span></ons-button>
+            <ons-button ng-click="call(local.telefono)" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LLAMAR</span></ons-button>
+            </ons-button>
+        </ons-bottom-toolbar>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="local_shop.html">
+    <ons-page ng-controller="Local" class="local slider-page">
+        <ons-toolbar class="single-title">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+
+            <div class="fixed bottom-toolbar">
+                <ons-button ng-class="{'active': section=='menu'}" class="button2" ng-click="openPage(local.web)">
+                    <img src="img/icon_shop.png" alt="">
+                    <span class="text">SHOP ONLINE</span></ons-button>
+                <ons-button ng-class="{'active': section=='info'}" class="button2">
+                    <img src="img/icon_info.png" alt="">
+                    <span class="text">INFO</span></ons-button>
+            </div>
+        </ons-toolbar>
+
+        <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
+                      var="localCarousel">
+            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
+                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+                <div class="video" ng-show="item.video != ''"></div>
+                <div class="local-gallery-title">{{ item.title }}</div>
+            </ons-carousel-item>
+
+            <div class="carousel-paginator">
+                <div class="paginator-item" ng-repeat="item in local.images track by $index"
+                     ng-class="{'active': current_carousel_index==$index}"></div>
+            </div>
+
+            <div class="legend">
+                <div class="left"><h2 class="local-title-left">{{ local.title }}</h2></div>
+                <div class="right"><h3 class="distance">{{ local.distancia }}</h3></div>
+            </div>
+        </ons-carousel>
+
+        <div class="bottom-toolbar">
+            <ons-button ng-class="{'active': section=='menu'}" class="button2" ng-click="openPage(local.web)">
+                <img src="img/icon_shop.png" alt="">
+                <span class="text">SHOP ONLINE</span></ons-button>
+            <ons-button ng-class="{'active': section=='info'}" class="button2">
+                <img src="img/icon_info.png" alt="">
+                <span class="text">INFO</span></ons-button>
+        </div>
+
+        <div class="section" ng-show="section=='shop'">
+        </div>
+
+        <div class="section" ng-show="section=='info'">
+            <div class="local-detail-content" ng-show="local.descripcion != ''">
+                <h3 class="local-title"><img src="img/icon_description.png" alt=""><span>DESCRIPCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.descripcion"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.horario != ''">
+                <h3 class="local-title"><img src="img/icon_time.png" alt=""><span>HORARIO</span></h3>
+                <div class="local-description" ng-bind-html="local.horario"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.direccion != ''">
+                <h3 class="local-title"><img src="img/icon_direccion.png" alt=""><span>DIRECCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.direccion"></div>
+            </div>
+        </div>
+
+        <ons-bottom-toolbar>
+            <ons-button ng-click="" class="button2">
+                <img src="img/icon_localizacion.png" alt="">
+                <span class="text">LOCALIZACIÓN</span></ons-button>
+            <ons-button ng-click="call(local.telefono)" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LLAMAR</span></ons-button>
+            </ons-button>
+        </ons-bottom-toolbar>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="local_other.html">
+    <ons-page ng-controller="Local" class="local slider-page">
+        <ons-toolbar class="single-title">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+        </ons-toolbar>
+
+        <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
+                      var="localCarousel">
+            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
+                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+                <div class="video" ng-show="item.video != ''"></div>
+                <div class="local-gallery-title">{{ item.title }}</div>
+            </ons-carousel-item>
+
+            <div class="carousel-paginator">
+                <div class="paginator-item" ng-repeat="item in local.images track by $index"
+                     ng-class="{'active': current_carousel_index==$index}"></div>
+            </div>
+
+            <div class="legend">
+                <div class="left"><h2 class="local-title-left">{{ local.title }}</h2></div>
+                <div class="right"><h3 class="distance">{{ local.distancia }}</h3></div>
+            </div>
+        </ons-carousel>
+
+        <div class="section" ng-show="section=='shop'">
+        </div>
+
+        <div class="section" ng-show="section=='info'">
+            <div class="local-detail-content" ng-show="local.descripcion != ''">
+                <h3 class="local-title"><img src="img/icon_description.png" alt=""><span>DESCRIPCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.descripcion"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.horario != ''">
+                <h3 class="local-title"><img src="img/icon_time.png" alt=""><span>HORARIO</span></h3>
+                <div class="local-description" ng-bind-html="local.horario"></div>
+            </div>
+
+            <div class="local-detail-content" ng-show="local.direccion != ''">
+                <h3 class="local-title"><img src="img/icon_direccion.png" alt=""><span>DIRECCIÓN</span></h3>
+                <div class="local-description" ng-bind-html="local.direccion"></div>
+            </div>
+        </div>
+
+        <ons-bottom-toolbar>
+            <ons-button ng-click="" class="button2">
+                <img src="img/icon_localizacion.png" alt="">
+                <span class="text">LOCALIZACIÓN</span></ons-button>
+            <ons-button ng-click="call(local.telefono)" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LLAMAR</span></ons-button>
+            </ons-button>
+        </ons-bottom-toolbar>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="plans.html">
+    <ons-splitter ng-controller="Plans" class="plans">
+        <ons-splitter-content>
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button><img class="header-icon" src="img/back.png" alt=""></ons-back-button>
+                    </div>
+                    <div class="center">
+                        <img src="img/logo-header.png" alt="">
+                    </div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()"><img class="header-icon" src="img/icon_search.png"
+                                                                           alt=""></ons-button>
+                    </div>
+                </ons-toolbar>
+
+                <ons-list class="plan-list">
+                    <ons-list-item class="plan-box" ng-repeat="item in plans track by $index"
+                                   ng-click="goToPlan(item.id)">
+                        <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+
+                        <div class="video2" ng-show="item.video != ''"></div>
+                        <div class="plan-list-title">
+                            <h1>{{ item.title }}</h1>
+                            <h2 ng-bind-html="item.descripcion"></h2>
+                        </div>
+
+                        <div class="legend">
+                            <div class="left fecha">{{ item.fecha }}</div>
+                            <div class="center distance">{{ item.distancia }}</div>
+                            <div class="right">{{ item.price }}</div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+
+            </ons-page>
+        </ons-splitter-content>
+
+        <ons-splitter-side var="rightSplitter" side="right" width="300px" collapse swipeable
+                           threhold-ratio-should-open="0.4">
+            <ons-page class="menusearch">
+                <ons-toolbar>
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()">
+                            <img class="header-icon" src="img/icon_close.png" alt="">
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list class="menu-list">
+                    <ons-list-item class="menu-box" ng-repeat="item in categories track by $index" modifier="chevron"
+                                   ng-click="search(item.id)">
+                        <div class="center">
+                            <div class="list__item__title"><h1 class="menu-search-title">{{ item.title }}</h1></div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+    </ons-splitter>
 </ons-template>
 
 <ons-template id="plan.html">
-    <ons-page ng-controller="PlanController" id="planPage" class="">
-
-        <ons-toolbar id="planToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="planHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page = 'planes.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-
-                <div style="position:relative;">
-                    <ons-carousel class="slider slider-few" id="planImages" var="planImages"
-                                  style="position:relative;"
-                                  overscrollable="" auto-scroll="">
-
-                    </ons-carousel>
-                    <div id="planPaginator" class="slider-paginator"></div>
-                </div>
+    <ons-page ng-controller="Plan" class="plan slider-page">
+        <ons-toolbar class="toolbar-transparent">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
             </div>
 
+            <div class="right">
+                <ons-button>
+                    <img class="header-icon" src="img/icon_share.png" alt="">
+                </ons-button>
+            </div>
+
+            <div class="fixed">
+                <div class="plan-gallery">
+                    <figure class="gallery-item" ng-click="">
+                        <div class="preview" src="{{ trustSrc(plan.image) }}"></div>
+
+                        <div class="plan-detail-title">
+                            <h1>{{ plan.title }}</h1>
+                            <h2 ng-bind-html="plan.descripcion"></h2>
+                        </div>
+
+                        <div class="legend">
+                            <div class="left fecha">{{ plan.fecha }}</div>
+                            <div class="center distance">{{ plan.distancia }}</div>
+                            <div class="right">{{ plan.price }}</div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
         </ons-toolbar>
 
-        <!--
-        <div class="center hascarousel">
-        </div>-->
+        <div class="plan-gallery">
+            <figure class="gallery-item" ng-click="">
+                <div class="preview" src="{{ trustSrc(plan.image) }}"></div>
+                <div class="video2" ng-show="plan.video != ''"></div>
 
-        <div id="planScroll" class="scrollable">
-
-            <div id="planList" class="scroll-content scrollfix">
-
-                <div id="plan_content">
-
-                    <div class="horizontal justify">
-                        <div id="planDescripcion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="planCondicion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="planComoReservar" class="text"></div>
-                    </div>
-
-                    <div class="horizontal center">
-                        <b class="rosa">Dirección:</b> <span id="planDireccion"></span>
-                    </div>
-
-                    <div class="horizontal">
-                        <div id="planApuntarse" class="btn rosa" style="width: auto;border-radius: 2px;padding-top: 5px !important;padding-bottom: 5px !important;"><span class="text fixed">PARTICIPAR</span></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div id="planLlamar" class="button nobutton llamar"></div>
-                        <div id="planVerLocal" class="button nobutton ver_local"></div>
-                    </div>
-
-                    <div class="horizontal">
-                        Indica que llamas de parte de QuéPlan? App
-                    </div>
-
+                <div class="plan-detail-title">
+                    <h1>{{ plan.title }}</h1>
+                    <h2 ng-bind-html="plan.descripcion"></h2>
                 </div>
+
+                <div class="legend">
+                    <div class="left fecha">{{ plan.fecha }}</div>
+                    <div class="center distance">{{ plan.distancia }}</div>
+                    <div class="right">{{ plan.price }}</div>
+                </div>
+            </figure>
+        </div>
+
+        <div class="plan-detail-content">
+            <div class="plan-section">
+                <div class="plan-description" ng-bind-html="plan.descripcion"></div>
+            </div>
+
+            <div class="plan-section" ng-show="plan.condicion != '' && plan.condicion != undefined">
+                <h3 class="plan-title">RECOMENDACIONES</h3>
+                <div class="plan-description" ng-bind-html="plan.condicion"></div>
+            </div>
+
+            <div class="plan-section" ng-show="plan.direccion != '' && plan.direccion != undefined">
+                <h3 class="plan-title">¿DÓNDE?</h3>
+                <div class="plan-description" ng-bind-html="plan.direccion"></div>
+            </div>
+
+            <div class="plan-section" ng-show="plan.como_reservar != '' && plan.como_reservar != undefined">
+                <h3 class="plan-title">¿CÓMO RESERVAR?</h3>
+                <div class="plan-description" ng-bind-html="plan.como_reservar"></div>
             </div>
         </div>
 
-        <div id="planFooter" class="footer fixed">
-            <div class="tabs">
-
-                <div class="table-cell">
-                    <div id="planMaps" class="button nobutton" onclick="goToMaps()">
-                        <div class="dashboard_icon icon_maps"></div>
-                        <div class="text">Maps</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-<ons-template id="local.html">
-    <ons-page ng-controller="LocalController" id="localPage" class="">
-
-        <ons-toolbar id="localToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="localHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('local.html');current_page = '';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-
-                <div style="position:relative;">
-                    <ons-carousel class="slider slider-few" id="localImages" var="localImages"
-                                  style="position:relative;"
-                                  overscrollable="" auto-scroll="">
-
-                    </ons-carousel>
-                    <div id="localPaginator" class="slider-paginator"></div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <!--
-        <div class="center hascarousel">
-        </div>-->
-
-        <div id="localScroll" class="scrollable">
-
-            <div id="localList" class="scroll-content scrollfix">
-
-                <div id="local_content">
-
-                    <div class="horizontal justify">
-                        <div id="localDescripcion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal center">
-                        <b>Dirección:</b> <span id="localDireccion"></span>
-                    </div>
-
-                    <div class="horizontal">
-                        <div id="localLlamar" class="button nobutton llamar"></div>
-                        <div id="localVerPlanes" class="button nobutton planes_de_hoy"><span class="count"></span></div>
-                    </div>
-
-                    <div class="horizontal">
-                        Indica que llamas de parte de QuéPlan? App
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div id="localFooter" class="footer fixed">
-            <div class="tabs">
-
-                <div class="table-cell">
-                    <div id="localMaps" class="button nobutton">
-                        <div class="dashboard_icon icon_maps"></div>
-                        <div class="text">Maps</div>
-                    </div>
-                    <div id="localWeb" class="button nobutton">
-                        <div class="dashboard_icon icon_web"></div>
-                        <div class="text">Web</div>
-                    </div>
-                    <div id="localFacebook" class="button nobutton">
-                        <div class="dashboard_icon icon_facebook"></div>
-                        <div class="text">Facebook</div>
-                    </div>
-                    <div id="localTwitter" class="button nobutton">
-                        <div class="dashboard_icon icon_twitter"></div>
-                        <div class="text">Twitter</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-<ons-template id="guias.html">
-    <ons-page ng-controller="GuiasController" id="guiasPage" class="">
-
-        <ons-toolbar id="guiasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="guiasHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guias.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="guiasScroll" class="scrollable">
-
-            <div id="guiasList" class="scroll-content">
-
-                <ons-list id="guias_content">
-
-                </ons-list>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-<ons-template id="subcategorias.html">
-    <ons-page ng-controller="SubcategoriasController" id="guiasPage" class="">
-
-        <ons-toolbar id="guiasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="guiasHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('subcategorias.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="guiasScroll" class="scrollable">
-
-            <div id="guiasList" class="scroll-content">
-
-                <ons-list id="guias_content">
-
-                </ons-list>
-            </div>
-        </div>
+        <ons-bottom-toolbar>
+            <ons-button ng-click="openLocation(plan)" class="button2">
+                <img src="img/icon_localizacion.png" alt="">
+                <span class="text">LOCALIZACIÓNL</span></ons-button>
+            <ons-button ng-click="call(plan.telefono)" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LLAMAR</span></ons-button>
+            </ons-button>
+            <ons-button ng-click="loQuiero()" class="button2">
+                <img src="img/icon_phone.png" alt="">
+                <span class="text">LO QUIERO</span></ons-button>
+            </ons-button>
+        </ons-bottom-toolbar>
 
     </ons-page>
 </ons-template>
 
 <ons-template id="como_funciona.html">
-    <ons-page ng-controller="ComoFuncionaController" id="como_funcionaPage" class="">
-
-        <ons-toolbar id="como_funcionaToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="como_funcionaHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('como_funciona.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
+    <ons-page ng-controller="ComoFunciona" class="comofunciona menusearch">
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
             </div>
-
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+            <div class="right"></div>
         </ons-toolbar>
-
-        <div id="como_funcionaScroll" class="scrollable">
-
-            <div id="como_funcionaList" class="scroll-content">
-
-                <ons-list id="como_funciona_content">
-
-                </ons-list>
-            </div>
-        </div>
-
+        <ons-list class="menu-list">
+            <ons-list-item class="menu-box" ng-repeat="item in como_funciona track by $index" modifier="chevron"
+                ng-click="goToComoFuncionaDetalle($index)">
+                <div class="center">
+                    <div class="list__item__title"><h1 class="menu-search-title">{{ item.title }}</h1></div>
+                </div>
+            </ons-list-item>
+        </ons-list>
     </ons-page>
 </ons-template>
 
 <ons-template id="como_funciona_detalle.html">
-    <ons-page ng-controller="ComoFuncionaDetalleController" id="como_funciona_detallePage" class="">
-
-        <ons-toolbar id="como_funciona_detalleToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="como_funciona_detalleHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('como_funciona_detalle.html');current_page = 'menu.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
+    <ons-page ng-controller="ComoFuncionaDetalle" class="comofuncionadetalle">
+        <ons-toolbar class="single-title">
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
+            </div>
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
             </div>
 
+            <div class="right">
+                <!--<ons-button>
+                    <img class="header-icon" src="img/icon_share.png" alt="">
+                </ons-button>-->
+            </div>
         </ons-toolbar>
 
-        <!--
-        <div class="center hascarousel">
-        </div>-->
+        <div class="plan-detail-content">
 
-        <div id="como_funciona_detalleScroll" class="scrollable">
-
-            <div id="como_funciona_detalleList" class="scroll-content scrollfix">
-
-                <div class="horizontal"></div>
-                <div class="horizontal"></div>
-
-                <div class="horizontal center">
-                    <div class="menu_header">
-                        <h3>
-                            <span id="como_funciona_detalle_title"></span>
-                        </h3>
-                    </div>
-                </div>
-
-                <div id="como_funciona_detalle_content" class="menu_content">
-
-                    <div class="horizontal justify">
-                        <div id="como_funciona_detalleCotent"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="como_funciona_detalleDescripcion" class="text"></div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-<ons-template id="quiero_participar.html">
-    <ons-page ng-controller="QuieroParticiparController" id="quiero_participarPage" class="">
-
-        <ons-toolbar id="quiero_participarToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="quiero_participarHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('quiero_participar.html');current_page = 'menu.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <!--
-        <div class="center hascarousel">
-        </div>-->
-
-        <div id="quiero_participarScroll" class="scrollable">
-
-            <div id="quiero_participarList" class="scroll-content scrollfix">
-
-                <div class="horizontal"></div>
-                <div class="horizontal"></div>
-
-                <div class="horizontal center">
-                    <div class="menu_header">
-                        <h3>
-                            <span id="quiero_participar_title"></span>
-                        </h3>
-                    </div>
-                </div>
-
-                <div id="quiero_participar_content" class="menu_content">
-
-                    <div class="horizontal justify">
-                        <div id="quiero_participarCotent"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="quiero_participarDescripcion" class="text"></div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-<ons-template id="locales.html">
-    <ons-page ng-controller="LocalesController" id="localesPage" class="">
-
-        <ons-toolbar id="localesToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="localesHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('locales.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="localesScroll" class="scrollable">
-
-            <div id="localesList" class="scroll-content">
-
-                <ons-list id="locales_content">
-
-                </ons-list>
-            </div>
-        </div>
-
-        <div id="localesFooter" class="footer fixed">
-            <div class="tabs">
-                <ons-carousel id="localesTabContent" class="table-cell"
-                              style="position:relative;height:100%;background: transparent;"
-                              overscrollable="" auto-scroll="">
-
-                </ons-carousel>
-                <!--
-                <div id="localesTabContent" class="table-cell">
-                </div>
-                -->
+            <div class="plan-section">
+                <h3 class="plan-title">{{ como_funciona.title }}</h3>
+                <div class="plan-description" ng-bind-html="como_funciona.descripcion"></div>
             </div>
         </div>
 
@@ -727,491 +798,70 @@
 </ons-template>
 
 <ons-template id="guia.html">
-    <ons-page ng-controller="GuiaController" id="guiaPage" class="">
-
-        <ons-toolbar id="guiaToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="guiaHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('guia.html');current_page = 'guias.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-
-                <div style="position:relative;">
-                    <ons-carousel class="slider slider-few" id="guiaImages" var="guiaImages"
-                                  style="position:relative;"
-                                  overscrollable="" auto-scroll="">
-
-                    </ons-carousel>
-                    <div id="guiaPaginator" class="slider-paginator"></div>
-                </div>
+    <ons-page ng-controller="Guia" class="guia">
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
             </div>
-
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+            <div class="right"></div>
         </ons-toolbar>
+        <ons-list class="menu-list">
 
-        <!--
-        <div class="center hascarousel">
-        </div>-->
-
-        <div id="guiaScroll" class="scrollable">
-
-            <div id="guiaList" class="scroll-content scrollfix">
-
-                <div id="guia_content">
-
-                    <div class="horizontal justify">
-                        <div id="guiaDescripcion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal center">
-                        <b>Dirección:</b> <span id="guiaDireccion"></span>
-                    </div>
-
-                    <div class="horizontal">
-                        <div class="button nobutton llamar"></div>
-                        <div class="button nobutton guiaes_de_hoy"></div>
-                    </div>
-
-                    <div class="horizontal">
-                        Indica que llamas de parte de QuéPlan? App
-                    </div>
-
+            <ons-list-item class="menu-box" ng-repeat="item in guia track by $index" modifier="chevron"
+                           ng-click="goToGuiaDetail(item)">
+                <div class="left">
+                    <figure>
+                        <div class="list__item__thumbnail preview" src="{{ trustSrc(item.image) }}"></div>
+                    </figure>
                 </div>
-            </div>
-        </div>
 
-        <div id="guiaFooter" class="footer fixed">
-            <div class="tabs">
-
-                <div class="table-cell">
-                    <div class="button nobutton">
-                        <div class="dashboard_icon icon_maps"></div>
-                        <div class="text">Maps</div>
-                    </div>
-                    <div class="button nobutton">
-                        <div class="dashboard_icon icon_web"></div>
-                        <div class="text">Web</div>
-                    </div>
-                    <div class="button nobutton">
-                        <div class="dashboard_icon icon_facebook"></div>
-                        <div class="text">Facebook</div>
-                    </div>
-                    <div class="button nobutton">
-                        <div class="dashboard_icon icon_twitter"></div>
-                        <div class="text">Twitter</div>
-                    </div>
+                <div class="center">
+                    <div class="list__item__title"><h1 class="menu-title">{{ item.title }}</h1></div>
+                    <div class="list__item__subtitle menu-price-title">{{ item.price }}</div>
+                    <div class="list__item__subtitle menu-category">{{ item.category }}</div>
+                    <div class="list__item__subtitle menu-distance">{{ item.distancia }}</div>
                 </div>
-            </div>
-        </div>
-
+            </ons-list-item>
+        </ons-list>
     </ons-page>
 </ons-template>
 
-<ons-template id="menu.html">
-    <ons-page ng-controller="MenuController" id="menuPage" class="">
-
-        <ons-toolbar id="menuToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="menuHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('planes.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
+<ons-template id="locals.html">
+    <ons-page ng-controller="Locals" class="locals">
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button>
+                    <img class="header-icon" src="img/back.png" alt="">
+                </ons-back-button>
             </div>
-
+            <div class="center">
+                <img src="img/logo-header.png" alt="">
+            </div>
+            <div class="right"></div>
         </ons-toolbar>
+        <ons-list class="menu-list">
 
-        <div id="menuScroll" class="scrollable">
-
-            <div id="menuList" class="scroll-content">
-
-                <div id="menu_content">
-
-                </div>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-
-<ons-template id="menu_detalle.html">
-    <ons-page ng-controller="MenuDetalleController" id="menu_detallePage" class="">
-
-        <ons-toolbar id="menu_detalleToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="menu_detalleHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('menu_detalle.html');current_page = 'menu.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <!--
-        <div class="center hascarousel">
-        </div>-->
-
-        <div id="menu_detalleScroll" class="scrollable">
-
-            <div id="menu_detalleList" class="scroll-content scrollfix">
-
-                <div class="horizontal restaurante_logo" style="margin:0;">
-                    <img id="menuDetalleLogo" />
+            <ons-list-item class="menu-box" ng-repeat="item in locals track by $index" modifier="chevron"
+                           ng-click="redirectToLocalDetail(item)">
+                <div class="left">
+                    <figure>
+                        <div class="list__item__thumbnail preview" src="{{ trustSrc(item.image) }}"></div>
+                    </figure>
                 </div>
 
-                <div class="horizontal center">
-                    <div class="menu_header">
-                        <h3>
-                            <span>MEN&Uacute; D&Iacute;A</span> <span id="menu_detalleFecha"></span><br>
-                            <span id="menu_detalleNombre"></span>
-                        </h3>
-                    </div>
+                <div class="center">
+                    <div class="list__item__title"><h1 class="menu-title">{{ item.title }}</h1></div>
+                    <div class="list__item__subtitle menu-price-title">{{ item.price }}</div>
+                    <div class="list__item__subtitle menu-category">{{ item.category }}</div>
+                    <div class="list__item__subtitle menu-distance">{{ item.distancia }}</div>
                 </div>
-
-                <div id="menu_detalle_content" class="menu_content">
-
-                    <div class="horizontal justify">
-                        <div id="menu_detalleCotent"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="Descripcion" class="text"></div>
-                    </div>
-
-                </div>
-
-                <div class="horizontal center">
-                    <b>Dirección:</b> <span id="menu_detalleDireccion"></span>
-                </div>
-
-                <div class="horizontal">
-                    <div id="menu_detalleLlamar" class="button nobutton llamar"></div>
-                    <div id="menu_detalleVerLocal" class="button nobutton ver_local"></div>
-                </div>
-
-                <div class="horizontal">
-                    Indica que llamas de parte de QuéPlan? App
-                </div>
-
-            </div>
-        </div>
-
-        <div id="menu_detalleFooter" class="footer fixed">
-            <div class="tabs">
-
-                <div class="table-cell">
-                    <div id="menu_detalleMaps" class="button nobutton" onclick="goToMaps()">
-                        <div class="dashboard_icon icon_maps"></div>
-                        <div class="text">Maps</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-
-<ons-template id="recompensas.html">
-    <ons-page ng-controller="RecompensasController" id="recompensasPage" class="">
-
-        <ons-toolbar id="recompensasToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="recompensasHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('recompensas.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="recompensasScroll" class="scrollable">
-
-            <div id="recompensasList" class="scroll-content">
-
-                <ons-list id="recompensas_content"></ons-list>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-
-
-<ons-template id="recompensa.html">
-    <ons-page ng-controller="RecompensaController" id="recompensaPage" class="">
-
-        <ons-toolbar id="recompensaToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="recompensaHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('recompensa.html');current_page = 'recompensas.html';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <!--<div class="button header nobutton  perfil-header fa fa-navicon" onclick="gotoPerfil(this, event)"></div>-->
-                    </div>
-                </div>
-
-                <div style="position:relative;">
-                    <ons-carousel class="slider slider-few" id="recompensaImages" var="recompensaImages"
-                                  style="position:relative;"
-                                  overscrollable="" auto-scroll="">
-
-                    </ons-carousel>
-                    <div id="recompensaPaginator" class="slider-paginator"></div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <!--
-        <div class="center hascarousel">
-        </div>-->
-
-        <div id="recompensaScroll" class="scrollable">
-
-            <div id="recompensaList" class="scroll-content scrollfix">
-
-                <div id="recompensa_content">
-
-                    <div class="horizontal justify">
-                        <div id="recompensaDescripcion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal justify">
-                        <div id="recompensaCondicion" class="text"></div>
-                    </div>
-
-                    <div class="horizontal center">
-                        <b>Dirección:</b> <span id="recompensaDireccion"></span>
-                    </div>
-
-                    <div class="horizontal">
-                        <div id="recompensaComprar" class="btn rosa" style="width: auto;"><span class="text fixed">COMPRAR RECOMPENSA</span></div>
-                    </div>
-
-                    <div class="horizontal">
-                        <div id="recompensaLlamar" class="button nobutton llamar"></div>
-                        <div id="recompensaVerLocal" class="button nobutton ver_local"></div>
-                    </div>
-
-                    <div class="horizontal">
-                        Indica que llamas de parte de QuéPlan? App
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div id="recompensaFooter" class="footer fixed">
-            <div class="tabs">
-
-                <div class="table-cell">
-                    <div id="recompensaMaps" class="button nobutton" onclick="goToMaps()">
-                        <div class="dashboard_icon icon_maps"></div>
-                        <div class="text">Maps</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </ons-page>
-</ons-template>
-
-
-<ons-template id="perfil.html">
-<ons-page ng-controller="PerfilController" id="perfilPage" class="">
-
-		<ons-toolbar id="perfilToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="perfilHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="goBackFromProfile();"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="perfilScroll" class="scrollable">
-
-            <div id="perfilList" class="scroll-content scrollfix">
-
-                <div id="perfil_content">
-
-                    <div class="horizontal center" style="margin-top:25px;">
-
-                        <!--
-                        <h3 class="perfil_title">TIENES ACUMULADOS <span id="userPoints" class="rosa"></span></h3>
-
-                        
-                        <div id="points_list" class="points_list" style="display:none;"></div>
-                        -->
-
-                    </div>
-					<div class="horizontal">
-						<div data-role="fieldcontain" style="max-width: 303px">
-
-							<!--
-							<div class="horizontal content_options login_options">
-                                <div class="button btn azul" onclick="logout('facebook')"><span class="text fixed">Desconectar del Facebook</span> <i class="fa fa-facebook"></i></div>
-                                <div class="button btn celeste" onclick="logout('twitter')"><span class="text fixed">Desconectar del Twitter</span> <i class="fa fa-twitter"></i></div>
-                                <div class="button btn rojo" onclick="logout('google')"><span class="text fixed">Desconectar del Google</span> <i class="google"></i></div>
-                                <div class="button btn naranja" onclick="logout('email')"><span class="text fixed">Desconectar del Email</span> <i class="email"></i></div>
-							</div>
-							-->
-
-                            <div class="horizontal">
-                                <div id="btnAlertas" class="button btn rosa" onclick="ActivarDesactivarAlertas()"><i class="alertas"></i><span class="text fixed3">Dejar de recibir alertas</span></div>
-                            </div>
-
-                            <!--
-                            <div class="horizontal">
-								<h3 class="form_title">Email Registrado:</h3>
-								<input id="user_email" class="clickable" name="user_email" placeholder="Email..." autocomplete="off" autocapitalize="off" type="email" data-mini="true"/>
-                                <div class="button btn rosa" onclick="cambiarEmail()" style="margin-top: 10px;"><i class="email2" style="margin-top: 7px;"></i><span class="text fixed3">EDITAR MI EMAIL</span></div>
-							</div>
-                            -->
-
-                            <div class="horizontal">
-                                <h3 class="form_title">Ciudad Actual:</h3>
-                                <div class="dropdown">
-                                    <span class="text">Seleccione Ciudad </span>
-                                    <i class="dropdown"></i>
-                                    <select id="perfil_ciudad" name="city" class="clickable" onchange="cambiarCiudad(this, event)"></select>
-                                </div>
-                            </div>
-
-                            <div class="horizontal">
-                                <h3 class="form_title">Filtrar Zonas para recibir notificaciones:</h3>
-                                <form id="zonas" class="zonas">
-
-                                </form>
-                                <div class="button btn" onclick="saveAlertas()" style="margin-top: 10px;"><span class="text fixed">Guardar</span></div>
-                            </div>
-						</div>
-					</div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</ons-page>
-</ons-template>
-
-<ons-template id="email.html">
-    <ons-page ng-controller="EmailController" id="emailPage" class="">
-
-        <ons-toolbar id="emailToolbar" class="toolbar noshadow" style="position:relative;background: none;border:none;height: auto;">
-
-            <div class="center" style="width:100%;height:100%;position:relative;">
-
-                <div id="emailHeader" class="header">
-                    <div class="icons left">
-                        <div class="button header nobutton back" onclick="mainnavigator.popPage('email.html');current_page='';"></div>
-                    </div>
-
-                    <div class="header-logo center"></div>
-
-                    <div class="icons right">
-                        <div class="button header nobutton ayuda-header fa fa-question" onclick="gotoComoFunciona(this, event)"></div>
-                    </div>
-                </div>
-            </div>
-
-        </ons-toolbar>
-
-        <div id="emailScroll" class="scrollable">
-
-            <div id="emailList" class="scroll-content">
-
-                <div id="email_content">
-
-                    <div class="horizontal center">
-                        <h3>Registro O Login</h3>
-                    </div>
-                    <div class="horizontal">
-
-                        <div class="horizontal">
-                            <h3 class="subtitle left"><span>Si ya est&aacute;s registrado haz Login. Si a&uacute;n no has registrado tu cuenta haz clic en Registrarse.</span></h3>
-                        </div>
-
-                        <div class="horizontal">
-                            <input id="email_email" type="email" class="clickable input" placeholder="email..." value="" />
-                        </div>
-
-                        <div class="horizontal" style="margin-top:0;">
-                            <input id="email_password" type="password" class="clickable input" placeholder="password..." value="" />
-                        </div>
-
-                        <div id="codigo_validacion" class="horizontal" style="margin-top:0;display:none;">
-                            <input id="email_codigo" type="text" class="clickable input" placeholder="codigo..." />
-                        </div>
-
-                        <div class="horizontal" style="margin-top:0;">
-                            <div id="btnRegistrarse" class="button btn verde" style="width:100%;" ><span class="text fixed2">Registrarse</span></div>
-                        </div>
-
-                        <div class="horizontal" style="margin-top:0;">
-                            <div id="btnAcceder" class="button btn verde" style="width:100%;"><span class="text fixed2">Acceder</span></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        </div>
+            </ons-list-item>
+        </ons-list>
     </ons-page>
 </ons-template>
 
