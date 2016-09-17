@@ -234,7 +234,7 @@ figure {
 }
 
 .toolbar-transparent .button img, .toolbar-transparent .back-button img {
-    height: 40px;
+    /*height: 40px;*/
 }
 
 .navigation-bar + .page__background + .page__content {

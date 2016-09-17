@@ -174,7 +174,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         if (document.location.protocol == 'http:') {
 
-            API_URL = 'http://web.queplanmadrid.es/api2/';
+            API_URL = 'http://localhost/queplan/admin/api2/';
 
             setTimeout(onDeviceReady, 500);
 
@@ -763,7 +763,7 @@ module.controller('Plans', function ($scope, service) {
 
             rightSplitter.toggle();
 
-            $scope.getMenus();
+            $scope.getPlans();
         };
 
         $scope.filterByType = function(type) {
