@@ -35,6 +35,9 @@ angular.module("services", []).factory("service", [ "$http", "$q", function($htt
         getLocals: function(params, success, error) {
             $http({method: 'JSONP', url: API_URL + 'getLocals/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
         },
+        loQuiero: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'loQuiero/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
     };
 } ]);
 
@@ -61,8 +64,15 @@ function checkParams(params) {
     params.device_uuid = device.uuid;
 
     if(getUser()) {
-        params.ciudad_id = getUser().ciudad_id;
-        params.usuario_id = getUser().usuario_id;
+        if(!params.ciudad_id) {
+
+            params.ciudad_id = getUser().ciudad_id;
+        }
+
+        if(!params.usuario_id) {
+
+            params.usuario_id = getUser().usuario_id;
+        }
     }
 
     return params;

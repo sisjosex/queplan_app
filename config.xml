@@ -137,6 +137,23 @@
     <plugin name="com-sarriaroman-photoviewer" />
     <!--<plugin name="nl.x-services.plugins.socialsharing" source="pgb" />-->
 
+    <!-- pushNotification -->
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
+
+    <!-- BarcodeScanner -->
+    <!--<gap:plugin name="com.ams.plugins.barcodescanner" version="2.0.1" />-->
+
+    <!-- PhoneDialer -->
+    <gap:plugin name="com.teamnemitoff.phonedialer" version="0.3.0" />
+
+    <plugins>
+        <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+    </plugins>
+
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

@@ -83,6 +83,22 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             PhotoViewer.show(url);
         };
 
+        $rootScope.call = function (phone) {
+
+            phonedialer.dial(
+                phone,
+                function (err) {
+                    if (err == "empty") {
+                        alert("Unknown phone number");
+                    }
+                    else alert("Dialer Error:" + err);
+                },
+                function (success) {
+                    //alert('Dialing succeeded');
+                }
+            );
+        };
+
         $rootScope.shareByEmail = function (message) {
 
             shareByEmail(message, function () {
@@ -112,8 +128,25 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             return $sce.trustAsResourceUrl(src);
         };
 
-        $rootScope.openPage = function(id, type) {
+        $rootScope.openPage = function(url) {
 
+        };
+
+        $rootScope.loQuiero = function(plan_id, local_id) {
+
+            service.loQuiero({promocion_id: plan_id, local_id: local_id, usuario_id: getUser().id}, function (result) {
+
+                if (result.status == 'success') {
+
+                    alert(result.mensaje);
+
+                } else {
+
+                    alert(result.mensaje);
+                }
+
+            }, function (error) {
+            })
         };
 
 

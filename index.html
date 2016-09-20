@@ -78,7 +78,7 @@
                       var="homeCarousel">
             <ons-carousel-item ng-repeat="item in params.slider" ng-click="setCity(item.id)">
                 <div class="preview" src="{{ trustSrc(item.image) }}"></div>
-                <div class="video" ng-show="item.video != ''"></div>
+                <div class="video" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
             </ons-carousel-item>
 
             <div class="carousel-paginator">
@@ -122,8 +122,8 @@
         <ons-list class="notification-list">
 
             <ons-list-item class="notification-box" ng-repeat="item in notifications track by $index">
-                <figure ng-show="item.image != ''">
-                    <div class="preview" src="{{ trustSrc(item.image) }}">
+                <figure ng-show="item.image != ''" ng-click="showImage(item.image)">
+                    <div class="preview" src="{{ trustSrc(item.image) }}"></div>
                 </figure>
                 <h1 class="notification-title" ng-show="item.title != ''">{{ item.title }}</h1>
                 <p class="notification-text" ng-show="item.content != ''">{{ item.content }}</p>
@@ -276,7 +276,7 @@
         </ons-toolbar>
 
         <figure>
-            <img ng-src="{{ trustSrc(menu.image) }}" class="preview">
+            <img ng-src="{{ trustSrc(menu.image) }}" class="preview" ng-click="showImage(menu.image)">
         </figure>
 
         <div class="bottom-toolbar">
@@ -355,9 +355,9 @@
 
         <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
                       var="localCarousel">
-            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
+            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="showImage(item.image)">
                 <div class="preview" src="{{ trustSrc(item.image) }}"></div>
-                <div class="video" ng-show="item.video != ''"></div>
+                <div class="video" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
                 <div class="local-gallery-title">{{ item.title }}</div>
             </ons-carousel-item>
 
@@ -463,8 +463,8 @@
         <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
                       var="localCarousel">
             <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
-                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
-                <div class="video" ng-show="item.video != ''"></div>
+                <div class="preview" src="{{ trustSrc(item.image) }}" ng-click="showImage(item.image)"></div>
+                <div class="video" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
                 <div class="local-gallery-title">{{ item.title }}</div>
             </ons-carousel-item>
 
@@ -536,9 +536,9 @@
 
         <ons-carousel swipeable overscrollable auto-scroll auto-scroll-ratio="0.2" class="gallery relative"
                       var="localCarousel">
-            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="">
+            <ons-carousel-item ng-repeat="item in local.images" class="gallery-item" ng-click="showImage(item.image)">
                 <div class="preview" src="{{ trustSrc(item.image) }}"></div>
-                <div class="video" ng-show="item.video != ''"></div>
+                <div class="video" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
                 <div class="local-gallery-title">{{ item.title }}</div>
             </ons-carousel-item>
 
@@ -608,7 +608,7 @@
                                    ng-click="goToPlan(item.id)">
                         <div class="preview" src="{{ trustSrc(item.image) }}"></div>
 
-                        <div class="video2" ng-show="item.video != ''"></div>
+                        <div class="video2" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
                         <div class="plan-list-title">
                             <h1>{{ item.title }}</h1>
                             <h2 ng-bind-html="item.descripcion"></h2>
@@ -689,8 +689,8 @@
 
         <div class="plan-gallery">
             <figure class="gallery-item" ng-click="">
-                <div class="preview" src="{{ trustSrc(plan.image) }}"></div>
-                <div class="video2" ng-show="plan.video != '' && plan.video != undefined"></div>
+                <div class="preview" src="{{ trustSrc(plan.image) }}" ng-click="showImage(plan.image)"></div>
+                <div class="video2" ng-show="plan.video != '' && plan.video != undefined" ng-click="playVideo(item.video)"></div>
 
                 <div class="plan-detail-title">
                     <h1>{{ plan.title }}</h1>
@@ -734,7 +734,7 @@
                 <img src="img/icon_phone.png" alt="">
                 <span class="text">LLAMAR</span></ons-button>
             </ons-button>
-            <ons-button ng-click="loQuiero()" class="button full">
+            <ons-button ng-click="loQuiero(plan.id, plan.local_id)" class="button full" ng-show="plan.tipo == 'vip'">
                 <img src="img/icon_loquiero.png" alt="">
                 <span class="text">LO QUIERO</span></ons-button>
             </ons-button>
