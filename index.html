@@ -604,9 +604,8 @@
                 </ons-toolbar>
 
                 <ons-list class="plan-list">
-                    <ons-list-item class="plan-box" ng-repeat="item in plans track by $index"
+                    <ons-list-item class="plan-box preview" ng-repeat="item in plans track by $index" src="{{ trustSrc(item.image) }}"
                                    ng-click="goToPlan(item.id)">
-                        <div class="preview" src="{{ trustSrc(item.image) }}"></div>
 
                         <div class="video2" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
                         <div class="plan-list-title">
