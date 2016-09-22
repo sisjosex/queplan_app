@@ -380,6 +380,11 @@ module.controller('Cities', function ($scope, service) {
                 new ImageLoader($(this), new Image());
             });
 
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+
         }, 200);
 
     });
