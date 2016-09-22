@@ -42,5 +42,6 @@
     .menu-box figure {
         width: 100px;
         height: 75px;
+        max-width: 100px;
     }
 }

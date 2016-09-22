@@ -310,6 +310,7 @@ div.dropdown select {
 .menu-box figure {
     width: 130px;
     height: 100px;
+    max-width: 130px;
 }
 
 .guia-box figure {
