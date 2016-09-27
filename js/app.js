@@ -599,6 +599,10 @@ module.controller('DailyMenus', function ($scope, service) {
 
                     modal.hide();
 
+                    if(result.items.length == 0) {
+                        alert('Lo sentimos, no tenemos menus para mostrar  ');
+                    }
+
                     $scope.menus = result.items;
                     $scope.categories = result.categorias;
 
@@ -820,6 +824,10 @@ module.controller('Plans', function ($scope, service) {
                 if (result.status == 'success') {
 
                     modal.hide();
+
+                    if(result.items.length == 0) {
+                        alert('Lo sentimos, no tenemos planes para mostrar  ');
+                    }
 
                     $scope.plans = result.items;
                     $scope.categories = result.categorias;
