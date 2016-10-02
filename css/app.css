@@ -895,3 +895,32 @@ figure.gallery-item {
 .menu-content .table, .menu-content .table td, .menu-content .table th {
     max-width:100%;
 }
+
+.list__item__left {
+    display: table-cell;
+    min-width: 120px;
+    max-width: 120px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.list__item__center {
+    display: table-cell;
+    line-height: 20px;
+}
+
+.center.distance {
+    text-align:center;
+}
+
+.legend .right {
+    color: #ff3366;
+}
+
+.legend .center {
+    text-align:center;
+}
+
+.legend .center .distance {
+    display: inline-block
+}

@@ -7,7 +7,9 @@ var applicationLanguage = 'es';
 var user;
 var user_storage_key = 'queplanapp_user';
 var currentNavigator = undefined;
-
+var token_notificacion;
+var latitude;
+var longitude;
 var lang = {
     en: {
         yes: 'Yes',
@@ -80,23 +82,108 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.showImage = function (url) {
 
-            PhotoViewer.show(url);
+            //PhotoViewer.show(url, '', {share:false, done: 'Cerrar'});
         };
 
         $rootScope.call = function (phone) {
 
-            phonedialer.dial(
-                phone,
-                function (err) {
-                    if (err == "empty") {
-                        alert("Unknown phone number");
+            if(phone) {
+
+                phonedialer.dial(
+                    phone,
+                    function (err) {
+                        if (err == "empty") {
+                            alert("Unknown phone number");
+                        }
+                        else alert("Dialer Error:" + err);
+                    },
+                    function (success) {
+                        //alert('Dialing succeeded');
                     }
-                    else alert("Dialer Error:" + err);
-                },
-                function (success) {
-                    //alert('Dialing succeeded');
-                }
-            );
+                );
+            }
+        };
+
+        $rootScope.share = function (data, type) {
+
+            if(type == 'plan') {
+
+                var options = {
+                    message: data.title, // not supported on some apps (Facebook, Instagram)
+                    subject: data.fecha, // fi. for email
+                    //files: ['', ''], // an array of filenames either locally or remotely
+                    url: 'http://web.queplanmadrid.es/',
+                    chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
+                };
+
+                var onSuccess = function(result) {
+                    console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+                    console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+                };
+
+                var onError = function(msg) {
+                    console.log("Sharing failed with message: " + msg);
+                };
+
+                window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+            }
+        };
+
+        $rootScope.initGeolocation = function() {
+
+            var onSuccess = function(position) {
+                console.log('Latitude: '          + position.coords.latitude          + '\n' +
+                    'Longitude: '         + position.coords.longitude         + '\n' +
+                    'Altitude: '          + position.coords.altitude          + '\n' +
+                    'Accuracy: '          + position.coords.accuracy          + '\n' +
+                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                    'Heading: '           + position.coords.heading           + '\n' +
+                    'Speed: '             + position.coords.speed             + '\n' +
+                    'Timestamp: '         + position.timestamp                + '\n');
+
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                localStorage.setItem('latitude', latitude);
+                localStorage.setItem('longitude', longitude);
+            };
+
+            // notificar si esta cerca de algun local
+            var onSuccessTracking = function(position) {
+
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                localStorage.setItem('latitude', latitude);
+                localStorage.setItem('longitude', longitude);
+
+                service.checkDistance({usuario_id: getUser().id}, function (result) {
+
+                    if (result.status == 'success') {
+
+                        //alert(result.mensaje);
+
+                    } else {
+
+                        //alert(result.mensaje);
+                    }
+
+                }, function (error) {
+                })
+            };
+
+            // onError Callback receives a PositionError object
+            //
+            function onError(error) {
+                console.log('code: '    + error.code    + '\n' +
+                    'message: ' + error.message + '\n');
+            }
+
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+            var watchId = navigator.geolocation.watchPosition(onSuccessTracking,
+                onError,
+                { timeout: 30000 });
         };
 
         $rootScope.shareByEmail = function (message) {
@@ -129,7 +216,16 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
         };
 
         $rootScope.openPage = function(url) {
+            var ref = window.open(url, '_blank', 'location=no,closebuttoncaption=Cerrar');
+        };
 
+        $rootScope.openLocation = function(data) {
+            /*
+            z is the zoom level (1-20)
+            t is the map type ("m" map, "k" satellite, "h" hybrid, "p" terrain, "e" GoogleEarth)
+            q is the search query, if it is prefixed by loc: then google assumes it is a lat lon separated by a +
+                */
+            var ref = window.open('http://maps.google.com/maps?z=12&t=m&q=loc:' + data.latitud + '+' + data.longitud, '_blank', 'location=no,closebuttoncaption=Cerrar');
         };
 
         $rootScope.loQuiero = function(plan_id, local_id) {
@@ -147,6 +243,116 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             }, function (error) {
             })
+        };
+
+
+        $rootScope.registerPushNotifications = function() {
+
+            if(window.PushNotification) {
+
+                var push = PushNotification.init({
+                    android: {
+                        senderID: "51393321226"
+                    },
+                    ios: {
+                        alert: "true",
+                        badge: true,
+                        sound: 'false'
+                    }
+                });
+
+                push.on('registration', function(token) {
+
+                    token_notificacion = token.registrationId;
+
+                    localStorage.getItem('queplan_push_token', token_notificacion);
+
+                    $rootScope.authenticate(function () {});
+                });
+
+                push.on('notification', function(data) {
+
+                    var message     = data.message;
+                    var seccion     = data.seccion;
+                    var seccion_id  = data.seccion_id;
+
+                    console.log(data);
+
+                    if(data.additionalData.seccion) {
+
+                        confirm(message, function(result){
+                            if(result == 0) {
+                                $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
+                            }
+                        });
+
+                    } else {
+
+                        alert(message);
+                    }
+
+                });
+
+                push.on('error', function(e) {
+                    console.log(e.message);
+                });
+            }
+        };
+
+
+        $rootScope.redirectToPage = function(seccion, id) {
+
+            if (seccion == "local") {
+
+                if (id == "") {
+
+                    id = '1';
+
+                    current_page = '';
+
+                    mainNavigator.pushPage('locals.html', {data:{category_id: id}});
+
+                } else {
+
+                    $rootScope.goToLocal(id, 'restaurant');
+                }
+
+            } else if (seccion == "plan") {
+
+                if (id == "") {
+
+                    mainNavigator.pushPage('plans.html');
+
+                } else {
+
+
+                    $rootScope.goToPlan(id);
+                }
+
+            } else if (seccion == "menu") {
+
+                if (id == "") {
+
+                    mainNavigator.pushPage('daily_menus.html');
+
+                } else {
+
+                    mainNavigator.pushPage('menu_detail.html', {data:{menu: {
+                        id: id
+                    }}});
+                }
+
+            } else if (seccion == "guia") {
+
+                if (id == "") {
+
+                    mainNavigator.pushPage('guia.html');
+
+                } else {
+
+                    mainNavigator.pushPage('locals.html', {data:{category_id: id}});
+                }
+            }
         };
 
 
@@ -230,6 +436,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 localStorage.setItem('lang', applicationLanguage);
 
 
+                token_notificacion = localStorage.getItem('queplan_push_token');
+                latitude = localStorage.getItem('latitude');
+                longitude = localStorage.getItem('longitude');
+
                 $rootScope.authenticate(function () {
 
                     if (getUser().ciudad_id == '0') {
@@ -241,6 +451,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                         mainNavigator.pushPage('home.html', {animation: 'none'});
                     }
                 });
+
+                $rootScope.registerPushNotifications();
+
+                $rootScope.initGeolocation();
 
                 try {
                     StatusBar.hide();

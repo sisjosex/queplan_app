@@ -1,14 +1,12 @@
 function registerNotifications() {
 
-    console.log('registerNotifications');
-
     if(window.plugins && window.plugins.pushNotification) {
 
         var pushNotification = window.plugins.pushNotification;
 
         if (device.platform === 'android' || device.platform === 'Android') {
 
-            pushNotification.register(successHandler, this.errorHandler, {
+            pushNotification.register(successHandler, errorHandler, {
                 "senderID": "51393321226",
                 "ecb": "onNotificationGCM"
             });
@@ -17,7 +15,7 @@ function registerNotifications() {
 
         } else {
 
-            pushNotification.register(tokenHandler, this.errorHandler, {
+            pushNotification.register(tokenHandler, errorHandler, {
                 "badge": "true",
                 "sound": "true",
                 "alert": "true",

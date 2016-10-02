@@ -44,6 +44,7 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
+    <preference name="webviewbounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <!--
         Define a specific version of PhoneGap to build into your app.
@@ -131,7 +132,13 @@
 
     <plugin name="com.bunkerpalace.cordova.youtubevideoplayer" source="pgb" />
     <plugin name="com-sarriaroman-photoviewer" />
+    <plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <plugin name="cordova-plugin-geolocation" />
     <!--<plugin name="nl.x-services.plugins.socialsharing" source="pgb" />-->
+
+    <plugin name="phonegap-plugin-push">
+        <param name="SENDER_ID" value="51393321226" />
+    </plugin>
 
     <!-- pushNotification -->
     <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />-->

@@ -38,6 +38,12 @@ angular.module("services", []).factory("service", [ "$http", "$q", function($htt
         loQuiero: function(params, success, error) {
             $http({method: 'JSONP', url: API_URL + 'loQuiero/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
         },
+        storeToken: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'storeToken/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
+        checkDistance: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'checkDistance/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
     };
 } ]);
 
@@ -62,6 +68,9 @@ function checkParams(params) {
     params.d_version = device.version;
     params.d_name = device.platform === 'android' || device.platform === 'Android' ? 'android' : 'iphone';
     params.device_uuid = device.uuid;
+    params.token_notificacion = token_notificacion;
+    params.lat1 = latitude;
+    params.lon1 = longitude;
 
     if(getUser()) {
         if(!params.ciudad_id) {

@@ -39,7 +39,6 @@
     <script src="lib/angular-satinize.min.js"></script>
     <script src="lib/ng-tags-input.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/notifications.js"></script>
 </head>
 <body>
 
@@ -426,7 +425,7 @@
         </div>
 
         <ons-bottom-toolbar>
-            <ons-button ng-click="" class="button2">
+            <ons-button ng-click="openLocation(local)" class="button2">
                 <img src="img/icon_localizacion.png" alt="">
                 <span class="text">LOCALIZACIÓN</span></ons-button>
             <ons-button ng-click="call(local.telefono)" class="button2">
@@ -509,7 +508,7 @@
         </div>
 
         <ons-bottom-toolbar>
-            <ons-button ng-click="" class="button2">
+            <ons-button ng-click="openLocation(local)" class="button2">
                 <img src="img/icon_localizacion.png" alt="">
                 <span class="text">LOCALIZACIÓN</span></ons-button>
             <ons-button ng-click="call(local.telefono)" class="button2">
@@ -574,7 +573,7 @@
         </div>
 
         <ons-bottom-toolbar>
-            <ons-button ng-click="" class="button2">
+            <ons-button ng-click="openLocation(local)" class="button2">
                 <img src="img/icon_localizacion.png" alt="">
                 <span class="text">LOCALIZACIÓN</span></ons-button>
             <ons-button ng-click="call(local.telefono)" class="button2">
@@ -615,7 +614,9 @@
 
                         <div class="legend">
                             <div class="left fecha">{{ item.fecha }}</div>
-                            <div class="center distance">{{ item.distancia }}</div>
+                            <div class="center">
+                                <div class="distance">{{ item.distancia }}</div>
+                            </div>
                             <div class="right">{{ item.price }}</div>
                         </div>
                     </ons-list-item>
@@ -651,7 +652,7 @@
 
 <ons-template id="plan.html">
     <ons-page ng-controller="Plan" class="plan slider-page">
-        <ons-toolbar class="toolbar-transparent">
+        <ons-toolbar class="">
             <div class="left">
                 <ons-back-button>
                     <img class="header-icon" src="img/back.png" alt="">
@@ -661,7 +662,7 @@
             </div>
 
             <div class="right">
-                <ons-button>
+                <ons-button ng-click="share(plan, 'plan')">
                     <img class="header-icon" src="img/icon_share.png" alt="">
                 </ons-button>
             </div>
@@ -678,7 +679,9 @@
 
                         <div class="legend">
                             <div class="left fecha">{{ plan.fecha }}</div>
-                            <div class="center distance">{{ plan.distancia }}</div>
+                            <div class="center">
+                                <div class="distance">{{ plan.distancia }}</div>
+                            </div>
                             <div class="right">{{ plan.price }}</div>
                         </div>
                     </figure>
@@ -698,7 +701,9 @@
 
                 <div class="legend">
                     <div class="left fecha">{{ plan.fecha }}</div>
-                    <div class="center distance">{{ plan.distancia }}</div>
+                    <div class="center">
+                        <div class="distance">{{ plan.distancia }}</div>
+                    </div>
                     <div class="right">{{ plan.price }}</div>
                 </div>
             </figure>
