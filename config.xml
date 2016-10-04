@@ -46,6 +46,9 @@
 
     <preference name="webviewbounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="30000" />
     <!--
         Define a specific version of PhoneGap to build into your app.
         <preference name="phonegap-version"       value="3.5.0" />
