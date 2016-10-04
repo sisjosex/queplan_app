@@ -924,3 +924,18 @@ figure.gallery-item {
 .legend .center .distance {
     display: inline-block
 }
+
+.guia-box {
+    height:145px;
+}
+
+.guia-box figure{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.legend .price {
+    color: #ff3366;
+    font-weight: bold;
+}

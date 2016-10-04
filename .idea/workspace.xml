@@ -4,10 +4,7 @@
     <list default="true" id="982fff58-3371-4dab-9d32-f016f2bc3da0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/notifications.js" afterPath="$PROJECT_DIR$/js/notifications.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="www.iws" />
@@ -30,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66079295">
-              <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.75">
-              <caret line="682" column="61" selection-start-line="682" selection-start-column="61" selection-end-line="682" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.42081448">
+              <caret line="679" column="44" selection-start-line="679" selection-start-column="44" selection-end-line="679" selection-end-column="44" />
               <folding>
                 <element signature="n#ons-page#0;n#ons-template#3;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#ons-page#0;n#ons-splitter-side#0;n#ons-splitter#0;n#ons-template#4;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -68,10 +65,10 @@
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+              <caret line="413" column="52" selection-start-line="413" selection-start-column="52" selection-end-line="413" selection-end-column="52" />
               <folding>
                 <element signature="n#!!block;n#onResize#0" expanded="false" />
-                <element signature="e#14396#16180#0" expanded="false" />
+                <element signature="e#14457#16241#0" expanded="false" />
                 <element signature="n#!!block;n#getUser#0" expanded="false" />
                 <element signature="n#!!block;n#saveUser#0" expanded="false" />
                 <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -112,74 +109,74 @@
       <file leaf-file-name="api2.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../admin/controllers/api2.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.5">
-              <caret line="1103" column="37" selection-start-line="1103" selection-start-column="29" selection-end-line="1103" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1105" column="37" selection-start-line="1105" selection-start-column="29" selection-end-line="1105" selection-end-column="37" />
               <folding>
-                <marker date="1475441237000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
-                <marker date="1475441237000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
-                <marker date="1475441237000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
-                <marker date="1475441237000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
-                <marker date="1475441237000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
-                <marker date="1475441237000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
-                <marker date="1475441237000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
-                <marker date="1475441237000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
-                <marker date="1475441237000" expanded="true" signature="26442:27528" placeholder="SELECT categ..categorias..." />
-                <marker date="1475441237000" expanded="true" signature="33343:33731" placeholder="SELECT Local..." />
-                <marker date="1475441237000" expanded="true" signature="34659:34839" placeholder="SELECT Local..locals..." />
-                <marker date="1475441237000" expanded="true" signature="35767:35849" placeholder="SELECT local..locals..." />
-                <marker date="1475441237000" expanded="true" signature="35894:35939" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="36332:36496" placeholder="SELECT * FRO..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="37594:37676" placeholder="SELECT SUM(c..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="37969:38068" placeholder="SELECT id,lo..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="38254:38322" placeholder="SELECT title..locals..." />
-                <marker date="1475441237000" expanded="true" signature="39864:39911" placeholder="SELECT id, t..locals..." />
-                <marker date="1475441237000" expanded="true" signature="40421:40466" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="40650:40799" placeholder="SELECT * FRO..alertas..." />
-                <marker date="1475441237000" expanded="true" signature="47332:47540" placeholder="SELECT Image..imagenes..." />
-                <marker date="1475441237000" expanded="true" signature="47612:47820" placeholder="SELECT Image..imagenes..." />
-                <marker date="1475441237000" expanded="true" signature="55120:55267" placeholder="SELECT Punto..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="58761:58883" placeholder="SELECT * FRO..usuarios_recompensas..." />
-                <marker date="1475441237000" expanded="true" signature="61635:61680" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="61752:61803" placeholder="SELECT * FRO..recompensas..." />
-                <marker date="1475441237000" expanded="true" signature="61987:62103" placeholder="SELECT SUM(c..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="63045:63154" placeholder="UPDATE punto..." />
-                <marker date="1475441237000" expanded="true" signature="63814:63889" placeholder="SELECT SUM(c..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="64176:64270" placeholder="SELECT id,lo..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="64456:64524" placeholder="SELECT title..locals..." />
-                <marker date="1475441237000" expanded="true" signature="64838:64879" placeholder="SELECT * FRO..locals..." />
-                <marker date="1475441237000" expanded="true" signature="66363:66408" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="66480:66529" placeholder="SELECT * FRO..promocions..." />
-                <marker date="1475441237000" expanded="true" signature="66752:66874" placeholder="SELECT * FRO..usuarios_promocions..." />
-                <marker date="1475441237000" expanded="true" signature="67249:67311" placeholder="UPDATE promo..." />
-                <marker date="1475441237000" expanded="true" signature="67370:67419" placeholder="SELECT * FRO..promocions..." />
-                <marker date="1475441237000" expanded="true" signature="67921:67962" placeholder="SELECT * FRO..locals..." />
-                <marker date="1475441237000" expanded="true" signature="69050:69146" placeholder="SELECT title..sistemas..." />
-                <marker date="1475441237000" expanded="true" signature="72018:72061" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="72647:72684" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="73949:73994" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="74851:74894" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="75679:75724" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="76595:76640" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="76716:76767" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="77818:77863" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="80003:80118" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="80466:80556" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="80721:80829" placeholder="SELECT id,lo..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="80979:81047" placeholder="SELECT title..locals..." />
-                <marker date="1475441237000" expanded="true" signature="81917:82008" placeholder="SELECT id FR..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="83532:83577" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="83574:83577" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="84859:84908" placeholder="SELECT * FRO..usuarios_recompensas..." />
-                <marker date="1475441237000" expanded="true" signature="85617:85665" placeholder="SELECT * FRO..usuarios_promocions..." />
-                <marker date="1475441237000" expanded="true" signature="86507:86552" placeholder="SELECT * FRO..usuarios..." />
-                <marker date="1475441237000" expanded="true" signature="86770:86826" placeholder="SELECT id, t..zonas..." />
-                <marker date="1475441237000" expanded="true" signature="86893:86920" placeholder="SELECT id, t..zonas..." />
-                <marker date="1475441237000" expanded="true" signature="87475:87717" placeholder="SELECT SUM(p..puntos..." />
-                <marker date="1475441237000" expanded="true" signature="88002:88397" placeholder="SELECT alert..." />
+                <marker date="1475537985000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
+                <marker date="1475537985000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
+                <marker date="1475537985000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
+                <marker date="1475537985000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
+                <marker date="1475537985000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
+                <marker date="1475537985000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
+                <marker date="1475537985000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
+                <marker date="1475537985000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
+                <marker date="1475537985000" expanded="true" signature="26523:27609" placeholder="SELECT categ..categorias..." />
+                <marker date="1475537985000" expanded="true" signature="33424:33812" placeholder="SELECT Local..." />
+                <marker date="1475537985000" expanded="true" signature="34740:34920" placeholder="SELECT Local..locals..." />
+                <marker date="1475537985000" expanded="true" signature="35848:35930" placeholder="SELECT local..locals..." />
+                <marker date="1475537985000" expanded="true" signature="35975:36020" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="36413:36577" placeholder="SELECT * FRO..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="37675:37757" placeholder="SELECT SUM(c..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="38050:38149" placeholder="SELECT id,lo..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="38335:38403" placeholder="SELECT title..locals..." />
+                <marker date="1475537985000" expanded="true" signature="39945:39992" placeholder="SELECT id, t..locals..." />
+                <marker date="1475537985000" expanded="true" signature="40502:40547" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="40731:40880" placeholder="SELECT * FRO..alertas..." />
+                <marker date="1475537985000" expanded="true" signature="47413:47621" placeholder="SELECT Image..imagenes..." />
+                <marker date="1475537985000" expanded="true" signature="47693:47901" placeholder="SELECT Image..imagenes..." />
+                <marker date="1475537985000" expanded="true" signature="55201:55348" placeholder="SELECT Punto..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="58842:58964" placeholder="SELECT * FRO..usuarios_recompensas..." />
+                <marker date="1475537985000" expanded="true" signature="61716:61761" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="61833:61884" placeholder="SELECT * FRO..recompensas..." />
+                <marker date="1475537985000" expanded="true" signature="62068:62184" placeholder="SELECT SUM(c..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="63126:63235" placeholder="UPDATE punto..." />
+                <marker date="1475537985000" expanded="true" signature="63895:63970" placeholder="SELECT SUM(c..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="64257:64351" placeholder="SELECT id,lo..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="64537:64605" placeholder="SELECT title..locals..." />
+                <marker date="1475537985000" expanded="true" signature="64919:64960" placeholder="SELECT * FRO..locals..." />
+                <marker date="1475537985000" expanded="true" signature="66444:66489" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="66561:66610" placeholder="SELECT * FRO..promocions..." />
+                <marker date="1475537985000" expanded="true" signature="66833:66955" placeholder="SELECT * FRO..usuarios_promocions..." />
+                <marker date="1475537985000" expanded="true" signature="67330:67392" placeholder="UPDATE promo..." />
+                <marker date="1475537985000" expanded="true" signature="67451:67500" placeholder="SELECT * FRO..promocions..." />
+                <marker date="1475537985000" expanded="true" signature="68002:68043" placeholder="SELECT * FRO..locals..." />
+                <marker date="1475537985000" expanded="true" signature="69131:69227" placeholder="SELECT title..sistemas..." />
+                <marker date="1475537985000" expanded="true" signature="72099:72142" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="72728:72765" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="74030:74075" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="74932:74975" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="75760:75805" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="76676:76721" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="76797:76848" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="77899:77944" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="80084:80199" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="80547:80637" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="80802:80910" placeholder="SELECT id,lo..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="81060:81128" placeholder="SELECT title..locals..." />
+                <marker date="1475537985000" expanded="true" signature="81998:82089" placeholder="SELECT id FR..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="83613:83658" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="83655:83658" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="84940:84989" placeholder="SELECT * FRO..usuarios_recompensas..." />
+                <marker date="1475537985000" expanded="true" signature="85698:85746" placeholder="SELECT * FRO..usuarios_promocions..." />
+                <marker date="1475537985000" expanded="true" signature="86588:86633" placeholder="SELECT * FRO..usuarios..." />
+                <marker date="1475537985000" expanded="true" signature="86851:86907" placeholder="SELECT id, t..zonas..." />
+                <marker date="1475537985000" expanded="true" signature="86974:87001" placeholder="SELECT id, t..zonas..." />
+                <marker date="1475537985000" expanded="true" signature="87556:87798" placeholder="SELECT SUM(p..puntos..." />
+                <marker date="1475537985000" expanded="true" signature="88083:88478" placeholder="SELECT alert..." />
               </folding>
             </state>
           </provider>
@@ -199,7 +196,7 @@
         <entry file="file://$PROJECT_DIR$/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="898" column="19" selection-start-line="898" selection-start-column="19" selection-end-line="898" selection-end-column="19" />
+              <caret line="939" column="22" selection-start-line="939" selection-start-column="22" selection-end-line="939" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -219,13 +216,13 @@
         <option value="$PROJECT_DIR$/../../../fino/Cocinamos/www/config.xml" />
         <option value="$PROJECT_DIR$/css/responsive.css" />
         <option value="$PROJECT_DIR$/js/notifications.js" />
-        <option value="$PROJECT_DIR$/css/app.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/framework-fixes.css" />
         <option value="$PROJECT_DIR$/../../admin/controllers/api2.php" />
         <option value="$PROJECT_DIR$/js/services.js" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/css/app.css" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -269,7 +266,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -319,6 +315,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,18 +374,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17447917" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32905984" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32905984" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -480,7 +477,7 @@
           <caret line="786" column="51" selection-start-line="786" selection-start-column="51" selection-end-line="786" selection-end-column="51" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -518,71 +515,71 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1475441237000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
-            <marker date="1475441237000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
-            <marker date="1475441237000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
-            <marker date="1475441237000" expanded="true" signature="26442:27528" placeholder="SELECT categ..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="33343:33731" placeholder="SELECT Local..." />
-            <marker date="1475441237000" expanded="true" signature="34659:34839" placeholder="SELECT Local..locals..." />
-            <marker date="1475441237000" expanded="true" signature="35767:35849" placeholder="SELECT local..locals..." />
-            <marker date="1475441237000" expanded="true" signature="35894:35939" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="36332:36496" placeholder="SELECT * FRO..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="37594:37676" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="37969:38068" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="38254:38322" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="39864:39911" placeholder="SELECT id, t..locals..." />
-            <marker date="1475441237000" expanded="true" signature="40421:40466" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="40650:40799" placeholder="SELECT * FRO..alertas..." />
-            <marker date="1475441237000" expanded="true" signature="47332:47540" placeholder="SELECT Image..imagenes..." />
-            <marker date="1475441237000" expanded="true" signature="47612:47820" placeholder="SELECT Image..imagenes..." />
-            <marker date="1475441237000" expanded="true" signature="55120:55267" placeholder="SELECT Punto..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="58761:58883" placeholder="SELECT * FRO..usuarios_recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="61635:61680" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="61752:61803" placeholder="SELECT * FRO..recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="61987:62103" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="63045:63154" placeholder="UPDATE punto..." />
-            <marker date="1475441237000" expanded="true" signature="63814:63889" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="64176:64270" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="64456:64524" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="64838:64879" placeholder="SELECT * FRO..locals..." />
-            <marker date="1475441237000" expanded="true" signature="66363:66408" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="66480:66529" placeholder="SELECT * FRO..promocions..." />
-            <marker date="1475441237000" expanded="true" signature="66752:66874" placeholder="SELECT * FRO..usuarios_promocions..." />
-            <marker date="1475441237000" expanded="true" signature="67249:67311" placeholder="UPDATE promo..." />
-            <marker date="1475441237000" expanded="true" signature="67370:67419" placeholder="SELECT * FRO..promocions..." />
-            <marker date="1475441237000" expanded="true" signature="67921:67962" placeholder="SELECT * FRO..locals..." />
-            <marker date="1475441237000" expanded="true" signature="69050:69146" placeholder="SELECT title..sistemas..." />
-            <marker date="1475441237000" expanded="true" signature="72018:72061" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="72647:72684" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="73949:73994" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="74851:74894" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="75679:75724" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="76595:76640" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="76716:76767" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="77818:77863" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80003:80118" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80466:80556" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80721:80829" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="80979:81047" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="81917:82008" placeholder="SELECT id FR..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="83532:83577" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="83574:83577" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="84859:84908" placeholder="SELECT * FRO..usuarios_recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="85617:85665" placeholder="SELECT * FRO..usuarios_promocions..." />
-            <marker date="1475441237000" expanded="true" signature="86507:86552" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="86770:86826" placeholder="SELECT id, t..zonas..." />
-            <marker date="1475441237000" expanded="true" signature="86893:86920" placeholder="SELECT id, t..zonas..." />
-            <marker date="1475441237000" expanded="true" signature="87475:87717" placeholder="SELECT SUM(p..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="88002:88397" placeholder="SELECT alert..." />
+            <marker date="1475537985000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
+            <marker date="1475537985000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
+            <marker date="1475537985000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
+            <marker date="1475537985000" expanded="true" signature="26523:27609" placeholder="SELECT categ..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="33424:33812" placeholder="SELECT Local..." />
+            <marker date="1475537985000" expanded="true" signature="34740:34920" placeholder="SELECT Local..locals..." />
+            <marker date="1475537985000" expanded="true" signature="35848:35930" placeholder="SELECT local..locals..." />
+            <marker date="1475537985000" expanded="true" signature="35975:36020" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="36413:36577" placeholder="SELECT * FRO..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="37675:37757" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="38050:38149" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="38335:38403" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="39945:39992" placeholder="SELECT id, t..locals..." />
+            <marker date="1475537985000" expanded="true" signature="40502:40547" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="40731:40880" placeholder="SELECT * FRO..alertas..." />
+            <marker date="1475537985000" expanded="true" signature="47413:47621" placeholder="SELECT Image..imagenes..." />
+            <marker date="1475537985000" expanded="true" signature="47693:47901" placeholder="SELECT Image..imagenes..." />
+            <marker date="1475537985000" expanded="true" signature="55201:55348" placeholder="SELECT Punto..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="58842:58964" placeholder="SELECT * FRO..usuarios_recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="61716:61761" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="61833:61884" placeholder="SELECT * FRO..recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="62068:62184" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="63126:63235" placeholder="UPDATE punto..." />
+            <marker date="1475537985000" expanded="true" signature="63895:63970" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="64257:64351" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="64537:64605" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="64919:64960" placeholder="SELECT * FRO..locals..." />
+            <marker date="1475537985000" expanded="true" signature="66444:66489" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="66561:66610" placeholder="SELECT * FRO..promocions..." />
+            <marker date="1475537985000" expanded="true" signature="66833:66955" placeholder="SELECT * FRO..usuarios_promocions..." />
+            <marker date="1475537985000" expanded="true" signature="67330:67392" placeholder="UPDATE promo..." />
+            <marker date="1475537985000" expanded="true" signature="67451:67500" placeholder="SELECT * FRO..promocions..." />
+            <marker date="1475537985000" expanded="true" signature="68002:68043" placeholder="SELECT * FRO..locals..." />
+            <marker date="1475537985000" expanded="true" signature="69131:69227" placeholder="SELECT title..sistemas..." />
+            <marker date="1475537985000" expanded="true" signature="72099:72142" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="72728:72765" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="74030:74075" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="74932:74975" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="75760:75805" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="76676:76721" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="76797:76848" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="77899:77944" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80084:80199" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80547:80637" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80802:80910" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="81060:81128" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="81998:82089" placeholder="SELECT id FR..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="83613:83658" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="83655:83658" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="84940:84989" placeholder="SELECT * FRO..usuarios_recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="85698:85746" placeholder="SELECT * FRO..usuarios_promocions..." />
+            <marker date="1475537985000" expanded="true" signature="86588:86633" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="86851:86907" placeholder="SELECT id, t..zonas..." />
+            <marker date="1475537985000" expanded="true" signature="86974:87001" placeholder="SELECT id, t..zonas..." />
+            <marker date="1475537985000" expanded="true" signature="87556:87798" placeholder="SELECT SUM(p..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="88083:88478" placeholder="SELECT alert..." />
           </folding>
         </state>
       </provider>
@@ -613,7 +610,7 @@
           <caret line="828" column="56" selection-start-line="828" selection-start-column="56" selection-end-line="828" selection-end-column="56" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -701,7 +698,7 @@
           <caret line="1691" column="56" selection-start-line="1691" selection-start-column="56" selection-end-line="1691" selection-end-column="56" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -760,7 +757,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -803,7 +800,7 @@
           <caret line="2093" column="47" selection-start-line="2093" selection-start-column="47" selection-end-line="2093" selection-end-column="47" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -893,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.719163">
           <caret line="752" column="23" selection-start-line="752" selection-start-column="23" selection-end-line="752" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,104 +901,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="898" column="19" selection-start-line="898" selection-start-column="19" selection-end-line="898" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/framework-fixes.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="205" column="25" selection-start-line="205" selection-start-column="25" selection-end-line="205" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.75">
-          <caret line="682" column="61" selection-start-line="682" selection-start-column="61" selection-end-line="682" selection-end-column="61" />
-          <folding>
-            <element signature="n#ons-page#0;n#ons-template#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#ons-page#0;n#ons-splitter-side#0;n#ons-splitter#0;n#ons-template#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#ons-page#0;n#ons-template#11;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../admin/controllers/api2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.5">
-          <caret line="1103" column="37" selection-start-line="1103" selection-start-column="29" selection-end-line="1103" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1105" column="37" selection-start-line="1105" selection-start-column="29" selection-end-line="1105" selection-end-column="37" />
           <folding>
-            <marker date="1475441237000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
-            <marker date="1475441237000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
-            <marker date="1475441237000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
-            <marker date="1475441237000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
-            <marker date="1475441237000" expanded="true" signature="26442:27528" placeholder="SELECT categ..categorias..." />
-            <marker date="1475441237000" expanded="true" signature="33343:33731" placeholder="SELECT Local..." />
-            <marker date="1475441237000" expanded="true" signature="34659:34839" placeholder="SELECT Local..locals..." />
-            <marker date="1475441237000" expanded="true" signature="35767:35849" placeholder="SELECT local..locals..." />
-            <marker date="1475441237000" expanded="true" signature="35894:35939" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="36332:36496" placeholder="SELECT * FRO..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="37594:37676" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="37969:38068" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="38254:38322" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="39864:39911" placeholder="SELECT id, t..locals..." />
-            <marker date="1475441237000" expanded="true" signature="40421:40466" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="40650:40799" placeholder="SELECT * FRO..alertas..." />
-            <marker date="1475441237000" expanded="true" signature="47332:47540" placeholder="SELECT Image..imagenes..." />
-            <marker date="1475441237000" expanded="true" signature="47612:47820" placeholder="SELECT Image..imagenes..." />
-            <marker date="1475441237000" expanded="true" signature="55120:55267" placeholder="SELECT Punto..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="58761:58883" placeholder="SELECT * FRO..usuarios_recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="61635:61680" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="61752:61803" placeholder="SELECT * FRO..recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="61987:62103" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="63045:63154" placeholder="UPDATE punto..." />
-            <marker date="1475441237000" expanded="true" signature="63814:63889" placeholder="SELECT SUM(c..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="64176:64270" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="64456:64524" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="64838:64879" placeholder="SELECT * FRO..locals..." />
-            <marker date="1475441237000" expanded="true" signature="66363:66408" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="66480:66529" placeholder="SELECT * FRO..promocions..." />
-            <marker date="1475441237000" expanded="true" signature="66752:66874" placeholder="SELECT * FRO..usuarios_promocions..." />
-            <marker date="1475441237000" expanded="true" signature="67249:67311" placeholder="UPDATE promo..." />
-            <marker date="1475441237000" expanded="true" signature="67370:67419" placeholder="SELECT * FRO..promocions..." />
-            <marker date="1475441237000" expanded="true" signature="67921:67962" placeholder="SELECT * FRO..locals..." />
-            <marker date="1475441237000" expanded="true" signature="69050:69146" placeholder="SELECT title..sistemas..." />
-            <marker date="1475441237000" expanded="true" signature="72018:72061" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="72647:72684" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="73949:73994" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="74851:74894" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="75679:75724" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="76595:76640" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="76716:76767" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="77818:77863" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80003:80118" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80466:80556" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="80721:80829" placeholder="SELECT id,lo..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="80979:81047" placeholder="SELECT title..locals..." />
-            <marker date="1475441237000" expanded="true" signature="81917:82008" placeholder="SELECT id FR..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="83532:83577" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="83574:83577" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="84859:84908" placeholder="SELECT * FRO..usuarios_recompensas..." />
-            <marker date="1475441237000" expanded="true" signature="85617:85665" placeholder="SELECT * FRO..usuarios_promocions..." />
-            <marker date="1475441237000" expanded="true" signature="86507:86552" placeholder="SELECT * FRO..usuarios..." />
-            <marker date="1475441237000" expanded="true" signature="86770:86826" placeholder="SELECT id, t..zonas..." />
-            <marker date="1475441237000" expanded="true" signature="86893:86920" placeholder="SELECT id, t..zonas..." />
-            <marker date="1475441237000" expanded="true" signature="87475:87717" placeholder="SELECT SUM(p..puntos..." />
-            <marker date="1475441237000" expanded="true" signature="88002:88397" placeholder="SELECT alert..." />
+            <marker date="1475537985000" expanded="true" signature="820:892" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="958:1020" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="1927:1964" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="4917:4994" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="5622:5724" placeholder="SELECT count..usuarios_alertas..." />
+            <marker date="1475537985000" expanded="true" signature="9475:10387" placeholder="SELECT categ..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="9580:9684" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="9738:9850" placeholder="SELECT plato..cartas..." />
+            <marker date="1475537985000" expanded="true" signature="11877:12086" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="15705:15754" placeholder="SELECT * FRO..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="19179:19392" placeholder="SELECT menus..menus..." />
+            <marker date="1475537985000" expanded="true" signature="19327:19384" placeholder="/*AND menus...." />
+            <marker date="1475537985000" expanded="true" signature="26523:27609" placeholder="SELECT categ..categorias..." />
+            <marker date="1475537985000" expanded="true" signature="33424:33812" placeholder="SELECT Local..." />
+            <marker date="1475537985000" expanded="true" signature="34740:34920" placeholder="SELECT Local..locals..." />
+            <marker date="1475537985000" expanded="true" signature="35848:35930" placeholder="SELECT local..locals..." />
+            <marker date="1475537985000" expanded="true" signature="35975:36020" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="36413:36577" placeholder="SELECT * FRO..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="37675:37757" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="38050:38149" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="38335:38403" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="39945:39992" placeholder="SELECT id, t..locals..." />
+            <marker date="1475537985000" expanded="true" signature="40502:40547" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="40731:40880" placeholder="SELECT * FRO..alertas..." />
+            <marker date="1475537985000" expanded="true" signature="47413:47621" placeholder="SELECT Image..imagenes..." />
+            <marker date="1475537985000" expanded="true" signature="47693:47901" placeholder="SELECT Image..imagenes..." />
+            <marker date="1475537985000" expanded="true" signature="55201:55348" placeholder="SELECT Punto..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="58842:58964" placeholder="SELECT * FRO..usuarios_recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="61716:61761" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="61833:61884" placeholder="SELECT * FRO..recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="62068:62184" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="63126:63235" placeholder="UPDATE punto..." />
+            <marker date="1475537985000" expanded="true" signature="63895:63970" placeholder="SELECT SUM(c..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="64257:64351" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="64537:64605" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="64919:64960" placeholder="SELECT * FRO..locals..." />
+            <marker date="1475537985000" expanded="true" signature="66444:66489" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="66561:66610" placeholder="SELECT * FRO..promocions..." />
+            <marker date="1475537985000" expanded="true" signature="66833:66955" placeholder="SELECT * FRO..usuarios_promocions..." />
+            <marker date="1475537985000" expanded="true" signature="67330:67392" placeholder="UPDATE promo..." />
+            <marker date="1475537985000" expanded="true" signature="67451:67500" placeholder="SELECT * FRO..promocions..." />
+            <marker date="1475537985000" expanded="true" signature="68002:68043" placeholder="SELECT * FRO..locals..." />
+            <marker date="1475537985000" expanded="true" signature="69131:69227" placeholder="SELECT title..sistemas..." />
+            <marker date="1475537985000" expanded="true" signature="72099:72142" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="72728:72765" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="74030:74075" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="74932:74975" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="75760:75805" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="76676:76721" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="76797:76848" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="77899:77944" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80084:80199" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80547:80637" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="80802:80910" placeholder="SELECT id,lo..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="81060:81128" placeholder="SELECT title..locals..." />
+            <marker date="1475537985000" expanded="true" signature="81998:82089" placeholder="SELECT id FR..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="83613:83658" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="83655:83658" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="84940:84989" placeholder="SELECT * FRO..usuarios_recompensas..." />
+            <marker date="1475537985000" expanded="true" signature="85698:85746" placeholder="SELECT * FRO..usuarios_promocions..." />
+            <marker date="1475537985000" expanded="true" signature="86588:86633" placeholder="SELECT * FRO..usuarios..." />
+            <marker date="1475537985000" expanded="true" signature="86851:86907" placeholder="SELECT id, t..zonas..." />
+            <marker date="1475537985000" expanded="true" signature="86974:87001" placeholder="SELECT id, t..zonas..." />
+            <marker date="1475537985000" expanded="true" signature="87556:87798" placeholder="SELECT SUM(p..puntos..." />
+            <marker date="1475537985000" expanded="true" signature="88083:88478" placeholder="SELECT alert..." />
           </folding>
         </state>
       </provider>
@@ -1023,13 +991,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <caret line="413" column="52" selection-start-line="413" selection-start-column="52" selection-end-line="413" selection-end-column="52" />
           <folding>
             <element signature="n#!!block;n#onResize#0" expanded="false" />
-            <element signature="e#14396#16180#0" expanded="false" />
+            <element signature="e#14457#16241#0" expanded="false" />
             <element signature="n#!!block;n#getUser#0" expanded="false" />
             <element signature="n#!!block;n#saveUser#0" expanded="false" />
             <element signature="n#!!block;n#deleteUser#0" expanded="false" />
@@ -1046,11 +1022,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
+    <entry file="file://$PROJECT_DIR$/css/framework-fixes.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66079295">
-          <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="205" column="25" selection-start-line="205" selection-start-column="25" selection-end-line="205" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="939" column="22" selection-start-line="939" selection-start-column="22" selection-end-line="939" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42081448">
+          <caret line="679" column="44" selection-start-line="679" selection-start-column="44" selection-end-line="679" selection-end-column="44" />
+          <folding>
+            <element signature="n#ons-page#0;n#ons-template#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#ons-page#0;n#ons-splitter-side#0;n#ons-splitter#0;n#ons-template#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#ons-page#0;n#ons-template#11;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
