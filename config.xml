@@ -8,7 +8,7 @@
 		android-versionCode="1905"
 		version 	= "19.05">
 
-    <name>QuéPlan? Ibiza</name>
+    <name>QuePlan</name>
 
     <description>
         Aplicacion mobile - QuéPlan?
@@ -44,8 +44,8 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
-    <preference name="webviewbounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true"/>
 
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
@@ -75,8 +75,7 @@
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
-
-
+    <plugin name="cordova-plugin-statusbar" />
 
     <feature name="SplashScreen" >
         <param
@@ -86,6 +85,14 @@
                 name="onload"
                 value="true" />
     </feature>
+
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#e12d5a" />
+    <preference name="StatusBarStyle" value="blackopaque" />
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->

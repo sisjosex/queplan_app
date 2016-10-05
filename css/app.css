@@ -939,3 +939,12 @@ figure.gallery-item {
     color: #ff3366;
     font-weight: bold;
 }
+
+.guia-box .preview {
+    border-radius: 0;
+}
+
+.plan-list-title h2 {
+    white-space: normal;
+    text-overflow: clip;
+}

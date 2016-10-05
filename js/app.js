@@ -427,6 +427,8 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         function onDeviceReady() {
 
+            //StatusBar.show();
+
             $scope.$apply(function () {
 
                 document.addEventListener("online", onOnline, false);
@@ -457,10 +459,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 $rootScope.initGeolocation();
 
-                try {
+                /*try {
                     StatusBar.hide();
                 } catch (error) {
-                }
+                }*/
 
             });
         }
@@ -1045,7 +1047,9 @@ module.controller('Plans', function ($scope, service) {
                     }
 
                     $scope.plans = result.items;
-                    $scope.categories = result.categorias;
+                    if( $scope.categories.length == 0 ) {
+                        $scope.categories = result.categorias;
+                    }
 
                     setTimeout(function () {
 
