@@ -413,8 +413,8 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         if (document.location.protocol == 'http:') {
 
-            //API_URL = 'http://localhost/queplan/admin/api2/';
-            API_URL = 'http://web.queplanmadrid.es/api2/';
+            API_URL = 'http://localhost/queplan/admin/api2/';
+            //API_URL = 'http://web.queplanmadrid.es/api2/';
 
             setTimeout(onDeviceReady, 500);
 
@@ -519,10 +519,6 @@ module.controller('Home', function ($rootScope, $scope) {
             console.log('test');
         };
 
-        try {
-            navigator.splashscreen.hide();
-        } catch (error) {
-        }
 
         $scope.current_carousel_index = 0;
 
@@ -554,6 +550,13 @@ module.controller('Home', function ($rootScope, $scope) {
             }
 
         }, 200);
+
+        setTimeout(function(){
+            try {
+                navigator.splashscreen.hide();
+            } catch (error) {
+            }
+        }, 3000);
 
     });
 });
@@ -597,12 +600,14 @@ module.controller('Cities', function ($scope, service) {
                 new ImageLoader($(this), new Image());
             });
 
+        }, 200);
+
+        setTimeout(function(){
             try {
                 navigator.splashscreen.hide();
             } catch (error) {
             }
-
-        }, 200);
+        }, 3000);
 
     });
 });
