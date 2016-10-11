@@ -477,7 +477,7 @@ div.dropdown select {
 
 .plan-list-title h1, .plan-detail-title h1 {
     color: #fdfcfc;
-    text-shadow: 0.5px 0.5px 0.5px rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
     font-size: 18px;
     font-weight: bold;
     margin: 0;
