@@ -522,20 +522,16 @@ module.controller('Home', function ($rootScope, $scope) {
 
         $scope.current_carousel_index = 0;
 
-        setTimeout(function () {
+        if (!homeSliderInterval) {
+            homeSliderInterval = true;
 
-            $(mainNavigator.topPage).find('.preview').each(function () {
-                new ImageLoader($(this), new Image());
-            });
+            setTimeout(function(){
 
-            homeCarousel.on('postchange', function () {
+                homeCarousel.on('postchange', function () {
 
-                $scope.current_carousel_index = homeCarousel.getActiveIndex();
-                $scope.$digest();
-            });
-
-            if (!homeSliderInterval) {
-                homeSliderInterval = true;
+                    $scope.current_carousel_index = homeCarousel.getActiveIndex();
+                    $scope.$digest();
+                });
 
                 setInterval(function () {
                     if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
@@ -547,16 +543,25 @@ module.controller('Home', function ($rootScope, $scope) {
                         homeCarousel.next();
                     }
                 }, 5000);
-            }
 
-        }, 200);
+            }, 3000);
+        }
 
         setTimeout(function(){
+
+            $(mainNavigator.topPage).show();
+
+            $(mainNavigator.topPage).find('.preview').each(function () {
+                new ImageLoader($(this), new Image());
+            });
+
             try {
                 navigator.splashscreen.hide();
             } catch (error) {
             }
-        }, 3000);
+
+
+        }, 500);
 
     });
 });

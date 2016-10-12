@@ -21,6 +21,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'CenturyGothic-Bold';
+    src: url('fonts/CenturyGothic-Bold.eot?#iefix') format('embedded-opentype'),  url('fonts/CenturyGothic-Bold.woff') format('woff'), url('fonts/CenturyGothic-Bold.ttf')  format('truetype'), url('fonts/CenturyGothic-Bold.svg#CenturyGothic-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 * {
     font-family: 'RobotoSlab-Light';
@@ -485,7 +492,7 @@ div.dropdown select {
     line-height: 23px;
     text-align: left;
     text-transform: none;
-    font-family: 'CenturyGothic';
+    font-family: 'CenturyGothic-Bold';
     white-space: initial;
 }
 
