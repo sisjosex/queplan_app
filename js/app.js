@@ -566,7 +566,7 @@ module.controller('Home', function ($rootScope, $scope) {
     });
 });
 
-module.controller('Cities', function ($scope, service) {
+module.controller('Cities', function ($rootScope, $scope, service) {
 
     ons.ready(function () {
 
@@ -579,6 +579,10 @@ module.controller('Cities', function ($scope, service) {
             service.setCity({usuario_id: $scope.user.id, ciudad_id: id}, function (result) {
 
                 if (result.status == 'success') {
+
+                    saveUser(result.user);
+
+                    $rootScope.authenticate(function () {});
 
                     modal.hide();
 
