@@ -571,6 +571,7 @@ module.controller('Home', function ($rootScope, $scope) {
     });
 });
 
+var ciudadesIntervals = false;
 module.controller('Cities', function ($rootScope, $scope, service) {
 
     ons.ready(function () {
@@ -615,6 +616,17 @@ module.controller('Cities', function ($rootScope, $scope, service) {
             });
 
         }, 200);
+
+        if(!ciudadesIntervals) {
+
+            setInterval(function () {
+
+                $(mainNavigator.topPage).find('.preview').each(function () {
+                    new ImageLoader($(this), new Image());
+                });
+
+            }, 3000);
+        }
 
         setTimeout(function(){
             try {
