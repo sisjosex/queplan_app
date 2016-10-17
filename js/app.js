@@ -542,18 +542,23 @@ module.controller('Home', function ($rootScope, $scope) {
 
                         homeCarousel.next();
                     }
+
+                    $(mainNavigator.topPage).find('.preview').each(function () {
+                        new ImageLoader($(this), new Image());
+                    });
+
                 }, 5000);
 
             }, 3000);
         }
 
+        $(mainNavigator.topPage).find('.preview').each(function () {
+            new ImageLoader($(this), new Image());
+        });
+
         setTimeout(function(){
 
             $(mainNavigator.topPage).show();
-
-            $(mainNavigator.topPage).find('.preview').each(function () {
-                new ImageLoader($(this), new Image());
-            });
 
             try {
                 navigator.splashscreen.hide();
