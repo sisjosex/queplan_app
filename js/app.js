@@ -411,25 +411,29 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.initAppsFlyer = function() {
 
-            var args = {};
-            var devKey = "oTH8LDt5vHrRbhXqKHBeBP";   // your AppsFlyer devKey
-            //args.push(devKey);
-            args['devKey'] = devKey;
-            var userAgent = window.navigator.userAgent.toLowerCase();
+            if(window.plugins && window.plugins.appsFlyer) {
 
-            if (/iphone|ipad|ipod/.test( userAgent )) {
-                var appId = "766049348";            // your ios app id in app store
-                //args.push(appId);
-                args['appId'] = appId;
+                var args = {};
+                var devKey = "oTH8LDt5vHrRbhXqKHBeBP";   // your AppsFlyer devKey
+                //args.push(devKey);
+                args['devKey'] = devKey;
+                var userAgent = window.navigator.userAgent.toLowerCase();
+
+                if (/iphone|ipad|ipod/.test( userAgent )) {
+                    var appId = "766049348";            // your ios app id in app store
+                    //args.push(appId);
+                    args['appId'] = appId;
+                }
+                window.plugins.appsFlyer.initSdk(args, function(){
+
+                    console.log('app flyer initialized - success');
+
+                }, function(){
+
+                    console.log('app flyer initialized - falied');
+                });
             }
-            window.plugins.appsFlyer.initSdk(args, function(){
 
-                console.log('app flyer initialized - success');
-
-            }, function(){
-
-                console.log('app flyer initialized - falied');
-            });
         };
 
         $scope.deviceReady = false;
@@ -873,7 +877,26 @@ module.controller('DailyMenus', function ($scope, service) {
                     modal.hide();
 
                     if(result.items.length == 0) {
-                        alert('Lo sentimos, no tenemos menus para mostrar  ');
+
+                        if($scope.category_id != '') {
+
+                            alert(' ¡Ups! Todavía no tenemos ningún restaurante de esta categoría. ¡Prueba en otra!');
+
+                        } else {
+
+                            if($scope.menu_type == 'menu') {
+
+                                alert('¡Ups! Nuestros clientes hoy no han subido el menú del día. Puedes llamar al local para consultarlo.');
+
+                            } else if ($scope.menu_type == 'carta') {
+
+                                alert('¡Ups! No hay ninguna carta online en estos momentos.');
+
+                            } else {
+
+                                alert('¡Ups! Nuestros clientes hoy no han subido el menú del día. Puedes llamar al local para consultarlo.');
+                            }
+                        }
                     }
 
                     $scope.menus = result.items;
@@ -917,6 +940,18 @@ module.controller('MenuDetail', function ($scope, service) {
         $scope.menu = mainNavigator.pages[mainNavigator.pages.length - 1].data.menu;
 
         $scope.filterByType = function(type) {
+
+            var existMenus = $scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres;
+            var existsCarta = $scope.menu.carta.length > 0;
+
+            if(type == 'menu' && !existMenus) {
+
+                alert('¡Ups! Este restaurante todavía no ha subido el menú del día.');
+
+            } else if (type == 'carta' && !existsCarta) {
+
+                alert(' ¡Ups! Este restaurante todavía no tiene disponible su carta online.');
+            }
 
             $scope.menu_type = type;
         };
@@ -993,6 +1028,18 @@ module.controller('Local', function ($scope, service) {
         $scope.local_id = mainNavigator.pages[mainNavigator.pages.length - 1].data.local_id;
 
         $scope.filterByType = function(type) {
+
+            var existMenus = $scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres;
+            var existsCarta = $scope.local.carta.length > 0;
+
+            if(type == 'menu' && !existMenus) {
+
+                alert('¡Ups! Este restaurante todavía no ha subido el menú del día.');
+
+            } else if (type == 'carta' && !existsCarta) {
+
+                alert(' ¡Ups! Este restaurante todavía no tiene disponible su carta online.');
+            }
 
             $scope.section = type;
         };
@@ -1303,6 +1350,10 @@ module.controller('Locals', function ($scope, service) {
 
                     modal.hide();
                     $scope.locals = result.data;
+
+                    if(result.data.length == 0) {
+                        alert(' ¡Ups! Todavía no tenemos ningún restaurante de esta categoría. ¡Prueba en otra!');
+                    }
 
                     setTimeout(function () {
 

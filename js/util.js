@@ -15,7 +15,7 @@ function ImageLoader(preview, image) {
 
         self.preview.css('background-image', "url('" + self.image.src + "')");
         self.preview.css('background-repeat', "no-repeat");
-        self.preview.css('background-position', "center top");
+        self.preview.css('background-position', "center center");
 
         var width = image.width;
         var height = image.height;
