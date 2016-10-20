@@ -409,6 +409,29 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             })
         };
 
+        $rootScope.initAppsFlyer = function() {
+
+            var args = {};
+            var devKey = "oTH8LDt5vHrRbhXqKHBeBP";   // your AppsFlyer devKey
+            //args.push(devKey);
+            args['devKey'] = devKey;
+            var userAgent = window.navigator.userAgent.toLowerCase();
+
+            if (/iphone|ipad|ipod/.test( userAgent )) {
+                var appId = "766049348";            // your ios app id in app store
+                //args.push(appId);
+                args['appId'] = appId;
+            }
+            window.plugins.appsFlyer.initSdk(args, function(){
+
+                console.log('app flyer initialized - success');
+
+            }, function(){
+
+                console.log('app flyer initialized - falied');
+            });
+        };
+
         $scope.deviceReady = false;
 
         if (document.location.protocol == 'http:') {
@@ -458,6 +481,8 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 $rootScope.registerPushNotifications();
 
                 $rootScope.initGeolocation();
+
+                $rootScope.initAppsFlyer();
 
                 /*try {
                     StatusBar.hide();
