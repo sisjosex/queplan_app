@@ -595,7 +595,7 @@ module.controller('Home', function ($rootScope, $scope) {
             }
 
 
-        }, 500);
+        }, 3000);
 
     });
 });
