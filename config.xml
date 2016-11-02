@@ -211,10 +211,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 
-
-    <feature name="PushPlugin">
-        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
-    </feature>
-    <plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
 </widget>
