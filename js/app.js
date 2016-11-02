@@ -87,7 +87,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.call = function (phone) {
 
-            if(phone) {
+            if (phone) {
 
                 phonedialer.dial(
                     phone,
@@ -106,7 +106,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.share = function (data, type) {
 
-            if(type == 'plan') {
+            if (type == 'plan') {
 
                 var options = {
                     message: data.title, // not supported on some apps (Facebook, Instagram)
@@ -116,12 +116,12 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                     chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
                 };
 
-                var onSuccess = function(result) {
+                var onSuccess = function (result) {
                     console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
                     console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
                 };
 
-                var onError = function(msg) {
+                var onError = function (msg) {
                     console.log("Sharing failed with message: " + msg);
                 };
 
@@ -129,17 +129,17 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             }
         };
 
-        $rootScope.initGeolocation = function() {
+        $rootScope.initGeolocation = function () {
 
-            var onSuccess = function(position) {
-                console.log('Latitude: '          + position.coords.latitude          + '\n' +
-                    'Longitude: '         + position.coords.longitude         + '\n' +
-                    'Altitude: '          + position.coords.altitude          + '\n' +
-                    'Accuracy: '          + position.coords.accuracy          + '\n' +
-                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-                    'Heading: '           + position.coords.heading           + '\n' +
-                    'Speed: '             + position.coords.speed             + '\n' +
-                    'Timestamp: '         + position.timestamp                + '\n');
+            var onSuccess = function (position) {
+                console.log('Latitude: ' + position.coords.latitude + '\n' +
+                    'Longitude: ' + position.coords.longitude + '\n' +
+                    'Altitude: ' + position.coords.altitude + '\n' +
+                    'Accuracy: ' + position.coords.accuracy + '\n' +
+                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                    'Heading: ' + position.coords.heading + '\n' +
+                    'Speed: ' + position.coords.speed + '\n' +
+                    'Timestamp: ' + position.timestamp + '\n');
 
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
@@ -149,7 +149,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             };
 
             // notificar si esta cerca de algun local
-            var onSuccessTracking = function(position) {
+            var onSuccessTracking = function (position) {
 
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
@@ -175,7 +175,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             // onError Callback receives a PositionError object
             //
             function onError(error) {
-                console.log('code: '    + error.code    + '\n' +
+                console.log('code: ' + error.code + '\n' +
                     'message: ' + error.message + '\n');
             }
 
@@ -183,7 +183,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             var watchId = navigator.geolocation.watchPosition(onSuccessTracking,
                 onError,
-                { timeout: 30000 });
+                {timeout: 30000});
         };
 
         $rootScope.shareByEmail = function (message) {
@@ -215,20 +215,20 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             return $sce.trustAsResourceUrl(src);
         };
 
-        $rootScope.openPage = function(url) {
+        $rootScope.openPage = function (url) {
             var ref = window.open(url, '_blank', 'location=no,closebuttoncaption=Cerrar');
         };
 
-        $rootScope.openLocation = function(data) {
+        $rootScope.openLocation = function (data) {
             /*
-            z is the zoom level (1-20)
-            t is the map type ("m" map, "k" satellite, "h" hybrid, "p" terrain, "e" GoogleEarth)
-            q is the search query, if it is prefixed by loc: then google assumes it is a lat lon separated by a +
-                */
+             z is the zoom level (1-20)
+             t is the map type ("m" map, "k" satellite, "h" hybrid, "p" terrain, "e" GoogleEarth)
+             q is the search query, if it is prefixed by loc: then google assumes it is a lat lon separated by a +
+             */
             var ref = window.open('http://maps.google.com/maps?z=12&t=m&q=loc:' + data.latitud + '+' + data.longitud, '_blank', 'location=no,closebuttoncaption=Cerrar');
         };
 
-        $rootScope.loQuiero = function(plan_id, local_id) {
+        $rootScope.loQuiero = function (plan_id, local_id) {
 
             service.loQuiero({promocion_id: plan_id, local_id: local_id, usuario_id: getUser().id}, function (result) {
 
@@ -246,9 +246,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
         };
 
 
-        $rootScope.registerPushNotifications = function() {
+        $rootScope.registerPushNotifications = function () {
 
-            if(window.PushNotification) {
+            if (window.PushNotification) {
 
                 var push = PushNotification.init({
                     android: {
@@ -261,27 +261,28 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                     }
                 });
 
-                push.on('registration', function(token) {
+                push.on('registration', function (token) {
 
                     token_notificacion = token.registrationId;
 
                     localStorage.getItem('queplan_push_token', token_notificacion);
 
-                    $rootScope.authenticate(function () {});
+                    $rootScope.authenticate(function () {
+                    });
                 });
 
-                push.on('notification', function(data) {
+                push.on('notification', function (data) {
 
-                    var message     = data.message;
-                    var seccion     = data.seccion;
-                    var seccion_id  = data.seccion_id;
+                    var message = data.message;
+                    var seccion = data.seccion;
+                    var seccion_id = data.seccion_id;
 
                     console.log(data);
 
-                    if(data.additionalData.seccion) {
+                    if (data.additionalData.seccion) {
 
-                        confirm(message, function(result){
-                            if(result == 0) {
+                        confirm(message, function (result) {
+                            if (result == 0) {
                                 $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
                             }
                         });
@@ -293,14 +294,14 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 });
 
-                push.on('error', function(e) {
+                push.on('error', function (e) {
                     console.log(e.message);
                 });
             }
         };
 
 
-        $rootScope.redirectToPage = function(seccion, id) {
+        $rootScope.redirectToPage = function (seccion, id) {
 
             if (seccion == "local") {
 
@@ -310,7 +311,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                     current_page = '';
 
-                    mainNavigator.pushPage('locals.html', {data:{category_id: id}});
+                    mainNavigator.pushPage('locals.html', {data: {category_id: id}});
 
                 } else {
 
@@ -337,9 +338,13 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 } else {
 
-                    mainNavigator.pushPage('menu_detail.html', {data:{menu: {
-                        id: id
-                    }}});
+                    mainNavigator.pushPage('menu_detail.html', {
+                        data: {
+                            menu: {
+                                id: id
+                            }
+                        }
+                    });
                 }
 
             } else if (seccion == "guia") {
@@ -350,7 +355,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 } else {
 
-                    mainNavigator.pushPage('locals.html', {data:{category_id: id}});
+                    mainNavigator.pushPage('locals.html', {data: {category_id: id}});
                 }
             }
         };
@@ -358,23 +363,23 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.goToLocal = function (id, type) {
 
-            if(type == undefined || type == 'restaurant') {
+            if (type == undefined || type == 'restaurant') {
 
-                mainNavigator.pushPage('local_restaurant.html', {data:{local_id: id}});
+                mainNavigator.pushPage('local_restaurant.html', {data: {local_id: id}});
 
-            } else if(type == 'shopping') {
+            } else if (type == 'shopping') {
 
-                mainNavigator.pushPage('local_shop.html', {data:{local_id: id}});
+                mainNavigator.pushPage('local_shop.html', {data: {local_id: id}});
 
-            } else if(type == 'other') {
+            } else if (type == 'other') {
 
-                mainNavigator.pushPage('local_other.html', {data:{local_id: id}});
+                mainNavigator.pushPage('local_other.html', {data: {local_id: id}});
             }
         };
 
-        $scope.goToPlan = function(plan_id) {
+        $scope.goToPlan = function (plan_id) {
 
-            mainNavigator.pushPage('plan.html', {data:{plan_id: plan_id}});
+            mainNavigator.pushPage('plan.html', {data: {plan_id: plan_id}});
         };
 
         $rootScope.goToPlan = function (id) {
@@ -409,9 +414,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             })
         };
 
-        $rootScope.initAppsFlyer = function() {
+        $rootScope.initAppsFlyer = function () {
 
-            if(window.plugins && window.plugins.appsFlyer) {
+            if (window.plugins && window.plugins.appsFlyer) {
 
                 var args = {};
                 var devKey = "oTH8LDt5vHrRbhXqKHBeBP";   // your AppsFlyer devKey
@@ -419,16 +424,16 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 args['devKey'] = devKey;
                 var userAgent = window.navigator.userAgent.toLowerCase();
 
-                if (/iphone|ipad|ipod/.test( userAgent )) {
+                if (/iphone|ipad|ipod/.test(userAgent)) {
                     var appId = "766049348";            // your ios app id in app store
                     //args.push(appId);
                     args['appId'] = appId;
                 }
-                window.plugins.appsFlyer.initSdk(args, function(){
+                window.plugins.appsFlyer.initSdk(args, function () {
 
                     console.log('app flyer initialized - success');
 
-                }, function(){
+                }, function () {
 
                     console.log('app flyer initialized - falied');
                 });
@@ -489,9 +494,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 $rootScope.initAppsFlyer();
 
                 /*try {
-                    StatusBar.hide();
-                } catch (error) {
-                }*/
+                 StatusBar.hide();
+                 } catch (error) {
+                 }*/
 
             });
         }
@@ -536,11 +541,11 @@ module.controller('Home', function ($rootScope, $scope) {
             mainNavigator.pushPage('guia.html');
         };
 
-        $scope.gotoDailyMenus = function() {
+        $scope.gotoDailyMenus = function () {
             mainNavigator.pushPage('daily_menus.html');
         };
 
-        $scope.gotoComoFunciona = function() {
+        $scope.gotoComoFunciona = function () {
             mainNavigator.pushPage('como_funciona.html');
         };
 
@@ -552,44 +557,42 @@ module.controller('Home', function ($rootScope, $scope) {
         $scope.current_carousel_index = 0;
 
 
+        setTimeout(function () {
 
-            setTimeout(function(){
+            //$(mainNavigator.topPage).show();
 
-                $(mainNavigator.topPage).show();
+            $('.preview').each(function () {
+                new ImageLoader($(this), new Image(), function () {
 
-                $('.preview').each(function () {
-                    new ImageLoader($(this), new Image(), function(){
+                    homeCarousel.on('postchange', function () {
 
-                        try {
-                            navigator.splashscreen.hide();
-                        } catch (error) {
-                        }
-
-
-                        homeCarousel.on('postchange', function () {
-
-                            $scope.current_carousel_index = homeCarousel.getActiveIndex();
-                            $scope.$digest();
-                        });
-
-                        if (!homeSliderInterval) {
-                            homeSliderInterval = true;
-
-                            setInterval(function () {
-                                if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
-
-                                    homeCarousel.first();
-
-                                } else {
-
-                                    homeCarousel.next();
-                                }
-
-                            }, 5000);
-                        }
+                        $scope.current_carousel_index = homeCarousel.getActiveIndex();
+                        $scope.$digest();
                     });
+
+                    if (!homeSliderInterval) {
+                        homeSliderInterval = true;
+
+                        setInterval(function () {
+                            if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
+
+                                homeCarousel.first();
+
+                            } else {
+
+                                homeCarousel.next();
+                            }
+
+                        }, 5000);
+                    }
+
+                    try {
+                        navigator.splashscreen.hide();
+                    } catch (error) {
+                    }
                 });
-        }
+            });
+        }, 1000);
 
     });
 });
@@ -611,7 +614,8 @@ module.controller('Cities', function ($rootScope, $scope, service) {
 
                     saveUser(result.user);
 
-                    $rootScope.authenticate(function () {});
+                    $rootScope.authenticate(function () {
+                    });
 
                     modal.hide();
 
@@ -640,7 +644,7 @@ module.controller('Cities', function ($rootScope, $scope, service) {
 
         }, 200);
 
-        if(!ciudadesIntervals) {
+        if (!ciudadesIntervals) {
 
             setInterval(function () {
 
@@ -651,7 +655,7 @@ module.controller('Cities', function ($rootScope, $scope, service) {
             }, 3000);
         }
 
-        setTimeout(function(){
+        setTimeout(function () {
             try {
                 navigator.splashscreen.hide();
             } catch (error) {
@@ -839,7 +843,7 @@ module.controller('DailyMenus', function ($scope, service) {
         $scope.category_id = '';
         $scope.menu_type = '';
 
-        $scope.search = function(category_id) {
+        $scope.search = function (category_id) {
 
             $scope.category_id = category_id;
 
@@ -848,37 +852,42 @@ module.controller('DailyMenus', function ($scope, service) {
             $scope.getMenus();
         };
 
-        $scope.filterByType = function(type) {
+        $scope.filterByType = function (type) {
 
             $scope.menu_type = type;
 
             $scope.getMenus();
         };
 
-        $scope.goToMenuDetail = function(menu) {
+        $scope.goToMenuDetail = function (menu) {
 
-            mainNavigator.pushPage('menu_detail.html', {data:{menu: menu}});
+            mainNavigator.pushPage('menu_detail.html', {data: {menu: menu}});
         };
 
         $scope.getMenus = function () {
 
             modal.show();
 
-            service.getMenus({usuario_id: getUser().id, ciudad_id: getUser().ciudad_id, category_id: $scope.category_id, menu_type: $scope.menu_type}, function (result) {
+            service.getMenus({
+                usuario_id: getUser().id,
+                ciudad_id: getUser().ciudad_id,
+                category_id: $scope.category_id,
+                menu_type: $scope.menu_type
+            }, function (result) {
 
                 if (result.status == 'success') {
 
                     modal.hide();
 
-                    if(result.items.length == 0) {
+                    if (result.items.length == 0) {
 
-                        if($scope.category_id != '') {
+                        if ($scope.category_id != '') {
 
                             alert(' ¡Ups! Todavía no tenemos ningún restaurante de esta categoría. ¡Prueba en otra!');
 
                         } else {
 
-                            if($scope.menu_type == 'menu') {
+                            if ($scope.menu_type == 'menu') {
 
                                 alert('¡Ups! Nuestros clientes hoy no han subido el menú del día. Puedes llamar al local para consultarlo.');
 
@@ -933,12 +942,12 @@ module.controller('MenuDetail', function ($scope, service) {
 
         $scope.menu = mainNavigator.pages[mainNavigator.pages.length - 1].data.menu;
 
-        $scope.filterByType = function(type) {
+        $scope.filterByType = function (type) {
 
             var existMenus = $scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres;
             var existsCarta = $scope.menu.carta.length > 0;
 
-            if(type == 'menu' && !existMenus) {
+            if (type == 'menu' && !existMenus) {
 
                 alert('¡Ups! Este restaurante todavía no ha subido el menú del día.');
 
@@ -993,9 +1002,9 @@ module.controller('MenuDetail', function ($scope, service) {
 
             var list = mainNavigator.topPage.querySelector(".page__content");
 
-            list.addEventListener("scroll", function(event) {
+            list.addEventListener("scroll", function (event) {
 
-                if(list.scrollTop > 200) {
+                if (list.scrollTop > 200) {
 
                     $(mainNavigator.topPage).addClass('scrolled');
 
@@ -1021,12 +1030,12 @@ module.controller('Local', function ($scope, service) {
 
         $scope.local_id = mainNavigator.pages[mainNavigator.pages.length - 1].data.local_id;
 
-        $scope.filterByType = function(type) {
+        $scope.filterByType = function (type) {
 
             var existMenus = $scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres;
             var existsCarta = $scope.local.carta.length > 0;
 
-            if(type == 'menu' && !existMenus) {
+            if (type == 'menu' && !existMenus) {
 
                 alert('¡Ups! Este restaurante todavía no ha subido el menú del día.');
 
@@ -1087,9 +1096,9 @@ module.controller('Local', function ($scope, service) {
 
             var list = mainNavigator.topPage.querySelector(".page__content");
 
-            list.addEventListener("scroll", function(event) {
+            list.addEventListener("scroll", function (event) {
 
-                if(list.scrollTop > 200) {
+                if (list.scrollTop > 200) {
 
                     $(mainNavigator.topPage).addClass('scrolled');
 
@@ -1113,7 +1122,7 @@ module.controller('Plans', function ($scope, service) {
         $scope.category_id = '';
         $scope.menu_type = '';
 
-        $scope.search = function(category_id) {
+        $scope.search = function (category_id) {
 
             $scope.category_id = category_id;
 
@@ -1122,7 +1131,7 @@ module.controller('Plans', function ($scope, service) {
             $scope.getPlans();
         };
 
-        $scope.filterByType = function(type) {
+        $scope.filterByType = function (type) {
 
             $scope.menu_type = type;
 
@@ -1133,18 +1142,23 @@ module.controller('Plans', function ($scope, service) {
 
             modal.show();
 
-            service.getPlans({usuario_id: getUser().id, ciudad_id: getUser().ciudad_id, category_id: $scope.category_id, menu_type: $scope.menu_type}, function (result) {
+            service.getPlans({
+                usuario_id: getUser().id,
+                ciudad_id: getUser().ciudad_id,
+                category_id: $scope.category_id,
+                menu_type: $scope.menu_type
+            }, function (result) {
 
                 if (result.status == 'success') {
 
                     modal.hide();
 
-                    if(result.items.length == 0) {
+                    if (result.items.length == 0) {
                         alert('Lo sentimos, no tenemos planes para mostrar  ');
                     }
 
                     $scope.plans = result.items;
-                    if( $scope.categories.length == 0 ) {
+                    if ($scope.categories.length == 0) {
                         $scope.categories = result.categorias;
                     }
 
@@ -1227,9 +1241,9 @@ module.controller('Plan', function ($scope, service) {
 
             var list = mainNavigator.topPage.querySelector(".page__content");
 
-            list.addEventListener("scroll", function(event) {
+            list.addEventListener("scroll", function (event) {
 
-                if(list.scrollTop > 150) {
+                if (list.scrollTop > 150) {
 
                     $(mainNavigator.topPage).addClass('scrolled');
 
@@ -1250,7 +1264,7 @@ module.controller('ComoFunciona', function ($rootScope, $scope, service) {
 
         $scope.como_funciona = $rootScope.params.como_funciona;
 
-        $scope.goToComoFuncionaDetalle = function(index) {
+        $scope.goToComoFuncionaDetalle = function (index) {
 
             mainNavigator.pushPage('como_funciona_detalle.html', {data: {index: index}});
         };
@@ -1273,12 +1287,12 @@ module.controller('Guia', function ($scope, service) {
         $scope.guia = [];
         $scope.category_id = mainNavigator.pages[mainNavigator.pages.length - 1].data ? mainNavigator.pages[mainNavigator.pages.length - 1].data.category_id : '';
 
-        $scope.goToGuiaDetail = function(menu) {
+        $scope.goToGuiaDetail = function (menu) {
 
-            if(menu.subcategory == 0) {
-                mainNavigator.pushPage('locals.html', {data:{category_id: menu.id}});
+            if (menu.subcategory == 0) {
+                mainNavigator.pushPage('locals.html', {data: {category_id: menu.id}});
             } else {
-                mainNavigator.pushPage('guia.html', {data:{category_id: menu.id}});
+                mainNavigator.pushPage('guia.html', {data: {category_id: menu.id}});
             }
         };
 
@@ -1329,7 +1343,7 @@ module.controller('Locals', function ($scope, service) {
         $scope.locals = [];
         $scope.category_id = mainNavigator.pages[mainNavigator.pages.length - 1].data ? mainNavigator.pages[mainNavigator.pages.length - 1].data.category_id : '';
 
-        $scope.redirectToLocalDetail = function(local) {
+        $scope.redirectToLocalDetail = function (local) {
 
             $scope.goToLocal(local.local_id, local.type);
         };
@@ -1345,7 +1359,7 @@ module.controller('Locals', function ($scope, service) {
                     modal.hide();
                     $scope.locals = result.data;
 
-                    if(result.data.length == 0) {
+                    if (result.data.length == 0) {
                         alert(' ¡Ups! Todavía no tenemos ningún restaurante de esta categoría. ¡Prueba en otra!');
                     }
 
