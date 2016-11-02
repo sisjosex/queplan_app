@@ -639,28 +639,16 @@ module.controller('Cities', function ($rootScope, $scope, service) {
         setTimeout(function () {
 
             $(mainNavigator.topPage).find('.preview').each(function () {
-                new ImageLoader($(this), new Image());
+                new ImageLoader($(this), new Image(), function(){
+
+                    try {
+                        navigator.splashscreen.hide();
+                    } catch (error) {
+                    }
+                });
             });
 
-        }, 200);
-
-        if (!ciudadesIntervals) {
-
-            setInterval(function () {
-
-                $(mainNavigator.topPage).find('.preview').each(function () {
-                    new ImageLoader($(this), new Image());
-                });
-
-            }, 3000);
-        }
-
-        setTimeout(function () {
-            try {
-                navigator.splashscreen.hide();
-            } catch (error) {
-            }
-        }, 3000);
+        }, 1000);
 
     });
 });
