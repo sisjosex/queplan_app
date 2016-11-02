@@ -1,5 +1,5 @@
 
-function ImageLoader(preview, image) {
+function ImageLoader(preview, image, callback) {
 
     var self = this;
 
@@ -65,5 +65,7 @@ function ImageLoader(preview, image) {
         //self.preview.css('background-size', 'cover');
 
         self.preview.addClass('loaded');
+
+        callback ? callback() : '';
     }
 }

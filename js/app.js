@@ -551,51 +551,45 @@ module.controller('Home', function ($rootScope, $scope) {
 
         $scope.current_carousel_index = 0;
 
-        if (!homeSliderInterval) {
-            homeSliderInterval = true;
+
 
             setTimeout(function(){
 
-                homeCarousel.on('postchange', function () {
-
-                    $scope.current_carousel_index = homeCarousel.getActiveIndex();
-                    $scope.$digest();
-                });
-
-                setInterval(function () {
-                    if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
-
-                        homeCarousel.first();
-
-                    } else {
-
-                        homeCarousel.next();
-                    }
-
-                }, 5000);
-
-            }, 3000);
-
-            setTimeout(function(){
+                $(mainNavigator.topPage).show();
 
                 $('.preview').each(function () {
-                    new ImageLoader($(this), new Image());
+                    new ImageLoader($(this), new Image(), function(){
+
+                        try {
+                            navigator.splashscreen.hide();
+                        } catch (error) {
+                        }
+
+
+                        homeCarousel.on('postchange', function () {
+
+                            $scope.current_carousel_index = homeCarousel.getActiveIndex();
+                            $scope.$digest();
+                        });
+
+                        if (!homeSliderInterval) {
+                            homeSliderInterval = true;
+
+                            setInterval(function () {
+                                if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
+
+                                    homeCarousel.first();
+
+                                } else {
+
+                                    homeCarousel.next();
+                                }
+
+                            }, 5000);
+                        }
+                    });
                 });
-
-            }, 1000);
         }
-
-        setTimeout(function(){
-
-            $(mainNavigator.topPage).show();
-
-            try {
-                navigator.splashscreen.hide();
-            } catch (error) {
-            }
-
-
-        }, 3000);
 
     });
 });
