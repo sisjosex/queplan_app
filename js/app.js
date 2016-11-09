@@ -108,12 +108,20 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             if (type == 'plan') {
 
-                var options = {
+                var html = data.descripcion;
+                var div = document.createElement("div");
+                div.innerHTML = html;
+
+                //window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl');
+
+                window.plugins.socialsharing.share(data.title + ' ' + div.innerText, null, data.image, null);
+
+                /*var options = {
                     message: data.title + ' ' + div.innerText, // not supported on some apps (Facebook, Instagram)
                     subject: data.fecha, // fi. for email
                     files: [data.image],
                     //files: ['', ''], // an array of filenames either locally or remotely
-                    url: 'http://web.queplanmadrid.es/',
+                    //url: 'http://web.queplanmadrid.es/',
                     chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
                 };
 
@@ -127,6 +135,8 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 };
 
                 window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+
+                */
             }
         };
 
