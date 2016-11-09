@@ -955,3 +955,7 @@ s
     white-space: normal;
     text-overflow: clip;
 }
+
+.notification-box .preview {
+    height: 200px;
+}
