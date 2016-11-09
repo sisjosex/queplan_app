@@ -109,8 +109,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             if (type == 'plan') {
 
                 var options = {
-                    message: data.title, // not supported on some apps (Facebook, Instagram)
+                    message: data.title + ' ' + div.innerText, // not supported on some apps (Facebook, Instagram)
                     subject: data.fecha, // fi. for email
+                    files: [data.image],
                     //files: ['', ''], // an array of filenames either locally or remotely
                     url: 'http://web.queplanmadrid.es/',
                     chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
