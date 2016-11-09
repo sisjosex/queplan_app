@@ -496,9 +496,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                         mainNavigator.pushPage('home.html', {animation: 'none'});
                     }
-                });
 
-                $rootScope.registerPushNotifications();
+                    $rootScope.registerPushNotifications();
+                });
 
                 $rootScope.initGeolocation();
 
