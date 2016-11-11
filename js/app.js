@@ -261,7 +261,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
         $rootScope.registerPushNotifications = function () {
 
             var notificationOpenedCallback = function(data) {
-                console.log('notificationOpenedCallback: ' + JSON.stringify(data));
+
+                data = data.notification.payload.additionalData;
+
+                console.log(data);
 
                 var message = data.message;
                 var seccion = data.seccion;
@@ -269,13 +272,15 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 console.log(data);
 
-                if (data.additionalData.seccion) {
+                if (data.seccion) {
 
-                    confirm(message, function (result) {
+                    /*confirm(message, function (result) {
                         if (result == 0) {
-                            $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
+                            $rootScope.redirectToPage(data.seccion, data.seccion_id);
                         }
-                    });
+                    });*/
+
+                    $rootScope.redirectToPage(data.seccion, data.seccion_id);
 
                 } else {
 
@@ -290,7 +295,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             window.plugins.OneSignal.getIds(function(ids) {
                 console.log('getIds: ' + JSON.stringify(ids));
-                alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+                //alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
 
                 token_notificacion = ids.pushToken;
                 onesignal_id = ids.userId;
