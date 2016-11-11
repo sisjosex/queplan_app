@@ -69,6 +69,7 @@ function checkParams(params) {
     params.d_name = device.platform === 'android' || device.platform === 'Android' ? 'android' : 'iphone';
     params.device_uuid = device.uuid;
     params.token_notificacion = token_notificacion;
+    params.onesignal_id = onesignal_id;
     params.lat1 = latitude;
     params.lon1 = longitude;
 

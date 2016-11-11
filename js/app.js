@@ -8,6 +8,7 @@ var user;
 var user_storage_key = 'queplanapp_user';
 var currentNavigator = undefined;
 var token_notificacion;
+var onesignal_id;
 var latitude;
 var longitude;
 var lang = {
@@ -259,7 +260,48 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.registerPushNotifications = function () {
 
-            if (window.PushNotification) {
+            var notificationOpenedCallback = function(data) {
+                console.log('notificationOpenedCallback: ' + JSON.stringify(data));
+
+                var message = data.message;
+                var seccion = data.seccion;
+                var seccion_id = data.seccion_id;
+
+                console.log(data);
+
+                if (data.additionalData.seccion) {
+
+                    confirm(message, function (result) {
+                        if (result == 0) {
+                            $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
+                        }
+                    });
+
+                } else {
+
+                    alert(message);
+                }
+            };
+
+            window.plugins.OneSignal
+                .startInit("4f0e2abf-c329-4f06-b3cd-64b54eaa05cc", "671857502263")
+                .handleNotificationOpened(notificationOpenedCallback)
+                .endInit();
+
+            window.plugins.OneSignal.getIds(function(ids) {
+                console.log('getIds: ' + JSON.stringify(ids));
+                alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+
+                token_notificacion = ids.pushToken;
+                onesignal_id = ids.userId;
+
+                localStorage.setItem('queplan_push_token', token_notificacion);
+
+                $rootScope.authenticate(function () {
+                });
+            });
+
+            /*if (window.PushNotification) {
 
                 var push = PushNotification.init({
                     android: {
@@ -308,7 +350,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 push.on('error', function (e) {
                     console.log(e.message);
                 });
-            }
+            }*/
         };
 
 

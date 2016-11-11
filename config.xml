@@ -188,6 +188,8 @@
         <param name="SENDER_ID" value="51393321226" />
     </plugin>
 
+    <plugin name="onesignal-cordova-plugin"></plugin>
+
     <!-- pushNotification -->
     <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />-->
 
