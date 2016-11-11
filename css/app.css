@@ -959,3 +959,7 @@ s
 .notification-box .preview {
     height: 200px;
 }
+
+.home .btn-with-icon {
+    height:45px;
+}

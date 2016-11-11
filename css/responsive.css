@@ -45,4 +45,12 @@
         max-width: 100px;
         min-width: 100px;
     }
+
+    .home .btn-with-icon {
+        height:35px;
+    }
+
+    .btn-with-icon img {
+        width: 20px;
+    }
 }
