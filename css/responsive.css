@@ -9,6 +9,11 @@
     .btn-with-icon.map img {
         width: 35px;
     }
+
+    .button, .bottom-toolbar .button {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media all and (max-width:320px) {
