@@ -194,7 +194,7 @@
     <!--<gap:plugin name="com.ams.plugins.barcodescanner" version="2.0.1" />-->
 
     <!-- PhoneDialer -->
-    <gap:plugin name="https://github.com/anemitoff/PhoneGap-PhoneDialer.git " version="git" />
+    <!--<gap:plugin name="https://github.com/anemitoff/PhoneGap-PhoneDialer.git " version="git" />-->
 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
