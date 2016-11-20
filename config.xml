@@ -188,7 +188,7 @@
         <param name="SENDER_ID" value="51393321226" />
     </plugin>
 
-    <plugin name="https://github.com/OneSignal/OneSignal-Cordova-SDK.git" source="git"></plugin>
+    <!--<plugin name="https://github.com/OneSignal/OneSignal-Cordova-SDK.git" source="git"></plugin>-->
 
     <!-- pushNotification -->
     <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />-->
