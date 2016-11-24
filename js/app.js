@@ -990,7 +990,7 @@ module.controller('MenuDetail', function ($scope, service) {
 
         $scope.filterByType = function (type) {
 
-            var existMenus = $scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres;
+            var existMenus = $scope.menu.menu && ($scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres);
             var existsCarta = $scope.menu.carta.length > 0;
 
             if (type == 'menu' && !existMenus) {
@@ -1078,7 +1078,7 @@ module.controller('Local', function ($scope, service) {
 
         $scope.filterByType = function (type) {
 
-            var existMenus = $scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres;
+            var existMenus = $scope.local.menu && ($scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres);
             var existsCarta = $scope.local.carta.length > 0;
 
             if (type == 'menu' && !existMenus) {

@@ -63,13 +63,15 @@
     <ons-page ng-controller="Home" class="home fullscreen">
         <ons-toolbar class="toolbar-transparent">
             <div class="left">
-                <ons-button ng-click="goToProfile()"><img class="header-icon" src="img/icon_profile.png" alt="">
+                <ons-button ng-click="goToProfile()"><img class="header-icon" src="img/icon_profile.png" alt="" style="padding-left:10px;">
                 </ons-button>
             </div>
             <div class="center"></div>
             <div class="right">
-                <ons-button ng-click="goToNotifications()"><img class="header-icon" src="img/icon_notification.png"
-                                                                alt=""></ons-button>
+                <ons-button ng-click="goToNotifications()" class="badge-item" style="padding-right:10px;padding-left: 10px;">
+                    <span class="badge">{{ params.total_alertas }}</span>
+                    <img class="header-icon" src="img/icon_notification.png" alt="">
+                </ons-button>
             </div>
         </ons-toolbar>
 
