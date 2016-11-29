@@ -181,9 +181,9 @@
     <plugin name="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
     <!--<plugin name="nl.x-services.plugins.socialsharing" source="pgb" />-->
 
-    <plugin name="phonegap-plugin-push">
+    <!--<plugin name="phonegap-plugin-push">
         <param name="SENDER_ID" value="51393321226" />
-    </plugin>
+    </plugin>-->
 
     <!--<plugin name="https://github.com/OneSignal/OneSignal-Cordova-SDK.git" source="git"></plugin>-->
 
