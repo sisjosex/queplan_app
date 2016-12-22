@@ -44,6 +44,12 @@ angular.module("services", []).factory("service", [ "$http", "$q", function($htt
         checkDistance: function(params, success, error) {
             $http({method: 'JSONP', url: API_URL + 'checkDistance/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
         },
+        getGalerias: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'getGalerias/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
+        getFotosGaleria: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'getFotosGaleria/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
     };
 } ]);
 

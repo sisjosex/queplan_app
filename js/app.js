@@ -86,6 +86,11 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             //PhotoViewer.show(url, '', {share:false, done: 'Cerrar'});
         };
 
+        $rootScope.showImage2 = function (url) {
+
+            PhotoViewer.show(url, '', {share:false, done: 'Cerrar'});
+        };
+
         $rootScope.call = function (phone) {
 
             if (phone) {
@@ -792,6 +797,11 @@ module.controller('Profile', function ($rootScope, $scope, service) {
             $scope.alertas_on_off_text = 'Recibir notificaciones';
         }
 
+        $scope.goToGalerias = function (id, type) {
+
+            mainNavigator.pushPage('galerias.html');
+        };
+
         $scope.setCity = function () {
 
             modal.show();
@@ -877,6 +887,124 @@ module.controller('Profile', function ($rootScope, $scope, service) {
             });
         }
 
+    });
+});
+
+module.controller('Galerias', function ($scope, service) {
+
+    ons.ready(function () {
+
+        $scope.galerias = [];
+
+        $scope.goToGaleriaDetalle = function(galeria) {
+
+            mainNavigator.pushPage('galeria_detalle.html', {data: {galeria: galeria}});
+        };
+
+        $scope.getGalerias = function () {
+
+            modal.show();
+
+            service.getGalerias({
+                usuario_id: getUser().id,
+                ciudad_id: getUser().ciudad_id
+            }, function (result) {
+
+                if (result.status == 'success') {
+
+                    modal.hide();
+
+                    if (result.data.length == 0) {
+
+                        alert('¡Ups! No hay galerias en estos momentos.');
+                    }
+
+                    $scope.galerias = result.data;
+
+                    setTimeout(function () {
+
+                        $(mainNavigator.topPage).find('.preview').each(function () {
+                            new ImageLoader($(this), new Image());
+                        });
+
+                    }, 200);
+
+                } else {
+
+                    modal.hide();
+
+                    alert(result.message);
+                }
+
+            }, function () {
+
+                modal.hide();
+
+                alert('No se pudo conectar con el servidor');
+            });
+        };
+
+        setTimeout(function () {
+            $scope.getGalerias();
+        }, 600);
+    });
+});
+
+module.controller('GaleriaDetalle', function ($scope, service) {
+
+    ons.ready(function () {
+
+        $scope.galeria = mainNavigator.pages[mainNavigator.pages.length - 1].data.galeria;
+
+        $scope.fotos = [];
+
+        $scope.getFotosGaleria = function () {
+
+            modal.show();
+
+            service.getFotosGaleria({
+                usuario_id: getUser().id,
+                ciudad_id: getUser().ciudad_id,
+                galeria_id: $scope.galeria.id
+            }, function (result) {
+
+                if (result.status == 'success') {
+
+                    modal.hide();
+
+                    if (result.data.length == 0) {
+
+                        alert('¡Ups! No hay fotos en estos momentos.');
+                    }
+
+                    $scope.fotos = result.data;
+
+                    setTimeout(function () {
+
+                        $(mainNavigator.topPage).find('.preview').each(function () {
+                            new ImageLoader($(this), new Image());
+                        });
+
+                    }, 200);
+
+                } else {
+
+                    modal.hide();
+
+                    alert(result.message);
+                }
+
+            }, function () {
+
+                modal.hide();
+
+                alert('No se pudo conectar con el servidor');
+            });
+        };
+
+        setTimeout(function () {
+            $scope.getFotosGaleria();
+        }, 600);
     });
 });
 

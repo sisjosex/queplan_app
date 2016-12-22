@@ -157,7 +157,7 @@
 
         <div class="profile-content">
             <div class="horizontal">
-                <div id="btnAlertas" class="button btn-with-icon" ng-click="onOffNotifications()">
+                <div id="btnAlertas" class="button btn-with-icon btn-fullwidth" ng-click="onOffNotifications()">
                     <img src="img/notificaciones.png" alt="">
                     <span class="text">{{ alertas_on_off_text }}</span>
                 </div>
@@ -178,9 +178,130 @@
                     </div>
                 </div>
             </div>
+
+            <div class="horizontal">
+                <div class="button btn-with-icon btn-fullwidth" ng-click="goToGalerias()">
+                    <img src="img/icon_galerias.jpg" alt="">
+                    <span class="text">VER GALERÍAS DE FOTOS</span>
+                </div>
+            </div>
         </div>
 
     </ons-page>
+</ons-template>
+
+<ons-template id="galerias.html">
+    <ons-splitter ng-controller="Galerias" class="plans galerias">
+        <ons-splitter-content>
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button><img class="header-icon" src="img/back.png" alt=""></ons-back-button>
+                    </div>
+                    <div class="center">
+                        <img src="img/logo-header.png" alt="">
+                    </div>
+                    <div class="right">
+                        <!--<ons-button ng-click="rightSplitter.toggle()"><img class="header-icon" src="img/icon_search.png"
+                                                                           alt=""></ons-button>-->
+                    </div>
+                </ons-toolbar>
+
+                <ons-list class="plan-list">
+                    <ons-list-item class="plan-box galeria-box preview" ng-repeat="item in galerias track by $index" src="{{ trustSrc(item.image) }}"
+                                   ng-click="goToGaleriaDetalle(item)">
+                        <div class="plan-list-title">
+                            <h1>{{ item.title }}</h1>
+                            <h2 ng-bind-html="item.subtitle"></h2>
+                        </div>
+
+                        <div class="legend">
+                            <div class="left fecha">{{ item.date }}</div>
+                            <div class="center">
+                                <div class="distance">{{ item.distancia }}</div>
+                            </div>
+                            <div class="right">{{ item.price }}</div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+
+            </ons-page>
+        </ons-splitter-content>
+
+        <ons-splitter-side var="rightSplitter" side="right" width="300px" collapse swipeable
+                           threhold-ratio-should-open="0.4">
+            <ons-page class="menusearch">
+                <ons-toolbar>
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()">
+                            <img class="header-icon" src="img/icon_close.png" alt="">
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list class="menu-list">
+                    <ons-list-item class="menu-box" ng-repeat="item in categories track by $index" modifier="chevron"
+                                   ng-click="search(item.id)">
+                        <div class="center">
+                            <div class="list__item__title"><h1 class="menu-search-title">{{ item.title }}</h1></div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+    </ons-splitter>
+</ons-template>
+
+<ons-template id="galeria_detalle.html">
+    <ons-splitter ng-controller="GaleriaDetalle" class="galeria-detalle">
+        <ons-splitter-content>
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button><img class="header-icon" src="img/back.png" alt=""></ons-back-button>
+                    </div>
+                    <div class="center">
+                        <img src="img/logo-header.png" alt="">
+                    </div>
+                    <div class="right">
+                        <!--<ons-button ng-click="rightSplitter.toggle()"><img class="header-icon" src="img/icon_search.png"
+                                                                           alt=""></ons-button>-->
+                    </div>
+                </ons-toolbar>
+
+                <ons-list class="plan-list">
+                    <ons-list-item class="foto-box preview" ng-repeat="item in fotos track by $index" src="{{ trustSrc(item.image) }}"
+                                   ng-click="showImage2(item.image)">
+                    </ons-list-item>
+                </ons-list>
+
+            </ons-page>
+        </ons-splitter-content>
+
+        <ons-splitter-side var="rightSplitter" side="right" width="300px" collapse swipeable
+                           threhold-ratio-should-open="0.4">
+            <ons-page class="menusearch">
+                <ons-toolbar>
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <ons-button ng-click="rightSplitter.toggle()">
+                            <img class="header-icon" src="img/icon_close.png" alt="">
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list class="menu-list">
+                    <ons-list-item class="menu-box" ng-repeat="item in categories track by $index" modifier="chevron"
+                                   ng-click="search(item.id)">
+                        <div class="center">
+                            <div class="list__item__title"><h1 class="menu-search-title">{{ item.title }}</h1></div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+    </ons-splitter>
 </ons-template>
 
 <ons-template id="daily_menus.html">
