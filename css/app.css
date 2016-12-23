@@ -681,6 +681,8 @@ div.dropdown select {
     position: absolute;
     right: 10px;
     bottom: 7px;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .legend .center {
@@ -1015,4 +1017,12 @@ s
     padding: 0;
     margin: 0;
     background-size: cover;
+}
+
+.plan h3.plan-title {
+    font-size: 17px;
+}
+
+.home .full-width.button {
+    height: 45px;
 }

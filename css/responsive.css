@@ -66,4 +66,12 @@
     .btn-with-icon.map img {
         width: 25px;
     }
+
+    .home .full-width.button {
+        height: 38px;
+    }
+
+    .button img {
+        max-height: 27px;
+    }
 }
