@@ -122,6 +122,12 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 window.plugins.socialsharing.share(data.title + ' ' + div.innerText, null, data.image, null);
 
+                window.plugins.socialsharing.shareViaFacebook(data.title + ' ' + div.innerText, null /* img */, null /* url */, function() {
+
+                }, function(errormsg) {
+                    //alert(errormsg);
+                });
+
                 /*var options = {
                     message: data.title + ' ' + div.innerText, // not supported on some apps (Facebook, Instagram)
                     subject: data.fecha, // fi. for email
@@ -1118,7 +1124,17 @@ module.controller('MenuDetail', function ($scope, service) {
 
         $scope.filterByType = function (type) {
 
-            var existMenus = $scope.menu.menu && ($scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres);
+            var existMenus;
+
+            try {
+
+                existMenus = $scope.menu.menu && ($scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres);
+
+            } catch(error) {
+
+                existMenus = false;
+            }
+
             var existsCarta = $scope.menu.carta.length > 0;
 
             if (type == 'menu' && !existMenus) {
@@ -1206,7 +1222,16 @@ module.controller('Local', function ($scope, service) {
 
         $scope.filterByType = function (type) {
 
-            var existMenus = $scope.local.menu && ($scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres);
+            var existMenus;
+
+            try {
+
+                existMenus = $scope.local.menu && ($scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres);
+
+            } catch(error){
+
+                existMenus = false;
+            }
             var existsCarta = $scope.local.carta.length > 0;
 
             if (type == 'menu' && !existMenus) {
