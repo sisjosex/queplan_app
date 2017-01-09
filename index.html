@@ -68,7 +68,7 @@
             </div>
             <div class="center"></div>
             <div class="right">
-                <ons-button ng-click="goToNotifications()" class="badge-item" style="padding-right:10px;padding-left: 10px;">
+                <ons-button ng-show="params.total_alertas>0" ng-click="goToNotifications()" class="badge-item" style="padding-right:10px;padding-left: 10px;">
                     <span class="badge">{{ params.total_alertas }}</span>
                     <img class="header-icon" src="img/icon_notification.png" alt="">
                 </ons-button>

@@ -252,3 +252,10 @@ ons-splitter-mask {
     font-family: 'CenturyGothic';
     text-transform: uppercase;
 }
+
+.page__content {
+    overflow: auto;
+    -webkit-overflow-scrolling: none;
+    z-index: 0;
+    -ms-touch-action: pan-y;
+}

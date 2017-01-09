@@ -136,9 +136,9 @@
 }
 
 .button img {
-    max-height:30px;
     display: inline-block;
     vertical-align: middle;
+    max-height: 25px;
 }
 
 .btn-with-icon img, .btn-with-icon span {
@@ -147,7 +147,7 @@
 }
 
 .btn-with-icon img {
-    width:30px;
+    width: 24px;
 }
 
 .button .text {

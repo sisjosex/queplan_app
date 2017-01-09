@@ -120,12 +120,18 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 //window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl');
 
-                window.plugins.socialsharing.share(data.title + ' ' + div.innerText, null, data.image, null);
+                //window.plugins.socialsharing.share(data.title + ' ' + div.innerText, null, data.image, null);
 
-                window.plugins.socialsharing.shareViaFacebook(data.title + ' ' + div.innerText, null /* img */, null /* url */, function() {
+                /*window.plugins.socialsharing.shareViaFacebook(data.title + ' ' + div.innerText, null, null, function() {
 
                 }, function(errormsg) {
                     //alert(errormsg);
+                });*/
+
+                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(data.title + ' ' + div.innerText, null /* img */, null /* url */, 'Post!', function() {
+                    console.log('share ok');
+                }, function(errormsg){
+                    alert(errormsg);
                 });
 
                 /*var options = {
