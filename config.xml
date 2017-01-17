@@ -92,14 +92,14 @@
         <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
 
-    <!--
+
     <plugin spec="https://github.com/AppsFlyerSDK/PhoneGap.git" source="git" />
     <feature name="AppsFlyerPlugin">
         <param name="ios-package" value="AppsFlyerPlugin" />
     </feature>
     <feature name="AppsFlyerPlugin">
         <param name="android-package" value="com.appsflyer.cordova.plugin.AppsFlyerPlugin" />
-    </feature>-->
+    </feature>
 
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#e12d5a" />
@@ -187,7 +187,7 @@
         <param name="SENDER_ID" value="51393321226" />
     </plugin>-->
 
-    <!--<plugin name="https://github.com/OneSignal/OneSignal-Cordova-SDK.git" source="git"></plugin>-->
+    <plugin spec="https://github.com/OneSignal/OneSignal-Cordova-SDK.git" source="git"></plugin>
 
     <!-- pushNotification -->
     <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />-->
@@ -196,7 +196,7 @@
     <!--<gap:plugin name="com.ams.plugins.barcodescanner" version="2.0.1" />-->
 
     <!-- PhoneDialer -->
-    <!--<gap:plugin name="https://github.com/anemitoff/PhoneGap-PhoneDialer.git " version="git" />-->
+    <gap:plugin spec="https://github.com/anemitoff/PhoneGap-PhoneDialer.git " version="git" />
 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
