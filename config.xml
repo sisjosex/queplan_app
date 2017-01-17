@@ -59,24 +59,24 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-    <plugin name="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-camera.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-media-capture.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-console.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-contacts.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-device.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-camera.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-media-capture.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-console.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-contacts.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-device.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
     <!--<plugin name="cordova-plugin-file" />-->
     <!--<plugin name="cordova-plugin-file-transfer" />-->
-    <plugin name="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
     <!--<plugin name="cordova-plugin-globalization" />-->
-    <plugin name="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-media.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
-    <plugin name="https://github.com/apache/cordova-plugin-vibration.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-vibration.git" source="git" />
     <!--<plugin name="cordova-plugin-statusbar" />-->
 
     <feature name="SplashScreen" >
@@ -177,10 +177,10 @@
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
     <!--<plugin name="cordova-plugin-whitelist" version="1" />-->
 
-    <plugin name="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" source="git" />
-    <plugin name="https://github.com/sarriaroman/photoviewer.git" source="git" />
+    <plugin spec="https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git" source="git" />
+    <plugin spec="https://github.com/sarriaroman/photoviewer.git" source="git" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
-    <plugin name="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
     <!--<plugin name="nl.x-services.plugins.socialsharing" source="pgb" />-->
 
     <!--<plugin name="phonegap-plugin-push">
