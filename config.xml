@@ -4,11 +4,11 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.sysdecom.queplan"
-        versionCode = "1905"
-        android-versionCode="1905"
-        version 	= "19.05">
+        versionCode = "2505"
+        android-versionCode="2505"
+        version 	= "25.05">
 
-    <name>QuePlan</name>
+    <name>¿Qué Plan?</name>
 
     <description>
         Aplicacion mobile - QuéPlan?
