@@ -378,6 +378,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.redirectToPage = function (seccion, id) {
 
+            if (!id || id == undefined || id == null || id == '') {
+                id = '';
+            }
+
             if (seccion == "local") {
 
                 if (id == "") {
