@@ -456,7 +456,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             } else {
 
-                rootScope.redirectToPage('local', id);
+                $rootScope.redirectToPage('local', id);
             }
         };
 
