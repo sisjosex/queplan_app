@@ -386,11 +386,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 if (id == "") {
 
-                    id = '1';
-
                     current_page = '';
 
-                    mainNavigator.pushPage('locals.html', {data: {category_id: id}});
+                    mainNavigator.pushPage('guia.html', {data: {category_id: 1}});
 
                 } else {
 
@@ -406,7 +404,9 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 } else {
 
 
-                    $rootScope.goToPlan(id);
+                    //$rootScope.goToPlan(id);
+
+                    mainNavigator.pushPage('plan.html', {data: {id: id}});
                 }
 
             } else if (seccion == "menu") {
@@ -442,7 +442,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.goToLocal = function (id, type) {
 
-            if (type == undefined || type == 'restaurant') {
+            if (type == 'restaurant') {
 
                 mainNavigator.pushPage('local_restaurant.html', {data: {local_id: id}});
 
@@ -453,16 +453,32 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             } else if (type == 'other') {
 
                 mainNavigator.pushPage('local_other.html', {data: {local_id: id}});
+
+            } else {
+
+                rootScope.redirectToPage('local', id);
             }
         };
 
-        $scope.goToPlan = function (plan_id) {
+        /*$scope.goToPlan = function (id) {
 
-            mainNavigator.pushPage('plan.html', {data: {plan_id: plan_id}});
-        };
+            //mainNavigator.pushPage('plan.html', {data: {plan_id: plan_id}});
+
+            rootScope.redirectToPage('plan', id);
+        };*/
 
         $rootScope.goToPlan = function (id) {
-            mainNavigator.pushPage('plan.html', {data: {id: id}});
+
+            if ( id ) {
+
+                mainNavigator.pushPage('plan.html', {data: {id: id}});
+
+            } else {
+
+                $rootScope.redirectToPage('plan');
+            }
+
+            //rootScope.redirectToPage('plan', id);
         };
 
 
