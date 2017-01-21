@@ -62,9 +62,13 @@ var lang = {
     }
 };
 
+var rootScope;
+
 module.controller('MainNavigatorController', function ($scope, $rootScope, service, $sce) {
 
     ons.ready(function () {
+
+        rootScope = $rootScope;
 
         $rootScope.params = {
             banner: {},
@@ -614,11 +618,13 @@ function onResize() {
 
 
 var homeSliderInterval = false;
-module.controller('Home', function ($rootScope, $scope) {
+module.controller('Home', function ($rootScope, $scope, service, $interval, $timeout) {
 
     ons.ready(function () {
 
         $scope.labels = lang[applicationLanguage];
+
+        $scope.total_notifications = 0;
 
         $scope.goToPlans = function () {
             mainNavigator.pushPage('plans.html');
@@ -648,6 +654,27 @@ module.controller('Home', function ($rootScope, $scope) {
             console.log('test');
         };
 
+        $scope.getNotificationsCount = function () {
+
+            service.getNotificationsCount({usuario_id: getUser() ? getUser().id : ''}, function (result) {
+
+                if (result.status == 'success') {
+
+                    $scope.total_notifications = result.data;
+
+                } else {
+
+                    alert('No se pudo conectar con el servidor');
+                }
+
+            }, function (error) {
+            })
+        };
+
+
+        $interval($scope.getNotificationsCount, 10000);
+        $scope.getNotificationsCount();
+
 
         $scope.current_carousel_index = 0;
 
@@ -669,13 +696,20 @@ module.controller('Home', function ($rootScope, $scope) {
                         homeSliderInterval = true;
 
                         setInterval(function () {
-                            if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
 
-                                homeCarousel.first();
+                            if ( homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length ) {
+
+                                if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded') ) {
+
+                                    homeCarousel.first();
+                                }
 
                             } else {
 
-                                homeCarousel.next();
+                                if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[ homeCarousel.getActiveIndex() + 1 ]).hasClass('loaded') ) {
+
+                                    homeCarousel.next();
+                                }
                             }
 
                         }, 5000);

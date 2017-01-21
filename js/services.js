@@ -50,6 +50,9 @@ angular.module("services", []).factory("service", [ "$http", "$q", function($htt
         getFotosGaleria: function(params, success, error) {
             $http({method: 'JSONP', url: API_URL + 'getFotosGaleria/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
         },
+        getNotificationsCount: function(params, success, error) {
+            $http({method: 'JSONP', url: API_URL + 'getNotificationsCount/?callback=JSON_CALLBACK', params: checkParams(params)}).success(success).error(error);
+        },
     };
 } ]);
 
