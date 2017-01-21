@@ -783,7 +783,7 @@ div.dropdown select {
 }
 
 .plan.scrolled .fixed {
-    margin-top:40px;
+    margin-top: 50px;
 }
 
 .plan.scrolled .fixed .plan-gallery {
@@ -793,11 +793,11 @@ div.dropdown select {
 }
 
 .plan.scrolled .navigation-bar {
-    height: 152px;
+    height: 162px;
 }
 
 .plan.scrolled .page__content {
-    padding-top: 0px;
+    padding-top: 10px;
 }
 
 .page.scrolled .toolbar-transparent {
@@ -924,6 +924,10 @@ s
 
 .legend .right {
     color: #ff3366;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 33%;
+    overflow: hidden;
 }
 
 .legend .center {
@@ -1025,4 +1029,14 @@ s
 
 .home .full-width.button {
     height: 45px;
+}
+
+.btn-loquiero {
+    margin: 0;
+    margin-top: 2px;
+    border: none !important;
+}
+
+.loquiero-bar {
+    height: auto;
 }

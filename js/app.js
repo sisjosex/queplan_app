@@ -410,7 +410,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                     //$rootScope.goToPlan(id);
 
-                    mainNavigator.pushPage('plan.html', {data: {id: id}});
+                    mainNavigator.pushPage('plan.html', {data: {plan_id: id}});
                 }
 
             } else if (seccion == "menu") {
@@ -475,7 +475,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
             if ( id ) {
 
-                mainNavigator.pushPage('plan.html', {data: {id: id}});
+                mainNavigator.pushPage('plan.html', {data: {plan_id: id}});
 
             } else {
 

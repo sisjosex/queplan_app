@@ -255,7 +255,7 @@ ons-splitter-mask {
 
 .page__content {
     overflow: auto;
-    -webkit-overflow-scrolling: none;
+    -webkit-overflow-scrolling: auto;
     z-index: 0;
     -ms-touch-action: pan-y;
 }
