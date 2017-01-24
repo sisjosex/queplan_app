@@ -295,13 +295,13 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 if (data.seccion) {
 
-                    /*confirm(message, function (result) {
+                    confirm(message, function (result) {
                         if (result == 0) {
                             $rootScope.redirectToPage(data.seccion, data.seccion_id);
                         }
-                    });*/
+                    });
 
-                    $rootScope.redirectToPage(data.seccion, data.seccion_id);
+                    //$rootScope.redirectToPage(data.seccion, data.seccion_id);
 
                 } else {
 
@@ -312,6 +312,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
             window.plugins.OneSignal
                 .startInit("4f0e2abf-c329-4f06-b3cd-64b54eaa05cc", "671857502263")
                 .handleNotificationOpened(notificationOpenedCallback)
+                .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
                 .endInit();
 
             window.plugins.OneSignal.getIds(function(ids) {
