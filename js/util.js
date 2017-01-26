@@ -6,8 +6,6 @@ function ImageLoader(preview, image, callback) {
     self.image = image;
     self.preview = preview;
 
-    self.image.src = preview.attr('src');
-
     var outerWidth = self.preview.width();
     var outerHeight = self.preview.height();
 
@@ -67,7 +65,7 @@ function ImageLoader(preview, image, callback) {
 
         self.preview.addClass('loaded');
 
-        if ( preview.hasClass('make-callback') ) {
+        if ( self.preview.hasClass('make-callback') ) {
 
             callback ? callback() : '';
 
@@ -76,5 +74,7 @@ function ImageLoader(preview, image, callback) {
 
         }
 
-    }
+    };
+
+    self.image.src = preview.attr('src');
 }

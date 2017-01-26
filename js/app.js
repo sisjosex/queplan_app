@@ -92,7 +92,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.showImage2 = function (url) {
 
-            PhotoViewer.show(url, '', {share:false, done: 'Cerrar'});
+            PhotoViewer.show(url, '', {share: false, done: 'Cerrar'});
         };
 
         $rootScope.call = function (phone) {
@@ -128,37 +128,37 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
                 /*window.plugins.socialsharing.shareViaFacebook(data.title + ' ' + div.innerText, null, null, function() {
 
-                }, function(errormsg) {
-                    //alert(errormsg);
-                });*/
+                 }, function(errormsg) {
+                 //alert(errormsg);
+                 });*/
 
-                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(data.title + ' ' + div.innerText, null /* img */, null /* url */, 'Post!', function() {
+                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(data.title + ' ' + div.innerText, null /* img */, null /* url */, 'Post!', function () {
                     console.log('share ok');
-                }, function(errormsg){
+                }, function (errormsg) {
                     alert(errormsg);
                 });
 
                 /*var options = {
-                    message: data.title + ' ' + div.innerText, // not supported on some apps (Facebook, Instagram)
-                    subject: data.fecha, // fi. for email
-                    files: [data.image],
-                    //files: ['', ''], // an array of filenames either locally or remotely
-                    //url: 'http://web.queplanmadrid.es/',
-                    chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
-                };
+                 message: data.title + ' ' + div.innerText, // not supported on some apps (Facebook, Instagram)
+                 subject: data.fecha, // fi. for email
+                 files: [data.image],
+                 //files: ['', ''], // an array of filenames either locally or remotely
+                 //url: 'http://web.queplanmadrid.es/',
+                 chooserTitle: 'Comparte este plan' // Android only, you can override the default share sheet title
+                 };
 
-                var onSuccess = function (result) {
-                    console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-                    console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-                };
+                 var onSuccess = function (result) {
+                 console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+                 console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+                 };
 
-                var onError = function (msg) {
-                    console.log("Sharing failed with message: " + msg);
-                };
+                 var onError = function (msg) {
+                 console.log("Sharing failed with message: " + msg);
+                 };
 
-                window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+                 window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 
-                */
+                 */
             }
         };
 
@@ -281,7 +281,7 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         $rootScope.registerPushNotifications = function () {
 
-            var notificationOpenedCallback = function(data) {
+            var notificationOpenedCallback = function (data) {
 
                 data = data.notification.payload.additionalData;
 
@@ -296,10 +296,10 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 if (data.seccion) {
 
                     /*confirm(message, function (result) {
-                        if (result == 0) {
-                            $rootScope.redirectToPage(data.seccion, data.seccion_id);
-                        }
-                    });*/
+                     if (result == 0) {
+                     $rootScope.redirectToPage(data.seccion, data.seccion_id);
+                     }
+                     });*/
 
                     $rootScope.redirectToPage(data.seccion, data.seccion_id);
 
@@ -309,75 +309,78 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
                 }
             };
 
-            window.plugins.OneSignal
-                .startInit("4f0e2abf-c329-4f06-b3cd-64b54eaa05cc", "671857502263")
-                .handleNotificationOpened(notificationOpenedCallback)
-                //.inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
-                .endInit();
+            if (window.plugins && window.plugins.OneSignal) {
 
-            window.plugins.OneSignal.getIds(function(ids) {
-                console.log('getIds: ' + JSON.stringify(ids));
-                //alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+                window.plugins.OneSignal
+                    .startInit("4f0e2abf-c329-4f06-b3cd-64b54eaa05cc", "671857502263")
+                    .handleNotificationOpened(notificationOpenedCallback)
+                    //.inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+                    .endInit();
 
-                token_notificacion = ids.pushToken;
-                onesignal_id = ids.userId;
+                window.plugins.OneSignal.getIds(function (ids) {
+                    console.log('getIds: ' + JSON.stringify(ids));
+                    //alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
 
-                localStorage.setItem('queplan_push_token', token_notificacion);
+                    token_notificacion = ids.pushToken;
+                    onesignal_id = ids.userId;
 
-                $rootScope.authenticate(function () {
-                });
-            });
-
-            /*if (window.PushNotification) {
-
-                var push = PushNotification.init({
-                    android: {
-                        senderID: "51393321226"
-                    },
-                    ios: {
-                        alert: "true",
-                        badge: true,
-                        sound: 'false'
-                    }
-                });
-
-                push.on('registration', function (token) {
-
-                    token_notificacion = token.registrationId;
-
-                    localStorage.getItem('queplan_push_token', token_notificacion);
+                    localStorage.setItem('queplan_push_token', token_notificacion);
 
                     $rootScope.authenticate(function () {
                     });
                 });
+            }
 
-                push.on('notification', function (data) {
+            /*if (window.PushNotification) {
 
-                    var message = data.message;
-                    var seccion = data.seccion;
-                    var seccion_id = data.seccion_id;
+             var push = PushNotification.init({
+             android: {
+             senderID: "51393321226"
+             },
+             ios: {
+             alert: "true",
+             badge: true,
+             sound: 'false'
+             }
+             });
 
-                    console.log(data);
+             push.on('registration', function (token) {
 
-                    if (data.additionalData.seccion) {
+             token_notificacion = token.registrationId;
 
-                        confirm(message, function (result) {
-                            if (result == 0) {
-                                $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
-                            }
-                        });
+             localStorage.getItem('queplan_push_token', token_notificacion);
 
-                    } else {
+             $rootScope.authenticate(function () {
+             });
+             });
 
-                        alert(message);
-                    }
+             push.on('notification', function (data) {
 
-                });
+             var message = data.message;
+             var seccion = data.seccion;
+             var seccion_id = data.seccion_id;
 
-                push.on('error', function (e) {
-                    console.log(e.message);
-                });
-            }*/
+             console.log(data);
+
+             if (data.additionalData.seccion) {
+
+             confirm(message, function (result) {
+             if (result == 0) {
+             $rootScope.redirectToPage(data.additionalData.seccion, data.additionalData.seccion_id);
+             }
+             });
+
+             } else {
+
+             alert(message);
+             }
+
+             });
+
+             push.on('error', function (e) {
+             console.log(e.message);
+             });
+             }*/
         };
 
 
@@ -467,14 +470,14 @@ module.controller('MainNavigatorController', function ($scope, $rootScope, servi
 
         /*$scope.goToPlan = function (id) {
 
-            //mainNavigator.pushPage('plan.html', {data: {plan_id: plan_id}});
+         //mainNavigator.pushPage('plan.html', {data: {plan_id: plan_id}});
 
-            rootScope.redirectToPage('plan', id);
-        };*/
+         rootScope.redirectToPage('plan', id);
+         };*/
 
         $rootScope.goToPlan = function (id) {
 
-            if ( id ) {
+            if (id) {
 
                 mainNavigator.pushPage('plan.html', {data: {plan_id: id}});
 
@@ -679,15 +682,13 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
 
         $scope.current_carousel_index = 0;
 
+        setTimeout( function(){
 
-        setTimeout(function () {
+            console.log( $(mainNavigator.topPage).find('.preview') );
 
-            //$(mainNavigator.topPage).show();
+            $(mainNavigator.topPage).find('.preview').each(function () {
 
-            $('.preview').each(function () {
                 new ImageLoader($(this), new Image(), function () {
-
-                    console.log('loaded');
 
                     homeCarousel.on('postchange', function () {
 
@@ -704,23 +705,23 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
 
                             if (currentCicle != 0) {
 
-                                if ( homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length ) {
+                                if (homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length) {
 
-                                    if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded') ) {
+                                    if ($($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded')) {
 
                                         homeCarousel.first();
                                     }
 
                                 } else {
 
-                                    if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[ homeCarousel.getActiveIndex() + 1 ]).hasClass('loaded') ) {
+                                    if ($($(mainNavigator.topPage).find('.home-carousel div.preview')[homeCarousel.getActiveIndex() + 1]).hasClass('loaded')) {
 
                                         homeCarousel.next();
                                     }
                                 }
                             }
 
-                            currentCicle ++;
+                            currentCicle++;
 
                         }, 5000);
                     }
@@ -731,6 +732,7 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
                     }
                 });
             });
+
         }, 1000);
 
     });
@@ -778,7 +780,7 @@ module.controller('Cities', function ($rootScope, $scope, service) {
         setTimeout(function () {
 
             $(mainNavigator.topPage).find('.preview').each(function () {
-                new ImageLoader($(this), new Image(), function(){
+                new ImageLoader($(this), new Image(), function () {
 
                     try {
                         navigator.splashscreen.hide();
@@ -972,7 +974,7 @@ module.controller('Galerias', function ($scope, service) {
 
         $scope.galerias = [];
 
-        $scope.goToGaleriaDetalle = function(galeria) {
+        $scope.goToGaleriaDetalle = function (galeria) {
 
             mainNavigator.pushPage('galeria_detalle.html', {data: {galeria: galeria}});
         };
@@ -1200,7 +1202,7 @@ module.controller('MenuDetail', function ($scope, service) {
 
                 existMenus = $scope.menu.menu && ($scope.menu.menu.content.primeros != '' || $scope.menu.menu.content.segundos != '' || $scope.menu.menu.content.postres);
 
-            } catch(error) {
+            } catch (error) {
 
                 existMenus = false;
             }
@@ -1298,7 +1300,7 @@ module.controller('Local', function ($scope, service) {
 
                 existMenus = $scope.local.menu && ($scope.local.menu.content.primeros != '' || $scope.local.menu.content.segundos != '' || $scope.local.menu.content.postres);
 
-            } catch(error){
+            } catch (error) {
 
                 existMenus = false;
             }
