@@ -684,11 +684,13 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
 
         setTimeout( function(){
 
-            console.log( $(mainNavigator.topPage).find('.preview') );
-
-            $(mainNavigator.topPage).find('.preview').each(function () {
+            $($(mainNavigator.topPage).find('.preview')[0]).each(function () {
 
                 new ImageLoader($(this), new Image(), function () {
+
+                    $($(mainNavigator.topPage).find('.preview')).each(function () {
+                        new ImageLoader($(this), new Image());
+                    });
 
                     homeCarousel.on('postchange', function () {
 
