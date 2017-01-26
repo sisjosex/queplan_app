@@ -709,7 +709,9 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
 
                                     if ($($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded')) {
 
-                                        homeCarousel.first();
+                                        homeCarousel.first({
+                                            animation: "none"
+                                        });
                                     }
 
                                 } else {
@@ -733,7 +735,7 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
                 });
             });
 
-        }, 1000);
+        }, 1500);
 
     });
 });
