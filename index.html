@@ -77,8 +77,8 @@
 
         <ons-carousel swipeable overscrollable auto-scroll fullscreen auto-scroll-ratio="0.2" class="relative home-carousel"
                       var="homeCarousel">
-            <ons-carousel-item ng-repeat="item in params.slider" ng-click="setCity(item.id)">
-                <div class="preview" src="{{ trustSrc(item.image) }}"></div>
+            <ons-carousel-item ng-repeat="item in params.slider track by $index" ng-click="setCity(item.id)">
+                <div class="preview" ng-class="{'make-callback': $index == 0}" src="{{ trustSrc(item.image) }}"></div>
                 <div class="video" ng-show="item.video != ''" ng-click="playVideo(item.video)"></div>
             </ons-carousel-item>
 

@@ -48,7 +48,11 @@
     <preference name="DisallowOverscroll" value="true"/>
 
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="SplashScreenDelay" value="120000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreenDuration" value="750"/>
+    <preference name="ShowSplashScreenSpinner" value="true"/>
+    
     <!--
         Define a specific version of PhoneGap to build into your app.
         <preference name="phonegap-version"       value="cli-6.3.0" />

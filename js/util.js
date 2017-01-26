@@ -67,6 +67,14 @@ function ImageLoader(preview, image, callback) {
 
         self.preview.addClass('loaded');
 
-        callback ? callback() : '';
+        if ( preview.hasClass('make-callback') ) {
+
+            callback ? callback() : '';
+
+        } else {
+
+
+        }
+
     }
 }

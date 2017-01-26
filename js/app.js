@@ -687,6 +687,8 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
             $('.preview').each(function () {
                 new ImageLoader($(this), new Image(), function () {
 
+                    console.log('loaded');
+
                     homeCarousel.on('postchange', function () {
 
                         $scope.current_carousel_index = homeCarousel.getActiveIndex();
@@ -696,22 +698,29 @@ module.controller('Home', function ($rootScope, $scope, service, $interval, $tim
                     if (!homeSliderInterval) {
                         homeSliderInterval = true;
 
+                        var currentCicle = 0;
+
                         setInterval(function () {
 
-                            if ( homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length ) {
+                            if (currentCicle != 0) {
 
-                                if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded') ) {
+                                if ( homeCarousel.getActiveIndex() + 1 == $rootScope.params.slider.length ) {
 
-                                    homeCarousel.first();
-                                }
+                                    if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[0]).hasClass('loaded') ) {
 
-                            } else {
+                                        homeCarousel.first();
+                                    }
 
-                                if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[ homeCarousel.getActiveIndex() + 1 ]).hasClass('loaded') ) {
+                                } else {
 
-                                    homeCarousel.next();
+                                    if( $($(mainNavigator.topPage).find('.home-carousel div.preview')[ homeCarousel.getActiveIndex() + 1 ]).hasClass('loaded') ) {
+
+                                        homeCarousel.next();
+                                    }
                                 }
                             }
+
+                            currentCicle ++;
 
                         }, 5000);
                     }
