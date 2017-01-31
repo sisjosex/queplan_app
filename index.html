@@ -735,12 +735,16 @@
                             <h2 ng-bind-html="item.subtitle"></h2>
                         </div>
 
-                        <div class="legend">
+                        <!--<div class="legend">
                             <div class="left fecha">{{ item.fecha }}</div>
                             <div class="center">
                                 <div class="distance">{{ item.distancia }}</div>
                             </div>
                             <div class="right">{{ item.price }}</div>
+                        </div>-->
+                        <div class="legend">
+                            <div class="left distance">{{ item.distancia }}</div>
+                            <div class="right plan-price">{{ item.price }}</div>
                         </div>
                     </ons-list-item>
                 </ons-list>
@@ -802,11 +806,8 @@
                         </div>
 
                         <div class="legend">
-                            <div class="left fecha">{{ plan.fecha }}</div>
-                            <div class="center">
-                                <div class="distance">{{ plan.distancia }}</div>
-                            </div>
-                            <div class="right">{{ plan.price }}</div>
+                            <div class="left distance">{{ plan.distancia }}</div>
+                            <div class="right plan-price">{{ plan.price }}</div>
                         </div>
                     </figure>
                 </div>
@@ -824,11 +825,8 @@
                 </div>
 
                 <div class="legend">
-                    <div class="left fecha">{{ plan.fecha }}</div>
-                    <div class="center">
-                        <div class="distance">{{ plan.distancia }}</div>
-                    </div>
-                    <div class="right">{{ plan.price }}</div>
+                    <div class="left distance">{{ plan.distancia }}</div>
+                    <div class="right plan-price">{{ plan.price }}</div>
                 </div>
             </figure>
         </div>

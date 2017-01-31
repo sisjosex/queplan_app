@@ -1040,3 +1040,8 @@ s
 .loquiero-bar {
     height: auto;
 }
+
+.plan-price {
+    width: 70% !important;
+    text-align: right;
+}
