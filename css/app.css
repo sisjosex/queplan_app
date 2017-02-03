@@ -680,7 +680,7 @@ div.dropdown select {
 .legend .right {
     position: absolute;
     right: 10px;
-    bottom: 7px;
+    bottom: 6px;
     font-size: 17px;
     font-weight: bold;
 }
@@ -1039,4 +1039,9 @@ s
 
 .loquiero-bar {
     height: auto;
+}
+
+.plan-price {
+    width: 70% !important;
+    text-align: right;
 }
