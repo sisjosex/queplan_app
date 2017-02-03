@@ -4,9 +4,9 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.sysdecom.queplan"
-        versionCode = "2505"
-        android-versionCode="2505"
-        version 	= "25.05">
+        versionCode = "2506"
+        android-versionCode="2506"
+        version 	= "25.06">
 
     <name>QuéPlan?</name>
 
@@ -61,13 +61,13 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-    <plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-camera.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-media-capture.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-console.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-contacts.git" source="git" />
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-camera.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-media-capture.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-console.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-contacts.git" source="git" />-->
     <plugin spec="https://github.com/apache/cordova-plugin-device.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />-->
     <plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
     <!--<plugin name="cordova-plugin-file" />-->
@@ -75,8 +75,8 @@
     <plugin spec="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
     <!--<plugin name="cordova-plugin-globalization" />-->
     <plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />-->
     <plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-vibration.git" source="git" />
     <!--<plugin name="cordova-plugin-statusbar" />-->
